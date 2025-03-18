@@ -7,10 +7,101 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Tue, 11 Mar 2025 18:58:52 +0800</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>DOM 文档对象模型</title>
+        <link>https://Yerucrem.github.io/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+        <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+        <description>&lt;h1 id=&#34;dom&#34;&gt;DOM
+&lt;/h1&gt;&lt;p&gt;Document Object Model 文档对象模型&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.w3.org/TR/REC-DOM-Level-1/introduction.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;什么是文档对象模型？ &amp;mdash; What is the Document Object Model?&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;dom-是什么&#34;&gt;DOM 是什么？
+&lt;/h2&gt;&lt;p&gt;想象一下，你有一张房子的&lt;strong&gt;建筑蓝图&lt;/strong&gt;，上面画着房子的每一个部分：墙、门、窗户、屋顶等等。DOM 就像是网页的“蓝图”。当你打开一个网页，浏览器会把网页的 HTML 代码（那些 &lt;code&gt;&amp;lt;html&amp;gt;、&amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;&lt;/code&gt; 标签）解析成一个树状结构，这个结构就是 DOM。它把网页里的每一个元素（比如标题、段落、图片）都整理得清清楚楚，让计算机（特别是 JavaScript）能找到它们、操作它们。&lt;/p&gt;
+&lt;p&gt;简单来说，DOM 是网页的&lt;strong&gt;骨架图&lt;/strong&gt;，它把网页的内容变成一个个“节点”（node），这些节点就像蓝图上的标记点，互相之间还有父子关系、兄弟关系，形成一个大树。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;title&amp;gt;我的网页&amp;lt;/title&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;/head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;h1&amp;gt;欢迎&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;p&amp;gt;这是一个段落。&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;/body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在这个 HTML 里，DOM 会把它变成一个树形结构：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- &amp;lt;html&amp;gt; 是根节点，就像树的树根，整个网页的起点。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- &amp;lt;html&amp;gt; 下面有两个“孩子”：&amp;lt;head&amp;gt; 和 &amp;lt;body&amp;gt;。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- &amp;lt;head&amp;gt; 里有个孩子 &amp;lt;title&amp;gt;，它的内容是“我的网页”。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- &amp;lt;body&amp;gt; 里有两个孩子：&amp;lt;h1&amp;gt;（内容是“欢迎”）和 &amp;lt;p&amp;gt;（内容是“这是一个段落。”）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;这就像一个家庭的家谱：&amp;lt;html&amp;gt; 是爷爷，&amp;lt;head&amp;gt; 和 &amp;lt;body&amp;gt; 是他的两个孩子，&amp;lt;title&amp;gt; 是 &amp;lt;head&amp;gt; 的孩子，&amp;lt;h1&amp;gt; 和 &amp;lt;p&amp;gt; 是 &amp;lt;body&amp;gt; 的孩子。每个节点都是一个“对象”，有自己的属性，比如 &amp;lt;p&amp;gt; 的 innerHTML 属性就是“这是一个段落。”。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;dom-有什么用&#34;&gt;DOM 有什么用？
+&lt;/h2&gt;&lt;p&gt;DOM 的牛逼之处在于，它让 &lt;strong&gt;JavaScript&lt;/strong&gt; 能和网页互动。有了 DOM，JavaScript 就像一个装修工人，可以拿着网页的蓝图（DOM）去干活：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查看&lt;/strong&gt;：找到某个节点，看看它是什么内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;修改&lt;/strong&gt;：比如把 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 的文字从“这是一个段落。”改成“这是新段落！”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;添加&lt;/strong&gt;：在 &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; 里加一个新的 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 节点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;删除&lt;/strong&gt;：把某个节点去掉。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;举个例子：你想做一个网页，用户点一个按钮，页面上的文字就变了。你可以用 JavaScript 写代码，通过 DOM 找到那个文字所在的节点，然后改它的内容。比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;找到 &amp;lt;p&amp;gt; 节点 let paragraph = document.querySelector(&amp;#34;p&amp;#34;); // 修改它的内容 paragraph.innerHTML = &amp;#34;文字被我改啦！&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;再比如，你想做一个待办事项列表，用户点按钮就能添加新任务。这也是通过 DOM 实现的：JavaScript 创建一个新节点（比如 &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;），然后把它加到列表里。&lt;/p&gt;
+&lt;h2 id=&#34;dom-是桥梁&#34;&gt;DOM 是桥梁
+&lt;/h2&gt;&lt;p&gt;所以，DOM 就像是网页（HTML）和 JavaScript 之间的“翻译官”或者“桥梁”。HTML 负责写出网页的内容和结构，DOM 把这些内容变成一个树形结构，JavaScript 通过 DOM 来动态地控制网页，让网页不再是静态的，而是可以互动、有变化的。&lt;/p&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结
+&lt;/h2&gt;&lt;p&gt;用最简单的话说：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DOM 是网页的树形蓝图&lt;/strong&gt;，把每个元素都变成节点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JavaScript 通过 DOM 操作网页&lt;/strong&gt;，可以改内容、加东西、删东西。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;它让网页变得活起来&lt;/strong&gt;，能根据用户的操作动态变化。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>其一</title>
         <link>https://Yerucrem.github.io/p/%E5%85%B6%E4%B8%80/</link>
-        <pubDate>Tue, 11 Mar 2025 18:58:52 +0800</pubDate>
+        <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E5%85%B6%E4%B8%80/</guid>
         <description></description>
