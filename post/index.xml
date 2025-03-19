@@ -13,7 +13,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</guid>
-        <description>&lt;h1 id=&#34;dns详细信息&#34;&gt;DNS详细信息
+        <description>&lt;img src="https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" alt="Featured image of post DNS 详细信息" /&gt;&lt;h1 id=&#34;dns详细信息&#34;&gt;DNS详细信息
 &lt;/h1&gt;&lt;p&gt;DNS（域名系统）为我们提供了一种与 Internet 上的设备进行通信的简单方法，而无需记住复数。就像每栋房子都有一个直接向其发送邮件的唯一地址一样，互联网上的每台计算机都有自己唯一的地址来与之通信，称为 IP 地址。IP 地址类似于以下 104.26.10.229,4 组数字，范围从 0 到 255，用句点分隔。当您想访问一个网站时，记住这组复杂的数字并不十分方便，而这正是 DNS 可以提供帮助的地方。因此，您可以记住 &lt;a class=&#34;link&#34; href=&#34;http://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;tryhackme.com&lt;/a&gt;，而不是记住 104.26.10.229。&lt;/p&gt;
 &lt;h2 id=&#34;域层次结构&#34;&gt;域层次结构
@@ -47,7 +47,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</guid>
-        <description>&lt;h1 id=&#34;http协议&#34;&gt;HTTP协议
+        <description>&lt;img src="https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/8869B409E00211CCAA40D8BA9BC4F9A4.jpg" alt="Featured image of post HTTP 详细信息" /&gt;&lt;h1 id=&#34;http协议&#34;&gt;HTTP协议
 &lt;/h1&gt;&lt;h2 id=&#34;什么是-http超文本传输协议&#34;&gt;什么是 HTTP？（超文本传输协议）
 &lt;/h2&gt;&lt;p&gt;HTTP 是您查看网站时使用的工具，由 Tim Berners-Lee 和他的团队在 1989 年至 1991 年间开发。HTTP 是用于与 Web 服务器通信以传输网页数据（无论是 HTML、图像、视频等）的规则集。&lt;/p&gt;
 &lt;h2 id=&#34;什么是-https-安全超文本传输协议&#34;&gt;什么是 HTTPS？ （安全超文本传输协议）
@@ -348,7 +348,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h1 id=&#34;idor基础&#34;&gt;IDOR基础
+        <description>&lt;img src="https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" alt="Featured image of post IDOR基础" /&gt;&lt;h1 id=&#34;idor基础&#34;&gt;IDOR基础
 &lt;/h1&gt;&lt;h2 id=&#34;什么是idor&#34;&gt;什么是IDOR
 &lt;/h2&gt;&lt;p&gt;IDOR（ Insecure Direct Object Reference） 代表不安全的直接对象引用，是一种访问控制漏洞。&lt;/p&gt;
 &lt;p&gt;当 Web 服务器收到用户提供的输入以检索对象（文件、数据、文档），对输入数据给予了太多信任，并且未在服务器端对其进行验证以确认所请求的对象属于请求它的用户时，就会发生这种类型的漏洞。&lt;/p&gt;
@@ -390,7 +390,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h1 id=&#34;ssrf基础&#34;&gt;SSRF基础
+        <description>&lt;img src="https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/f4a6e2d065c3c9fcd40dfb76bc3317b0d466b12c787faa354faa62457ded2ba5.png" alt="Featured image of post SSRF基础" /&gt;&lt;h1 id=&#34;ssrf基础&#34;&gt;SSRF基础
 &lt;/h1&gt;&lt;h2 id=&#34;什么是ssrf&#34;&gt;什么是SSRF
 &lt;/h2&gt;&lt;p&gt;SSRF 代表服务器端请求伪造。这是一个漏洞，允许恶意用户使 Web 服务器向攻击者选择的资源发出额外或经过编辑的 HTTP 请求。&lt;/p&gt;
 &lt;h2 id=&#34;ssrf-的类型&#34;&gt;SSRF 的类型
@@ -478,7 +478,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</guid>
-        <description>&lt;h1 id=&#34;身份验证绕过&#34;&gt;身份验证绕过
+        <description>&lt;img src="https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" alt="Featured image of post 身份验证绕过" /&gt;&lt;h1 id=&#34;身份验证绕过&#34;&gt;身份验证绕过
 &lt;/h1&gt;&lt;h2 id=&#34;用户名枚举&#34;&gt;用户名枚举
 &lt;/h2&gt;&lt;h2 id=&#34;暴力&#34;&gt;暴力
 &lt;/h2&gt;&lt;h2 id=&#34;逻辑缺陷&#34;&gt;逻辑缺陷
@@ -675,7 +675,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h1 id=&#34;文件包含基础&#34;&gt;文件包含基础
+        <description>&lt;img src="https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png" alt="Featured image of post 文件包含基础" /&gt;&lt;h1 id=&#34;文件包含基础&#34;&gt;文件包含基础
 &lt;/h1&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍
 &lt;/h2&gt;&lt;p&gt;此房间旨在为您提供利用文件包含漏洞的基本知识，包括本地文件包含 （LFI）、远程文件包含 （RFI） 和目录遍历。此外，我们还将讨论发现这些漏洞的风险以及所需的补救措施。我们提供了每个漏洞的一些实际示例以及实践挑战。&lt;/p&gt;
 &lt;p&gt;在某些情况下，编写 Web 应用程序是为了通过参数请求访问给定系统上的文件，包括图像、静态文本等。参数是附加到 URL 的查询参数字符串，可用于检索数据或根据用户输入执行作。 下图分解了 URL 的基本部分。&lt;/p&gt;
@@ -984,7 +984,7 @@
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
-        <description>&lt;h1 id=&#34;dom&#34;&gt;DOM
+        <description>&lt;img src="https://Yerucrem.github.io/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post DOM 文档对象模型" /&gt;&lt;h1 id=&#34;dom&#34;&gt;DOM
 &lt;/h1&gt;&lt;p&gt;Document Object Model 文档对象模型&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.w3.org/TR/REC-DOM-Level-1/introduction.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;什么是文档对象模型？ &amp;mdash; What is the Document Object Model?&lt;/a&gt;&lt;/p&gt;
@@ -1075,7 +1075,7 @@
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
+        <description>&lt;img src="https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1.png" alt="Featured image of post SQL注入基础" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
 &lt;/h1&gt;&lt;p&gt;SQL 语法不区分大小写。&lt;/p&gt;
 &lt;h2 id=&#34;sql基础&#34;&gt;SQL基础
 &lt;/h2&gt;&lt;h3 id=&#34;select&#34;&gt;SELECT
@@ -1505,7 +1505,7 @@
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/</guid>
-        <description>&lt;h1 id=&#34;xss-thm-做题记录&#34;&gt;XSS THM 做题记录
+        <description>&lt;img src="https://Yerucrem.github.io/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/f11677927824a3d078e08a2c300d8ccf225d496d442a2b7c8be0ca2d5adf6d9a.png" alt="Featured image of post 关于XSS基础的利用" /&gt;&lt;h1 id=&#34;xss-thm-做题记录&#34;&gt;XSS THM 做题记录
 &lt;/h1&gt;&lt;h2 id=&#34;level-one&#34;&gt;Level One:
 &lt;/h2&gt;&lt;p&gt;看到一个表单，要您输入的姓名，输入姓名后，该表单将在下面的一行中显示，例如：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/image-20250318144957610.png&#34;
@@ -1782,7 +1782,7 @@
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h1 id=&#34;命令注入&#34;&gt;命令注入
+        <description>&lt;img src="https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png" alt="Featured image of post 命令注入基础" /&gt;&lt;h1 id=&#34;命令注入&#34;&gt;命令注入
 &lt;/h1&gt;&lt;h2 id=&#34;分类&#34;&gt;分类
 &lt;/h2&gt;&lt;p&gt;命令注入主要可以通过以下两种方式之一进行检测：&lt;/p&gt;
 &lt;ol&gt;
