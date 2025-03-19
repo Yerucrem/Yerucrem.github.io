@@ -10,10 +10,10 @@
 <meta property='og:description' content="THM上的做题记录">
 <meta property='og:url' content='https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/'>
 <meta property='og:site_name' content='夜路归'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png' />
 <meta name="twitter:title" content="SQL注入基础">
 <meta name="twitter:description" content="THM上的做题记录"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1.png' />
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -321,12 +321,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">
-                <img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1_hu_83bfc761a15344ba.png"
-                        srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1_hu_83bfc761a15344ba.png 800w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1_hu_e96ef3ba9816411f.png 1600w"
-                        width="800" 
-                        height="800" 
-                        loading="lazy"
-                        alt="Featured image of post SQL注入基础" />
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" loading="lazy" alt="Featured image of post SQL注入基础" />
                 
             </a>
         </div>
@@ -393,245 +389,177 @@
 </h2><h3 id="select">SELECT
 </h3><p>我们将学习的第一种查询类型是用于从数据库中检索数据的 SELECT 查询。</p>
 <p><code>select * from users;</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160026857.png"
-	width="1382"
-	height="186"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160026857_hu_a1c29357c8e6bc5f.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160026857_hu_1836b73164289f9f.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160026857.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="743"
-		data-flex-basis="1783px"
 	
 ></p>
 <p>第一个单词 SELECT 告诉数据库我们想要检索一些数据;* 告诉数据库我们想从表中接收所有列。例如，该表可能包含三列（id、username 和 password）。“from users” 告诉数据库我们想要从名为 users 的表中检索数据。最后，末尾的分号告诉数据库这是查询的结束。</p>
 <p>下一个查询与上述查询类似，但这次，我们不是使用 * 返回数据库表中的所有列，而是只请求 username 和 password 字段。</p>
 <p><code>select username,password from users;</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160107670.png"
-	width="1387"
-	height="195"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160107670_hu_8e6c560654a76494.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160107670_hu_2884f3b1ad65f1ab.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160107670.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="711"
-		data-flex-basis="1707px"
 	
 ></p>
 <p>与第一个查询一样，以下查询使用 * 选择器返回所有列，然后 “LIMIT 1” 子句强制数据库仅返回一行数据。将查询更改为 “LIMIT 1,1” 会强制查询跳过第一个结果，然后 “LIMIT 2,1” 会跳过前两个结果，依此类推。您需要记住，第一个数字告诉数据库您希望跳过多少个结果，第二个数字告诉数据库要返回多少行。</p>
 <p><code>select * from users LIMIT 1;</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160133299.png"
-	width="1387"
-	height="100"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160133299_hu_2e8a28dd945dc7a0.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160133299_hu_116e6924d7b069e9.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160133299.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="1387"
-		data-flex-basis="3328px"
 	
 ></p>
 <p><code>select * from users where username='admin';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160158890.png"
-	width="1385"
-	height="98"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160158890_hu_cbc520106eb212d6.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160158890_hu_5907f8e5e5f3a511.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160158890.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="1413"
-		data-flex-basis="3391px"
 	
 ></p>
 <p>这只会返回 username 等于 admin 的行。</p>
 <p><code>select * from users where username != 'admin';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160228981.png"
-	width="1381"
-	height="145"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160228981_hu_d99e773ab83e0c8f.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160228981_hu_38ec2d446e10dac6.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160228981.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="952"
-		data-flex-basis="2285px"
 	
 ></p>
 <p>这只会返回 username <strong>不</strong> 等于 admin 的行。</p>
 <p><code>select * from users where username='admin' or username='jon';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160256822.png"
-	width="1385"
-	height="145"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160256822_hu_8fd58c4ebab6419d.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160256822_hu_5fdf7827852d7790.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160256822.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="955"
-		data-flex-basis="2292px"
 	
 ></p>
 <p>这只会返回用户名等于 admin 或 jon 的行。</p>
 <p><code>select * from users where username='admin' and password='p4ssword';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160336441.png"
-	width="1393"
-	height="97"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160336441_hu_acc32e764ee4417c.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160336441_hu_c221c732b46efd62.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160336441.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="1436"
-		data-flex-basis="3446px"
 	
 ></p>
 <p>这只会返回用户名等于 <strong>admin</strong> 且密码等于 <strong>p4ssword</strong> 的行.</p>
 <h4 id="like">like
 </h4><p>使用 like 子句允许您指定不完全匹配，而是以特定字符开头、包含或结尾的数据，方法是选择放置由百分号表示的通配符的位置。</p>
 <p><code>select * from users where username like '%n';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160440356.png"
-	width="1387"
-	height="190"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160440356_hu_78ff5acf0bd4b1a9.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160440356_hu_8c94b8e109fd0298.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160440356.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="730"
-		data-flex-basis="1752px"
 	
 ></p>
 <p>这将返回用户名以字母 n 结尾的任何行。</p>
 <p><code>select * from users where username like '%mi%';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160504321.png"
-	width="1386"
-	height="94"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160504321_hu_98281a8adc3aeea6.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160504321_hu_4fed7ff6c4e6fca9.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160504321.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="1474"
-		data-flex-basis="3538px"
 	
 ></p>
 <p>这将返回用户名中包含字符 <strong>mi</strong> 的任何行。</p>
 <h3 id="union">UNION
 </h3><p>UNION 语句将两个或多个 SELECT 语句的结果组合在一起，以从单个或多个表中检索数据;此查询的规则是 UNION 语句必须在每个 SELECT 语句中检索相同数量的列，列必须具有相似的数据类型，并且列顺序必须相同。这听起来可能不是很清楚，所以让我们使用下面的类比。假设一家公司想要为所有客户和供应商创建一个地址列表，以便发布新目录。我们有一个名为 customers 的表，其中包含以下内容：</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160608318.png"
-	width="1389"
-	height="189"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160608318_hu_428dd879d21792b8.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160608318_hu_835186d4a4ba9826.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160608318.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="734"
-		data-flex-basis="1763px"
 	
 ></p>
 <p>另一个表叫 suppliers，内容如下：</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160630628.png"
-	width="1382"
-	height="233"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160630628_hu_2dddac8afab7b28b.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160630628_hu_f103617d46af75ac.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160630628.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="593"
-		data-flex-basis="1423px"
 	
 ></p>
 <p>使用以下 SQL 语句，我们可以从两个表中收集结果并将它们放入一个结果集中：</p>
 <p><code>SELECT name,address,city,postcode from customers UNION SELECT company,address,city,postcode from suppliers;</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160656676.png"
-	width="1382"
-	height="370"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160656676_hu_996141177df5d8b5.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160656676_hu_27912512623d2.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160656676.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="373"
-		data-flex-basis="896px"
 	
 ></p>
 <h3 id="insert">INSERT
 </h3><p><strong>INSERT</strong> 语句告诉数据库我们希望在表中插入一行新数据。 <strong>“into users”</strong> 告诉数据库我们希望将数据插入到哪个表中， <strong>“（username，password）”</strong> 提供我们提供数据的列，然后 <strong>“values （&lsquo;bob&rsquo;，&lsquo;password&rsquo;）”;</strong> 提供以前指定的列的数据。</p>
 <p><code>insert into users (username,password) values ('bob','password123');</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160737067.png"
-	width="1387"
-	height="237"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160737067_hu_2299b42a7593e509.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160737067_hu_d5aafc4a61edec3c.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160737067.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="585"
-		data-flex-basis="1404px"
 	
 ></p>
 <h3 id="update">UPDATE
 </h3><p><strong>UPDATE</strong> 语句告诉数据库我们希望更新表中的一行或多行数据。您使用 “<strong>update %tablename% SET</strong>” 指定要更新的表，然后选择要更新的一个或多个字段，以逗号分隔的列表，例如 “<strong>username=&lsquo;root&rsquo;，password=&lsquo;pass123&rsquo;</strong>”，最后，类似于 SELECT 语句，您可以使用 where 子句准确指定要更新的行，例如 “<strong>where username=&lsquo;admin;</strong>“</p>
 <p><code>update users SET username='root',password='pass123' where username='admin';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160817369.png"
-	width="1385"
-	height="239"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160817369_hu_1a146b842164f37c.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160817369_hu_1feee62a670e3ff5.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160817369.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="579"
-		data-flex-basis="1390px"
 	
 ></p>
 <h3 id="delete">DELETE
 </h3><p><strong>DELETE</strong> 语句告诉数据库我们希望删除一行或多行数据。除了缺少要返回的列之外，此查询的格式与 SELECT 非常相似。您可以使用 <strong>where</strong> <strong>子句精确</strong>指定要删除的数据，并使用 LIMIT 子句指定要删除的行 数。</p>
 <p><code>delete from users where username='martin';</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160846187.png"
-	width="1385"
-	height="187"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160846187_hu_cda7583a378e4286.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160846187_hu_5d14e1a6f115937a.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160846187.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="740"
-		data-flex-basis="1777px"
 	
 ></p>
 <p><code>delete from users;</code></p>
 <p>由于查询中未使用 WHERE 子句，因此所有数据都已从表中删除。</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160925268.png"
-	width="1388"
-	height="51"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160925268_hu_b04a9760ff2ede6d.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318160925268_hu_22142de98776489a.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160925268.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="2721"
-		data-flex-basis="6531px"
 	
 ></p>
 <h2 id="基础做题">基础做题
 </h2><h3 id="in-band-sql-injection">In-Band SQL Injection
-</h3><p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163151079.png"
-	width="717"
-	height="472"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163151079_hu_8d3e3435a4a000b4.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163151079_hu_b2aef2d982353cbd.png 1024w"
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163151079.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="151"
-		data-flex-basis="364px"
 	
 ></p>
 <h4 id="查询库">查询库
@@ -639,62 +567,46 @@
 <p>构建 <code>0 UNION SELECT 1,2,3</code></p>
 <p>可以看到页面情况，有三个回显位置</p>
 <p>构建 <code>0 UNION SELECT 1,2,database()</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318162957019.png"
-	width="714"
-	height="174"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318162957019_hu_3d1600a4711191ff.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318162957019_hu_349fabb68713c43f.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318162957019.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="410"
-		data-flex-basis="984px"
 	
 ></p>
 <p>可以知道database的名字：sqli_one</p>
 <h4 id="查询表">查询表
 </h4><p>构建 <code>0 UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'</code></p>
 <p>在此查询中，需要学习一些新内容。首先，方法 <strong>group_concat（）</strong> 从多个返回的行中获取指定的列（在我们的例子中为 table_name），并将其放入一个以逗号分隔的字符串中。接下来是 <strong>information_schema</strong> 数据库;数据库的每个用户都可以访问它，它包含有关该用户有权访问的所有数据库和表的信息。在这个特定的查询中，我们有兴趣列出 sqli_one 数据库中的所有 表，即 article 和 staff_users。</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163513022.png"
-	width="708"
-	height="256"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163513022_hu_52b29624e6f26a28.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163513022_hu_af4d549d5f8f86d3.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163513022.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="276"
-		data-flex-basis="663px"
 	
 ></p>
 <p>由于第一级旨在发现 Martin 的密码，因此 staff_users 表是我们感兴趣的。我们可以再次利用 information_schema 数据库，通过以下查询找到此表的结构。</p>
 <p><code>0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'staff_users'</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163803767.png"
-	width="713"
-	height="236"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163803767_hu_536c84167fe6733d.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318163803767_hu_93e72086ea704fa0.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163803767.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="302"
-		data-flex-basis="725px"
 	
 ></p>
 <p>这与前面的 SQL 查询类似。但是，我们要检索的信息已从 table_name 更改为 <strong>column_name</strong>，我们在 information_schema 数据库中查询的表已从 tables 更改为 <strong>columns</strong>，并且我们正在搜索 table_name 列值为 staff_users 的任何行</p>
 <p>查询结果为 staff_users 表提供三列：id、password 和 username。我们可以使用以下查询的 username 和 password 列来检索用户的信息。</p>
 <p><code>0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '&lt;br&gt;') FROM staff_users</code></p>
 <p>同样，我们使用 group_concat 方法将所有行返回到一个字符串中，使其 更易于阅读。我们还添加了 <strong>，&rsquo;：&rsquo;，</strong> 以将用户名和密码彼此分开。我们没有用逗号分隔，而是选择了 <code>HTML &lt;br&gt;</code> 标签，该标签强制每个结果位于单独的行上，以便于阅读。</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164023522.png"
-	width="716"
-	height="274"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164023522_hu_3d6144138148becd.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164023522_hu_41dbb1a07f48362d.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164023522.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="261"
-		data-flex-basis="627px"
 	
 ></p>
 <h3 id="身份认证绕过盲注">身份认证绕过盲注
@@ -711,31 +623,23 @@
 <p>这会将 SQL 查询转换为以下内容：</p>
 <p><code>select * from users where username='' and password='' OR 1=1;</code></p>
 <p>因为 1=1 是 true 语句，并且我们使用了 <strong>OR</strong> 运算符，所以这将始终导致查询返回 true，这满足 Web 应用程序逻辑，即数据库找到了有效的用户名/密码组合，并且应该允许访问。</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164540872.png"
-	width="704"
-	height="401"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164540872_hu_f7894b51de964a5b.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164540872_hu_10e61dff48569835.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164540872.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="175"
-		data-flex-basis="421px"
 	
 ></p>
 <h3 id="基于布尔盲注">基于布尔盲注
 </h3><p>基于布尔值的 SQL 注入是指我们从注入尝试中收到的响应，可以是 true/false、yes/no、on/off、1/0 或任何只能有两个结果的响应。该结果确认了我们的 SQL Injection payload 成功或失败。在第一次检查时，您可能会觉得这种有限的回答无法提供太多信息。不过，仅通过这两个响应，就可以枚举整个数据库结构和内容。</p>
 <h4 id="实际-1">实际：
-</h4><p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164756211.png"
-	width="714"
-	height="600"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164756211_hu_253b239a58246ce7.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318164756211_hu_4e3cbd4d8b6b40f0.png 1024w"
+</h4><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164756211.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="119"
-		data-flex-basis="285px"
 	
 ></p>
 <p>览器正文包含 <strong>{“taken”：true}</strong>。此 API 端点复制了许多订阅表单上的常见功能，该功能检查用户名是否已注册，以提示用户选择不同的用户名。 由于 <strong>taken</strong> 的值设置为 <strong>true</strong>，因此我们可以假设用户名 admin 已注册。我们可以通过将模拟浏览器地址栏中的用户名从 <strong>admin</strong> 更改为 <strong>admin123</strong> 来确认这一点，按下 Enter 键后，你会看到所采用的值 现在已更改为 false</p>
@@ -750,29 +654,21 @@
 <p><code>admin123' UNION SELECT 1,2,3 where database() like '%';--</code></p>
 <p>我们得到一个 true 响应，因为在 like 运算符中，我们只有 % 的值 ，它将匹配任何内容，因为它是通配符值。如果我们将通配符运算符更改为 **a%，**您将看到响应返回 false，这确认数据库名称不以字母 <strong>a</strong> 开头。我们可以循环遍历所有字母、数字和字符，例如 - 和 _，直到找到匹配项。如果您将以下内容作为 username 值发送，您将收到一个 <strong>true</strong> 响应，确认数据库名称以字母 <strong>s</strong> 开头</p>
 <p><code>admin123' UNION SELECT 1,2,3 where database() like 's%';--</code></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165301765.png"
-	width="713"
-	height="302"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165301765_hu_9de96fbaf5dca2b4.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165301765_hu_a26ad05a7d162cfb.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318165301765.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="236"
-		data-flex-basis="566px"
 	
 ></p>
 <p>现在，您继续 数据库名称的下一个字符，直到找到另一个真实的响应，例如，&lsquo;sa%&rsquo;、&lsquo;sb%&rsquo;、&lsquo;sc%&rsquo; 等。继续此过程，直到发现数据库名称的所有字符，即 <strong>sqli_three</strong></p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165348478.png"
-	width="712"
-	height="332"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165348478_hu_56c70d60b176fa67.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318165348478_hu_26b8c9b707aac09a.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318165348478.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="214"
-		data-flex-basis="514px"
 	
 ></p>
 <p>我们已经建立了数据库名称，现在我们可以通过使用 information_schema 数据库使用类似的方法使用它来枚举表名。尝试将 username 设置为以下值：</p>
@@ -797,16 +693,12 @@
 <p>有效负载应产生 5 秒的延迟，确认 UNION 语句成功执行，并且有两列。</p>
 <p>按照布尔盲注的步骤，只是更改一下前面的语句，要改成sleep()形式</p>
 <p>最后得到admin：4961</p>
-<p><img src="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318171316143.png"
-	width="718"
-	height="751"
-	srcset="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318171316143_hu_cb7995221c6c5571.png 480w, /p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/image-20250318171316143_hu_66fc748ecc61b4ac.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318171316143.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="95"
-		data-flex-basis="229px"
 	
 ></p>
 
@@ -832,20 +724,9 @@
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
         
-        
-            <div class="article-image">
-                <img src="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.42751af4343096f21223a64d38290896_hu_91ab670dc0ee6e8f.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post DNS 详细信息"
-                        
-                        data-hash="md5-QnUa9DQwlvISI6ZNOCkIlg==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -861,13 +742,8 @@
         
         
             <div class="article-image">
-                <img src="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/8869B409E00211CCAA40D8BA9BC4F9A4.d03238181e78a3236611c8025743963a_hu_28b005feae417551.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post HTTP 详细信息"
-                        
-                        data-hash="md5-0DI4GB54oyNmEcgCV0OWOg==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png"/>
                 
             </div>
         
@@ -885,13 +761,8 @@
         
         
             <div class="article-image">
-                <img src="/p/idor%E5%9F%BA%E7%A1%80/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.978dad9da9bf19114c92040d469e7c98_hu_6c4fc6a766389416.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post IDOR基础"
-                        
-                        data-hash="md5-l42tnam/GRFMkgQNRp58mA==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png"/>
                 
             </div>
         
@@ -909,13 +780,8 @@
         
         
             <div class="article-image">
-                <img src="/p/ssrf%E5%9F%BA%E7%A1%80/f4a6e2d065c3c9fcd40dfb76bc3317b0d466b12c787faa354faa62457ded2ba5.c217a68c5f931848bdcfde61aa4b238d_hu_9124e479ee7a4ac3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post SSRF基础"
-                        
-                        data-hash="md5-whemjF&#43;TGEi9z95hqksjjQ==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png"/>
                 
             </div>
         
@@ -933,13 +799,8 @@
         
         
             <div class="article-image">
-                <img src="/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.61ef6a73d91b99c93150d03c3eb1b45c_hu_324c1fe26371e1c7.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 文件包含基础"
-                        
-                        data-hash="md5-Ye9qc9kbmckxUNA8PrG0XA==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png"/>
                 
             </div>
         

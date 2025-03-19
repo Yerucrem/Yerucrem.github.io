@@ -10,10 +10,10 @@
 <meta property='og:description' content="THM做题记录">
 <meta property='og:url' content='https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/'>
 <meta property='og:site_name' content='夜路归'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png' />
 <meta name="twitter:title" content="身份验证绕过">
 <meta name="twitter:description" content="THM做题记录"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png' />
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -299,12 +299,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/">
-                <img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079_hu_73c25564189730a9.png"
-                        srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079_hu_73c25564189730a9.png 800w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079_hu_8f48cc430c43df3c.png 1600w"
-                        width="800" 
-                        height="800" 
-                        loading="lazy"
-                        alt="Featured image of post 身份验证绕过" />
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png" loading="lazy" alt="Featured image of post 身份验证绕过" />
                 
             </a>
         </div>
@@ -371,16 +367,12 @@
 </h2><h2 id="逻辑缺陷">逻辑缺陷
 </h2><h3 id="什么是逻辑缺陷">什么是逻辑缺陷？
 </h3><p>有时身份验证过程包含逻辑缺陷。逻辑缺陷是指应用程序的典型逻辑路径被黑客绕过、规避或纵。逻辑缺陷可以存在于网站的任何区域，但在这种情况下，我们将专注于与身份验证相关的示例。</p>
-<p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643.png"
-	width="760"
-	height="360"
-	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_656c10d9b933eb75.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_4361eaaa2d8c6db.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250319103332643.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="211"
-		data-flex-basis="506px"
 	
 ></p>
 <h3 id="逻辑缺陷示例">逻辑缺陷示例
@@ -405,16 +397,12 @@
 <h3 id="逻辑缺陷实用">逻辑缺陷实用
 </h3><p>我们将检查 Acme IT 支持网站 （http：//MACHINE_IP/customers/reset） 的重置密码 功能。我们看到一个表单，要求提供与我们希望执行密码重置的账户关联的电子邮件地址。如果输入的电子邮件无效，您将收到错误消息<strong>Account not found from provided email address</strong></p>
 <p>出于演示目的，我们将使用 email address <strong><a class="link" href="mailto:robert@acmeitsupport.thm" >robert@acmeitsupport.thm</a></strong>被接受。然后，我们会看到表单的下一阶段，该阶段要求提供与此登录电子邮件地址关联的用户名。如果我们输入 robert 作为用户名并按下 Check Username 按钮，您将看到一条确认消息，告知将向 <strong><a class="link" href="mailto:robert@acmeitsupport.thm" >robert@acmeitsupport.thm</a></strong>发送一封密码重置电子邮件。</p>
-<p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978.png"
-	width="516"
-	height="248"
-	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_607adc598db96329.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_f3ac7279bb5375f9.png 1024w"
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250319105628978.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="208"
-		data-flex-basis="499px"
 	
 ></p>
 <p>在此阶段，您可能想知道此应用程序中的漏洞可能是什么，因为您必须知道电子邮件和用户名，然后将密码链接发送到帐户所有者的电子邮件地址。</p>
@@ -439,16 +427,12 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme$ curl &#39;http://MACHINE_IP/customers/reset?email=robert%40acmeitsupport.thm&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -d &#39;username=robert&amp;email=attacker@hacker.com&#39;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108.png"
-	width="475"
-	height="259"
-	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_13150a87f45863.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_821b855b9246423d.png 1024w"
+</div><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250319110039108.png"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="183"
-		data-flex-basis="440px"
 	
 ></p>
 <p>**下一步，您需要在 Acme IT 支持客户部分创建一个帐户，这样做会为您提供一个可用于创建支持票证的唯一电子邮件地址。电子邮件地址的格式为 <code>{username}</code>@customer.acmeitsupport.thm</p>
@@ -577,20 +561,9 @@
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
         
-        
-            <div class="article-image">
-                <img src="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.42751af4343096f21223a64d38290896_hu_91ab670dc0ee6e8f.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post DNS 详细信息"
-                        
-                        data-hash="md5-QnUa9DQwlvISI6ZNOCkIlg==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -606,13 +579,8 @@
         
         
             <div class="article-image">
-                <img src="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/8869B409E00211CCAA40D8BA9BC4F9A4.d03238181e78a3236611c8025743963a_hu_28b005feae417551.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post HTTP 详细信息"
-                        
-                        data-hash="md5-0DI4GB54oyNmEcgCV0OWOg==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png"/>
                 
             </div>
         
@@ -630,13 +598,8 @@
         
         
             <div class="article-image">
-                <img src="/p/idor%E5%9F%BA%E7%A1%80/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.978dad9da9bf19114c92040d469e7c98_hu_6c4fc6a766389416.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post IDOR基础"
-                        
-                        data-hash="md5-l42tnam/GRFMkgQNRp58mA==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png"/>
                 
             </div>
         
@@ -654,13 +617,8 @@
         
         
             <div class="article-image">
-                <img src="/p/ssrf%E5%9F%BA%E7%A1%80/f4a6e2d065c3c9fcd40dfb76bc3317b0d466b12c787faa354faa62457ded2ba5.c217a68c5f931848bdcfde61aa4b238d_hu_9124e479ee7a4ac3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post SSRF基础"
-                        
-                        data-hash="md5-whemjF&#43;TGEi9z95hqksjjQ==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png"/>
                 
             </div>
         
@@ -678,13 +636,8 @@
         
         
             <div class="article-image">
-                <img src="/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.61ef6a73d91b99c93150d03c3eb1b45c_hu_324c1fe26371e1c7.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 文件包含基础"
-                        
-                        data-hash="md5-Ye9qc9kbmckxUNA8PrG0XA==">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png"/>
                 
             </div>
         
