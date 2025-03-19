@@ -13,7 +13,7 @@
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</guid>
-        <description>&lt;h1 id=&#34;dns详细信息&#34;&gt;DNS详细信息
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background07.jpg" alt="Featured image of post DNS 详细信息" /&gt;&lt;h1 id=&#34;dns详细信息&#34;&gt;DNS详细信息
 &lt;/h1&gt;&lt;p&gt;DNS（域名系统）为我们提供了一种与 Internet 上的设备进行通信的简单方法，而无需记住复数。就像每栋房子都有一个直接向其发送邮件的唯一地址一样，互联网上的每台计算机都有自己唯一的地址来与之通信，称为 IP 地址。IP 地址类似于以下 104.26.10.229,4 组数字，范围从 0 到 255，用句点分隔。当您想访问一个网站时，记住这组复杂的数字并不十分方便，而这正是 DNS 可以提供帮助的地方。因此，您可以记住 &lt;a class=&#34;link&#34; href=&#34;http://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;tryhackme.com&lt;/a&gt;，而不是记住 104.26.10.229。&lt;/p&gt;
 &lt;h2 id=&#34;域层次结构&#34;&gt;域层次结构
