@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="常用的网络知识">
+<title>网络基础</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="网络基础">
+<meta property='og:description' content="常用的网络知识">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background06.jpg' />
+<meta name="twitter:title" content="网络基础">
+<meta name="twitter:description" content="常用的网络知识"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background06.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#lan简介">LAN简介</a>
+      <ol>
+        <li><a href="#星形拓扑">星形拓扑</a></li>
+        <li><a href="#总线拓扑">总线拓扑</a></li>
+        <li><a href="#环形拓扑">环形拓扑</a></li>
+        <li><a href="#什么是交换机">什么是交换机？</a></li>
+        <li><a href="#什么是路由器">什么是路由器？</a></li>
+      </ol>
+    </li>
+    <li><a href="#子网划分入门">子网划分入门</a></li>
+    <li><a href="#arp">ARP</a></li>
+    <li><a href="#osi模型">OSI模型</a>
+      <ol>
+        <li><a href="#什么是osi">什么是OSI</a></li>
+        <li><a href="#第一层-物理层">第一层 物理层</a></li>
+        <li><a href="#第二层-数据链路层">第二层 数据链路层</a></li>
+        <li><a href="#第三层-网络层">第三层 网络层</a></li>
+        <li><a href="#第四层--传输层">第四层  传输层</a>
+          <ol>
+            <li><a href="#tcp三次握手四次挥手">TCP三次握手四次挥手</a></li>
+          </ol>
+        </li>
+        <li><a href="#第五层-会话层">第五层 会话层</a></li>
+        <li><a href="#第六层-表示层">第六层 表示层</a></li>
+        <li><a href="#第七层-应用层">第七层 应用层</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background06.jpg" loading="lazy" alt="Featured image of post 网络基础" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            常用的网络知识
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-20</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="网络基础">网络基础
+</h1><h2 id="lan简介">LAN简介
+</h2><p>多年来，已经对各种网络设计进行了实验和实施。对于网络，当我们提到术语 “拓扑” 时，我们实际上指的是手头网络的设计或外观。下面我们来讨论一下这些拓扑的优缺点。</p>
+<h3 id="星形拓扑">星形拓扑
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171027306.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171027306"
+	
+	
+></p>
+<p>星形拓扑的主要前提是设备通过中央网络设备（如交换机或集线器）单独连接。这种拓扑是当今最常见的拓扑，因为它具有可靠性和可扩展性 - 尽管成本高昂。</p>
+<p>发送到此拓扑中设备的任何信息都通过它所连接的中央设备发送。让我们在下面探讨一下这种拓扑的一些优点和缺点：</p>
+<p>由于此拓扑需要更多的布线和购买专用网络设备，因此它比任何其他拓扑都更昂贵。然而，尽管成本增加，但这确实提供了一些显着的优势。例如，这种拓扑本质上更具可扩展性，这意味着随着网络需求的增加，很容易添加更多设备。</p>
+<p>遗憾的是，网络规模越大，保持网络正常运行所需的维护就越多。这种对维护的依赖增加也会使故障排除变得更加困难。此外，星形拓扑结构仍然容易出现故障 - 尽管有所减少。例如，如果连接设备的集中式硬件发生故障，这些设备将无法再发送或接收数据。值得庆幸的是，这些集中式硬件设备通常很强大。</p>
+<h3 id="总线拓扑">总线拓扑
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171103707.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171103707"
+	
+	
+></p>
+<p>这种类型的连接依赖于称为主干电缆的单个连接。这种类型的拓扑类似于树的叶子，因为设备（叶子）从此电缆上的树枝所在的位置开始。</p>
+<p>由于发往每个设备的所有数据都沿着同一根电缆传输，因此如果拓扑中的设备同时请求数据，则很快就会变得缓慢和瓶颈。这种瓶颈还会导致非常困难的故障排除，因为很快就会变得难以识别哪个设备遇到了问题，所有数据都沿着同一路径传输。</p>
+<p>然而，话虽如此，总线拓扑是更容易设置且更具成本效益的拓扑之一，因为它们需要花费，例如用于连接这些设备的布线或专用网络设备。</p>
+<p>最后，总线拓扑的另一个缺点是，在发生故障时几乎没有冗余。这个缺点是因为沿主干电缆存在单点故障。如果此电缆断开，设备将无法再沿总线接收或传输数据。</p>
+<h3 id="环形拓扑">环形拓扑
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171139146.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171139146"
+	
+	
+></p>
+<p>环形拓扑（也称为令牌拓扑）具有一些相似之处。计算机等设备直接相互连接以形成一个环路，这意味着几乎不需要布线，并且对专用硬件（例如在星形拓扑中）的依赖较小。</p>
+<p>环形拓扑的工作原理是跨循环发送数据，直到数据到达目标设备，并使用循环中的其他设备转发数据。有趣的是，如果设备没有要发送的数据，则它只会从此拓扑中的另一台设备发送接收到的数据。如果设备恰好有数据要发送，它将先发送自己的数据，然后再从另一台设备发送数据。</p>
+<p>由于数据只有一个方向可以穿过此拓扑，因此对出现的任何故障进行故障排除相当容易。然而，这是一把双刃剑，因为它不是一种有效的数据通过网络传输的方式，因为它可能必须先访问许多多个设备才能到达预期的设备。</p>
+<p>最后，环形拓扑不太容易出现瓶颈，例如在总线拓扑中，因为大量流量不会在任何时候通过网络传输。但是，这种拓扑的设计确实意味着诸如电缆切断或设备损坏等故障将导致整个网络中断。</p>
+<h3 id="什么是交换机">什么是交换机？
+</h3><p>交换机是网络中的专用设备，旨在聚合多个其他设备，例如计算机、打印机或任何其他使用以太网的支持联网的设备。这些不同的设备插入交换机的端口。交换机通常位于较大的网络中，例如企业、学校或类似规模的网络，其中有许多设备可以连接到网络。交换机可以通过 4、8、16、24、32 和 64 端口来连接大量设备，以便设备插入。</p>
+<p>交换机比较小的同类产品（集线器/中继器）效率更高。交换机跟踪连接到哪个端口的设备。这样，当它们收到数据包时，它不会像集线器那样将该数据包重复到每个端口，而是将其发送到预期目标，从而减少网络流量。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171220337.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171220337"
+	
+	
+></p>
+<p>交换机和路由器都可以相互连接。这样做的能力通过为数据添加多个路径来增加网络的冗余（可靠性）。如果一条路径出现故障，则可以使用另一条路径。虽然这可能会降低网络的整体性能，因为数据包必须花费更长的时间来传输，但没有停机时间 - 考虑到替代方案，这是一个很小的代价。</p>
+<h3 id="什么是路由器">什么是路由器？
+</h3><p>路由器的工作是连接网络并在它们之间传递数据。它通过使用路由来实现这一点（因此得名 router）</p>
+<p>路由是给跨网络传输数据的过程的标签。路由涉及在网络之间创建路径，以便成功传送此数据。</p>
+<p>当设备通过许多路径连接时，路由非常有用，如下面的示例图所示。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171249840.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171249840"
+	
+	
+></p>
+<h2 id="子网划分入门">子网划分入门
+</h2><p>正如我们之前在整个模块中讨论的那样，网络可以找到各种形状和大小 - 从小到大。子网划分是指将网络在其内部拆分为更小的微型网络。把它想象成为你的朋友切蛋糕。只有一定数量的蛋糕可以吃，但每个人都想分一杯羹。子网划分就是你决定谁得到什么份额，并保留这个比喻蛋糕的这样一块。</p>
+<p>以一家企业为例;您将拥有不同的部门，例如：</p>
+<ul>
+<li>会计学</li>
+<li>金融</li>
+<li>人力资源</li>
+</ul>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171414964.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>虽然您知道在现实生活中将信息发送到正确的部门的位置，但网络也需要知道。网络管理员使用子网划分对网络的特定部分进行分类和分配，以反映这一点。</p>
+<p>子网划分是通过拆分网络可容纳的主机数量来实现的，该主机数由称为子网掩码的数字表示。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171439472.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171439472"
+	
+	
+></p>
+<p>正如我们所记得的，IP 地址由四个称为八位字节的部分组成。子网掩码也是如此，它也表示为 4 个字节 （32 位） 的数字，范围从 0 到 255 （0-255）。</p>
+<p>子网以三种不同的方式使用 IP 地址：</p>
+<ul>
+<li>确定网络地址</li>
+<li>确定主机地址</li>
+<li>确定默认网关</li>
+</ul>
+<p>让我们将这三个部分分为下表以了解它们的用途：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>类型</strong></th>
+          <th><strong>目的</strong></th>
+          <th><strong>解释</strong></th>
+          <th><strong>例</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>网络地址</td>
+          <td>此地址标识实际网络的起点，并用于标识网络的存在。</td>
+          <td>例如，IP 地址为 192.168.1.100 的设备将位于由 192.168.1.0 标识的网络上</td>
+          <td>192.168.1.0</td>
+      </tr>
+      <tr>
+          <td>主机地址</td>
+          <td>此处的 IP 地址用于标识子网上的设备</td>
+          <td>例如，设备的网络地址为 192.168.1.1</td>
+          <td>192.168.1.100</td>
+      </tr>
+      <tr>
+          <td>默认网关</td>
+          <td>默认网关地址是分配给网络上设备的特殊地址，该地址能够将信息发送到另一个网络</td>
+          <td>任何需要发送到不在同一网络上的设备（即不在 192.168.1.0 上）的数据都将被发送到此设备。这些设备可以使用任何主机地址，但通常使用网络中的第一个或最后一个主机地址（.1 或 .254）</td>
+          <td>192.168.1.254</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>现在，在小型网络中，例如在家中，您将位于一个子网上，因为您一次需要连接超过 254 台设备的可能性不大。</p>
+<p>但是，企业和办公室等场所将拥有更多的此类设备（PC、打印机、相机和传感器），这些设备将进行子网划分。</p>
+<p>子网划分提供了一系列好处，包括：</p>
+<ul>
+<li>效率</li>
+<li>安全</li>
+<li>完全控制</li>
+</ul>
+<p>稍后我们将继续探讨子网划分如何提供这些好处;但是，就目前而言，我们需要了解的只是它的安全元素。让我们以街上的典型咖啡馆为例。这家咖啡馆将有两个网络：</p>
+<ol>
+<li>一个用于员工、收银机和设施的其他设备</li>
+<li>一个供公众用作热点</li>
+</ol>
+<p>子网划分允许您将这两个用例彼此分开，同时获得连接到更大网络（如 Internet）的好处。</p>
+<h2 id="arp">ARP
+</h2><p>回顾我们之前的任务，设备可以有两个标识符：MAC 地址和 IP 地址，简称 A <strong>ddress</strong> <strong>R</strong>esolution <strong>P</strong>rotocol 或简称 <strong>ARP</strong>，是负责允许设备在网络上识别自己的技术。</p>
+<p>简单地说，ARP 允许设备将其 MAC 地址与网络上的 IP 地址相关联。网络上的每台设备都将保留与其他设备关联的 MAC 地址的日志。</p>
+<p>当设备希望与其他设备通信时，它们将向整个网络发送广播，以搜索特定设备。设备可以使用 ARP 查找设备的 MAC 地址（以及物理标识符）以进行通信。</p>
+<p><strong>ARP 是如何工作的？</strong></p>
+<p>网络中的每个设备都有一个用于存储信息的分类账，称为缓存。在 <strong>ARP</strong> 上下文中，此缓存存储网络上其他设备的标识符。</p>
+<p>为了将这两个标识符（IP 地址和 MAC 地址）映射在一起，ARP 发送两种类型的消息：</p>
+<ol>
+<li><strong>ARP （ARP）请求</strong></li>
+<li><strong>ARP （ARP）答</strong></li>
+</ol>
+<p>发送 <strong>ARP 请求</strong>时，会在网络上向其他设备广播一条消息，询问“拥有此 IP 地址的 mac 地址是什么？当其他设备收到该消息时，它们只有在拥有该 IP 地址时才会响应，并将发送包含其 MAC 地址的 <strong>ARP 回复</strong> 。请求设备现在可以记住此映射并将其存储在其 <strong>ARP 缓存</strong>中以备将来使用。</p>
+<p>下图说明了此过程：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171530621.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171530621"
+	
+	
+></p>
+<h2 id="osi模型">OSI模型
+</h2><h3 id="什么是osi">什么是OSI
+</h3><p><strong>OSI</strong> 模型（或 <strong>O</strong>pen <strong>S</strong>ystems <strong>I</strong>nterconnection 模型）是网络中使用的基本模型。 这个关键模型提供了一个框架，规定了所有联网设备将如何发送、接收和解释数据。</p>
+<p>OSI 模型的主要优点之一是，设备在与其他设备通信时可以在网络上具有不同的功能和设计。通过遵循 OSI 模型一致性的网络发送的数据可以被其他设备理解。</p>
+<p>OSI 模型由七层组成，如下图所示。每个层都有一组不同的职责，从第 7 层到第 1 层排列。</p>
+<p>在数据经过的每一层，都会发生特定的流程，并将信息添加到这些数据中，这就是我们将在本次会议中即将讨论的任务中讨论的内容。但是，现在，我们只需要了解此过程称为封装以及下图中 OSI 模型的外观：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171622222.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171622222"
+	
+	
+></p>
+<h3 id="第一层-物理层">第一层 物理层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171648102.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171648102"
+	
+	
+></p>
+<p>此层是最容易掌握的层之一。简单地说，此层引用网络中使用的硬件的物理组件，是您将找到的最低层。设备使用电信号在二进制编号系统（1 和 0）中相互传输数据。</p>
+<p>例如，连接设备的以太网电缆，如下图所示：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171656569.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171656569"
+	
+	
+></p>
+<h3 id="第二层-数据链路层">第二层 数据链路层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171741696.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171741696"
+	
+	
+></p>
+<p>数据链路层侧重于传输的物理寻址。它从网络层接收数据包（包括远程计算机的 IP 地址），并添加接收端点的物理 <strong>MAC</strong>（媒体访问控制）地址。每台支持网络的计算机内部都有一个 <strong>N</strong>etwork <strong>I</strong>nterface Card （<strong>NIC），</strong> 它带有一个唯一的 MAC 地址来识别它。</p>
+<p>MAC 地址由制造商设置并实际烧录到卡中;它们无法更改 - 尽管它们可以被欺骗。当信息通过网络发送时，它实际上是用于标识信息的确切发送位置的物理地址。</p>
+<p>此外，数据链路层的工作还包括以适合传输的格式呈现数据。</p>
+<h3 id="第三层-网络层">第三层 网络层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171800098.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171800098"
+	
+	
+></p>
+<p>OSI 模型的第三层（网络层）是路由和重新组装数据的魔力发生的地方（从这些小块到更大的块）。首先，路由只是确定这些数据块应发送到的最佳路径。</p>
+<p>虽然这一层的一些协议准确地确定了数据到达设备的 “最佳” 路径，但我们只能在网络模块的这个阶段知道它们的存在。简而言之，这些协议包括 <strong>OSPF</strong> （<strong>O</strong>pen <strong>S hortest</strong> <strong>P</strong>ath <strong>F</strong>irst） 和 <strong>RIP</strong> （<strong>R</strong>outing <strong>I</strong>nformation <strong>P</strong>rotocol）。决定采用哪种路线的因素由以下因素决定：</p>
+<ul>
+<li>哪条路最短？即，数据包需要传输的设备数量最少。</li>
+<li>什么路径最可靠？即，数据包之前是否在该路径上丢失过？</li>
+<li>哪条路径的物理连接速度更快？即，一条路径是使用铜缆连接（较慢）还是光纤（相当快）？</li>
+</ul>
+<p>在这一层，一切都通过 IP 地址处理，例如 192.168.1.100。能够使用 IP 地址传输数据包的设备（例如路由器）称为第 3 层设备，因为它们能够在 OSI 模型的第三层工作。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171814647.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171814647"
+	
+	
+></p>
+<h3 id="第四层--传输层">第四层  传输层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171831749.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171831749"
+	
+	
+></p>
+<p>OSI 模型的第 4 层在通过网络传输数据方面起着至关重要的作用，可能有点难以掌握。在设备之间发送数据时，它遵循两种不同的协议之一，这些协议是根据几个因素决定的：</p>
+<ul>
+<li>TCP 协议</li>
+<li>UDP 协议</li>
+</ul>
+<p>让我们从 TCP 开始。<strong>T</strong>ransmission <strong>C</strong>ontrol <strong>P</strong>rotocol （<strong>TCP）。</strong> 顾名思义，该协议在设计时考虑了可靠性和保证。此协议在两个设备之间保留一个持续连接，用于发送和接收数据所需的时间。</p>
+<p>不仅如此，TCP 还将错误检查纳入其设计中。错误检查是 TCP 如何保证从会话层（第 5 层）中的小块发送的数据随后以相同的顺序接收和重组。</p>
+<p>让我们在下表中总结 TCP 的优缺点：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>**TCP 的优点 **</th>
+          <th>**TCP 的缺点 **</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>保证数据的准确性。</td>
+          <td>需要在两个设备之间建立可靠的连接。如果未收到一小块数据，则无法使用整个数据块。</td>
+      </tr>
+      <tr>
+          <td>能够同步两个设备，以防止彼此被数据淹没。</td>
+          <td>慢速连接可能会给另一台设备带来瓶颈，因为连接将始终在接收计算机上保留。</td>
+      </tr>
+      <tr>
+          <td>执行更多的过程以实现可靠性。</td>
+          <td>TCP 比 UDP 慢得多，因为使用此协议的设备必须完成更多工作。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>TCP 用于文件共享、Internet 浏览或发送电子邮件等情况。这种用法是因为这些服务要求数据准确和完整（拥有半个文件不好！</p>
+<p>在下图中，我们可以看到猫的图片是如何从 “webserver” 分解成小块数据（称为数据包）的，其中 “computer” 将猫的图片重新构建为正确的顺序。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171930198.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171930198"
+	
+	
+></p>
+<p>现在让我们进入 <strong>U</strong>ser <strong>D</strong>atagram <strong>P</strong>rotocol（或简称 <strong>U<strong><strong>D</strong></strong>P</strong>）。该协议不如它的兄弟 TCP 协议先进。它没有 TCP 提供的许多功能，例如错误检查和可靠性。事实上，通过 UDP 发送的任何数据都会发送到计算机，无论它是否到达那里。两个设备之间没有同步或保证;只是希望最好，手指交叉。</p>
+<p>虽然这听起来很不利，但它确实有其优点，我们将在下表中进行布局：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>UDP 的优势</strong></th>
+          <th><strong>UDP 的缺点</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>UDP 比 TCP 快得多。</td>
+          <td>UDP 不关心是否收到数据。</td>
+      </tr>
+      <tr>
+          <td>UDP 让应用程序层（用户软件）决定是否可以控制数据包的发送速度。</td>
+          <td>从这个意义上说，它对软件开发人员来说是相当灵活的。</td>
+      </tr>
+      <tr>
+          <td>UDP 不会像 TCP 那样在设备上保留连续连接。</td>
+          <td>这意味着不稳定的连接会给用户带来糟糕的体验。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>使用与之前相同的示例，我们现在可以看到“计算机”只接收了数据包 #1 和 #3，这意味着缺少一半的图像。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320171943902.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320171943902"
+	
+	
+></p>
+<p>UDP 在发送小块数据的情况下非常有用。</p>
+<h4 id="tcp三次握手四次挥手">TCP三次握手四次挥手
+</h4><p><strong>三次握手与四次挥手</strong>是TCP协议中用于建立和终止连接的关键机制，确保数据传输的可靠性。以下是详细解释：</p>
+<hr>
+<h5 id="一三次握手建立连接"><strong>一、三次握手（建立连接）</strong>
+</h5><p><strong>目的</strong>：确保客户端与服务器双方具备收发数据的能力。
+<strong>过程</strong>：</p>
+<ol>
+<li><strong>SYN（客户端 → 服务器）</strong>
+<ul>
+<li>客户端发送SYN报文（SYN=1，seq=x），进入<code>SYN_SENT</code>状态。</li>
+<li><strong>作用</strong>：请求建立连接，并初始化序列号。</li>
+</ul>
+</li>
+<li><strong>SYN-ACK（服务器 → 客户端）</strong>
+<ul>
+<li>服务器回应SYN-ACK报文（SYN=1，ACK=1，ack=x+1，seq=y），进入<code>SYN_RCVD</code>状态。</li>
+<li><strong>作用</strong>：确认收到请求，同时发送自身序列号。</li>
+</ul>
+</li>
+<li><strong>ACK（客户端 → 服务器）</strong>
+<ul>
+<li>客户端发送ACK报文（ACK=1，ack=y+1，seq=x+1），双方进入<code>ESTABLISHED</code>状态。</li>
+<li><strong>作用</strong>：确认服务器的响应，完成连接建立。</li>
+</ul>
+</li>
+</ol>
+<p><strong>为什么需要三次？</strong></p>
+<ul>
+<li>防止已失效的请求报文突然传到服务器（如网络延迟导致重复SYN），避免资源浪费。</li>
+</ul>
+<hr>
+<h5 id="二四次挥手终止连接"><strong>二、四次挥手（终止连接）</strong>
+</h5><p><strong>目的</strong>：确保双方数据收发完毕后再安全关闭连接。
+<strong>过程</strong>：</p>
+<ol>
+<li><strong>FIN（主动关闭方 → 被动关闭方）</strong>
+<ul>
+<li>主动方（如客户端）发送FIN报文（FIN=1，seq=u），进入<code>FIN_WAIT_1</code>状态。</li>
+<li><strong>作用</strong>：表示不再发送数据，但可接收数据。</li>
+</ul>
+</li>
+<li><strong>ACK（被动关闭方 → 主动关闭方）</strong>
+<ul>
+<li>被动方回应ACK报文（ACK=1，ack=u+1，seq=v），进入<code>CLOSE_WAIT</code>状态。</li>
+<li><strong>作用</strong>：确认收到关闭请求，但可能继续发送未完成的数据。</li>
+</ul>
+</li>
+<li><strong>FIN（被动关闭方 → 主动关闭方）</strong>
+<ul>
+<li>被动方发送FIN报文（FIN=1，ACK=1，ack=u+1，seq=w），进入<code>LAST_ACK</code>状态。</li>
+<li><strong>作用</strong>：表示自身数据已发送完毕，请求关闭连接。</li>
+</ul>
+</li>
+<li><strong>ACK（主动关闭方 → 被动关闭方）</strong>
+<ul>
+<li>主动方回应ACK报文（ACK=1，ack=w+1，seq=u+1），进入<code>TIME_WAIT</code>状态（等待2MSL时间）。</li>
+<li><strong>作用</strong>：确认最终关闭，防止最后一个ACK丢失导致被动方重传FIN。</li>
+</ul>
+</li>
+</ol>
+<p><strong>为什么需要四次？</strong></p>
+<ul>
+<li>TCP是全双工通信，双方需独立关闭发送通道。</li>
+</ul>
+<h5 id="三三次握手建立连接确保双方能正常通话"><strong>三、三次握手：建立连接（确保双方能正常通话）</strong>
+</h5><h6 id="场景小明想约小美商量聚会计划"><strong>场景</strong>：小明想约小美商量聚会计划。
+</h6><ol>
+<li><strong>第一次握手（SYN）</strong>
+<ul>
+<li>小明打电话给小美：“<strong>小美，你能听到我说话吗？</strong>”（发送 SYN 包）</li>
+<li><strong>状态</strong>：小明等待回应（<code>SYN_SENT</code>）。</li>
+</ul>
+</li>
+<li><strong>第二次握手（SYN-ACK）</strong>
+<ul>
+<li>小美接听电话：“<strong>小明，我能听到！你能听到我吗？</strong>”（回复 SYN-ACK 包）</li>
+<li><strong>状态</strong>：小美等待小明确认（<code>SYN_RCVD</code>）。</li>
+</ul>
+</li>
+<li><strong>第三次握手（ACK）</strong>
+<ul>
+<li>小明回应：“<strong>我能听到！</strong>”（发送 ACK 包）</li>
+<li><strong>状态</strong>：双方正式通话（<code>ESTABLISHED</code>），开始讨论聚会细节（数据传输）。</li>
+</ul>
+</li>
+</ol>
+<p><strong>为什么需要三次？</strong>
+如果小明喊完第一句后，小美没回应，小明会重拨（避免网络延迟导致重复连接）。三次确认确保双方 ​<strong>​“听得到”且“能回应”​</strong>。</p>
+<hr>
+<h5 id="四四次挥手断开连接确保双方说完所有话"><strong>四、四次挥手：断开连接（确保双方说完所有话）</strong>
+</h5><h6 id="场景讨论结束两人要挂电话"><strong>场景</strong>：讨论结束，两人要挂电话。
+</h6><ol>
+<li><strong>第一次挥手（FIN）</strong>
+<ul>
+<li>小明说：“<strong>我要说的都说完了，挂了吧！</strong>”（发送 FIN 包）</li>
+<li><strong>状态</strong>：小明等待小美确认（<code>FIN_WAIT_1</code>）。</li>
+</ul>
+</li>
+<li><strong>第二次挥手（ACK）</strong>
+<ul>
+<li>小美回应：“<strong>好的，我知道你说完了。</strong>”（回复 ACK 包）</li>
+<li><strong>状态</strong>：小美可能还有话要说（<code>CLOSE_WAIT</code>），小明等待小美结束（<code>FIN_WAIT_2</code>）。</li>
+</ul>
+</li>
+<li><strong>第三次挥手（FIN）</strong>
+<ul>
+<li>小美补充：“<strong>我也说完了，挂了吧！</strong>”（发送 FIN 包）</li>
+<li><strong>状态</strong>：小美等待小明确认（<code>LAST_ACK</code>）。</li>
+</ul>
+</li>
+<li><strong>第四次挥手（ACK）</strong>
+<ul>
+<li>小明最后回应：“<strong>好的，再见！</strong>”（发送 ACK 包）</li>
+<li><strong>状态</strong>：小明等待片刻（<code>TIME_WAIT</code>，防止小美没收到确认），双方挂断（<code>CLOSED</code>）。</li>
+</ul>
+</li>
+</ol>
+<p><strong>为什么需要四次？</strong>
+因为两人要 ​<strong>各自确认“我说完了”且“你也说完了”​</strong>。小明先结束发言权，小美可能还有补充，最后双方才真正挂断。</p>
+<hr>
+<h5 id="五总结"><strong>五、总结</strong>
+</h5><ul>
+<li><strong>三次握手</strong>：像打电话时的三次确认（“听得到吗？”→“听得到！你呢？”→“我也听得到！”）。</li>
+<li><strong>四次挥手</strong>：像挂电话时的四次告别（“我说完了”→“好”→“我也说完了”→“好，再见！”）。</li>
+</ul>
+<p><strong>技术映射</strong>：</p>
+<ul>
+<li><strong>SYN</strong>：发起通话请求（“你能听到吗？”）。</li>
+<li><strong>ACK</strong>：确认收到消息（“好的”）。</li>
+<li><strong>FIN</strong>：结束发言（“我挂了啊”）。</li>
+</ul>
+<h3 id="第五层-会话层">第五层 会话层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320172010792.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320172010792"
+	
+	
+></p>
+<p>一旦数据从表示层（第 6 层）正确转换或格式化，会话层（第 5 层）将开始创建和维护与数据目标的其他计算机的连接。建立连接后，将创建一个会话。当此连接处于活动状态时，会话也处于活动状态。</p>
+<p>会话层还负责关闭连接（如果连接有一段时间未使用或丢失）。此外，会话<em>可以</em>包含“检查点”，如果数据丢失，则只需要发送最新的数据，从而节省带宽。</p>
+<p>值得注意的是，会话是唯一的，这意味着数据不能在不同的会话之间传输，而实际上只能在每个会话之间传输。</p>
+<h3 id="第六层-表示层">第六层 表示层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320172044624.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320172044624"
+	
+	
+></p>
+<p>OSI 模型的第 6 层是开始进行标准化的层。由于软件开发人员可以以不同的方式开发任何软件，例如电子邮件客户端，因此无论软件如何工作，数据仍然需要以相同的方式处理。</p>
+<p>该层充当数据进出应用程序层（第 7 层）的转换器。接收计算机还将理解以一种格式发送到计算机的数据，这些数据以另一种格式发送给计算机。例如，当您发送电子邮件时，其他用户可能有其他电子邮件客户端发送给您，但电子邮件的内容仍需要显示相同的内容。</p>
+<p>数据加密（如访问安全站点时的 HTTPS）等安全功能位于此层。</p>
+<h3 id="第七层-应用层">第七层 应用层
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320172103033.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320172103033"
+	
+	
+></p>
+<p>SI 模型的应用层是您最熟悉的层。之所以如此熟悉，是因为应用程序层是协议和规则所在的层，用于确定用户应如何与发送或接收的数据进行交互。</p>
+<p>日常应用程序（如电子邮件客户端、浏览器或文件服务器浏览软件（如 FileZilla）为用户提供了一个友好的 <strong>G</strong> <strong>实时用户界面</strong> （<strong>GUI），</strong> 以便与发送或接收的数据进行交互。其他协议包括 <strong>DNS</strong> （<strong>D</strong>omain <strong>N</strong>ame <strong>S</strong>ystem），这是网站地址转换为 IP 地址的方式。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320172114887.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320172114887"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background07.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background07.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DNS 详细信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HTTP 详细信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/idor%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IDOR基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ssrf%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SSRF基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">文件包含基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

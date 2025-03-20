@@ -8,6 +8,14 @@
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
         <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SQL注入</title>
+        <link>https://Yerucrem.github.io/categories/sql%E6%B3%A8%E5%85%A5/</link>
+        <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/categories/sql%E6%B3%A8%E5%85%A5/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background02.jpg" alt="Featured image of post SQL注入" /&gt;</description>
+        </item>
+        <item>
         <title>web基础</title>
         <link>https://Yerucrem.github.io/categories/web%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
@@ -16,12 +24,28 @@
         <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background03.jpg" alt="Featured image of post web基础" /&gt;</description>
         </item>
         <item>
+        <title>XSS</title>
+        <link>https://Yerucrem.github.io/categories/xss/</link>
+        <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/categories/xss/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/mail01.jpg" alt="Featured image of post XSS" /&gt;</description>
+        </item>
+        <item>
         <title>博客搭建</title>
         <link>https://Yerucrem.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
         <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
         <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background01.jpg" alt="Featured image of post 博客搭建" /&gt;</description>
+        </item>
+        <item>
+        <title>抽屉</title>
+        <link>https://Yerucrem.github.io/categories/%E6%8A%BD%E5%B1%89/</link>
+        <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/categories/%E6%8A%BD%E5%B1%89/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/c909f10f2eecec958433f164f0cb2aae1c80048a83979bcd26aa9ae8654f07b5.png" alt="Featured image of post 抽屉" /&gt;</description>
         </item>
         
     </channel>

