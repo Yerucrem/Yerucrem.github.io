@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="回忆图床搭建过程">
+<title>使用 PicGo&#43;Typora&#43;COS 搭建图床服务</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="使用 PicGo+Typora+COS 搭建图床服务">
+<meta property='og:description' content="回忆图床搭建过程">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg' />
+<meta name="twitter:title" content="使用 PicGo+Typora+COS 搭建图床服务">
+<meta name="twitter:description" content="回忆图床搭建过程"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#实践场景">实践场景</a>
+      <ol>
+        <li><a href="#场景一新增图片使用-cos-搭建图床服务">场景一：新增图片使用 COS 搭建图床服务</a>
+          <ol>
+            <li><a href="#操作步骤">操作步骤</a></li>
+          </ol>
+        </li>
+        <li><a href="#场景二将原图床仓库图片快速迁移到腾讯云-cos">场景二：将原图床仓库图片快速迁移到腾讯云 COS</a>
+          <ol>
+            <li><a href="#操作步骤-1">操作步骤</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg" loading="lazy" alt="Featured image of post 使用 PicGo&#43;Typora&#43;COS 搭建图床服务" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >
+                博客搭建
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/">使用 PicGo&#43;Typora&#43;COS 搭建图床服务</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            回忆图床搭建过程
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-20</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="图床服务搭建过程">图床服务搭建过程
+</h1><h2 id="简介">简介
+</h2><p>图床服务提供图片存储、图片加工处理、图片全网分发等功能，为全球无数的博客网站和社区论坛提供了后端图片服务支撑。开发者们可以使用腾讯云**对象存储（Cloud Object Storage，COS）**搭建图床服务，COS 是腾讯云提供的一种存储海量文件的分布式存储服务，提供了更丰富的功能、更优越的性能、更高的可靠性保障。</p>
+<p>COS 用于图床场景的优势有：</p>
+<ol>
+<li>**低成本：**存储单价低，按量付费，用多少算多少，还有资源包优惠。</li>
+<li>**不限速：**上传下载不限速，不再长时间等待 loading，访问质量也更好。</li>
+<li>**高可用：**有高等级的 SLA 可用性保障，存储的数据有高达99.9999999999%的持久性保障。</li>
+<li>**容量无限：**文件分布式存储，支持海量文件，容量按需使用。</li>
+</ol>
+<h2 id="实践场景">实践场景
+</h2><h3 id="场景一新增图片使用-cos-搭建图床服务">场景一：新增图片使用 COS 搭建图床服务
+</h3><p>本场景使用到以下工具：</p>
+<p>﻿<a class="link" href="https://molunerfinn.com/PicGo/"  target="_blank" rel="noopener"
+    >PicGo</a>：一款支持多种云存储配置、快捷生成图片链接的工具。</p>
+<p>﻿<a class="link" href="https://typoraio.cn/"  target="_blank" rel="noopener"
+    >Typora</a>：一款轻量级 Markdown 编辑器，支持多种输出格式，支持将本地图片一键上传至图床。</p>
+<h4 id="操作步骤">操作步骤
+</h4><h5 id="步骤一">步骤一
+</h5><p>安装 PicGo 并设置腾讯云 COS 服务相关参数。</p>
+<p>在 <a class="link" href="https://molunerfinn.com/PicGo/"  target="_blank" rel="noopener"
+    >PicGo 官网</a> 下载和安装 PicGo 后，在图床设置里找到<strong>腾讯云 COS</strong>，并配置以下相关参数项：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091246579.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091246579"
+	
+	
+></p>
+<p>COS 版本：选择 COS v5。</p>
+<p>设定 Secretld：开发者拥有的项目身份识别 ID，用于身份认证，可在 <a class="link" href="https://console.cloud.tencent.com/capi"  target="_blank" rel="noopener"
+    >API 密钥管理</a> 页面中创建和获取。</p>
+<p>设定 SecretKey：开发者拥有的项目身份密钥，可在 <a class="link" href="https://console.cloud.tencent.com/capi"  target="_blank" rel="noopener"
+    >API 密钥管理</a> 页面获取。</p>
+<p>设定 Bucket：存储桶，COS 中用于存储数据的容器。有关存储桶的进一步说明，请参见 <a class="link" href="https://cloud.tencent.com/document/product/436/13312"  target="_blank" rel="noopener"
+    >存储桶概述</a> 文档。</p>
+<p>设定 AppId：开发者访问 COS 服务时拥有的用户维度唯一资源标识，用以标识资源，可在 <a class="link" href="https://console.cloud.tencent.com/capi"  target="_blank" rel="noopener"
+    >API 密钥管理</a> 页面获取。</p>
+<p>设定存储区域：存储桶所属地域信息，枚举值可参见 <a class="link" href="https://cloud.tencent.com/document/product/436/6224"  target="_blank" rel="noopener"
+    >可用地域</a> 文档，例如 ap-beijing、ap-hongkong、eu-frankfurt 等。</p>
+<p>设定存储路径：图片存放到 COS 存储桶中的路径。</p>
+<p>设定自定义域名：可选，若您为上方的存储空间配置了自定义源站域名，则可填写。相关介绍可参见 <a class="link" href="https://cloud.tencent.com/document/product/436/36638"  target="_blank" rel="noopener"
+    >开启自定义源站域名</a>。</p>
+<p>设定网址后缀：通过在网址后缀添加 COS 数据处理参数实现图片压缩、裁剪、格式转换等操作，相关介绍可参见 <a class="link" href="https://cloud.tencent.com/document/product/436/54049"  target="_blank" rel="noopener"
+    >图片处理</a>。</p>
+<h5 id="步骤二">步骤二
+</h5><p>设置 typora（可选）</p>
+<p>设置指引如下：</p>
+<p>2.1 在 typora 的偏好设置的<strong>图像</strong>中，进行如下配置：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091459589.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091459589"
+	
+	
+></p>
+<p>2.2 重启 typora，使设置生效。</p>
+<p>2.3 进入 typora 编辑器区域，直接拖放或粘贴图片，即可上传图片并自动替换为 COS 文件链接。（如果粘贴后没有自动替换为 COS 链接，可以检查 PicGo 中的 server 设置是否已打开）。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091714897.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091714897"
+	
+	
+></p>
+<h3 id="场景二将原图床仓库图片快速迁移到腾讯云-cos">场景二：将原图床仓库图片快速迁移到腾讯云 COS
+</h3><p>以某图床服务举例，您可以找到本地图床文件夹，或从线上下载完整文件夹，并将文件夹中所有图片转存到 COS 存储桶。最后再统一替换链接域名即可恢复网站。</p>
+<h4 id="操作步骤-1">操作步骤
+</h4><ol>
+<li>下载原图床服务的图片。</li>
+</ol>
+<p>登录原图床网站页面，下载此前已上传的图片文件夹。</p>
+<ol start="2">
+<li>创建 COS 存储桶并设置防盗链。</li>
+</ol>
+<p>2.1 注册腾讯云账号，创建一个访问权限为<strong>公有读私有写</strong>的存储桶，操作指引请参见 <a class="link" href="https://cloud.tencent.com/document/product/436/13309"  target="_blank" rel="noopener"
+    >创建存储桶</a>。</p>
+<p>2.2 创建存储桶后，在存储桶里打开防盗链设置，避免图片被盗刷，操作指引请参见 <a class="link" href="https://cloud.tencent.com/document/product/436/13319"  target="_blank" rel="noopener"
+    >设置防盗链</a>。</p>
+<ol start="3">
+<li>上传文件夹到存储桶。</li>
+</ol>
+<p>在刚才已创建的存储桶里，单击上传文件夹，将刚才准备好的图片文件夹，上传到 COS 存储桶。操作指引请参见 <a class="link" href="https://cloud.tencent.com/document/product/436/13321"  target="_blank" rel="noopener"
+    >上传对象</a>。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091759400.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091759400"
+	
+	
+></p>
+<ol start="4">
+<li>全局替换链接域名</li>
+</ol>
+<p>在 COS 控制台存储桶概览页，复制存储桶默认域名（也可以绑定自定义 CDN 加速域名）。使用常用代码编辑器，对项目全局搜索替换失效链接前缀为 COS 存储桶默认域名。</p>
+<p>vscode 搜索替换示例：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091831412.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091831412"
+	
+	
+></p>
+<p>sublime text 搜索替换示例：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091844634.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250320091844634"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -7,7 +7,144 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Wed, 19 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 20 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用 PicGo&#43;Typora&#43;COS 搭建图床服务</title>
+        <link>https://Yerucrem.github.io/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/</link>
+        <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg" alt="Featured image of post 使用 PicGo&#43;Typora&#43;COS 搭建图床服务" /&gt;&lt;h1 id=&#34;图床服务搭建过程&#34;&gt;图床服务搭建过程
+&lt;/h1&gt;&lt;h2 id=&#34;简介&#34;&gt;简介
+&lt;/h2&gt;&lt;p&gt;图床服务提供图片存储、图片加工处理、图片全网分发等功能，为全球无数的博客网站和社区论坛提供了后端图片服务支撑。开发者们可以使用腾讯云**对象存储（Cloud Object Storage，COS）**搭建图床服务，COS 是腾讯云提供的一种存储海量文件的分布式存储服务，提供了更丰富的功能、更优越的性能、更高的可靠性保障。&lt;/p&gt;
+&lt;p&gt;COS 用于图床场景的优势有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;**低成本：**存储单价低，按量付费，用多少算多少，还有资源包优惠。&lt;/li&gt;
+&lt;li&gt;**不限速：**上传下载不限速，不再长时间等待 loading，访问质量也更好。&lt;/li&gt;
+&lt;li&gt;**高可用：**有高等级的 SLA 可用性保障，存储的数据有高达99.9999999999%的持久性保障。&lt;/li&gt;
+&lt;li&gt;**容量无限：**文件分布式存储，支持海量文件，容量按需使用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实践场景&#34;&gt;实践场景
+&lt;/h2&gt;&lt;h3 id=&#34;场景一新增图片使用-cos-搭建图床服务&#34;&gt;场景一：新增图片使用 COS 搭建图床服务
+&lt;/h3&gt;&lt;p&gt;本场景使用到以下工具：&lt;/p&gt;
+&lt;p&gt;﻿&lt;a class=&#34;link&#34; href=&#34;https://molunerfinn.com/PicGo/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PicGo&lt;/a&gt;：一款支持多种云存储配置、快捷生成图片链接的工具。&lt;/p&gt;
+&lt;p&gt;﻿&lt;a class=&#34;link&#34; href=&#34;https://typoraio.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Typora&lt;/a&gt;：一款轻量级 Markdown 编辑器，支持多种输出格式，支持将本地图片一键上传至图床。&lt;/p&gt;
+&lt;h4 id=&#34;操作步骤&#34;&gt;操作步骤
+&lt;/h4&gt;&lt;h5 id=&#34;步骤一&#34;&gt;步骤一
+&lt;/h5&gt;&lt;p&gt;安装 PicGo 并设置腾讯云 COS 服务相关参数。&lt;/p&gt;
+&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;https://molunerfinn.com/PicGo/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PicGo 官网&lt;/a&gt; 下载和安装 PicGo 后，在图床设置里找到&lt;strong&gt;腾讯云 COS&lt;/strong&gt;，并配置以下相关参数项：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091246579.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091246579&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;COS 版本：选择 COS v5。&lt;/p&gt;
+&lt;p&gt;设定 Secretld：开发者拥有的项目身份识别 ID，用于身份认证，可在 &lt;a class=&#34;link&#34; href=&#34;https://console.cloud.tencent.com/capi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;API 密钥管理&lt;/a&gt; 页面中创建和获取。&lt;/p&gt;
+&lt;p&gt;设定 SecretKey：开发者拥有的项目身份密钥，可在 &lt;a class=&#34;link&#34; href=&#34;https://console.cloud.tencent.com/capi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;API 密钥管理&lt;/a&gt; 页面获取。&lt;/p&gt;
+&lt;p&gt;设定 Bucket：存储桶，COS 中用于存储数据的容器。有关存储桶的进一步说明，请参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/13312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;存储桶概述&lt;/a&gt; 文档。&lt;/p&gt;
+&lt;p&gt;设定 AppId：开发者访问 COS 服务时拥有的用户维度唯一资源标识，用以标识资源，可在 &lt;a class=&#34;link&#34; href=&#34;https://console.cloud.tencent.com/capi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;API 密钥管理&lt;/a&gt; 页面获取。&lt;/p&gt;
+&lt;p&gt;设定存储区域：存储桶所属地域信息，枚举值可参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/6224&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;可用地域&lt;/a&gt; 文档，例如 ap-beijing、ap-hongkong、eu-frankfurt 等。&lt;/p&gt;
+&lt;p&gt;设定存储路径：图片存放到 COS 存储桶中的路径。&lt;/p&gt;
+&lt;p&gt;设定自定义域名：可选，若您为上方的存储空间配置了自定义源站域名，则可填写。相关介绍可参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/36638&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;开启自定义源站域名&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;设定网址后缀：通过在网址后缀添加 COS 数据处理参数实现图片压缩、裁剪、格式转换等操作，相关介绍可参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/54049&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;图片处理&lt;/a&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;步骤二&#34;&gt;步骤二
+&lt;/h5&gt;&lt;p&gt;设置 typora（可选）&lt;/p&gt;
+&lt;p&gt;设置指引如下：&lt;/p&gt;
+&lt;p&gt;2.1 在 typora 的偏好设置的&lt;strong&gt;图像&lt;/strong&gt;中，进行如下配置：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091459589.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091459589&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;2.2 重启 typora，使设置生效。&lt;/p&gt;
+&lt;p&gt;2.3 进入 typora 编辑器区域，直接拖放或粘贴图片，即可上传图片并自动替换为 COS 文件链接。（如果粘贴后没有自动替换为 COS 链接，可以检查 PicGo 中的 server 设置是否已打开）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091714897.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091714897&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;场景二将原图床仓库图片快速迁移到腾讯云-cos&#34;&gt;场景二：将原图床仓库图片快速迁移到腾讯云 COS
+&lt;/h3&gt;&lt;p&gt;以某图床服务举例，您可以找到本地图床文件夹，或从线上下载完整文件夹，并将文件夹中所有图片转存到 COS 存储桶。最后再统一替换链接域名即可恢复网站。&lt;/p&gt;
+&lt;h4 id=&#34;操作步骤-1&#34;&gt;操作步骤
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;下载原图床服务的图片。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;登录原图床网站页面，下载此前已上传的图片文件夹。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;创建 COS 存储桶并设置防盗链。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2.1 注册腾讯云账号，创建一个访问权限为&lt;strong&gt;公有读私有写&lt;/strong&gt;的存储桶，操作指引请参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/13309&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;创建存储桶&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;2.2 创建存储桶后，在存储桶里打开防盗链设置，避免图片被盗刷，操作指引请参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/13319&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;设置防盗链&lt;/a&gt;。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;上传文件夹到存储桶。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在刚才已创建的存储桶里，单击上传文件夹，将刚才准备好的图片文件夹，上传到 COS 存储桶。操作指引请参见 &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/document/product/436/13321&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;上传对象&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091759400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091759400&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;全局替换链接域名&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在 COS 控制台存储桶概览页，复制存储桶默认域名（也可以绑定自定义 CDN 加速域名）。使用常用代码编辑器，对项目全局搜索替换失效链接前缀为 COS 存储桶默认域名。&lt;/p&gt;
+&lt;p&gt;vscode 搜索替换示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091831412.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091831412&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;sublime text 搜索替换示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250320091844634.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250320091844634&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>DNS 详细信息</title>
         <link>https://Yerucrem.github.io/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
