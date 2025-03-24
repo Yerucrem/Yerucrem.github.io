@@ -768,6 +768,198 @@
 </description>
         </item>
         <item>
+        <title>子网与子网掩码</title>
+        <link>https://Yerucrem.github.io/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/</link>
+        <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png" alt="Featured image of post 子网与子网掩码" /&gt;&lt;h1 id=&#34;子网与子网掩码&#34;&gt;子网与子网掩码
+&lt;/h1&gt;&lt;p&gt;子网和子网掩码是网络中的核心概念，用来&lt;strong&gt;划分和管理 IP 地址&lt;/strong&gt;。我们可以通过一个生活化的例子来理解它们：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-类比城市街道和门牌号&#34;&gt;&lt;strong&gt;🌍 类比：城市、街道和门牌号&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;假设整个城市是一个大网络（比如 &lt;code&gt;192.168.1.0/24&lt;/code&gt;），所有房子（设备）的地址都类似 &lt;code&gt;192.168.1.X&lt;/code&gt;。但随着城市扩张，直接管理所有地址变得困难。于是，市长（网络管理员）决定将城市划分为几个区（子网），每个区有独立的街道和门牌号。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;子网（Subnet）&lt;/strong&gt;：
+就像把城市划分为多个区（例如“东区”、“西区”），每个区内的地址范围更小、更易管理。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原城市地址：&lt;code&gt;192.168.1.0&lt;/code&gt; ~ &lt;code&gt;192.168.1.255&lt;/code&gt;（共 256 个地址）&lt;/li&gt;
+&lt;li&gt;划分为两个子网：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;东区&lt;/strong&gt;：&lt;code&gt;192.168.1.0&lt;/code&gt; ~ &lt;code&gt;192.168.1.127&lt;/code&gt;（128 个地址）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;西区&lt;/strong&gt;：&lt;code&gt;192.168.1.128&lt;/code&gt; ~ &lt;code&gt;192.168.1.255&lt;/code&gt;（128 个地址）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;子网掩码（Subnet Mask）&lt;/strong&gt;：
+像是一把标尺，用来区分“区号”和“门牌号”。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;原城市的子网掩码：&lt;code&gt;255.255.255.0&lt;/code&gt;（二进制：&lt;code&gt;11111111.11111111.11111111.00000000&lt;/code&gt;）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;划分子网后的子网掩码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;255.255.255.128
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（二进制：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11111111.11111111.11111111.10000000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;前 25 位&lt;/strong&gt;表示“区号”（如东区或西区），&lt;strong&gt;后 7 位&lt;/strong&gt;表示区内的“门牌号”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-技术解释&#34;&gt;&lt;strong&gt;🔍 技术解释&lt;/strong&gt;
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;子网（Subnet）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将一个大网络（如 &lt;code&gt;192.168.1.0/24&lt;/code&gt;）分割成多个小网络，便于管理、优化流量、提高安全性。&lt;/li&gt;
+&lt;li&gt;每个子网有自己的地址范围，例如：
+&lt;ul&gt;
+&lt;li&gt;子网1：&lt;code&gt;192.168.1.0/25&lt;/code&gt;（地址范围：&lt;code&gt;0&lt;/code&gt; ~ &lt;code&gt;127&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;子网2：&lt;code&gt;192.168.1.128/25&lt;/code&gt;（地址范围：&lt;code&gt;128&lt;/code&gt; ~ &lt;code&gt;255&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;子网掩码（Subnet Mask）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一个 32 位的二进制数字，与 IP 地址配合使用，用于标识&lt;strong&gt;网络部分&lt;/strong&gt;和&lt;strong&gt;主机部分&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt; 规则
+
+ ：
+
+ - `1` 的位表示网络地址（不可变），`0` 的位表示主机地址（可变）。
+
+ - 例如，
+
+   ```
+   255.255.255.0
+   ```
+
+   （二进制
+
+    
+
+   ```
+   11111111.11111111.11111111.00000000
+   ```
+
+   ）表示：
+
+   - 前 24 位是网络地址，后 8 位是主机地址（可容纳 `2^8 - 2 = 254` 台设备，减去的 2 是网络地址和广播地址）。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-实际例子&#34;&gt;&lt;strong&gt;🌰 实际例子&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;假设公司有一个局域网 &lt;code&gt;192.168.1.0/24&lt;/code&gt;，需要为三个部门（财务部、技术部、市场部）划分子网：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;划分子网&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用子网掩码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;255.255.255.192
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（二进制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11111111.11111111.11111111.11000000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;，即&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/26
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;），将原网络划分为 4 个子网：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子网1：&lt;code&gt;192.168.1.0/26&lt;/code&gt;（地址：&lt;code&gt;0&lt;/code&gt; ~ &lt;code&gt;63&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;子网2：&lt;code&gt;192.168.1.64/26&lt;/code&gt;（地址：&lt;code&gt;64&lt;/code&gt; ~ &lt;code&gt;127&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;子网3：&lt;code&gt;192.168.1.128/26&lt;/code&gt;（地址：&lt;code&gt;128&lt;/code&gt; ~ &lt;code&gt;191&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;子网4：&lt;code&gt;192.168.1.192/26&lt;/code&gt;（地址：&lt;code&gt;192&lt;/code&gt; ~ &lt;code&gt;255&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分配子网&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;财务部用子网1，技术部用子网2，市场部用子网3，剩余子网4备用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;优势&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;各部门流量互不干扰，安全性提升（可设置防火墙规则隔离子网）。&lt;/li&gt;
+&lt;li&gt;广播范围缩小，网络性能优化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-如何计算子网掩码&#34;&gt;&lt;strong&gt;🔧 如何计算子网掩码？&lt;/strong&gt;
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;确定需求&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;需要多少子网？每个子网需要多少主机？&lt;/li&gt;
+&lt;li&gt;例如：需要 4 个子网，每个子网至少 50 台设备。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;选择子网掩码&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;主机部分至少需要 6 位（&lt;code&gt;2^6 - 2 = 62&lt;/code&gt; 台），网络部分则为 26 位（&lt;code&gt;32 - 6 = 26&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;子网掩码为 &lt;code&gt;255.255.255.192&lt;/code&gt;（即 &lt;code&gt;/26&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;strong&gt;总结&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;子网&lt;/strong&gt;是网络的分区，就像城市划分成区；&lt;strong&gt;子网掩码&lt;/strong&gt;是划分规则，决定如何分配地址。&lt;/li&gt;
+&lt;li&gt;划分子网能提升网络效率、安全性和管理便捷性。&lt;/li&gt;
+&lt;li&gt;实际应用中，子网掩码的位数（如 &lt;code&gt;/24&lt;/code&gt;、&lt;code&gt;/26&lt;/code&gt;）直接决定了子网大小和数量。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>使用 PicGo&#43;Typora&#43;COS 搭建图床服务</title>
         <link>https://Yerucrem.github.io/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/</link>
         <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
@@ -3072,15 +3264,18 @@
         
         <guid>https://Yerucrem.github.io/p/%E6%B5%8B%E8%AF%95/</guid>
         <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/01DFA140B78CF068F9CB2ACC01C76E40.jpg" alt="Featured image of post 测试" /&gt;&lt;h1 id=&#34;test&#34;&gt;TEST
-&lt;/h1&gt;</description>
-        </item>
-        <item>
-        <title></title>
-        <link>https://Yerucrem.github.io/p/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://Yerucrem.github.io/p/</guid>
-        <description></description>
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;1 1 1 1 1 4 1 1	11&lt;/li&gt;
+&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
+&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
+&lt;li&gt;1 2 2 4 2 4 2 2	19&lt;/li&gt;
+&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
+&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
+&lt;li&gt;2 6 4 4 4 6 2 2	29&lt;/li&gt;
+&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
+&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
+&lt;/ol&gt;
+</description>
         </item>
         
     </channel>
