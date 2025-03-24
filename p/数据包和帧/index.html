@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="关于数据包和帧的介绍">
+<title>数据包和帧</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E6%95%B0%E6%8D%AE%E5%8C%85%E5%92%8C%E5%B8%A7/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="数据包和帧">
+<meta property='og:description' content="关于数据包和帧的介绍">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E6%95%B0%E6%8D%AE%E5%8C%85%E5%92%8C%E5%B8%A7/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-9239059_1280.jpg' />
+<meta name="twitter:title" content="数据包和帧">
+<meta name="twitter:description" content="关于数据包和帧的介绍"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-9239059_1280.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#什么是数据包和帧">什么是数据包和帧</a></li>
+    <li><a href="#tcpip-三次握手">TCP/IP 三次握手</a></li>
+    <li><a href="#udpip-协议">UDP/IP 协议</a></li>
+    <li><a href="#端口">端口</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%95%B0%E6%8D%AE%E5%8C%85%E5%92%8C%E5%B8%A7/">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-9239059_1280.jpg" loading="lazy" alt="Featured image of post 数据包和帧" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%95%B0%E6%8D%AE%E5%8C%85%E5%92%8C%E5%B8%A7/">数据包和帧</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            关于数据包和帧的介绍
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-24</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="数据包和帧">数据包和帧
+</h1><h2 id="什么是数据包和帧">什么是数据包和帧
+</h2><p>数据包和帧是小块数据，当它们组合在一起时，会形成较大的信息或消息。但是，它们在 OSI 模型中是两个不同的东西。帧位于第 2 层 - 数据链路层，这意味着没有 IP 地址等信息。将此视为将信封放入信封中并将其寄走。第一个信封将是您邮寄的数据包，但一旦打开，其中的信封仍然存在并包含数据（这是一个帧）。</p>
+<p>这个过程称为封装，我们在 <a class="link" href="https://tryhackme.com/room/osimodelzi"  target="_blank" rel="noopener"
+    >3 号房间中讨论过：OSI 模型 </a>。在这个阶段，可以安全地假设当我们谈论任何 IP 地址时，我们谈论的是数据包。当封装信息被剥离时，我们谈论的是框架本身。</p>
+<p>数据包是在联网设备之间传输数据的一种有效方式，例如任务 1 中介绍的设备。由于这些数据是小块交换的，因此与一次发送大消息相比，整个网络中出现瓶颈的可能性更小。</p>
+<p>例如，从网站加载图像时，此图像不会作为一个整体发送到您的计算机，而是在您的计算机上重建的小块。以下图为例来说明这个过程。猫咪的照片被分成三个包，到达计算机后被重建，形成最终的图像。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250324092004403.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250324092004403"
+	
+	
+></p>
+<p>数据包具有不同的结构，具体取决于要发送的数据包的类型。正如我们接下来将要讨论的那样，网络充满了标准和协议，它们充当了一组规则，用于定义如何在设备上处理数据包。互联网上连接了数十亿台设备，如果没有标准化，事情可能会很快崩溃。</p>
+<p>让我们继续我们的 Internet 协议示例。使用此协议的数据包将具有一组标头，其中包含通过网络发送的数据的附加信息。</p>
+<p>一些值得注意的标头包括：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Header 页眉</strong></th>
+          <th><strong>Description 描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Time to Live</td>
+          <td>此字段为数据包设置一个到期计时器，如果它从未设法到达主机或逃逸，则不会阻塞您的网络！</td>
+      </tr>
+      <tr>
+          <td>Checksum</td>
+          <td>此字段为 TCP/IP 等协议提供完整性检查。如果更改了任何数据，此值将与预期值不同，因此会损坏。</td>
+      </tr>
+      <tr>
+          <td>Source Address</td>
+          <td><strong>发送 数据包</strong>的设备的 IP 地址，以便数据知道要<strong>返回到</strong>何处。</td>
+      </tr>
+      <tr>
+          <td>Destination Address</td>
+          <td>数据包发送到的设备 IP 地址，以便数据知道下一步要传输到何处。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="tcpip-三次握手">TCP/IP 三次握手
+</h2><p><strong>TCP</strong> （或 简称 <strong>T</strong>ransmission <strong>C</strong>ontrol <strong>P</strong>rotocol）是网络中使用的另一种规则。</p>
+<p>到目前为止，该协议与我们之前在本模块的 3 号房间中讨论的 OSI 模型非常相似。TCP/IP 协议由四层组成，可以说只是 OSI 模型的概括版本。这些层是：</p>
+<ul>
+<li>Application 应用</li>
+<li>Transport 运输</li>
+<li>Internet 互联网</li>
+<li>Network Interface 网络接口</li>
+</ul>
+<p>与 OSI 模型的工作方式非常相似，当数据（或数据包）遍历 TCP 模型时，信息会添加到 TCP 模型的每一层。您可能还记得，这个过程被称为 encapsulation - 这个过程的反面是 decapsulation。</p>
+<p>TCP 的一个定义特征是它是 <strong>基于连接的</strong> ，这意味着 TCP 必须在发送数据之前在客户端和充当服务器的 设备之间建立连接 。</p>
+<p>因此，TCP 保证发送的任何数据都将在另一端接收。这个过程被称为 三次握手，我们稍后会讨论。 下表比较了 TCP 的优缺点：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>TCP 的优点</strong></th>
+          <th>TCP 的缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>保证数据的完整性。</td>
+          <td>需要在两个设备之间建立可靠的连接。如果未收到一小块数据，则无法使用整个数据块，必须重新发送。</td>
+      </tr>
+      <tr>
+          <td>能够同步两个设备，以防止彼此以错误的顺序被数据淹没。</td>
+          <td>慢速连接可能会使另一台设备成为瓶颈，因为该连接将始终保留在另一台设备上。</td>
+      </tr>
+      <tr>
+          <td>执行更多的流程以实现可靠性</td>
+          <td>TCP 比 UDP 慢得多，因为使用此协议的设备必须完成更多的工作 （计算）。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>TCP 数据包包含从封装添加的称为报头的信息的各个部分。让我们解释下表中的一些关键标头：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>Header 页眉</strong></th>
+          <th><strong>Description 描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Source Port 源端口</td>
+          <td>此值是发送方打开的用于发送 TCP 数据包的端口。此值是随机选择的（从当时尚未使用的 0-65535 端口中）。</td>
+      </tr>
+      <tr>
+          <td>Destination Port 目标端口</td>
+          <td>此值是应用程序或服务在远程主机（接收数据的主机）上运行的端口号;例如，在端口 80 上运行的 Web 服务器。与源端口不同，此值不是随机选择的。</td>
+      </tr>
+      <tr>
+          <td>Source IP 源 IP</td>
+          <td>这是发送数据包的设备的 IP 地址。</td>
+      </tr>
+      <tr>
+          <td>Destination IP 目标 IP</td>
+          <td>这是数据包的目标设备的 IP 地址。</td>
+      </tr>
+      <tr>
+          <td>Sequence Number 序列号</td>
+          <td>当连接发生时，传输的第一条数据被赋予一个随机数。我们将在后面更深入地解释这一点。</td>
+      </tr>
+      <tr>
+          <td>Acknowledgement Number 鸣谢编号</td>
+          <td>为一条数据指定序列号后，下一条数据的编号将具有序列号 + 1。我们还将进一步更深入地解释这一点。</td>
+      </tr>
+      <tr>
+          <td>Checksum 校验和</td>
+          <td>此值提供 TCP 完整性。在记住输出的地方进行数学计算。当接收设备执行数学计算时，如果输出与发送的内容不同，则数据必须损坏。</td>
+      </tr>
+      <tr>
+          <td>Data 数据</td>
+          <td>此标头是存储数据（即正在传输的文件的字节）的位置。</td>
+      </tr>
+      <tr>
+          <td>Flag 旗</td>
+          <td>此标头确定任一设备在握手过程中应如何处理数据包。特定的标志将决定特定的行为，这就是我们将在下面解释的内容。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>接下来，我们将继续讨论<em>三方握手 -</em> 该术语用于在两个设备之间建立连接的过程。 三方握手使用一些特殊消息进行通信 - 下表突出显示了主要消息：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th>消息</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>SYN</td>
+          <td>SYN 消息是客户端在握手期间发送的初始数据包。此数据包用于启动连接并将两个设备同步在一起（我们稍后将进一步解释）。</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>SYN/ACK</td>
+          <td>此数据包由接收设备（服务器）发送，以确认来自客户端的同步尝试。</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>ACK</td>
+          <td>The acknowledgement packet can be used by either the client or server to acknowledge that a series of messages/packets have been successfully received. 客户端或服务器可以使用确认数据包来确认已成功接收一系列消息/数据包。</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>DATA</td>
+          <td>建立连接后，数据（例如文件的字节）将通过 “DATA” 消息发送。</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>FIN</td>
+          <td>此数据包用于在连接完成后<em>干净（正确）</em> 关闭连接。</td>
+      </tr>
+      <tr>
+          <td>#</td>
+          <td>RST</td>
+          <td>此数据包会突然结束所有通信。这是最后的手段，表明在此过程中存在一些问题。例如，如果服务或应用程序无法正常工作，或者系统存在资源不足等故障。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>下图显示了 Alice 和 Bob 之间的正常 Three-way 握手过程。在现实生活中，这将是在两个设备之间。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250324092315229.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250324092315229"
+	
+	
+></p>
+<p>任何发送的数据都会被赋予一个随机数字序列，并使用此数字序列并以 1 为增量进行重建。两台计算机必须就相同的编号规则达成一致，才能以正确的顺序发送数据。此顺序分三个步骤达成一致：</p>
+<ol>
+<li>SYN - 客户端：这是我的初始序列号 （ISN），用于 <strong>SYN</strong>chronise （0）</li>
+<li>SYN/ACK - 服务器：这是我用 （5,000） 记录 <strong>SYN</strong> 的初始序列号 （ISN），我<strong>现在确认</strong>您的初始编号序列 （0）</li>
+<li>ACK - 客户端：我<strong>确认</strong>您的初始序列号 （ISN） 为 （5,000），下面是我的 ISN+1 （0 + 1） 的一些数据</li>
+</ol>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Device</th>
+          <th>初始编号序列 （ISN）</th>
+          <th>最终编号序列</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>客户端 （发件人）</td>
+          <td>0</td>
+          <td>0 + 1 = 1</td>
+      </tr>
+      <tr>
+          <td>客户端 （发件人）</td>
+          <td>1</td>
+          <td>1 + 1 = 2</td>
+      </tr>
+      <tr>
+          <td>客户端 （发件人）</td>
+          <td>2</td>
+          <td>2 + 1 = 3</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>TCP 协议关闭连接：</strong></p>
+<p>让我们快速解释一下 TCP 关闭连接背后的过程。首先， 一旦设备确定另一台设备已成功接收所有数据，TCP 将关闭连接。</p>
+<p>由于 TCP 会在设备上保留系统资源，因此最佳做法是尽快关闭 TCP 连接。</p>
+<p>要启动关闭 TCP 连接，设备将向另一台设备发送 “FIN” 数据包。当然，使用 TCP 时，另一台设备也必须确认此数据包。</p>
+<p>让我们像以前一样使用 Alice 和 Bob 来演示这个过程。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250324092456294.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250324092456294"
+	
+	
+></p>
+<p>在图中，我们可以看到 Alice 向 Bob 发送了一个 “<strong>FIN</strong>” 数据包。因为 Bob 收到了这个，所以他会让 Alice 知道他收到了这个，并且他还想关闭连接（使用 FIN）。Alice 已经清楚地听到了 Bob 的声音，并会让 Bob 知道她承认了这一点。</p>
+<h2 id="udpip-协议">UDP/IP 协议
+</h2><p><strong>U</strong>ser <strong>D</strong>atagram <strong>P</strong>rotocol （<strong>UDP</strong>） 是另一种用于在设备之间传输数据的协议。</p>
+<p>与其兄弟 TCP 不同，UDP 是一种 <strong>无 状态</strong>协议，不需要两个设备之间持续连接即可发送数据。例如，不会发生 Three-way hand shake，两个设备之间也没有任何同步。</p>
+<p>回想一下 3 号房间中对这两个协议所做的一些比较：“OSI 模型”。也就是说，UDP 用于应用程序可以容忍数据丢失的情况（例如视频流或语音聊天）或不稳定的连接不是最终结果的情况。下表比较了 UDP 的优缺点：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>UDP 的优势</strong></th>
+          <th><strong>UDP 的缺点</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>UDP 比 TCP 快得多。</td>
+          <td>UDP 不关心数据是否被接收。</td>
+      </tr>
+      <tr>
+          <td>UDP 让应用程序（用户软件）决定是否可以控制数据包的发送速度。</td>
+          <td>从这个意义上说，它对软件开发人员来说是相当灵活的。</td>
+      </tr>
+      <tr>
+          <td>UDP 不会像 TCP 那样在设备上保留连续连接。</td>
+          <td>这意味着不稳定的连接会给用户带来糟糕的体验。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>如前所述，在两个设备之间建立连接时不会发生任何过程。这意味着不考虑是否接收数据，也没有像 TCP 提供的保护措施，例如数据完整性。</p>
+<p>UDP 数据包比 TCP 数据包简单得多，并且标头更少。但是，这两种协议共享一些标准标头，下表中对此进行了注释：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Header 页眉</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Time to Live (TTL) 生存时间 （TTL）</td>
+          <td>此字段为数据包设置到期计时器，因此如果数据包从未成功到达主机或逃逸，它不会阻塞您的网络！</td>
+      </tr>
+      <tr>
+          <td>Source Address 源地址</td>
+          <td>发送数据包的设备的 IP 地址，以便数据知道要返回到何处。</td>
+      </tr>
+      <tr>
+          <td>Destination Address 目标地址</td>
+          <td>数据包发送到的设备 IP 地址，以便数据知道下一步要传输到何处。</td>
+      </tr>
+      <tr>
+          <td>Source Port 源端口</td>
+          <td>此值是发送方打开的端口，用于发送 UDP 数据包。此值是随机选择的（从当时尚未使用的 0-65535 端口中）。</td>
+      </tr>
+      <tr>
+          <td>Destination Port 目标端口</td>
+          <td>此值是应用程序或服务在远程主机（接收数据的主机）上运行的端口号;例如，在端口 80 上运行的 Web 服务器。与源端口不同，此值不是随机选择的。</td>
+      </tr>
+      <tr>
+          <td>Data 数据</td>
+          <td>此标头是存储数据（即正在传输的文件的字节）的位置。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>接下来，我们将继续讨论通过 UDP 进行连接的过程与 TCP 等过程有何不同。 我们应该记住 UDP 是<strong>无状态</strong>的。连接期间不会发送确认。</p>
+<p>下图显示了 Alice 和 Bob 之间的正常 UDP 连接。在现实生活中，这将是在两个设备之间。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250324092646004.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250324092646004"
+	
+	
+></p>
+<h2 id="端口">端口
+</h2><p>也许正如他们的名字一样，端口是可以交换数据的重要点。想想港口和港口。希望停靠港口的船舶必须前往与船上的尺寸和设施相适应的港口。当船只排队时，它将连接到港口的港口 。例如，邮轮不能停靠在为渔船建造的港口，反之亦然。</p>
+<p>这些端口强制规定了什么可以停放以及停在哪里——如果不兼容，它就不能停在这里。网络设备在相互通信时也使用端口来执行严格的规则。建立连接后（从 OSI 模型的房间调用），设备发送或接收的任何数据都将通过这些端口发送。在计算中，端口是介于 0 和 65535 （65,535） 之间的 数值 。</p>
+<p>由于端口的范围可以在 0 到 65535 之间的任何位置，因此很快就会忘记哪个应用程序正在使用哪个端口。繁忙的港口一片混乱！值得庆幸的是，我们将应用程序、软件和行为与一组标准规则相关联。例如，通过强制通过端口 80 发送任何 Web 浏览器数据，软件开发人员可以设计一个 Web 浏览器（如 Google Chrome 或 Firefox）来以相同的方式解释数据。</p>
+<p>这意味着所有 Web 浏览器现在都共享一个通用规则：数据通过端口 80 发送。浏览器的外观、感觉和易用性取决于设计师或用户的决定。</p>
+<p>虽然 Web 数据的标准规则是 <em>端口 80</em>，但已为其他一些协议分配了标准规则。介于 0 和 1024 （1,024） 之间的 任何端口都称为公共端口。  让我们在下面探索一些其他协议：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Protocol 协议</th>
+          <th>端口号</th>
+          <th><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>F</strong>ile <strong>T</strong>ransfer <strong>P</strong>rotocol (<strong>FTP</strong>)</td>
+          <td>21</td>
+          <td>此协议由基于客户端-服务器模型构建的文件共享应用程序使用，这意味着您可以从中心位置下载文件。</td>
+      </tr>
+      <tr>
+          <td><strong>S</strong>ecure <strong>Sh</strong>ell (<strong>SSH</strong>)</td>
+          <td>22</td>
+          <td>该协议用于通过基于文本的界面安全地登录系统以进行管理。</td>
+      </tr>
+      <tr>
+          <td><strong>H</strong>yper<strong>T</strong>ext Transfer Protocol (<strong>HTTP</strong>)</td>
+          <td>80</td>
+          <td>该协议为万维网 （WWW） 提供支持！您的浏览器使用它来下载网页的文本、图像和视频。</td>
+      </tr>
+      <tr>
+          <td><strong>H</strong>yper<strong>T</strong>ext <strong>T</strong>ransfer <strong>P</strong>rotocol <strong>S</strong>ecure (<strong>HTTPS</strong>)</td>
+          <td>443</td>
+          <td>该协议的作用与上述完全相同;但是，安全地使用加密。</td>
+      </tr>
+      <tr>
+          <td><strong>S</strong>erver <strong>M</strong>essage <strong>B</strong>lock (<strong>SMB</strong>)</td>
+          <td>445</td>
+          <td>此协议类似于文件传输协议 （FTP）;但是，除了文件之外，SMB 还允许您共享打印机等设备。</td>
+      </tr>
+      <tr>
+          <td><strong>R</strong>emote <strong>D</strong>esktop <strong>P</strong>rotocol (<strong>RDP</strong>)</td>
+          <td>3389</td>
+          <td>此协议是一种使用可视化桌面界面登录系统的安全方法（与 SSH 协议的基于文本的限制相反）。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>我们只简要介绍了网络安全中更常见的协议。有关更多信息，您可以找到<a class="link" href="http://www.vmaxx.net/techinfo/ports.htm"  target="_blank" rel="noopener"
+    >列出的 1024 个常用端口的表 </a>。</p>
+<p>这里值得注意的是，这些协议只遵循标准。即，您可以在标准端口以外的其他端口（在 8080 而不是 80 标准端口上运行 Web 服务器）上管理与这些协议交互的应用程序。但请注意，应用程序将假定遵循标准，因此您必须提供<strong>冒号 （:)</strong> 以及端口号。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/ai-generated-9438277.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/ai-generated-9438277.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">搜索技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%89%A9%E5%B1%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/waves-8905720.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/waves-8905720.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络扩展</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background06.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background06.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/dns-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background07.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background07.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DNS 详细信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/http-%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/9e73050aede3552bc3b00fe7cfe1120f427c37f01e08ad760bbdfa9abc939b1c.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HTTP 详细信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
