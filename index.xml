@@ -7,7 +7,1792 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Mon, 24 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网络安全协议</title>
+        <link>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/</link>
+        <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/</guid>
+        <description>&lt;h2 id=&#34;tls&#34;&gt;TLS
+&lt;/h2&gt;&lt;p&gt;在某一时刻，您只需要一个数据包捕获工具来读取网络上用户的所有聊天、电子邮件和密码。攻击者将其网卡设置为混杂模式的情况并不少见，即捕获所有数据包，包括那些不是发往它的数据包。他们稍后会检查所有数据包捕获并获取毫无戒心的受害者的登录凭据。用户无法采取任何措施来阻止其登录密码以明文形式发送。如今，以明文形式发送登录凭据的服务已经很少见。&lt;/p&gt;
+&lt;p&gt;在 1990 年代初期，Netscape Communications 认识到在万维网上进行安全通信的必要性。他们最终开发了 SSL（安全套接字层），并于 &lt;strong&gt;1995&lt;/strong&gt; 年发布了 SSL 2.0 作为第一个公共版本。&lt;strong&gt;1999&lt;/strong&gt; 年，Internet 工程任务组 （IETF） 开发了 TLS（传输层安全性）。虽然非常相似，但 TLS 1.0 是 SSL 3.0 的升级版，并提供了各种改进的安全措施。&lt;strong&gt;2018&lt;/strong&gt; 年，TLS 对其协议进行了重大改革，并发布了 TLS 1.3。目的不是记住确切的日期，而是实现开发当前版本的 TLS（即 TLS 1.3）所投入的工作量和时间。二十多年来，每个版本都有很多东西需要学习和改进。&lt;/p&gt;
+&lt;p&gt;与其前身 SSL 一样，TLS 是一种在 OSI 模型的传输层运行的加密协议。它允许客户端和服务器之间通过不安全的网络进行安全通信。我们所说的安全是指机密性和完整性;TLS 确保没有人可以读取或修改交换的数据。请花点时间想一想，如果在网上购物、网上银行，甚至在线消息和电子邮件，而无法保证网络数据包的机密性和完整性，那会是什么样子。如果没有 TLS，我们将无法使用 Internet 来处理许多应用程序，这些应用程序现在已成为我们日常生活的一部分。&lt;/p&gt;
+&lt;p&gt;如今，数十种协议已经通过简单地添加 TLS 进行了安全升级。示例包括 HTTP、DNS、MQTT 和 SIP，它们已成为 HTTPS、DoT（DNS over TLS）、MQTTS 和 SIPS，其中附加的“S”由于使用了 SSL/TLS，代表安全。在以下任务中，我们将访问 HTTPS、SMTPS、POP3S 和 IMAPS。&lt;/p&gt;
+&lt;h3 id=&#34;技术背景&#34;&gt;技术背景
+&lt;/h3&gt;&lt;p&gt;我们不会讨论 TLS 握手;但是，如果您好奇，可以查看&lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/r/room/networksecurityprotocols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网络安全协议&lt;/a&gt;室。我们将简要介绍如何设置和使用 TLS。&lt;/p&gt;
+&lt;p&gt;对于每个需要标识自身的服务器（或客户端），第一步是获取签名的 TLS 证书。通常，服务器管理员会创建证书签名请求 （CSR） 并将其提交给证书颁发机构 （CA）;CA 验证 CSR 并颁发数字证书。收到（签名的）证书后，可以使用它向其他人识别服务器（或客户端），这些人可以确认签名的有效性。为了让主机确认签名证书的有效性，需要在主机上安装签名机构的证书。在非数字世界中，这类似于识别各种权威机构的邮票。下面的屏幕截图显示了 Web 浏览器中安装的受信任颁发机构。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408021405300.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408021405300&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一般来说，签署证书需要支付年费。但是，&lt;a class=&#34;link&#34; href=&#34;https://letsencrypt.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Let&amp;rsquo;s Encrypt&lt;/a&gt; 允许您免费签署您的证书。&lt;/p&gt;
+&lt;p&gt;最后，我们应该提到一些用户选择创建自签名证书。自签名证书无法证明服务器的真实性，因为没有第三方确认它。&lt;/p&gt;
+&lt;h2 id=&#34;https协议&#34;&gt;HTTPS协议
+&lt;/h2&gt;&lt;p&gt;正如我们在 &lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/r/room/networkingcoreprotocols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Networking Core Protocols&lt;/a&gt; 房间里所研究的那样，HTTP 依赖于 TCP，并默认使用端口 80。我们还看到了所有 HTTP 流量如何以明文形式发送，供任何人拦截和监控。下面的屏幕截图来自上一个房间，它清楚地说明了对手如何轻松读取客户端和服务器之间交换的所有流量。&lt;/p&gt;
+&lt;p&gt;让我们花点时间回顾一下 Web 浏览器可以通过 HTTP 请求页面之前的最常见步骤。将域名解析为 IP 地址后，客户端将执行以下两个步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;与目标服务器建立 TCP 三次握手&lt;/li&gt;
+&lt;li&gt;使用 HTTP 协议进行通信;例如，发出 HTTP 请求，例如 &lt;code&gt;GET / HTTP/1.1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上述两个步骤显示在下面的窗口中。TCP 握手的三个数据包（标有 1）位于第一个包含 &lt;code&gt;GET&lt;/code&gt; 的 HTTP 数据包之前。HTTP 通信标有 2。最后显示的三个数据包用于 TCP 连接终止，并标有 3。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408021637270.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408021637270&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;http-over-tls&#34;&gt;HTTP Over TLS
+&lt;/h3&gt;&lt;p&gt;HTTPS 代表安全超文本传输协议。它基本上是 HTTP over TLS。因此，通过 HTTPS 请求页面需要以下三个步骤（解析域名后）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;与目标服务器建立 TCP 三次握手&lt;/li&gt;
+&lt;li&gt;建立 TLS 会话&lt;/li&gt;
+&lt;li&gt;使用 HTTP 协议进行通信;例如，发出 HTTP 请求，例如 &lt;code&gt;GET / HTTP/1.1&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下面的屏幕截图显示，在前三个数据包中建立了 TCP 会话，标记为 &lt;code&gt;1&lt;/code&gt;。然后，交换多个数据包以协商 TLS 协议，标有 &lt;code&gt;2&lt;/code&gt;。&lt;code&gt;1&lt;/code&gt; 和 &lt;code&gt;2&lt;/code&gt; 是进行 &lt;strong&gt;TLS 协商和建立&lt;/strong&gt;的地方 。&lt;/p&gt;
+&lt;p&gt;最后，在交换 &lt;strong&gt;HTTP 应用层数据&lt;/strong&gt;时（图中标记为 3 的部分），Wireshark 截图中显示为 &lt;strong&gt;“Application Data”（应用数据）&lt;/strong&gt;，而非具体的协议名称（如 HTTP）。这是因为数据通过 &lt;strong&gt;443 端口&lt;/strong&gt;（默认 HTTPS 端口）传输且经过 &lt;strong&gt;TLS/SSL 加密&lt;/strong&gt;，Wireshark 无法直接解析加密后的内容，因此无法确认它是否为 HTTP 或其他协议（如 FTP over TLS）。&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408021811071.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408021811071&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;正如预期的那样，如果尝试跟踪数据包流并组合其所有内容，他们只会得到乱码，如下面的屏幕截图所示。交换的流量是加密的;红色由客户端发送，蓝色由服务器发送。如果不获&lt;strong&gt;取加密密钥&lt;/strong&gt;，就无法知道内容。&lt;/p&gt;
+&lt;h4 id=&#34;获取加密密钥&#34;&gt;获取加密密钥
+&lt;/h4&gt;&lt;p&gt;将 TLS 添加到 HTTP 会导致所有数据包都被&lt;strong&gt;加密&lt;/strong&gt;。除非我们获得&lt;strong&gt;私钥&lt;/strong&gt;的访问权限，否则我们无法再看到交换数据包的内容。尽管我们不太可能访问 TLS 会话中用于加密的密钥，但在向 Wireshark 提供解密密钥后，我们重复了上述屏幕截图。TCP 和 TLS 握手不会更改;主要区别从标记为 3 的 HTTP 协议开始。例如，我们可以看到客户端何时发出 &lt;code&gt;GET&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408021935959.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408021935959&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果您想看到交换的数据，现在是您的机会！它仍然是隐藏在窥探者的常规 HTTP 流量。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408021955413.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408021955413&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核心结论&lt;/strong&gt;：TLS（传输层安全协议）为HTTP提供了安全保障，且&lt;strong&gt;无需对底层（如TCP/IP）或上层协议（如HTTP）进行任何修改&lt;/strong&gt;。具体而言：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;TCP/IP协议栈保持原状&lt;/strong&gt;：传输层（TCP）和网络层（IP）的运作机制未改变。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP的传输方式升级&lt;/strong&gt;：原本通过TCP明文传输的HTTP数据，现改为通过TLS加密信道传输，但&lt;strong&gt;HTTP协议本身的结构和语法无需调整&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;smtpspop3s和imaps&#34;&gt;SMTPS,POP3S和IMAPS
+&lt;/h2&gt;&lt;p&gt;将 TLS 添加到 SMTP、POP3 和 IMAP 与将 TLS 添加到 HTTP 没有什么不同。与 HTTP 获取附加的 S 表示&lt;em&gt;安全&lt;/em&gt;并变为 HTTPS、SMTP、POP3 和 IMAP 分别变为 SMTPS、POP3S 和 IMAPS 类似。通过 TLS 使用这些协议与使用 HTTP over TLS 没有什么不同;因此，HTTPS 讨论中的几乎所有要点都适用于这些协议。&lt;/p&gt;
+&lt;p&gt;不安全版本使用下表中所示的默认 TCP 端口号：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;协议&lt;/th&gt;
+          &lt;th&gt;默认端口号&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;HTTP&lt;/td&gt;
+          &lt;td&gt;80&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SMTP&lt;/td&gt;
+          &lt;td&gt;25&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;POP3&lt;/td&gt;
+          &lt;td&gt;110&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;IMAP&lt;/td&gt;
+          &lt;td&gt;143&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;默认情况下，安全版本（即通过 TLS）使用以下 TCP 端口号：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;协议&lt;/th&gt;
+          &lt;th&gt;默认端口号&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;HTTPS&lt;/td&gt;
+          &lt;td&gt;443&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SMTPS&lt;/td&gt;
+          &lt;td&gt;465 和 587&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;POP3S&lt;/td&gt;
+          &lt;td&gt;995&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;IMAPS&lt;/td&gt;
+          &lt;td&gt;993&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;TLS 可以添加到许多其他协议中;理由和优势是相似的。&lt;/p&gt;
+&lt;h2 id=&#34;ssh&#34;&gt;SSH
+&lt;/h2&gt;&lt;p&gt;我们在 &lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/r/room/networkingconcepts&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Networking Concepts&lt;/a&gt; 会议室中使用了 TELNET 协议。尽管登录和管理远程系统非常方便，但当所有流量都以明文形式发送时，风险很大。使用 &lt;code&gt;telnet&lt;/code&gt; 后，任何监控网络流量的人都很容易获得您的登录凭据。这个问题需要一个解决方案。Tatu Ylönen 开发了安全外壳 （SSH） 协议，并于 &lt;strong&gt;1995&lt;/strong&gt; 年作为免费软件发布了 SSH-1。（有趣的是，Netscape Communications 在同一年发布了 SSL 2.0 协议。1996 年定义了一个更安全的版本 SSH-2。&lt;strong&gt;1999&lt;/strong&gt; 年，OpenBSD 开发人员发布了 OpenSSH，这是 SSH 的开源实现。如今，当您使用 SSH 客户端时，它很可能基于 OpenSSH 库和源代码。&lt;/p&gt;
+&lt;p&gt;OpenSSH 有几个好处。我们将列出几个关键点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;安全身份验证&lt;/strong&gt; ：除了基于密码的身份验证外，SSH 还支持公钥和双因素身份验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;机密性&lt;/strong&gt; ：OpenSSH 提供端到端加密，防止窃听。此外，它还会通知您新的服务器密钥，以防止中间人攻击。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;完整性&lt;/strong&gt; ：除了保护交换数据的机密性外，加密技术还保护流量的完整性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;隧道&lt;/strong&gt; ：SSH 可以创建一个安全的“隧道”，通过 SSH 路由其他协议。此设置会导致类似 VPN 的连接。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;X11 转发&lt;/strong&gt; ：如果您连接到具有图形用户界面的类 Unix 系统，SSH 允许您通过网络使用图形应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;您可以发出命令 &lt;code&gt;ssh username@hostname&lt;/code&gt; 以连接到 SSH 服务器。如果用户名与您登录的用户名相同，则只需要 &lt;code&gt;ssh hostname &lt;/code&gt;。然后，系统会要求您输入密码;但是，如果使用公钥身份验证，您将立即登录。&lt;/p&gt;
+&lt;p&gt;下面的屏幕截图显示了在远程 Kali Linux 系统上运行 Wireshark 的示例。需要参数 &lt;code&gt;-X&lt;/code&gt; 来支持正在运行的图形界面，例如 &lt;code&gt;ssh 192.168.124.148 -X&lt;/code&gt;。（本地系统需要安装合适的图形系统。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408022949700.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408022949700&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当 TELNET 服务器侦听端口 23 时，SSH 服务器侦听端口 22。&lt;/p&gt;
+&lt;h2 id=&#34;sftp和ftps&#34;&gt;SFTP和FTPS
+&lt;/h2&gt;&lt;p&gt;SFTP 代表 SSH 文件传输协议，允许安全的文件传输。它是 SSH 协议套件的一部分，共享相同的端口号 22。如果在 OpenSSH 服务器配置中启用，则可以使用 &lt;code&gt;sftp username@hostname&lt;/code&gt; 等命令进行连接。登录后，您可以发出 &lt;code&gt;get filename&lt;/code&gt; 和 &lt;code&gt;put filename&lt;/code&gt; 等命令来分别下载和上传文件。一般来说，SFTP 命令类似于 Unix，可能与 FTP 命令不同。&lt;/p&gt;
+&lt;p&gt;SFTP 不应与 FTPS 混淆。您认为 FTPS 代表 File Transfer Protocol Secure 是正确的。FTPS 如何得到保护？是的，您正确地估计它是使用 TLS 保护的，就像 HTTPS 一样。FTP 使用端口 21，而 FTPS 通常使用端口 990。它需要证书设置，并且允许通过严格的防火墙可能很棘手，因为它使用单独的连接进行控制和数据传输。&lt;/p&gt;
+&lt;p&gt;设置 SFTP 服务器就像在 OpenSSH 服务器中启用一个选项一样简单。与 HTTPS、SMTPS、POP3S、IMAPS 和其他依赖 TLS 确保安全性的协议一样，FTPS 需要适当的 TLS 证书才能安全运行。&lt;/p&gt;
+&lt;h2 id=&#34;vpn&#34;&gt;VPN
+&lt;/h2&gt;&lt;p&gt;考虑一家在不同地理位置设有办事处的公司。该公司能否将其所有办公室和站点连接到主分支机构，以便任何设备都可以访问共享资源，就像实际位于主分支机构一样？答案是肯定的;此外，最经济的解决方案是使用 Internet 基础设施设置虚拟专用网络 （VPN）。此处的重点是 VPN 中 V 表示虚拟。&lt;/p&gt;
+&lt;p&gt;在设计 Internet 时，TCP/IP 协议套件专注于传输数据包。例如，如果路由器停止服务，路由协议可以适应并选择不同的路由来发送其数据包。如果数据包未被确认，TCP 具有内置机制来检测这种情况并重新发送。但是，没有任何机制可以&lt;strong&gt;确保所有离开&lt;/strong&gt;或进入计算机的数据都受到保护，不会泄露和更改。一种流行的解决方案是设置 VPN 连接。这里的重点是 VPN 中 Private 的 P。&lt;/p&gt;
+&lt;p&gt;几乎所有公司都要求在其虚拟网络中进行“私有”信息交换。因此，VPN 提供了一种非常方便且相对便宜的解决方案。主要要求是 Internet 连接以及 VPN 服务器和客户端。&lt;/p&gt;
+&lt;p&gt;下面的网络图显示了一个公司示例，其中有两个远程分支机构连接到 main 分支机构。远程分支中的 VPN 客户端应连接到主分支中的 VPN 服务器。在这种情况下，VPN 客户端将加密流量，并通过已建立的 VPN 隧道（以蓝色显示）将其传递到主分支。VPN 流量仅限于蓝线;绿线将承载解密的 VPN 流量。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408023521571.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408023521571&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在下面的网络图中，我们看到两个远程用户使用 VPN 客户端连接到主分支中的 VPN 服务器。在这种情况下，VPN 客户端连接单个设备。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408023613003.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408023613003&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一旦建立了 VPN 隧道，我们所有的 Internet 流量通常都将通过 VPN 连接路由，即通过 VPN 隧道。因此，当我们尝试访问 Internet 服务或 Web 应用程序时，他们不会看到我们的公共 IP 地址，而是 VPN 服务器的地址。这就是为什么一些 Internet 用户通过 VPN 连接以规避地理限制的原因。此外，本地 ISP 只会看到加密流量，这限制了其审查 Internet 访问的能力。&lt;/p&gt;
+&lt;p&gt;换句话说，如果用户连接到日本的 VPN 服务器，他们访问的服务器将看起来就像位于日本一样。这些服务器将相应地定制他们的体验，例如将他们重定向到该服务的日本版本。下面的屏幕截图显示了连接到日本的 VPN 服务器后的 Google 搜索页面。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408023651114.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408023651114&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最后，尽管在许多情况下，人们会建立 VPN 连接以通过 VPN 隧道路由所有流量，但某些 VPN 连接不会这样做。VPN 服务器可能配置为允许您访问私有网络，但不路由您的流量。此外，一些 VPN 服务器会泄露您的实际 IP 地址，尽管它们应该通过 VPN 路由您的所有流量。根据您使用 VPN 连接的原因，您可能需要运行更多测试，例如 DNS 泄漏测试。&lt;/p&gt;
+&lt;p&gt;最后，一些国家认为使用 VPN 是非法的，甚至会受到惩罚。在使用 VPN 之前，尤其是在旅行时，请查看当地的法律法规。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>网络概念</title>
+        <link>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</link>
+        <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/</guid>
+        <description>&lt;h2 id=&#34;osi&#34;&gt;OSI
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;please do not throw spinach pizza away&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;layer-1-physical-layer&#34;&gt;Layer 1: Physical Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;物理层&lt;/strong&gt;处理&lt;strong&gt;设备&lt;/strong&gt;之间的物理连接;这包括&lt;strong&gt;介质&lt;/strong&gt; （如线路） 以及二进制数字 0 和 1 的定义。数据传输可以通过电、光学或无线信号进行。因此，我们需要数据线或天线，具体取决于我们的物理介质。&lt;/p&gt;
+&lt;h3 id=&#34;layer-2-data-link-layer&#34;&gt;Layer 2: Data Link Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;数据链路层&lt;/strong&gt;，代表实现&lt;strong&gt;同一网段&lt;/strong&gt;节点之间数据传输的&lt;strong&gt;协议&lt;/strong&gt;。让我们用更简单的术语来表达。数据链路层描述了&lt;strong&gt;同一网段上不同系统之间&lt;/strong&gt;关于如何通信的&lt;strong&gt;协议&lt;/strong&gt;。网段是指使用共享介质或通道进行信息传输的一组联网设备。例如，假设公司办公室有 10 台计算机连接到&lt;strong&gt;网络交换机&lt;/strong&gt;;那是一个网段。&lt;/p&gt;
+&lt;p&gt;第 2 层的示例包括以太网（即 802.3）和 WiFi（即 802.11）。以太网和 WiFi 地址为 6 个字节。它们的地址称为 MAC 地址，其中 MAC 代表媒体访问控制。它们通常以十六进制格式表示，每两个字节之间用冒号分隔。最左边的三个字节标识供应商。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407225141784.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250407225141784&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;layer-3-network-layer&#34;&gt;Layer 3: Network Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;网络层&lt;/strong&gt;，关注在&lt;strong&gt;不同网络之间&lt;/strong&gt;发送数据。用更专业的术语来说，网络层处理逻辑寻址和路由，即找到在不同网络之间传输网络数据包的&lt;strong&gt;路径&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在数据链路层，我们给出了一个公司办公室有 10 台计算机的示例，其中数据链路层负责在它们之间提供连接。假设这家公司在多个办事处，分布在不同的城市、国家甚至大洲。网络层负责将&lt;strong&gt;不同的办公室&lt;/strong&gt;连接在一起。&lt;/p&gt;
+&lt;p&gt;下面的网络显示计算机 A 和 B 已连接，尽管位于&lt;strong&gt;不同的网络&lt;/strong&gt;上。您还可以注意到连接两台计算机的两条路径;网络层将通过其认为更好的路径路由网络数据包。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407225357047.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250407225357047&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;网络层的示例包括 Internet 协议 （IP）、Internet 控制消息协议 （ICMP） 和虚拟专用网络 （VPN） 协议，例如 IPSec 和 SSL/TLS VPN。&lt;/p&gt;
+&lt;h3 id=&#34;layer-4-transport-layer&#34;&gt;Layer 4: Transport Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;传输层&lt;/strong&gt;支持&lt;strong&gt;不同主机上&lt;/strong&gt;正在运行的&lt;strong&gt;应用程序&lt;/strong&gt;之间的端到端通信。您的 Web 浏览器通过传输层连接到 TryHackMe Web 服务器，该服务器可以支持流控制、分段和纠错等各种功能。&lt;/p&gt;
+&lt;p&gt;第 4 层的示例包括传输控制协议 （TCP） 和用户数据报协议 （UDP）。&lt;/p&gt;
+&lt;h3 id=&#34;layer-5-session-layer&#34;&gt;Layer 5: Session Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;会话层&lt;/strong&gt;负责&lt;strong&gt;建立、维护和同步&lt;/strong&gt;在不同主机上运行的应用程序之间的通信。建立会话意味着启动应用程序之间的通信并协商会话的必要参数。数据同步可确保数据以正确的顺序传输，并提供在传输失败时恢复的机制。&lt;/p&gt;
+&lt;p&gt;会话层的示例包括网络文件系统 （NFS） 和远程过程调用 （RPC）。&lt;/p&gt;
+&lt;h3 id=&#34;layer-6-presentation-layer&#34;&gt;Layer 6: Presentation Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;表示层&lt;/strong&gt;确保以&lt;strong&gt;应用程序层&lt;/strong&gt;可以理解的&lt;strong&gt;形式&lt;/strong&gt;交付数据。第 6 层处理数据编码、压缩和加密。编码的一个示例是字符编码，例如 ASCII 或 Unicode。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表示层采用多种标准化格式。&lt;/strong&gt; 以电子邮件发送图像场景为例：首先使用JPEG、GIF、PNG格式存储图像；随后通过MIME（多用途互联网邮件扩展）协议将文件附加至邮件，虽然邮件客户端对用户隐藏了这一过程。MIME协议通过7位ASCII字符实现二进制文件编码。&lt;/p&gt;
+&lt;h3 id=&#34;layer-7-application-layer&#34;&gt;Layer 7: Application Layer
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;应用层&lt;/strong&gt;直接向最终用户&lt;strong&gt;应用程序&lt;/strong&gt;提供网络服务。您的 Web 浏览器将使用 &lt;strong&gt;HTTP 协议&lt;/strong&gt;来请求文件、提交表单或上传文件。&lt;/p&gt;
+&lt;p&gt;应用程序层是&lt;strong&gt;顶层&lt;/strong&gt;，当您使用不同的应用程序时，您可能已经遇到了它的许多协议。第 7 层协议的示例包括 HTTP、FTP、DNS、POP3、SMTP 和 IMAP。&lt;/p&gt;
+&lt;h3 id=&#34;summary&#34;&gt;Summary
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层数&lt;/th&gt;
+          &lt;th&gt;图层名称&lt;/th&gt;
+          &lt;th&gt;主要功能&lt;/th&gt;
+          &lt;th&gt;示例协议和标准&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 7 层&lt;/td&gt;
+          &lt;td&gt;Application layer 应用层&lt;/td&gt;
+          &lt;td&gt;为应用程序提供服务和接口&lt;/td&gt;
+          &lt;td&gt;HTTP, FTP, DNS, POP3, SMTP, IMAP HTTP、FTP、DNS、POP3、SMTP、IMAP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 6 层&lt;/td&gt;
+          &lt;td&gt;Presentation layer 表示层&lt;/td&gt;
+          &lt;td&gt;数据编码、加密和压缩&lt;/td&gt;
+          &lt;td&gt;Unicode, MIME, JPEG, PNG, MPEG Unicode 、MIME、JPEG、PNG、MPEG&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 5 层&lt;/td&gt;
+          &lt;td&gt;Session layer 会话层&lt;/td&gt;
+          &lt;td&gt;建立、维护和同步会话&lt;/td&gt;
+          &lt;td&gt;NFS, RPC NFS 和 RPC&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 4 层&lt;/td&gt;
+          &lt;td&gt;Transport layer 传输层&lt;/td&gt;
+          &lt;td&gt;端到端通信和数据分段&lt;/td&gt;
+          &lt;td&gt;UDP, TCP UDP、TCP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 3 层&lt;/td&gt;
+          &lt;td&gt;Network layer 网络层&lt;/td&gt;
+          &lt;td&gt;网络之间的逻辑寻址和路由&lt;/td&gt;
+          &lt;td&gt;IP, ICMP, IPSec IP、ICMP、IPSec&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 2 层&lt;/td&gt;
+          &lt;td&gt;Data link layer 数据链路层&lt;/td&gt;
+          &lt;td&gt;相邻节点之间的可靠数据传输&lt;/td&gt;
+          &lt;td&gt;以太网 （802.3）、WiFi （802.11）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;第 1 层&lt;/td&gt;
+          &lt;td&gt;Physical layer 物理层&lt;/td&gt;
+          &lt;td&gt;物理数据传输介质&lt;/td&gt;
+          &lt;td&gt;电气、光学和无线信号&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;tcpip&#34;&gt;TCP/IP
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;网络架构演进解析&lt;/strong&gt;
+在完成ISO OSI参考模型的理论学习后，我们将转向实际应用的TCP/IP协议体系。该模型由传输控制协议（TCP）和互联网协议（IP）构成核心，系美国国防部（DoD）于20世纪70年代主导研发。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关键技术特性解析：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;军事级容错设计&lt;/strong&gt;
+您可能会问：为何国防部要开发该模型？其核心优势在于实现网络的&amp;quot;去中心化生存能力&amp;quot;——即使部分节点因军事打击失效，网络仍可维持基本通信能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自适应路由机制&lt;/strong&gt;
+这种韧性源于动态路由协议的设计创新，通过OSPF、BGP等协议实时感知网络拓扑变化，智能调整数据包传输路径（参见RFC 791/793）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在我们介绍 ISO OSI 模型时，我们从下到上，从第 1 层到第 7 层。在这个任务中，让我们从不同的角度，从上到下看事情。从上到下，我们有：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Application Layer 应用层&lt;/strong&gt; ：OSI 模型应用层、表示层和会话层，即第 &lt;strong&gt;5、6 和 7 层&lt;/strong&gt;，在 TCP/IP 模型中被分组到&lt;strong&gt;应用层&lt;/strong&gt;中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Transport Layer 传输层&lt;/strong&gt; ：这是第 4 层。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Internet Layer Internet 层&lt;/strong&gt; ：这是第 3 层。OSI 模型的网络层在 TCP/IP 模型中称为 Internet 层。&lt;/p&gt;
+&lt;p&gt;**Link Layer 链接层 **：这是第 2 层。&lt;/p&gt;
+&lt;p&gt;下表显示了 TCP/IP 模型层如何映射到 ISO/OSI 模型层。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层数&lt;/th&gt;
+          &lt;th&gt;ISO OSI 模型&lt;/th&gt;
+          &lt;th&gt;TCP/IP 模型 （RFC 1122）&lt;/th&gt;
+          &lt;th&gt;协议&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;Application Layer 应用层&lt;/td&gt;
+          &lt;td&gt;Application Layer 应用层&lt;/td&gt;
+          &lt;td&gt;HTTP, HTTPS, FTP, POP3, SMTP, IMAP, Telnet, SSH, HTTP、HTTPS、FTP、POP3、SMTP、IMAP、Telnet、SSH&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;Presentation Layer 表示层&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;Session Layer 会话层&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;Transport Layer 传输层&lt;/td&gt;
+          &lt;td&gt;Transport Layer 传输层&lt;/td&gt;
+          &lt;td&gt;TCP, UDP TCP、UDP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;Network Layer 网络层&lt;/td&gt;
+          &lt;td&gt;Internet Layer Internet 层&lt;/td&gt;
+          &lt;td&gt;IP, ICMP, IPSec IP、ICMP、IPSec&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;Data Link Layer 数据链路层&lt;/td&gt;
+          &lt;td&gt;Link Layer 链接层&lt;/td&gt;
+          &lt;td&gt;Ethernet 802.3, WiFi 802.11 以太网 802.3、WiFi 802.11&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;Physical Layer 物理层&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;许多现代网络教科书将 TCP/IP 模型显示为 5 层而不是 4 层。例如，在《计算机网络：自上而下的方法第 8 版》中，&lt;a class=&#34;link&#34; href=&#34;http://gaia.cs.umass.edu/kurose_ross/index.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Kurose 和 Ross&lt;/a&gt; 通过包括物理层来描述以下五层 Internet 协议堆栈：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Application 应用&lt;/li&gt;
+&lt;li&gt;Transport 运输&lt;/li&gt;
+&lt;li&gt;Network 网络&lt;/li&gt;
+&lt;li&gt;Link 链接&lt;/li&gt;
+&lt;li&gt;Physical 物理的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ip和子网&#34;&gt;IP和子网
+&lt;/h2&gt;&lt;p&gt;当您听到 IP 地址这个词时，您可能会想到 &lt;code&gt;192.168.0.1&lt;/code&gt; 之类的地址或不太常见的地址，例如 &lt;code&gt;172.16.159.243&lt;/code&gt;。在这两种情况下，你都是对的。这两个地址都是 IP 地址;IPv4（IP 版本 4）地址。&lt;/p&gt;
+&lt;p&gt;网络上的每台主机都需要一个&lt;strong&gt;唯一标识符&lt;/strong&gt;，以便其他主机与他通信。如果没有唯一标识符，则无法找到没有歧义的主机。使用 TCP/IP 协议套件时，我们需要为连接到网络的每个设备&lt;strong&gt;分配&lt;/strong&gt;一个 IP 地址。&lt;/p&gt;
+&lt;p&gt;IP 地址的一个类比是您的&lt;strong&gt;家庭邮政地址&lt;/strong&gt;。您的邮政地址可让您接收来自世界各地的信件和包裹。此外，它可以毫不含糊地识别您的家;否则，您将无法在线购物！&lt;/p&gt;
+&lt;p&gt;您可能已经知道，我们有 IPv4 和 IPv6（IP 版本 6）。IPv4 仍然是最常见的，每当你看到提到 IP 的文本而没有版本时，我们预计它们指的是 IPv4。&lt;/p&gt;
+&lt;p&gt;那么，什么是 IP 地址？一个 IP 地址由&lt;strong&gt;四个八位字节&lt;/strong&gt;组成，即 32 位。作为 8 位，八位字节允许我们表示 &lt;strong&gt;0 到 255&lt;/strong&gt; 之间的十进制数。IP 地址如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407233841627.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250407233841627&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IPv4地址规范解析&lt;/strong&gt;
+简而言之，IPv4地址段中0与255作为保留地址使用：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;网络标识地址&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;示例：192.168.1.0 代表C类网络的基准地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;广播通信地址&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;示例：192.168.1.255 作为广播地址，向该地址发送数据将覆盖网络内所有主机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;地址容量计算原理：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;理论最大值：基于32位地址空间（2³²）得出约43亿（4,294,967,296）个地址&lt;/li&gt;
+&lt;li&gt;实际可用量：需扣除各子网的网络地址与广播地址（如示例中的.0和.255）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;查找网络配置&#34;&gt;查找网络配置
+&lt;/h3&gt;&lt;p&gt;可以使用命令 &lt;code&gt;ipconfig&lt;/code&gt; 在 MS Windows 命令行上查找您的 IP 地址。在基于 Linux 和 UNIX 的系统上，您可以发出命令 &lt;code&gt;ifconfig&lt;/code&gt; 或 &lt;code&gt;ip address show&lt;/code&gt;，该命令可以键入 &lt;code&gt;ip a s&lt;/code&gt;。在下面的终端窗口中，我们显示 &lt;code&gt;ifconfig&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@TryHackMe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;$&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ifconfig&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[...]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;wlo1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;4163&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BROADCAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RUNNING&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MULTICAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;mtu&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1500&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;inet&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;66&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;89&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;netmask&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;255.255&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;255&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;broadcast&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;66&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;255&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;inet6&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fe80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;73e1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ca5e&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;3f93&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1b3&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;prefixlen&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;64&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;scopeid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;0x20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;link&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;ether&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5e&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;02&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a7&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;txqueuelen&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1000&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ethernet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;RX&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packets&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;19684680&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;bytes&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;18865072842&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;17.5&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GiB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;RX&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;dropped&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;364&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;overruns&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;frame&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;TX&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;packets&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;14439678&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;bytes&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;8773200951&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;8.1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GiB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;TX&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;dropped&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;overruns&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;carrier&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;collisions&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面的 terminal 输出指示以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主机（笔记本电脑）的 IP 地址是 &lt;code&gt;192.168.66.89&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;子网掩码为 &lt;code&gt;255.255.255.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;广播地址为 &lt;code&gt;192.168.66.255&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;让我们使用 &lt;code&gt;ip a s&lt;/code&gt; 来比较网卡 IP 地址的显示方式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@TryHackMe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;$&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[...]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mf&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wlo1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BROADCAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MULTICAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LOWER_UP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mtu&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1500&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qdisc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;noqueue&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UP&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;group &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qlen&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;link&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ether&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cc&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5e&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;02&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a7&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brd&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ff&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;altname&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wlp3s0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;inet&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;66&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;89&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;24&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brd&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;66&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;255&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;global&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dynamic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;noprefixroute&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wlo1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;n&#34;&gt;valid_lft&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;36795sec&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preferred_lft&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;36795sec&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;inet6&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fe80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;73e1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ca5e&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;3f93&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1b3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;64&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;noprefixroute&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;n&#34;&gt;valid_lft&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;forever&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preferred_lft&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;forever&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面的 terminal 输出指示以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主机（笔记本电脑）的 IP 地址是 &lt;code&gt;192.168.66.89/24&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;广播地址为 &lt;code&gt;192.168.66.255&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果您想知道，子网掩码 &lt;code&gt;255.255.255.0&lt;/code&gt; 也可以写为 &lt;code&gt;/24&lt;/code&gt;。&lt;code&gt;/24&lt;/code&gt; 表示 IP 地址中最左边的 24 位在整个网络（即子网）中不会更改。换句话说，最左边的三个八位字节在整个子网中是相同的;因此，我们可以期望找到从 &lt;code&gt;192.168.66.1&lt;/code&gt; 到 &lt;code&gt;192.168.66.254&lt;/code&gt; 的地址。与前面提到的类似，&lt;code&gt;192.168.66.0&lt;/code&gt; 和 &lt;code&gt;192.168.66.255&lt;/code&gt; 分别是网络地址和广播地址。&lt;/p&gt;
+&lt;h3 id=&#34;私有地址&#34;&gt;私有地址
+&lt;/h3&gt;&lt;p&gt;当我们在解释 IP 地址时，值得一提的是，对于大多数实际目的，有两种类型的 IP 地址：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公网 IP 地址&lt;/li&gt;
+&lt;li&gt;私有 IP 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Request for Comments (RFC) 1918 定义了以下三个私有 IP 地址范围：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;10.0.0.0&lt;/code&gt; - &lt;code&gt;10.255.255.255&lt;/code&gt; (&lt;code&gt;10/8&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;172.16.0.0&lt;/code&gt; - &lt;code&gt;172.31.255.255&lt;/code&gt; (&lt;code&gt;172.16/12&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;192.168.0.0&lt;/code&gt; - &lt;code&gt;192.168.255.255&lt;/code&gt; (&lt;code&gt;192.168/16&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们之前提供了一个类比，指出公共 IP 地址就像您的&lt;strong&gt;家庭邮政地址&lt;/strong&gt;。私有 IP 地址是不同的;最初的想法是它无法到达或从外部世界到达。它就像一个&lt;strong&gt;孤立的城市或大院&lt;/strong&gt;，所有的房屋和公寓都被系统地编号，可以很容易地相互交换邮件，但不能与外界交换。要使私有 IP 地址访问 Internet，路由器必须具有公有 IP 地址，并且必须支持&lt;strong&gt;网络地址转换 （NAT）&lt;/strong&gt;。在此阶段，我们不必担心了解 NAT 的工作原理，因为我们将在本模块的后面重新讨论它。&lt;/p&gt;
+&lt;p&gt;在继续之前，我建议记住&lt;strong&gt;私有 IP 地址范围&lt;/strong&gt;。否则，您可能会看到 &lt;code&gt;10.1.33.7&lt;/code&gt; 或 &lt;code&gt;172.31.33.7&lt;/code&gt; 等 IP 地址，并尝试从公有 IP 地址访问它。&lt;/p&gt;
+&lt;h3 id=&#34;路由&#34;&gt;路由
+&lt;/h3&gt;&lt;p&gt;路由器就像您当地的&lt;strong&gt;邮局&lt;/strong&gt;;你把邮件包裹交给他们，他们会知道如何投递。如果我们深入挖掘，您可能会将某些内容邮寄到另一个城市或国家的地址。邮局将检查地址并决定下一步寄往何处。例如，如果要离开该国，我们希望一个&lt;strong&gt;中央办公室&lt;/strong&gt;处理所有国外货物。&lt;/p&gt;
+&lt;p&gt;用技术术语来说，路由器将数据包转发到适当的网络。通常，数据包在到达最终目的地之前会&lt;strong&gt;经过多个路由器&lt;/strong&gt;。路由器在第 3 层运行，检查 IP 地址并将数据包转发到&lt;strong&gt;最佳网络&lt;/strong&gt;（路由器），以便数据包&lt;strong&gt;更接近&lt;/strong&gt;其目的地。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407235608659.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250407235608659&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;udp和tcp&#34;&gt;UDP和TCP
+&lt;/h2&gt;&lt;p&gt;IP 协议允许我们访问网络上的目标主机;主机由其 IP 地址标识。我们需要使联网主机上的进程能够相互通信的协议。有两种传输协议可以实现此目的：UDP 和 TCP。&lt;/p&gt;
+&lt;h3 id=&#34;udp-协议&#34;&gt;UDP 协议
+&lt;/h3&gt;&lt;p&gt;UDP（用户数据报协议）允许我们访问此目标主机上的特定进程。UDP 是一种&lt;strong&gt;简单的无连接协议&lt;/strong&gt;，在&lt;strong&gt;传输层&lt;/strong&gt;（即第 4 层）运行。无连接意味着它不需要建立连接。UDP 甚至没有提供一种机制来知道数据包已投递。&lt;/p&gt;
+&lt;p&gt;IP 地址标识主机;我们需要一种机制来确定发送和接收过程。这可以通过使用端口号来实现。端口号使用&lt;strong&gt;两个八位字节&lt;/strong&gt;;因此，它的范围介于 1 和 65535 之间;端口 0 被保留。（数字 65535 由表达式 216 − 1 计算得出。）&lt;/p&gt;
+&lt;p&gt;一个类似于 UDP 的真实示例是&lt;strong&gt;标准邮件服务&lt;/strong&gt;，没有送达确认。换句话说，不能保证已成功接收 UDP 数据包，类似于使用标准邮件发送包裹而不确认送达的情况。对于标准邮件，这意味着比带确认的邮件递送选项更便宜。对于 UDP，这意味着比提供 “确认” 的传输协议&lt;strong&gt;更快&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;tcp-协议&#34;&gt;TCP 协议
+&lt;/h3&gt;&lt;p&gt;TCP（传输控制协议）是一种面向连接的传输协议。它使用各种机制来确保网络主机上不同进程发送的可靠数据交付。与 UDP 一样，它是一个&lt;strong&gt;第 4 层&lt;/strong&gt;协议。由于面向连接，它需要先&lt;strong&gt;建立 TCP 连接&lt;/strong&gt;，然后才能发送任何数据。&lt;/p&gt;
+&lt;p&gt;在 TCP 中，每个数据&lt;strong&gt;八位字节&lt;/strong&gt;都有一个序列号;这使得接收方可以轻松识别丢失或重复的数据包。另一方面，接收方使用指定最后接收的八位字节的确认号来确认数据的接收。&lt;/p&gt;
+&lt;p&gt;TCP 连接是使用所谓的三次握手建立的。使用了两个标志： &lt;strong&gt;SYN （同步）&lt;/strong&gt; 和 &lt;strong&gt;ACK （确认）&lt;/strong&gt;。数据包的发送方式如下：&lt;/p&gt;
+&lt;p&gt;SYN 数据包：客户端通过向服务器发送 SYN 数据包来发起连接。此数据包包含&lt;strong&gt;客户端&lt;/strong&gt;随机选择的&lt;strong&gt;初始序列号&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;SYN-ACK 数据包：服务器使用 SYN-ACK 数据包响应 SYN 数据包，该数据包添加&lt;strong&gt;服务器&lt;/strong&gt;随机选择的&lt;strong&gt;初始序列号&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;ACK 数据包： 当客户端发送 ACK 数据包以确认收到 SYN-ACK 数据包时，三次握手完成。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408000451140.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408000451140&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;与 UDP 类似，TCP 使用端口号标识启动或等待（侦听）连接的过程。如前所述，有效端口号的范围介于 1 和 65535 之间，因为它使用两个八位字节，并且端口 0 是保留的。&lt;/p&gt;
+&lt;h2 id=&#34;封装&#34;&gt;封装
+&lt;/h2&gt;&lt;p&gt;在结束之前，解释另一个关键概念至关重要： &lt;strong&gt;封装&lt;/strong&gt; 。在这种情况下，封装是指每一层向接收到的数据单元添加&lt;strong&gt;标头&lt;/strong&gt;（有时是&lt;strong&gt;尾部&lt;/strong&gt;）并将“封装”单元发送到下一层的过程。&lt;/p&gt;
+&lt;p&gt;封装是一个基本概念，因为它允许每个层专注于&lt;strong&gt;其预期功能&lt;/strong&gt;。在下图中，我们有以下&lt;strong&gt;四个&lt;/strong&gt;步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;应用程序数据&lt;/strong&gt; ：当用户输入他们想要发送到应用程序中的数据时，这一切都开始了。例如，您编写电子邮件或即时消息并点击发送按钮。应用程序格式化此数据，并根据使用的应用程序协议开始发送数据，使用其下面的层（传输层）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;传输协议分段或数据报&lt;/strong&gt; ：传输层（如 TCP 或 UDP）添加适当的标头信息并创建 TCP &lt;strong&gt;分段&lt;/strong&gt; （或 UDP &lt;strong&gt;数据报&lt;/strong&gt; ）。此段将发送到其下面的层，即网络层。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网络数据包&lt;/strong&gt; ：网络层（即 Internet 层）将 IP 标头添加到接收到的 TCP 分段或 UDP 数据报中。然后，此 IP &lt;strong&gt;数据包&lt;/strong&gt;被发送到其下面的层，即数据链路层。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据链路帧&lt;/strong&gt; ：以太网或 WiFi 接收 IP 数据包并添加适当的&lt;strong&gt;标头&lt;/strong&gt;和&lt;strong&gt;尾部&lt;/strong&gt;，从而创建一个&lt;strong&gt;帧&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们从应用程序数据开始。在传输层，我们添加 TCP 或 UDP 标头以创建 &lt;strong&gt;TCP 分段&lt;/strong&gt;或 &lt;strong&gt;UDP 数据报&lt;/strong&gt; 。同样，在网络层，我们添加适当的 IP 报头，以获取可以通过 Internet 路由的 &lt;strong&gt;IP 数据包&lt;/strong&gt; 。最后，我们添加适当的标头和尾部，以在链路层获得 WiFi 或以太网&lt;strong&gt;帧&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408000930650.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408000930650&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;该过程必须在接收端反转，直到提取应用程序数据。&lt;/p&gt;
+&lt;h3 id=&#34;数据包的生命周期&#34;&gt;数据包的生命周期
+&lt;/h3&gt;&lt;p&gt;根据我们目前的研究，我们可以解释数据包生命周期的&lt;em&gt;简化版本&lt;/em&gt; 。让我们考虑一下你在 TryHackMe 上搜索房间的场景。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 TryHackMe 搜索页面上，输入搜索查询并按 Enter。&lt;/li&gt;
+&lt;li&gt;使用 HTTPS 的 Web 浏览器准备 HTTP 请求并将其推送到其下面的层，即传输层。&lt;/li&gt;
+&lt;li&gt;TCP 层需要通过浏览器和 TryHackMe Web 服务器之间的三次握手建立连接。建立 TCP 连接后，它可以发送包含搜索查询的 HTTP 请求。创建的每个 TCP 分段都会发送到其下面的层，即 Internet 层。&lt;/li&gt;
+&lt;li&gt;IP 层添加&lt;strong&gt;源 IP 地址&lt;/strong&gt;（即您的计算机）和&lt;strong&gt;目标 IP 地址&lt;/strong&gt;（即 TryHackMe Web 服务器的 IP 地址）。要使此数据包到达路由器，您的笔记本电脑会将其传送到其下方的层，即链路层。&lt;/li&gt;
+&lt;li&gt;根据协议，链路层会添加适当的链路层报头和尾部，并将数据包发送到路由器。&lt;/li&gt;
+&lt;li&gt;路由器删除链路层报头和尾部，检查 IP 目标等字段，并将数据包路由到正确的链路。每个路由器都会重复此过程，直到到达目标服务器的路由器。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然后，当数据包到达目标网络的路由器时，这些步骤将&lt;strong&gt;相反&lt;/strong&gt;。在介绍其他协议时，我们将重新审视此练习并创建更深入的版本。&lt;/p&gt;
+&lt;h2 id=&#34;远程登陆&#34;&gt;远程登陆
+&lt;/h2&gt;&lt;p&gt;TELNET （Teletype Network） 协议是一种用于远程终端连接的网络协议。简而言之，&lt;code&gt;telnet&lt;/code&gt; 是一种 TELNET 客户端，允许您连接到远程系统并与之通信，并发出文本命令。虽然最初它用于&lt;strong&gt;远程管理&lt;/strong&gt;，但我们可以使用 &lt;code&gt;telnet&lt;/code&gt; 连接到任何&lt;strong&gt;监听 TCP 端口号&lt;/strong&gt;的服务器。&lt;/p&gt;
+&lt;p&gt;在目标虚拟机上，正在运行不同的服务。我们将试验其中的三个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Echo server：此服务器会回显您发送的所有内容。默认情况下，它侦听端口 7。&lt;/li&gt;
+&lt;li&gt;aytime server：此服务器默认侦听端口 13 并回复当前日期和时间。&lt;/li&gt;
+&lt;li&gt;Web （HTTP） 服务器：默认情况下，此服务器侦听 TCP 端口 80 并提供网页。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在继续之前，我们应该提到 echo 和 daytime 服务器被视为安全风险，不应运行;但是，我们显式启动它们是为了演示使用 &lt;code&gt;Telnet&lt;/code&gt; 与服务器的通信。在下面的终端中，我们连接到位于 echo 服务器的 TCP 端口号 7 的目标 VM。要关闭连接，请按 &lt;code&gt;CTRL&lt;/code&gt; + &lt;code&gt;]&lt;/code&gt; 键同时。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.118.233 7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;telnet 10.10.118.233 7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.118.233...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.118.233.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;How are you?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;How are you?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Bye
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Bye
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;telnet&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; quit
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在下面的终端中，我们使用 &lt;code&gt;telnet&lt;/code&gt; 连接到在端口 13 监听的日间服务器。我们注意到，一旦返回当前日期和时间，连接就会关闭。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.118.233 13
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.118.233...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.118.233.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Thu Jun 20 12:36:32 PM UTC 2024
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed by foreign host.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最后，让我们使用 &lt;code&gt;telnet&lt;/code&gt; 请求一个网页。连接 80 端口后，需要发出命令 &lt;code&gt;GET / HTTP/1.1&lt;/code&gt; 并确定任何内容的去向主机，例如 &lt;code&gt;Host： telnet.thm&lt;/code&gt;。接下来，您需要按两次 &lt;code&gt;Enter&lt;/code&gt; 键，使最后一个输入行为空行。下面的输出显示了交换。（该页面已被编辑。)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt; ：发送信息后，您可能必须按 &lt;code&gt;Enter&lt;/code&gt;，以免您没有收到回复。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.118.233 80
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.118.233...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.118.233.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET / HTTP/1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host: telnet.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP/1.1 200 OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Type: text/html
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[...]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed by foreign host.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>网络核心协议</title>
+        <link>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/</link>
+        <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/</guid>
+        <description>&lt;h2 id=&#34;dns记住地址&#34;&gt;DNS：记住地址
+&lt;/h2&gt;&lt;p&gt;您记得您最喜欢的网站的 IP 地址吗？除非是本地设备的私有 IP 地址，否则没有人需要担心记住 IP 地址。这部分是由于域名系统 （DNS） 负责将域名正确映射到 IP 地址。&lt;/p&gt;
+&lt;p&gt;DNS 在应用层（即 ISO OSI 模型的第 7 层）运行。DNS 流量默认使用 UDP 端口 53， 使用 TCP 端口 53 作为默认回退。DNS 记录有多种类型;但是，在本任务中，我们将重点介绍以下四个方面：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A record&lt;/strong&gt;：A （Address） 记录将主机名映射到一个或多个 &lt;strong&gt;IPv4&lt;/strong&gt; 地址。例如，您可以将 &lt;code&gt;example.com&lt;/code&gt; 设置为 resolve 为 &lt;code&gt;172.17.2.172&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AAAA Record&lt;/strong&gt;：AAAA 记录类似于 A 记录，但它适用于 &lt;strong&gt;IPv6&lt;/strong&gt;。请记住，它是 AAAA（四 A），因为 AA 和 AAA 指的是电池尺寸;此外，AAA 是指 &lt;em&gt;Authentication、Authorization 和 Accounting&lt;/em&gt;;两者都不属于 DNS。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CNAME Record&lt;/strong&gt;：CNAME （Canonical Name） 记录将一个域名映射到另一个域名。例如，&lt;code&gt;www.example.com&lt;/code&gt; 可以映射到 &lt;code&gt;example.com&lt;/code&gt; 甚至 &lt;code&gt;example.org&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MX Record&lt;/strong&gt;：MX （Mail Exchange） 记录指定负责处理域&lt;strong&gt;电子邮件&lt;/strong&gt;的邮件服务器。&lt;/p&gt;
+&lt;p&gt;换句话说，当您在浏览器中键入 &lt;code&gt;example.com&lt;/code&gt; 时，浏览器会尝试通过查询 DNS 服务器来查询 A 记录来解析此域名。但是，当您尝试向 &lt;code&gt;test@example.com&lt;/code&gt; 发送电子邮件时，邮件服务器将查询 DNS 服务器以查找 MX 记录。&lt;/p&gt;
+&lt;p&gt;如果要从命令行查找域的 IP 地址，可以使用 &lt;code&gt;nslookup&lt;/code&gt; 等工具。考虑下面终端中我们查找 &lt;code&gt;example.com&lt;/code&gt; 的示例。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ nslookup www.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Server:         127.0.0.53
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Address:        127.0.0.53#53
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Non-authoritative answer:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name:   www.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Address: 93.184.215.14
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name:   www.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Address: 2606:2800:21f:cb07:6820:80da:af6b:8b2c
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面的查询导致了四个数据包。在下面的终端中，我们可以看到第一个和第三个数据包分别发送了 A 和 AAAA 记录的 DNS 查询。第二个和第四个数据包显示 DNS 查询响应。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ tshark -r dns-query.pcapng -Nn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    1 0.000000000 192.168.66.89 → 192.168.66.1 DNS 86 Standard query 0x2e0f A www.example.com OPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    2 0.059049584 192.168.66.1 → 192.168.66.89 DNS 102 Standard query response 0x2e0f A www.example.com A 93.184.215.14 OPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    3 0.059721705 192.168.66.89 → 192.168.66.1 DNS 86 Standard query 0x96e1 AAAA www.example.com OPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    4 0.101568276 192.168.66.1 → 192.168.66.89 DNS 114 Standard query response 0x96e1 AAAA www.example.com AAAA 2606:2800:21f:cb07:6820:80da:af6b:8b2c OPT
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;whois&#34;&gt;WHOIS
+&lt;/h2&gt;&lt;p&gt;在上一个任务中，我们介绍了如何将域名解析为 IP 地址。但是，要实现此目的，需要有人有权为域设置 A、AAAA 和 MX 记录以及其他 DNS 记录。注册域名的人被授予此权力。因此，如果您注册 example.com，则可以为 example.com 设置任何有效的 DNS 记录。&lt;/p&gt;
+&lt;p&gt;您可以注册任何可用的域名一年或多年。您需要支付年费，并且需要提供作为注册人的&lt;a class=&#34;link&#34; href=&#34;https://www.icann.org/resources/pages/whois-data-accuracy-2017-06-20-en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;准确联系信息 &lt;/a&gt;。此信息是通过 WHOIS 记录提供的数据的一部分，并且是公开的。（虽然 WHOIS 是大写的，但它不是首字母缩略词;它的发音&lt;em&gt;是 who&lt;/em&gt;。但是，如果您想在不公开透露联系信息的情况下注册域，请不要担心;您可以使用其中一种隐私服务，从 WHOIS 记录中隐藏您的所有信息。&lt;/p&gt;
+&lt;p&gt;您可以使用在线服务之一或通过命令行工具 &lt;code&gt;whois&lt;/code&gt; 查找任何注册域名的 WHOIS 记录，该工具可在 Linux 系统上使用，等等。正如预期的那样，WHOIS 记录提供了有关注册域名的实体的信息，包括名称、电话号码、电子邮件和地址。在下面显示的屏幕截图中，您可以看到记录的首次创建时间和上次更新时间。此外，您可以找到注册人的姓名、地址、电话和电子邮件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408013007754.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408013007754&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在下面的终端输出中，我们使用了 &lt;code&gt;whois&lt;/code&gt; 命令来查找其 WHOIS 记录受隐私保护保护的域。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ whois [REDACTED].com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[...]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Domain Name: [REDACTED].COM
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registry Domain ID: [REDACTED]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar WHOIS Server: whois.godaddy.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar URL: https://www.godaddy.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Updated Date: 2017-07-05T16:02:43Z
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Creation Date: 1993-04-02T00:00:00Z
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar Registration Expiration Date: 2026-10-20T14:56:17Z
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar: GoDaddy.com, LLC
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar IANA ID: 146
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar Abuse Contact Email: abuse@godaddy.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrar Abuse Contact Phone: +1.4806242505
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[...]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrant Name: Registration Private
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrant Organization: Domains By Proxy, LLC
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Registrant Street: DomainsByProxy.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[...]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;https访问web&#34;&gt;HTTP(S)：访问web
+&lt;/h2&gt;&lt;p&gt;当您启动浏览器时，您主要使用 HTTP 和 HTTPS 协议。HTTP 代表超文本传输协议;HTTPS 中的 S 代表安全。此协议依赖于 TCP 并定义 Web 浏览器与 Web 服务器的通信方式。&lt;/p&gt;
+&lt;p&gt;您的 Web 浏览器通常向 Web 服务器发出的一些命令或方法是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GET&lt;/code&gt; 从服务器检索数据，例如 HTML 文件或图像。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST&lt;/code&gt; 允许我们向服务器提交新数据，例如提交表单或上传文件。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PUT&lt;/code&gt; 用于在服务器上创建新资源以及更新和覆盖现有信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DELETE&lt;/code&gt;，顾名思义，用于删除服务器上的指定文件或资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HTTP 和 HTTPS 通常分别使用 TCP 端口 80 和 443，其他端口（如 8080 和 8443）不太常用。&lt;/p&gt;
+&lt;p&gt;在以下示例中，我们使用 Firefox 浏览器访问 &lt;code&gt;10.10.28.0&lt;/code&gt; 上的 Web 服务器。我们的浏览器获取网页并完美地显示它;但是，我们对幕后发生的事情感兴趣。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408013655738.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408013655738&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用 Wireshark，我们可以更仔细地检查 Firefox 浏览器和 Web 服务器之间的交换。下面来自 Wireshark 的屏幕截图以&lt;strong&gt;红色&lt;/strong&gt;显示我们的浏览器发送的文本，以&lt;strong&gt;蓝色&lt;/strong&gt;显示 Web 服务器响应。正如你所看到的，客户端和服务器之间交换了很多信息，这些信息没有呈现给用户。示例包括 Web 服务器版本和上次修改页面的时间。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408014341240.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408014341240&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ftp传输文件&#34;&gt;FTP：传输文件
+&lt;/h2&gt;&lt;p&gt;与旨在检索网页的 HTTP 不同，文件传输协议 （FTP） 旨在传输文件。因此，FTP 对于文件传输非常有效，当所有条件都相同时，它可以实现比 HTTP 更高的速度。&lt;/p&gt;
+&lt;p&gt;FTP 协议定义的命令示例包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;USER&lt;/code&gt; 用于输入用户名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PASS&lt;/code&gt; 输入密码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RETR&lt;/code&gt; （retrieve） 用于将文件从 FTP 服务器下载到客户端。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STOR&lt;/code&gt;（存储）用于将文件从客户端上传到 FTP 服务器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;FTP 服务器默认监听 TCP 端口 21;数据传输是通过从客户端到服务器的另一个连接进行的。&lt;/p&gt;
+&lt;p&gt;在下面的终端中，我们执行命令 &lt;code&gt;ftp 10.10.28.0&lt;/code&gt; 以使用本地 &lt;code&gt;ftp&lt;/code&gt; 客户端连接到远程 FTP 服务器。然后我们执行以下步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们使用&lt;code&gt;用户名 anonymous&lt;/code&gt; 登录&lt;/li&gt;
+&lt;li&gt;我们不需要提供任何密码&lt;/li&gt;
+&lt;li&gt;发出 &lt;code&gt;ls&lt;/code&gt; 返回可供下载的文件列表&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;键入 ASCII&lt;/code&gt; 切换到 ASCII 模式，因为这是一个文本文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;get coffee.txt&lt;/code&gt; 允许我们检索所需的文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过 FTP 客户端进行的命令交换显示在下面的终端中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ ftp 10.10.28.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.28.0 (10.10.28.0).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;220 (vsFTPd 3.0.5)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name (10.10.28.0:strategos): anonymous
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;331 Please specify the password.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Password:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;230 Login successful.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Remote system type is UNIX.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using binary mode to transfer files.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ftp&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;227 Entering Passive Mode (10,10,41,192,134,10).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;150 Here comes the directory listing.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r--    1 0        0            1480 Jun 27 08:03 coffee.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r--    1 0        0              14 Jun 27 08:04 flag.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-rw-r--r--    1 0        0            1595 Jun 27 08:05 tea.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;226 Directory send OK.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ftp&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; type ascii
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;200 Switching to ASCII mode.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ftp&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; get coffee.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;local: coffee.txt remote: coffee.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;227 Entering Passive Mode (10,10,41,192,57,100).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;150 Opening BINARY mode data connection for coffee.txt (1480 bytes).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WARNING! 47 bare linefeeds received in ASCII mode
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;File may not have transferred correctly.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;226 Transfer complete.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1480 bytes received in 8e-05 secs (18500.00 Kbytes/sec)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ftp&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; quit
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;221 Goodbye.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们使用 Wireshark 更仔细地检查交换的消息。客户端的消息为&lt;strong&gt;红色&lt;/strong&gt; ，而服务器的响应为&lt;strong&gt;蓝色&lt;/strong&gt; 。请注意客户端和服务器之间的各种命令有何不同。例如，当您在客户端上键入 &lt;code&gt;ls&lt;/code&gt; 时，客户端会将 &lt;code&gt;LIST&lt;/code&gt; 发送到服务器。最后要注意的一点是，目录列表和我们下载的文件都是通过单独的连接发送的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015001388.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408015001388&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;smtp发送电子邮件&#34;&gt;SMTP：发送电子邮件
+&lt;/h2&gt;&lt;p&gt;与浏览 Web 和下载文件一样，发送电子邮件需要自己的协议。&lt;strong&gt;Simple Mail Transfer Protocol&lt;/strong&gt; （SMTP） 定义邮件客户端如何与邮件服务器通信，以及邮件服务器如何与另一个邮件服务器通信。&lt;/p&gt;
+&lt;p&gt;SMTP 协议的类比是当您去当地邮局发送包裹时。您向员工打招呼，告诉他们您想将包裹寄往何处，并在将包裹交给他们之前提供发件人的信息。根据您所在的国家/地区，系统可能会要求您出示身份证。此过程与 SMTP 会话没有太大区别。&lt;/p&gt;
+&lt;p&gt;让我们介绍一下您的邮件客户端在将电子邮件传输到 SMTP 服务器时使用的一些命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HELO&lt;/code&gt; 或 &lt;code&gt;EHLO&lt;/code&gt; 启动 SMTP 会话&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MAIL FROM&lt;/code&gt; 指定发件人的电子邮件地址&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RCPT TO&lt;/code&gt; 指定收件人的电子邮件地址&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DATA&lt;/code&gt; 表示客户端将开始发送电子邮件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; 单独在一行上发送，以指示电子邮件消息的结尾&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面的终端显示了通过 &lt;code&gt;telnet&lt;/code&gt; 发送的电子邮件示例。 默认情况下，SMTP 服务器侦听 TCP 端口 25。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.28.0 25
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.28.0...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.28.0.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;220 example.thm ESMTP Exim 4.95 Ubuntu Thu, 27 Jun 2024 16:18:09 +0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HELO client.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;250 example.thm Hello client.thm [10.11.81.126]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MAIL FROM: &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;user@client.thm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;250 OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RCPT TO: &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;strategos@server.thm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;250 Accepted
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DATA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;354 Enter message, ending with &lt;span class=&#34;s2&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt; on a line by itself
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;From: user@client.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;To: strategos@server.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Subject: Telnet email
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hello. I am using telnet to send you an email!
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;250 OK id=1sMrpq-0001Ah-UT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;QUIT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;221 example.thm closing connection
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed by foreign host.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;显然，使用 &lt;code&gt;telnet&lt;/code&gt; 发送电子邮件非常麻烦;但是，它可以帮助您更好地了解电子邮件客户端在后台发出的命令。Wireshark 捕获以颜色显示交换;客户端的消息为红色，而服务器的响应为蓝色。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015332773.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408015332773&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pop3接收电子邮件&#34;&gt;POP3：接收电子邮件
+&lt;/h2&gt;&lt;p&gt;您收到了一封电子邮件，并希望将其下载到本地邮件客户端。邮局协议版本 3 （POP3） 旨在允许客户端与邮件服务器通信并检索电子邮件消息。&lt;/p&gt;
+&lt;p&gt;无需深入的技术细节，电子邮件客户端依靠 SMTP 发送其消息，并使用 POP3 检索它们。SMTP 类似于将信封或包裹交给邮局， 而 POP3 类似于检查本地邮箱是否有新的信件或包裹。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015500912.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408015500912&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一些常见的 POP3 命令包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;USER &amp;lt;username&amp;gt;&lt;/code&gt; 标识用户&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PASS &amp;lt;password&amp;gt;&lt;/code&gt; 提供用户的密码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STAT&lt;/code&gt; 请求消息数和总大小&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LIST&lt;/code&gt; 列出所有邮件及其大小&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RETR &amp;lt;message_number&amp;gt;&lt;/code&gt; 检索指定的消息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DELE &amp;lt;message_number&amp;gt;&lt;/code&gt; 将邮件标记为删除&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;QUIT&lt;/code&gt; 结束 POP3 会话，应用更改，例如删除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在下面的终端中，我们可以看到一个通过 telnet 的 POP3 会话。由于 POP3 服务器默认监听 TCP 端口 110，因此连接到 TELNET 端口的命令是 &lt;code&gt;telnet 10.10.28.0 110&lt;/code&gt;。下面的 exchange 检索在上一个任务中发送的电子邮件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.28.0 110
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.28.0...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.28.0.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK [XCLIENT] Dovecot (Ubuntu) ready.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AUTH
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PLAIN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;USER strategos
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PASS 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK Logged in.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;STAT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK 3 1264
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;LIST
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK 3 messages:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1 407
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2 412
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3 445
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RETR 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK 445 octets
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Return-path: &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;user@client.thm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Envelope-to: strategos@server.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Delivery-date: Thu, 27 Jun 2024 16:19:35 +0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Received: from [10.11.81.126] (helo=client.thm)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        by example.thm with smtp (Exim 4.95)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;envelope-from &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;user@client.thm&amp;gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        id 1sMrpq-0001Ah-UT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; strategos@server.thm;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        Thu, 27 Jun 2024 16:19:35 +0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;From: user@client.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;To: strategos@server.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Subject: Telnet email
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hello. I am using telnet to send you an email!
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;QUIT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+OK Logging out.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed by foreign host.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;捕获网络数据包的人将能够拦截交换的流量。根据之前的 Wireshark 捕获，红色的命令由客户端发送，蓝色的行是服务器的命令。同样明显的是，捕获流量的人可以读取密码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015643633.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408015643633&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;imap同步电子邮件&#34;&gt;IMAP：同步电子邮件
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;POP3协议&lt;/strong&gt;适用于&lt;strong&gt;单一设备场景&lt;/strong&gt;（如您个人电脑上的常用邮件客户端）。然而，若您需要从办公室台式机、笔记本电脑或智能手机等多台设备访问邮箱，POP3的局限性便显现出来——它在客户端下载邮件后&lt;strong&gt;默认删除服务器上的副本&lt;/strong&gt;，导致其他设备无法获取已下载的邮件。此时，您需改用支持&lt;strong&gt;多设备同步&lt;/strong&gt;的协议，例如&lt;strong&gt;IMAP（互联网邮件访问协议）&lt;/strong&gt;。IMAP会将邮件保留在服务器，并同步各设备的操作（如已读/删除标记），确保所有终端保持一致的邮箱状态。&lt;/p&gt;
+&lt;p&gt;IMAP 允许同步已读、已移动和已删除的邮件。当您通过多个客户端查看电子邮件时，IMAP 非常方便。 与 POP3 不同，POP3 在从远程服务器下载和删除电子邮件时往往会最大限度地减少服务器存储空间，而 IMAP 往往会使用更多存储空间，因为电子邮件保存在服务器上并在电子邮件客户端之间同步。&lt;/p&gt;
+&lt;p&gt;IMAP 协议命令比 POP3 协议命令更复杂。我们在下面列出了几个示例：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LOGIN &amp;lt;username&amp;gt; &amp;lt;password&amp;gt;&lt;/code&gt; 验证用户身份&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SELECT &amp;lt;mailbox&amp;gt;&lt;/code&gt; 选择要使用的邮箱文件夹&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FETCH &amp;lt;mail_number&amp;gt; &amp;lt;data_item_name&amp;gt;&lt;/code&gt; 示例 &lt;code&gt;fetch 3 body[]&lt;/code&gt; 来获取消息编号 3、标头和正文。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MOVE &amp;lt;sequence_set&amp;gt; &amp;lt;mailbox&amp;gt;&lt;/code&gt; 将指定的邮件移动到另一个邮箱&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;COPY &amp;lt;sequence_set&amp;gt; &amp;lt;data_item_name&amp;gt;&lt;/code&gt; 将指定的邮件复制到另一个邮箱&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LOGOUT&lt;/code&gt; 注销&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;知道 IMAP 服务器默认监听 TCP 端口 143，我们将使用 &lt;code&gt;telnet&lt;/code&gt; 连接到 &lt;code&gt;10.10.28.0&lt;/code&gt; 的端口 143 并获取我们在之前任务中发送的消息。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ telnet 10.10.41.192 143
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Trying 10.10.41.192...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connected to 10.10.41.192.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Escape character is &amp;#39;&lt;span class=&#34;se&#34;&gt;^]&lt;/span&gt;&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ STARTTLS AUTH=PLAIN] Dovecot (Ubuntu) ready.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A LOGIN strategos
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE SORT SORT=DISPLAY THREAD=REFERENCES THREAD=REFS THREAD=ORDEREDSUBJECT MULTIAPPEND URL-PARTIAL CATENATE UNSELECT CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED I18NLEVEL=1 CONDSTORE QRESYNC ESEARCH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS BINARY MOVE SNIPPET=FUZZY PREVIEW=FUZZY PREVIEW STATUS=SIZE SAVEDATE LITERAL+ NOTIFY SPECIAL-USE] Logged in
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B SELECT inbox
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft \*)] Flags permitted.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* 4 EXISTS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* 0 RECENT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* OK [UNSEEN 2] First unseen.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* OK [UIDVALIDITY 1719824692] UIDs valid
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* OK [UIDNEXT 5] Predicted next UID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B OK [READ-WRITE] Select completed (0.001 + 0.000 secs).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C FETCH 3 body[]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* 3 FETCH (BODY[] {445}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Return-path: &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;user@client.thm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Envelope-to: strategos@server.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Delivery-date: Thu, 27 Jun 2024 16:19:35 +0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Received: from [10.11.81.126] (helo=client.thm)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        by example.thm with smtp (Exim 4.95)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;envelope-from &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;user@client.thm&amp;gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        id 1sMrpq-0001Ah-UT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; strategos@server.thm;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        Thu, 27 Jun 2024 16:19:35 +0000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;From: user@client.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;To: strategos@server.thm
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Subject: Telnet email
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hello. I am using telnet to send you an email!
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C OK Fetch completed (0.001 + 0.000 secs&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D LOGOUT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* BYE Logging out
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D OK Logout completed (0.001 + 0.000 secs&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection closed by foreign host.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;下面的屏幕截图显示了从 Wireshark 中看到的客户端和服务器之间交换的消息。客户端只需要发送四个命令，以红色显示，“长”服务器响应以蓝色显示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408020556204.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408020556204&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;协议&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;传输协议&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;默认端口号&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TELNET&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;23&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DNS&lt;/td&gt;
+          &lt;td&gt;UDP 或 TCP&lt;/td&gt;
+          &lt;td&gt;53&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;HTTP&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;80&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;HTTPS&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;443&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;FTP&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;21&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SMTP&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;25&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;POP3&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;110&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;IMAP&lt;/td&gt;
+          &lt;td&gt;TCP&lt;/td&gt;
+          &lt;td&gt;143&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
+        <title>网络基础知识</title>
+        <link>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        <description>&lt;h2 id=&#34;dhcp提供我的网络设置&#34;&gt;DHCP：提供我的网络设置
+&lt;/h2&gt;&lt;p&gt;你去了你最喜欢的咖啡店，拿了你最喜欢的热饮，打开了你的笔记本电脑。您的笔记本电脑连接到商店的 WiFi 并自动配置网络，因此您现在可以在新的 TryHackMe 房间工作。您没有输入单个 IP 地址，但您的设备已全部设置完毕。让我们看看这是怎么发生的。&lt;/p&gt;
+&lt;p&gt;每当我们想访问网络时，至少需要配置以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP 地址和子网掩码&lt;/li&gt;
+&lt;li&gt;路由器（或网关）&lt;/li&gt;
+&lt;li&gt;DNS 服务器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每当我们将设备连接到新网络时，都必须根据新网络设置上述配置。手动配置这些设置是一个不错的选择，尤其是对于服务器。服务器不需要切换网络;您无需携带域控制器并将其连接到咖啡店 WiFi。此外，其他设备需要连接到服务器，并希望在特定的 IP 地址找到它们。&lt;/p&gt;
+&lt;p&gt;拥有一种自动化的方式来配置连接的设备有很多好处。首先，它将使我们&lt;strong&gt;免于手动配置网络&lt;/strong&gt;;这一点非常重要，尤其是对于移动设备。其次，它使我们&lt;strong&gt;免于地址冲突&lt;/strong&gt;，即当两台设备配置相同的 IP 地址时。IP 地址冲突将阻止相关主机使用网络资源;这适用于本地资源和 Internet。解决方案在于使用动态主机配置协议 （DHCP）。DHCP 是&lt;strong&gt;依赖于 UDP&lt;/strong&gt; 的&lt;strong&gt;应用程序级&lt;/strong&gt;协议;服务器监听 UDP 端口 67，客户端从 UDP 端口 68 发送。默认情况下，您的智能手机和笔记本电脑配置为使用 DHCP。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408004116942.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408004116942&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;DHCP 遵循四个步骤：发现、提供、请求和确认 （DORA）：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DHCP Discover&lt;/strong&gt; ：客户端广播 DHCPDISCOVER 消息，查找本地 DHCP 服务器（如果存在）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DHCP Offer&lt;/strong&gt;：服务器使用 DHCPOFFER 消息进行响应，其中包含可供客户端接受的 IP 地址。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DHCP Request&lt;/strong&gt;：客户端使用 DHCPREQUEST 消息进行响应，以指示它已接受提供的 IP。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DHCP Acknowledge&lt;/strong&gt;：服务器使用 DHCPACK 消息进行响应，以确认提供的 IP 地址现在已分配给此客户端。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408004231758.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408004231758&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以下数据包捕获显示了上述四个步骤。在此示例中，客户端获取地址 &lt;code&gt;192.168.66.133&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ tshark -r DHCP-G5000.pcap -n
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    1   0.000000      0.0.0.0 → 255.255.255.255 DHCP 342 DHCP Discover - Transaction ID 0xfb92d53f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    2   0.013904 192.168.66.1 → 192.168.66.133 DHCP 376 DHCP Offer    - Transaction ID 0xfb92d53f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    3   4.115318      0.0.0.0 → 255.255.255.255 DHCP 342 DHCP Request  - Transaction ID 0xfb92d53f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    4   4.228117 192.168.66.1 → 192.168.66.133 DHCP 376 DHCP ACK      - Transaction ID 0xfb92d53f
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在 DHCP 数据包交换中，我们可以注意到以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端在没有任何 IP 网络配置的情况下启动。它只有一个 &lt;strong&gt;MAC&lt;/strong&gt; 地址。在第一个和第三个数据包 DHCP Discover 和 DHCP Request 中，搜索 DHCP 服务器的客户端&lt;strong&gt;仍然没有 IP 网络配置&lt;/strong&gt;，并且尚未使用 DHCP 服务器提供的 IP 地址。因此，它将数据包从 IP 地址 &lt;code&gt;0.0.0.0&lt;/code&gt; 发送到广播 IP 地址 &lt;code&gt;255.255.255.255。&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;至于链路层，在第一个和第三个数据包中，客户端发送到广播 MAC 地址 &lt;code&gt;ff：ff：ff：ff：ff：ff（&lt;/code&gt; 在上面的输出中未显示）。DHCP 服务器在 DHCP 产品/服务中提供可用的 IP 地址以及网络配置。它使用客户端的目标 MAC 地址。（在此示例系统中，它使用了建议的 IP 地址。）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 DHCP 进程结束时，我们的设备将收到访问网络甚至 Internet 所需的所有配置。特别是，我们希望 DHCP 服务器为我们提供了以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于访问网络资源的租用 IP 地址&lt;/li&gt;
+&lt;li&gt;将数据包路由到本地网络外部的网关&lt;/li&gt;
+&lt;li&gt;用于解析域名的 DNS 服务器（稍后会详细介绍）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;arp第三层ip地址至第二层mac地址转换&#34;&gt;ARP：第三层IP地址至第二层MAC地址转换
+&lt;/h2&gt;&lt;p&gt;我们在&lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/r/room/networkingconcepts&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网络概念&lt;/a&gt;室中指出，当两台主机通过网络进行通信时，IP 数据包在通过第 2 层传输时被封装在数据链路帧中。请记住，我们使用的两个常见数据链路层是以太网 （IEEE 802.3） 和 WiFi （IEEE 802.11）。每当一台主机需要与同一以太网或 WiFi 上的另一台主机通信时，它必须在数据链路层帧内发送 IP 数据包。尽管它知道目标主机的 IP 地址，但它需要查找目标的 MAC 地址，以便创建正确的数据链路标头。&lt;/p&gt;
+&lt;p&gt;如您所知，MAC 地址是一个 48 位数字，通常以十六进制表示法表示;例如，&lt;code&gt;7C：DF：A1：D3：8C：5C&lt;/code&gt; 和 &lt;code&gt;44：DF：65：D8：FE：6C&lt;/code&gt; 是我网络上的两个 MAC 地址。&lt;/p&gt;
+&lt;p&gt;但是，同一以太网上的设备不需要一直知道彼此的 MAC 地址;他们只需要在通信时知道彼此的 MAC 地址。一切都围绕着 IP 地址。请考虑以下场景：您将设备连接到网络，如果该网络具有 DHCP 服务器，则设备会自动配置为使用特定网关（路由器）和 DNS 服务器。因此，您的设备知道 DNS 服务器的 IP 地址以解析任何域名;此外，当需要通过 Internet 发送数据包时，它知道路由器的 IP 地址。在所有这些场景中，不会显示 MAC 地址。但是，同一以太网上的两台设备在不知道彼此的 MAC 地址的情况下无法通信。&lt;/p&gt;
+&lt;p&gt;提醒一下，在下面的屏幕截图中，我们在以太网帧中看到一个 IP 数据包。以太网帧标头包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标 MAC 地址&lt;/li&gt;
+&lt;li&gt;源 MAC 地址&lt;/li&gt;
+&lt;li&gt;类型（在本例中为 IPv4）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408005456220.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408005456220&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;地址解析协议 （ARP） 可以在以太网上找到另一台设备的 MAC 地址。在下面的示例中，IP 地址为 &lt;code&gt;192.168.66.89&lt;/code&gt; 的主机希望与 IP 地址为 &lt;code&gt;192.168.66.1&lt;/code&gt; 的另一个系统通信。它发送一个 ARP 请求，要求 IP 地址为 &lt;code&gt;192.168.66.1&lt;/code&gt; 的主机进行响应。ARP 请求从请求者的 MAC 地址发送到广播 MAC 地址 &lt;code&gt;ff：ff：ff：ff：ff：ff：ff，&lt;/code&gt; 如第一个数据包所示。ARP 回复很快到达，IP 地址为 &lt;code&gt;192.168.66.1&lt;/code&gt; 的主机使用其 MAC 地址进行响应。此时，两台主机可以交换数据链路层帧。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ tshark -r arp.pcapng -Nn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    1 0.000000000 cc:5e:f8:02:21:a7 → ff:ff:ff:ff:ff:ff ARP 42 Who has 192.168.66.1? Tell 192.168.66.89
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    2 0.003566632 44:df:65:d8:fe:6c → cc:5e:f8:02:21:a7 ARP 42 192.168.66.1 is at 44:df:65:d8:fe:6c
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果我们使用 &lt;code&gt;tcpdump&lt;/code&gt;，数据包将以不同的方式显示。它使用术语 ARP &lt;strong&gt;请求&lt;/strong&gt; 和 ARP &lt;strong&gt;回复&lt;/strong&gt; 。供您参考，输出显示在下面的终端中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ tcpdump -r arp.pcapng -n -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;17:23:44.506615 ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 192.168.66.1 tell 192.168.66.89, length 28
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;17:23:44.510182 ARP, Ethernet (len 6), IPv4 (len 4), Reply 192.168.66.1 is-at 44:df:65:d8:fe:6c, length 28
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;ARP 请求或 ARP 回复未封装在 UDP 甚至 IP 数据包中;它直接封装在以太网帧中。以下 ARP 回复显示了这一点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010149002.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408010149002&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ARP 被视为第 2 层，因为它处理 MAC 地址。其他人会争辩说它是第 3 层的一部分，因为它支持 IP 作。必须了解的是，ARP 允许从第 3 层寻址转换为第 2 层寻址。&lt;/p&gt;
+&lt;h2 id=&#34;icmp网络故障排除&#34;&gt;ICMP：网络故障排除
+&lt;/h2&gt;&lt;p&gt;Internet Control Message Protocol (ICMP)主要用于网络诊断和错误报告。两个常用命令依赖于 ICMP，它们在网络故障排除和网络安全方面非常有用。这些命令是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ping&lt;/code&gt;：此命令使用 ICMP 测试与目标系统的连接并测量往返时间 （RTT）。换句话说，它可以用来了解目标是活着的，并且它的回复可以到达我们的系统。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;traceroute&lt;/code&gt;：此命令在 Linux 和类 UNIX 系统上称为 &lt;code&gt;traceroute&lt;/code&gt;，在 MS Windows 系统上称为 &lt;code&gt;tracert&lt;/code&gt;。它使用 ICMP 来发现从主机到目标的路由。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ping&#34;&gt;Ping
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ping&lt;/code&gt; 命令发送 ICMP Echo 请求（ICMP 类型 &lt;code&gt;8&lt;/code&gt;）。下面的屏幕截图显示了 IP 数据包中的 ICMP 消息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010535410.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408010535410&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接收端的计算机以 ICMP Echo Reply （ICMP Type &lt;code&gt;0&lt;/code&gt;） 进行响应。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010611795.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408010611795&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;许多事情可能会阻止我们得到回复。除了目标系统脱机或关闭的可能性之外，路径上的&lt;strong&gt;防火墙&lt;/strong&gt;还可能会阻止 &lt;code&gt;ping&lt;/code&gt; 工作所需的数据包。在下面的示例中，我们使用 &lt;code&gt;-c 4&lt;/code&gt; 告诉 &lt;code&gt;ping&lt;/code&gt; 命令在发送 4 个数据包后停止。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ ping 192.168.11.1 -c 4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PING 192.168.11.1 (192.168.11.1) 56(84) bytes of data.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;64 bytes from 192.168.11.1: icmp_seq=1 ttl=63 time=11.2 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;64 bytes from 192.168.11.1: icmp_seq=2 ttl=63 time=3.81 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;64 bytes from 192.168.11.1: icmp_seq=3 ttl=63 time=3.99 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;64 bytes from 192.168.11.1: icmp_seq=4 ttl=63 time=23.4 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--- 192.168.11.1 ping statistics ---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rtt min/avg/max/mdev = 3.805/10.596/23.366/7.956 ms
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出显示没有数据包丢失;此外，它还计算往返时间 （RTT） 的最小值、平均值、最大值和标准差 （mDev）。&lt;/p&gt;
+&lt;h3 id=&#34;traceroute&#34;&gt;Traceroute
+&lt;/h3&gt;&lt;p&gt;我们如何使我们的系统和目标系统之间的每个路由器都显露出来呢？&lt;/p&gt;
+&lt;p&gt;Internet 协议有一个称为Time-to-Live （TTL） 的字段，该字段指示数据包在被丢弃之前可以传输的最大路由器数。路由器在发送数据包之前将数据包的 TTL 递减 1。当 TTL 达到零时，路由器会丢弃数据包并发送 ICMP 超时消息（ICMP 类型 &lt;code&gt;11&lt;/code&gt;）。（在这种情况下，“时间” 是以路由器的数量来衡量的，而不是秒数。&lt;/p&gt;
+&lt;p&gt;以下终端输出显示了运行 &lt;code&gt;traceroute&lt;/code&gt; 命令探测本机与 &lt;code&gt;example.com&lt;/code&gt; 之间路径上路由器的结果。部分路由器未响应（即丢弃数据包且不返回任何ICMP消息）；属于我们ISP的路由器可能会响应，并暴露其私有IP地址。另一些路由器则会返回公有IP地址，从而允许我们通过域名查询推断其地理位置。此外，ICMP超时消息（Time Exceeded）可能被拦截，导致无法到达本机。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;user@TryHackMe$ traceroute example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute to example.com (93.184.215.14), 30 hops max, 60 byte packets
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 1  _gateway (192.168.66.1)  4.414 ms  4.342 ms  4.320 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 2  192.168.11.1 (192.168.11.1)  5.849 ms  5.830 ms  5.811 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 3  100.104.0.1 (100.104.0.1)  11.130 ms  11.111 ms  11.093 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 4  10.149.1.45 (10.149.1.45)  6.156 ms  6.138 ms  6.120 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 5  * * *
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 6  * * *
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 7  * * *
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 8  172.16.48.1 (172.16.48.1)  5.667 ms  8.165 ms  6.861 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 9  ae81.edge4.Marseille1.Level3.net (212.73.201.45)  50.811 ms  52.857 ms 213.242.116.233 (213.242.116.233)  52.798 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10  NTT-level3-Marseille1.Level3.net (4.68.68.150)  93.351 ms  79.897 ms  79.804 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11  ae-9.r20.parsfr04.fr.bb.gin.ntt.net (129.250.3.38)  62.935 ms  62.908 ms  64.313 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;12  ae-14.r21.nwrknj03.us.bb.gin.ntt.net (129.250.4.194)  141.816 ms  141.782 ms  141.757 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;13  ae-1.a02.nycmny17.us.bb.gin.ntt.net (129.250.3.17)  145.786 ms ae-1.a03.nycmny17.us.bb.gin.ntt.net (129.250.3.128)  141.701 ms  147.586 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;14  ce-0-3-0.a02.nycmny17.us.ce.gin.ntt.net (128.241.1.14)  148.692 ms ce-3-3-0.a03.nycmny17.us.ce.gin.ntt.net (128.241.1.90)  141.615 ms ce-0-3-0.a02.nycmny17.us.ce.gin.ntt.net (128.241.1.14)  148.168 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;15  ae-66.core1.nyd.edgecastcdn.net (152.195.69.133)  141.100 ms ae-65.core1.nyd.edgecastcdn.net (152.195.68.133)  140.360 ms ae-66.core1.nyd.edgecastcdn.net (152.195.69.133)  140.638 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;16  93.184.215.14 (93.184.215.14)  140.574 ms  140.543 ms  140.514 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;17  93.184.215.14 (93.184.215.14)  140.488 ms  139.397 ms  141.854 ms
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;当我们重新运行命令时，遍历的路由可能会发生变化。&lt;/p&gt;
+&lt;h2 id=&#34;routing-路由&#34;&gt;Routing 路由
+&lt;/h2&gt;&lt;p&gt;考虑下面显示的网络图。它只有三个网络;但是，Internet 如何确定如何将数据包从网络 1 传送到网络 2 或网络 3？虽然这是一个过于简化的图表，但我们需要一些算法来弄清楚如何将网络 1 连接到网络 2 和网络 3，反之亦然。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011337796.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408011337796&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;让我们考虑一个更详细的图表。互联网将是数百万台路由器和数十亿台设备。下面的网络是 Internet 的一小部分。移动用户可以访问 Web 服务器;但是，要实现此目的，路径上的每个路由器都需要通过适当的链路发送数据包。显然，连接移动用户和 Web 服务器的路径不止一条，即路由。我们需要一个路由算法，让路由器弄清楚要使用哪个链路。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011415339.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408011415339&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;路由算法超出了这个房间的范围;但是，我们将简要介绍一些路由协议，以便您熟悉它们的名称：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**OSPF （Open Shortest Path First）：**OSPF 是一种路由协议，允许路由器共享有关网络拓扑的信息并计算最有效的数据传输路径。它通过让路由器交换有关其连接的链接和网络状态的更新来实现这一点。这样，每个路由器都有一个完整的网络地图，并且可以确定到达任何目的地的最佳路线。&lt;/li&gt;
+&lt;li&gt;**EIGRP（增强型内部网关路由协议）：**EIGRP 是 Cisco 专有的路由协议，它结合了不同路由算法的各个方面。它允许路由器共享有关它们可以访问的网络以及与这些路由相关的成本（如带宽或延迟）的信息。然后，路由器使用此信息来选择最有效的数据传输路径。&lt;/li&gt;
+&lt;li&gt;**BGP（边界网关协议）：**BGP 是 Internet 上使用的主要路由协议。它允许不同的网络（如 Internet 服务提供商的网络）交换路由信息并建立数据在这些网络之间传输的路径。BGP 有助于确保数据可以通过 Internet 高效路由，即使在遍历多个网络时也是如此。&lt;/li&gt;
+&lt;li&gt;**RIP（路由信息协议）：**RIP 是一种简单的路由协议，通常用于小型网络。运行 RIP 的路由器共享有关它们可以访问的网络以及到达该网络所需的跃点（路由器）数的信息。因此，每个路由器都会根据此信息构建一个路由表，选择跳数最少的路由来到达每个目的地。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;nat-网络地址转换&#34;&gt;NAT 网络地址转换
+&lt;/h2&gt;&lt;p&gt;正如 &lt;a class=&#34;link&#34; href=&#34;https://tryhackme.com/r/room/networkingconcepts&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Networking Concepts&lt;/a&gt; 会议室中所讨论的，我们计算出 IPv4 最多可以支持 40 亿台设备。随着连接到 Internet 的设备数量的增加，从计算机和智能手机到安全摄像头和洗衣机，很明显 IPv4 地址空间将很快耗尽。解决耗尽问题的一种解决方案是网络地址转换 （NAT）。&lt;/p&gt;
+&lt;p&gt;NAT（网络地址转换）的核心思想是&lt;strong&gt;通过一个公网IP地址为多个私有IP地址提供互联网访问能力&lt;/strong&gt;。例如，若某公司有20台计算机需要联网，无需为每台设备分配一个公网IP地址（共20个），只需使用一个公网IP地址即可让所有设备接入互联网。（&lt;em&gt;技术细节补充&lt;/em&gt;：严格来说，IP地址数量通常以2的幂次方为单位分配。因此，更准确的表述是——使用NAT时，您只需预留2个公网IP地址，而非原本所需的32个，从而节省了30个公网IP地址。）&lt;/p&gt;
+&lt;p&gt;与路由不同，路由是将数据包路由到目标主机的自然方式，支持 NAT 的路由器必须找到一种方法来跟踪正在进行的连接。因此，支持 NAT 的路由器维护一个表，用于在内部和外部网络之间转换网络地址。通常，内部网络将使用私有 IP 地址范围，而外部网络将使用公共 IP 地址。&lt;/p&gt;
+&lt;p&gt;在下图中，多个设备通过支持 NAT 的路由器访问 Internet。路由器维护一个表，该表将内部 IP 地址和端口号与其外部 IP 地址和端口号进行映射。例如，笔记本电脑可能会与某些 Web 服务器建立连接。从笔记本电脑的角度来看，连接是从其 IP 地址 &lt;code&gt;192.168.0.129&lt;/code&gt; 从 TCP 源端口号 &lt;code&gt;15401&lt;/code&gt; 发起的;但是，Web 服务器将看到与 &lt;code&gt;212.3.4.5&lt;/code&gt; 和 TCP 端口号 &lt;code&gt;19273&lt;/code&gt; 建立的连接相同的连接，如转换表中所示。路由器无缝地执行此地址转换。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011744920.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250408011744920&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>常见工具及使用技巧</title>
+        <link>https://Yerucrem.github.io/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+        <pubDate>Thu, 03 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+        <description>&lt;h1 id=&#34;常见工具及使用技巧&#34;&gt;常见工具及使用技巧
+&lt;/h1&gt;&lt;h2 id=&#34;vim&#34;&gt;VIM
+&lt;/h2&gt;&lt;h3 id=&#34;粘贴&#34;&gt;粘贴
+&lt;/h3&gt;&lt;h4 id=&#34;1-普通模式下的粘贴&#34;&gt;1. &lt;strong&gt;普通模式下的粘贴&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;p&lt;/code&gt;&lt;/strong&gt;：在光标&lt;strong&gt;后&lt;/strong&gt;粘贴内容（默认粘贴 Vim 的匿名寄存器 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; 中的内容）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;P&lt;/code&gt;&lt;/strong&gt;（大写）：在光标&lt;strong&gt;前&lt;/strong&gt;粘贴内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;&amp;quot;+p&lt;/code&gt;&lt;/strong&gt; 或 &lt;strong&gt;&lt;code&gt;&amp;quot;*p&lt;/code&gt;&lt;/strong&gt;：粘贴&lt;strong&gt;系统剪贴板&lt;/strong&gt;内容（需确保 Vim 支持系统剪贴板，例如在 Linux 安装 &lt;code&gt;vim-gtk&lt;/code&gt; 或 &lt;code&gt;vim-gnome&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;vim&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;yy&lt;/span&gt;    # &lt;span class=&#34;nx&#34;&gt;复制当前行到匿名寄存器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;p&lt;/span&gt;     # &lt;span class=&#34;nx&#34;&gt;在光标后粘贴&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&amp;#34;+yy  # 复制当前行到系统剪贴板&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&amp;#34;+p   # 粘贴系统剪贴板内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;2-插入模式下的粘贴&#34;&gt;2. &lt;strong&gt;插入模式下的粘贴&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;**&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl+R
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;+ 寄存器名**：在插入模式下粘贴指定寄存器的内容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+R &amp;quot;&lt;/code&gt;：粘贴匿名寄存器的内容。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+R +&lt;/code&gt;：粘贴系统剪贴板内容（&lt;code&gt;+&lt;/code&gt; 寄存器）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;vim&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;                # &lt;span class=&#34;nx&#34;&gt;进入插入模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Ctrl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;R&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt;         # &lt;span class=&#34;nx&#34;&gt;粘贴系统剪贴板内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;3-粘贴模式避免自动缩进&#34;&gt;3. &lt;strong&gt;粘贴模式（避免自动缩进）&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;当粘贴代码时，自动缩进可能导致格式混乱。解决方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:set paste&lt;/code&gt;&lt;/strong&gt;：进入粘贴模式（禁用自动缩进）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:set nopaste&lt;/code&gt;&lt;/strong&gt;：退出粘贴模式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;或者用快捷键&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;vim&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&amp;#34; 在插入模式下直接粘贴系统剪贴板（自动处理格式）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Shift&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Insert&lt;/span&gt;    # &lt;span class=&#34;nx&#34;&gt;部分终端支持&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;4-选择系统剪贴板寄存器&#34;&gt;4. &lt;strong&gt;选择系统剪贴板寄存器&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;&amp;quot;+y&lt;/code&gt;&lt;/strong&gt;：复制内容到系统剪贴板。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;&amp;quot;+p&lt;/code&gt;&lt;/strong&gt;：粘贴系统剪贴板内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;系统差异&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux：通常使用 &lt;code&gt;&amp;quot;+&lt;/code&gt; 寄存器。&lt;/li&gt;
+&lt;li&gt;Windows/macOS：&lt;code&gt;&amp;quot;+&lt;/code&gt; 和 &lt;code&gt;&amp;quot;*&lt;/code&gt; 可能通用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;5-可视化模式下的粘贴&#34;&gt;5. &lt;strong&gt;可视化模式下的粘贴&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在可视化模式（&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;/&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;/&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl+V
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;）中选择文本后：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;y&lt;/code&gt; 复制，&lt;code&gt;d&lt;/code&gt; 剪切，&lt;code&gt;p&lt;/code&gt; 粘贴。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;6-常见问题&#34;&gt;6. &lt;strong&gt;常见问题&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;粘贴时代码缩进错乱&lt;/strong&gt;：使用 &lt;code&gt;:set paste&lt;/code&gt; 或 &lt;code&gt;&amp;quot;+p&lt;/code&gt; 从系统剪贴板粘贴。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无法访问系统剪贴板&lt;/strong&gt;：确保 Vim 支持 &lt;code&gt;+clipboard&lt;/code&gt;（终端输入 &lt;code&gt;vim --version&lt;/code&gt; 检查）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;撤销&#34;&gt;撤销
+&lt;/h3&gt;&lt;h4 id=&#34;1-基础撤销与重做&#34;&gt;1. &lt;strong&gt;基础撤销与重做&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;u&lt;/code&gt;&lt;/strong&gt;（普通模式下）：撤销最近一次操作（可重复按 &lt;code&gt;u&lt;/code&gt; 逐步回退）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Ctrl-R&lt;/code&gt;&lt;/strong&gt;（普通模式下）：重做被撤销的操作（恢复最后一次撤销）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;vim&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dd&lt;/span&gt;    # &lt;span class=&#34;nx&#34;&gt;删除一行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;u&lt;/span&gt;     # &lt;span class=&#34;nx&#34;&gt;撤销删除&lt;/span&gt;（&lt;span class=&#34;nx&#34;&gt;恢复该行&lt;/span&gt;）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Ctrl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;R&lt;/span&gt; # &lt;span class=&#34;nx&#34;&gt;重做删除&lt;/span&gt;（&lt;span class=&#34;nx&#34;&gt;再次删除该行&lt;/span&gt;）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;2-多步撤销与重做&#34;&gt;2. &lt;strong&gt;多步撤销与重做&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&#34;多次按-逐次撤销更早的操作vim-会记录完整的操作历史&#34;&gt;&lt;strong&gt;多次按 &lt;code&gt;u&lt;/code&gt;&lt;/strong&gt;：逐次撤销更早的操作（Vim 会记录完整的操作历史）。
+&lt;/h3&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多次按 &lt;code&gt;Ctrl-R&lt;/code&gt;&lt;/strong&gt;：逐次重做被撤销的操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;3-撤销到指定状态&#34;&gt;3. &lt;strong&gt;撤销到指定状态&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:undo N&lt;/code&gt;&lt;/strong&gt;：直接回退到第 &lt;code&gt;N&lt;/code&gt; 次修改前的状态（例如 &lt;code&gt;:undo 5&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:earlier 5s&lt;/code&gt;&lt;/strong&gt;：回退到 5 秒前的状态（支持 &lt;code&gt;s&lt;/code&gt;/&lt;code&gt;m&lt;/code&gt;/&lt;code&gt;h&lt;/code&gt; 单位，如 &lt;code&gt;:earlier 2m&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:later 5s&lt;/code&gt;&lt;/strong&gt;：向未来恢复 5 秒后的状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;4-撤销分支undo-tree&#34;&gt;4. &lt;strong&gt;撤销分支（Undo Tree）&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;Vim 的撤销历史是一个树形结构（分支），允许在不同修改路径间切换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;g+&lt;/code&gt;&lt;/strong&gt; 或 &lt;strong&gt;&lt;code&gt;:earlier 1f&lt;/code&gt;&lt;/strong&gt;：跳转到更新的分支版本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;g-&lt;/code&gt;&lt;/strong&gt; 或 &lt;strong&gt;&lt;code&gt;:later 1f&lt;/code&gt;&lt;/strong&gt;：跳转到更旧的分支版本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;插件推荐&lt;/strong&gt;：使用 undotree 可视化撤销历史。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;5-撤销插入模式内容&#34;&gt;5. &lt;strong&gt;撤销插入模式内容&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;在插入模式（&lt;code&gt;i&lt;/code&gt;）中输入大量文本后，退出到普通模式按 &lt;code&gt;u&lt;/code&gt;，会&lt;strong&gt;撤销整个插入过程&lt;/strong&gt;（视为一次操作）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;vim&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;     # &lt;span class=&#34;nx&#34;&gt;进入插入模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Esc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; # &lt;span class=&#34;nx&#34;&gt;输入文本并退出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;u&lt;/span&gt;     # &lt;span class=&#34;nx&#34;&gt;撤销整个插入&lt;/span&gt;（&lt;span class=&#34;nx&#34;&gt;文本消失&lt;/span&gt;）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;6-重置修改点&#34;&gt;6. &lt;strong&gt;重置修改点&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:w&lt;/code&gt;&lt;/strong&gt;（保存文件）：保存后会重置撤销历史的起点（无法撤销保存前的操作）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:e!&lt;/code&gt;&lt;/strong&gt;：强制重新加载文件（丢弃所有未保存的修改，回到保存状态）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;7-查看撤销历史&#34;&gt;7. &lt;strong&gt;查看撤销历史&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:undolist&lt;/code&gt;&lt;/strong&gt;：显示所有可撤销的修改点（版本号和编号）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;:changes&lt;/code&gt;&lt;/strong&gt;：显示最近的修改列表（结合 &lt;code&gt;g;&lt;/code&gt; 和 &lt;code&gt;g,&lt;/code&gt; 跳转）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;常见问题&#34;&gt;常见问题
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;误操作后无法撤销&lt;/strong&gt;：确保未执行保存（&lt;code&gt;:w&lt;/code&gt;）或外部命令打断了撤销链。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;撤销粒度问题&lt;/strong&gt;：Vim 将一次连续操作视为一个撤销单位（例如插入模式中的输入视为一次操作）。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>数据包和帧</title>
         <link>https://Yerucrem.github.io/p/%E6%95%B0%E6%8D%AE%E5%8C%85%E5%92%8C%E5%B8%A7/</link>
         <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
@@ -3145,6 +4930,17 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin main
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;试运行&#34;&gt;试运行
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server -D
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctrl + c [停止运行]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;更新&#34;&gt;更新
 &lt;/h2&gt;&lt;p&gt;在dev目录下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3258,24 +5054,24 @@
 </description>
         </item>
         <item>
+        <title>资源聚合</title>
+        <link>https://Yerucrem.github.io/p/%E8%B5%84%E6%BA%90%E8%81%9A%E5%90%88/</link>
+        <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E8%B5%84%E6%BA%90%E8%81%9A%E5%90%88/</guid>
+        <description>&lt;h2 id=&#34;图片&#34;&gt;图片
+&lt;/h2&gt;&lt;p&gt;Pixabay:https://pixabay.com/zh/&lt;/p&gt;
+&lt;p&gt;emoji:https://www.emojiall.com/zh-hans&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>测试</title>
         <link>https://Yerucrem.github.io/p/%E6%B5%8B%E8%AF%95/</link>
         <pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/%E6%B5%8B%E8%AF%95/</guid>
         <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/01DFA140B78CF068F9CB2ACC01C76E40.jpg" alt="Featured image of post 测试" /&gt;&lt;h1 id=&#34;test&#34;&gt;TEST
-&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;1 1 1 1 1 4 1 1	11&lt;/li&gt;
-&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
-&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
-&lt;li&gt;1 2 2 4 2 4 2 2	19&lt;/li&gt;
-&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
-&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
-&lt;li&gt;2 6 4 4 4 6 2 2	29&lt;/li&gt;
-&lt;li&gt;2 10 2 3 3 9 2 2	33&lt;/li&gt;
-&lt;li&gt;1 1 1 1 1 1 1 1	8&lt;/li&gt;
-&lt;/ol&gt;
-</description>
+&lt;/h1&gt;</description>
         </item>
         <item>
         <title>归档</title>

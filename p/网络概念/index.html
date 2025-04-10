@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="常见基础的网络概念">
+<title>网络概念</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="网络概念">
+<meta property='og:description' content="常见基础的网络概念">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-08T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="网络概念">
+<meta name="twitter:description" content="常见基础的网络概念">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#osi">OSI</a>
+      <ol>
+        <li><a href="#layer-1-physical-layer">Layer 1: Physical Layer</a></li>
+        <li><a href="#layer-2-data-link-layer">Layer 2: Data Link Layer</a></li>
+        <li><a href="#layer-3-network-layer">Layer 3: Network Layer</a></li>
+        <li><a href="#layer-4-transport-layer">Layer 4: Transport Layer</a></li>
+        <li><a href="#layer-5-session-layer">Layer 5: Session Layer</a></li>
+        <li><a href="#layer-6-presentation-layer">Layer 6: Presentation Layer</a></li>
+        <li><a href="#layer-7-application-layer">Layer 7: Application Layer</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ol>
+    </li>
+    <li><a href="#tcpip">TCP/IP</a></li>
+    <li><a href="#ip和子网">IP和子网</a>
+      <ol>
+        <li><a href="#查找网络配置">查找网络配置</a></li>
+        <li><a href="#私有地址">私有地址</a></li>
+        <li><a href="#路由">路由</a></li>
+      </ol>
+    </li>
+    <li><a href="#udp和tcp">UDP和TCP</a>
+      <ol>
+        <li><a href="#udp-协议">UDP 协议</a></li>
+        <li><a href="#tcp-协议">TCP 协议</a></li>
+      </ol>
+    </li>
+    <li><a href="#封装">封装</a>
+      <ol>
+        <li><a href="#数据包的生命周期">数据包的生命周期</a></li>
+      </ol>
+    </li>
+    <li><a href="#远程登陆">远程登陆</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/">网络概念</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            常见基础的网络概念
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-08</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="osi">OSI
+</h2><p><strong>please do not throw spinach pizza away</strong></p>
+<h3 id="layer-1-physical-layer">Layer 1: Physical Layer
+</h3><p><strong>物理层</strong>处理<strong>设备</strong>之间的物理连接;这包括<strong>介质</strong> （如线路） 以及二进制数字 0 和 1 的定义。数据传输可以通过电、光学或无线信号进行。因此，我们需要数据线或天线，具体取决于我们的物理介质。</p>
+<h3 id="layer-2-data-link-layer">Layer 2: Data Link Layer
+</h3><p><strong>数据链路层</strong>，代表实现<strong>同一网段</strong>节点之间数据传输的<strong>协议</strong>。让我们用更简单的术语来表达。数据链路层描述了<strong>同一网段上不同系统之间</strong>关于如何通信的<strong>协议</strong>。网段是指使用共享介质或通道进行信息传输的一组联网设备。例如，假设公司办公室有 10 台计算机连接到<strong>网络交换机</strong>;那是一个网段。</p>
+<p>第 2 层的示例包括以太网（即 802.3）和 WiFi（即 802.11）。以太网和 WiFi 地址为 6 个字节。它们的地址称为 MAC 地址，其中 MAC 代表媒体访问控制。它们通常以十六进制格式表示，每两个字节之间用冒号分隔。最左边的三个字节标识供应商。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407225141784.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250407225141784"
+	
+	
+></p>
+<h3 id="layer-3-network-layer">Layer 3: Network Layer
+</h3><p><strong>网络层</strong>，关注在<strong>不同网络之间</strong>发送数据。用更专业的术语来说，网络层处理逻辑寻址和路由，即找到在不同网络之间传输网络数据包的<strong>路径</strong>。</p>
+<p>在数据链路层，我们给出了一个公司办公室有 10 台计算机的示例，其中数据链路层负责在它们之间提供连接。假设这家公司在多个办事处，分布在不同的城市、国家甚至大洲。网络层负责将<strong>不同的办公室</strong>连接在一起。</p>
+<p>下面的网络显示计算机 A 和 B 已连接，尽管位于<strong>不同的网络</strong>上。您还可以注意到连接两台计算机的两条路径;网络层将通过其认为更好的路径路由网络数据包。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407225357047.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250407225357047"
+	
+	
+></p>
+<p>网络层的示例包括 Internet 协议 （IP）、Internet 控制消息协议 （ICMP） 和虚拟专用网络 （VPN） 协议，例如 IPSec 和 SSL/TLS VPN。</p>
+<h3 id="layer-4-transport-layer">Layer 4: Transport Layer
+</h3><p><strong>传输层</strong>支持<strong>不同主机上</strong>正在运行的<strong>应用程序</strong>之间的端到端通信。您的 Web 浏览器通过传输层连接到 TryHackMe Web 服务器，该服务器可以支持流控制、分段和纠错等各种功能。</p>
+<p>第 4 层的示例包括传输控制协议 （TCP） 和用户数据报协议 （UDP）。</p>
+<h3 id="layer-5-session-layer">Layer 5: Session Layer
+</h3><p><strong>会话层</strong>负责<strong>建立、维护和同步</strong>在不同主机上运行的应用程序之间的通信。建立会话意味着启动应用程序之间的通信并协商会话的必要参数。数据同步可确保数据以正确的顺序传输，并提供在传输失败时恢复的机制。</p>
+<p>会话层的示例包括网络文件系统 （NFS） 和远程过程调用 （RPC）。</p>
+<h3 id="layer-6-presentation-layer">Layer 6: Presentation Layer
+</h3><p><strong>表示层</strong>确保以<strong>应用程序层</strong>可以理解的<strong>形式</strong>交付数据。第 6 层处理数据编码、压缩和加密。编码的一个示例是字符编码，例如 ASCII 或 Unicode。</p>
+<p><strong>表示层采用多种标准化格式。</strong> 以电子邮件发送图像场景为例：首先使用JPEG、GIF、PNG格式存储图像；随后通过MIME（多用途互联网邮件扩展）协议将文件附加至邮件，虽然邮件客户端对用户隐藏了这一过程。MIME协议通过7位ASCII字符实现二进制文件编码。</p>
+<h3 id="layer-7-application-layer">Layer 7: Application Layer
+</h3><p><strong>应用层</strong>直接向最终用户<strong>应用程序</strong>提供网络服务。您的 Web 浏览器将使用 <strong>HTTP 协议</strong>来请求文件、提交表单或上传文件。</p>
+<p>应用程序层是<strong>顶层</strong>，当您使用不同的应用程序时，您可能已经遇到了它的许多协议。第 7 层协议的示例包括 HTTP、FTP、DNS、POP3、SMTP 和 IMAP。</p>
+<h3 id="summary">Summary
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>层数</th>
+          <th>图层名称</th>
+          <th>主要功能</th>
+          <th>示例协议和标准</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>第 7 层</td>
+          <td>Application layer 应用层</td>
+          <td>为应用程序提供服务和接口</td>
+          <td>HTTP, FTP, DNS, POP3, SMTP, IMAP HTTP、FTP、DNS、POP3、SMTP、IMAP</td>
+      </tr>
+      <tr>
+          <td>第 6 层</td>
+          <td>Presentation layer 表示层</td>
+          <td>数据编码、加密和压缩</td>
+          <td>Unicode, MIME, JPEG, PNG, MPEG Unicode 、MIME、JPEG、PNG、MPEG</td>
+      </tr>
+      <tr>
+          <td>第 5 层</td>
+          <td>Session layer 会话层</td>
+          <td>建立、维护和同步会话</td>
+          <td>NFS, RPC NFS 和 RPC</td>
+      </tr>
+      <tr>
+          <td>第 4 层</td>
+          <td>Transport layer 传输层</td>
+          <td>端到端通信和数据分段</td>
+          <td>UDP, TCP UDP、TCP</td>
+      </tr>
+      <tr>
+          <td>第 3 层</td>
+          <td>Network layer 网络层</td>
+          <td>网络之间的逻辑寻址和路由</td>
+          <td>IP, ICMP, IPSec IP、ICMP、IPSec</td>
+      </tr>
+      <tr>
+          <td>第 2 层</td>
+          <td>Data link layer 数据链路层</td>
+          <td>相邻节点之间的可靠数据传输</td>
+          <td>以太网 （802.3）、WiFi （802.11）</td>
+      </tr>
+      <tr>
+          <td>第 1 层</td>
+          <td>Physical layer 物理层</td>
+          <td>物理数据传输介质</td>
+          <td>电气、光学和无线信号</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="tcpip">TCP/IP
+</h2><p><strong>网络架构演进解析</strong>
+在完成ISO OSI参考模型的理论学习后，我们将转向实际应用的TCP/IP协议体系。该模型由传输控制协议（TCP）和互联网协议（IP）构成核心，系美国国防部（DoD）于20世纪70年代主导研发。</p>
+<p><strong>关键技术特性解析：</strong></p>
+<ol>
+<li><strong>军事级容错设计</strong>
+您可能会问：为何国防部要开发该模型？其核心优势在于实现网络的&quot;去中心化生存能力&quot;——即使部分节点因军事打击失效，网络仍可维持基本通信能力。</li>
+<li><strong>自适应路由机制</strong>
+这种韧性源于动态路由协议的设计创新，通过OSPF、BGP等协议实时感知网络拓扑变化，智能调整数据包传输路径（参见RFC 791/793）。</li>
+</ol>
+<p>在我们介绍 ISO OSI 模型时，我们从下到上，从第 1 层到第 7 层。在这个任务中，让我们从不同的角度，从上到下看事情。从上到下，我们有：</p>
+<p><strong>Application Layer 应用层</strong> ：OSI 模型应用层、表示层和会话层，即第 <strong>5、6 和 7 层</strong>，在 TCP/IP 模型中被分组到<strong>应用层</strong>中。</p>
+<p><strong>Transport Layer 传输层</strong> ：这是第 4 层。</p>
+<p><strong>Internet Layer Internet 层</strong> ：这是第 3 层。OSI 模型的网络层在 TCP/IP 模型中称为 Internet 层。</p>
+<p>**Link Layer 链接层 **：这是第 2 层。</p>
+<p>下表显示了 TCP/IP 模型层如何映射到 ISO/OSI 模型层。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>层数</th>
+          <th>ISO OSI 模型</th>
+          <th>TCP/IP 模型 （RFC 1122）</th>
+          <th>协议</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>7</td>
+          <td>Application Layer 应用层</td>
+          <td>Application Layer 应用层</td>
+          <td>HTTP, HTTPS, FTP, POP3, SMTP, IMAP, Telnet, SSH, HTTP、HTTPS、FTP、POP3、SMTP、IMAP、Telnet、SSH</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Presentation Layer 表示层</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Session Layer 会话层</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Transport Layer 传输层</td>
+          <td>Transport Layer 传输层</td>
+          <td>TCP, UDP TCP、UDP</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Network Layer 网络层</td>
+          <td>Internet Layer Internet 层</td>
+          <td>IP, ICMP, IPSec IP、ICMP、IPSec</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Data Link Layer 数据链路层</td>
+          <td>Link Layer 链接层</td>
+          <td>Ethernet 802.3, WiFi 802.11 以太网 802.3、WiFi 802.11</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Physical Layer 物理层</td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>许多现代网络教科书将 TCP/IP 模型显示为 5 层而不是 4 层。例如，在《计算机网络：自上而下的方法第 8 版》中，<a class="link" href="http://gaia.cs.umass.edu/kurose_ross/index.php"  target="_blank" rel="noopener"
+    >Kurose 和 Ross</a> 通过包括物理层来描述以下五层 Internet 协议堆栈：</p>
+<ul>
+<li>Application 应用</li>
+<li>Transport 运输</li>
+<li>Network 网络</li>
+<li>Link 链接</li>
+<li>Physical 物理的</li>
+</ul>
+<h2 id="ip和子网">IP和子网
+</h2><p>当您听到 IP 地址这个词时，您可能会想到 <code>192.168.0.1</code> 之类的地址或不太常见的地址，例如 <code>172.16.159.243</code>。在这两种情况下，你都是对的。这两个地址都是 IP 地址;IPv4（IP 版本 4）地址。</p>
+<p>网络上的每台主机都需要一个<strong>唯一标识符</strong>，以便其他主机与他通信。如果没有唯一标识符，则无法找到没有歧义的主机。使用 TCP/IP 协议套件时，我们需要为连接到网络的每个设备<strong>分配</strong>一个 IP 地址。</p>
+<p>IP 地址的一个类比是您的<strong>家庭邮政地址</strong>。您的邮政地址可让您接收来自世界各地的信件和包裹。此外，它可以毫不含糊地识别您的家;否则，您将无法在线购物！</p>
+<p>您可能已经知道，我们有 IPv4 和 IPv6（IP 版本 6）。IPv4 仍然是最常见的，每当你看到提到 IP 的文本而没有版本时，我们预计它们指的是 IPv4。</p>
+<p>那么，什么是 IP 地址？一个 IP 地址由<strong>四个八位字节</strong>组成，即 32 位。作为 8 位，八位字节允许我们表示 <strong>0 到 255</strong> 之间的十进制数。IP 地址如下图所示。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407233841627.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250407233841627"
+	
+	
+></p>
+<p><strong>IPv4地址规范解析</strong>
+简而言之，IPv4地址段中0与255作为保留地址使用：</p>
+<p><strong>网络标识地址</strong></p>
+<ul>
+<li>示例：192.168.1.0 代表C类网络的基准地址</li>
+</ul>
+<p><strong>广播通信地址</strong></p>
+<ul>
+<li>示例：192.168.1.255 作为广播地址，向该地址发送数据将覆盖网络内所有主机</li>
+</ul>
+<p><strong>地址容量计算原理：</strong></p>
+<ul>
+<li>理论最大值：基于32位地址空间（2³²）得出约43亿（4,294,967,296）个地址</li>
+<li>实际可用量：需扣除各子网的网络地址与广播地址（如示例中的.0和.255）</li>
+</ul>
+<h3 id="查找网络配置">查找网络配置
+</h3><p>可以使用命令 <code>ipconfig</code> 在 MS Windows 命令行上查找您的 IP 地址。在基于 Linux 和 UNIX 的系统上，您可以发出命令 <code>ifconfig</code> 或 <code>ip address show</code>，该命令可以键入 <code>ip a s</code>。在下面的终端窗口中，我们显示 <code>ifconfig</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">user</span><span class="nv">@TryHackMe</span><span class="p">$</span> <span class="n">ifconfig</span>
+</span></span><span class="line"><span class="cl"><span class="p">[...]</span>
+</span></span><span class="line"><span class="cl"><span class="n">wlo1</span><span class="err">:</span> <span class="n">flags</span><span class="p">=</span><span class="mf">4163</span><span class="p">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="p">&gt;</span>  <span class="n">mtu</span> <span class="mf">1500</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inet</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">66</span><span class="p">.</span><span class="py">89</span>  <span class="n">netmask</span> <span class="mf">255.255</span><span class="p">.</span><span class="py">255</span><span class="p">.</span><span class="py">0</span>  <span class="n">broadcast</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">66</span><span class="p">.</span><span class="py">255</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inet6</span> <span class="n">fe80</span><span class="p">::</span><span class="mf">73e1</span><span class="err">:</span><span class="n">ca5e</span><span class="err">:</span><span class="n">3f93</span><span class="err">:</span><span class="n">b1b3</span>  <span class="n">prefixlen</span> <span class="mf">64</span>  <span class="n">scopeid</span> <span class="n">0x20</span><span class="p">&lt;</span><span class="n">link</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ether</span> <span class="n">cc</span><span class="err">:</span><span class="n">5e</span><span class="err">:</span><span class="n">f8</span><span class="err">:</span><span class="mf">02</span><span class="err">:</span><span class="mf">21</span><span class="err">:</span><span class="n">a7</span>  <span class="n">txqueuelen</span> <span class="mf">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RX</span> <span class="n">packets</span> <span class="mf">19684680</span>  <span class="n">bytes</span> <span class="mf">18865072842</span> <span class="p">(</span><span class="mf">17.5</span> <span class="n">GiB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RX</span> <span class="n">errors</span> <span class="mf">0</span>  <span class="n">dropped</span> <span class="mf">364</span>  <span class="n">overruns</span> <span class="mf">0</span>  <span class="n">frame</span> <span class="mf">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TX</span> <span class="n">packets</span> <span class="mf">14439678</span>  <span class="n">bytes</span> <span class="mf">8773200951</span> <span class="p">(</span><span class="mf">8.1</span> <span class="n">GiB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TX</span> <span class="n">errors</span> <span class="mf">0</span>  <span class="n">dropped</span> <span class="mf">0</span> <span class="n">overruns</span> <span class="mf">0</span>  <span class="n">carrier</span> <span class="mf">0</span>  <span class="n">collisions</span> <span class="mf">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的 terminal 输出指示以下内容：</p>
+<ul>
+<li>主机（笔记本电脑）的 IP 地址是 <code>192.168.66.89</code></li>
+<li>子网掩码为 <code>255.255.255.0</code></li>
+<li>广播地址为 <code>192.168.66.255</code></li>
+</ul>
+<p>让我们使用 <code>ip a s</code> 来比较网卡 IP 地址的显示方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">user</span><span class="nv">@TryHackMe</span><span class="p">$</span> <span class="n">ip</span> <span class="n">a</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">[...]</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4</span><span class="err">:</span> <span class="n">wlo1</span><span class="err">:</span> <span class="p">&lt;</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">MULTICAST</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="p">&gt;</span> <span class="n">mtu</span> <span class="mf">1500</span> <span class="n">qdisc</span> <span class="n">noqueue</span> <span class="n">state</span> <span class="n">UP</span> <span class="nb">group </span><span class="k">default</span> <span class="n">qlen</span> <span class="mf">1000</span>
+</span></span><span class="line"><span class="cl">    <span class="n">link</span><span class="p">/</span><span class="n">ether</span> <span class="n">cc</span><span class="err">:</span><span class="n">5e</span><span class="err">:</span><span class="n">f8</span><span class="err">:</span><span class="mf">02</span><span class="err">:</span><span class="mf">21</span><span class="err">:</span><span class="n">a7</span> <span class="n">brd</span> <span class="n">ff</span><span class="err">:</span><span class="n">ff</span><span class="err">:</span><span class="n">ff</span><span class="err">:</span><span class="n">ff</span><span class="err">:</span><span class="n">ff</span><span class="err">:</span><span class="n">ff</span>
+</span></span><span class="line"><span class="cl">    <span class="n">altname</span> <span class="n">wlp3s0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inet</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">66</span><span class="p">.</span><span class="mf">89</span><span class="p">/</span><span class="mf">24</span> <span class="n">brd</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">66</span><span class="p">.</span><span class="py">255</span> <span class="n">scope</span> <span class="n">global</span> <span class="n">dynamic</span> <span class="n">noprefixroute</span> <span class="n">wlo1</span>
+</span></span><span class="line"><span class="cl">       <span class="n">valid_lft</span> <span class="n">36795sec</span> <span class="n">preferred_lft</span> <span class="n">36795sec</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inet6</span> <span class="n">fe80</span><span class="p">::</span><span class="mf">73e1</span><span class="err">:</span><span class="n">ca5e</span><span class="err">:</span><span class="n">3f93</span><span class="err">:</span><span class="n">b1b3</span><span class="p">/</span><span class="mf">64</span> <span class="n">scope</span> <span class="n">link</span> <span class="n">noprefixroute</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">valid_lft</span> <span class="n">forever</span> <span class="n">preferred_lft</span> <span class="n">forever</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的 terminal 输出指示以下内容：</p>
+<ul>
+<li>主机（笔记本电脑）的 IP 地址是 <code>192.168.66.89/24</code></li>
+<li>广播地址为 <code>192.168.66.255</code></li>
+</ul>
+<p>如果您想知道，子网掩码 <code>255.255.255.0</code> 也可以写为 <code>/24</code>。<code>/24</code> 表示 IP 地址中最左边的 24 位在整个网络（即子网）中不会更改。换句话说，最左边的三个八位字节在整个子网中是相同的;因此，我们可以期望找到从 <code>192.168.66.1</code> 到 <code>192.168.66.254</code> 的地址。与前面提到的类似，<code>192.168.66.0</code> 和 <code>192.168.66.255</code> 分别是网络地址和广播地址。</p>
+<h3 id="私有地址">私有地址
+</h3><p>当我们在解释 IP 地址时，值得一提的是，对于大多数实际目的，有两种类型的 IP 地址：</p>
+<ul>
+<li>公网 IP 地址</li>
+<li>私有 IP 地址</li>
+</ul>
+<p>Request for Comments (RFC) 1918 定义了以下三个私有 IP 地址范围：</p>
+<ul>
+<li><code>10.0.0.0</code> - <code>10.255.255.255</code> (<code>10/8</code>)</li>
+<li><code>172.16.0.0</code> - <code>172.31.255.255</code> (<code>172.16/12</code>)</li>
+<li><code>192.168.0.0</code> - <code>192.168.255.255</code> (<code>192.168/16</code>)</li>
+</ul>
+<p>我们之前提供了一个类比，指出公共 IP 地址就像您的<strong>家庭邮政地址</strong>。私有 IP 地址是不同的;最初的想法是它无法到达或从外部世界到达。它就像一个<strong>孤立的城市或大院</strong>，所有的房屋和公寓都被系统地编号，可以很容易地相互交换邮件，但不能与外界交换。要使私有 IP 地址访问 Internet，路由器必须具有公有 IP 地址，并且必须支持<strong>网络地址转换 （NAT）</strong>。在此阶段，我们不必担心了解 NAT 的工作原理，因为我们将在本模块的后面重新讨论它。</p>
+<p>在继续之前，我建议记住<strong>私有 IP 地址范围</strong>。否则，您可能会看到 <code>10.1.33.7</code> 或 <code>172.31.33.7</code> 等 IP 地址，并尝试从公有 IP 地址访问它。</p>
+<h3 id="路由">路由
+</h3><p>路由器就像您当地的<strong>邮局</strong>;你把邮件包裹交给他们，他们会知道如何投递。如果我们深入挖掘，您可能会将某些内容邮寄到另一个城市或国家的地址。邮局将检查地址并决定下一步寄往何处。例如，如果要离开该国，我们希望一个<strong>中央办公室</strong>处理所有国外货物。</p>
+<p>用技术术语来说，路由器将数据包转发到适当的网络。通常，数据包在到达最终目的地之前会<strong>经过多个路由器</strong>。路由器在第 3 层运行，检查 IP 地址并将数据包转发到<strong>最佳网络</strong>（路由器），以便数据包<strong>更接近</strong>其目的地。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250407235608659.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250407235608659"
+	
+	
+></p>
+<h2 id="udp和tcp">UDP和TCP
+</h2><p>IP 协议允许我们访问网络上的目标主机;主机由其 IP 地址标识。我们需要使联网主机上的进程能够相互通信的协议。有两种传输协议可以实现此目的：UDP 和 TCP。</p>
+<h3 id="udp-协议">UDP 协议
+</h3><p>UDP（用户数据报协议）允许我们访问此目标主机上的特定进程。UDP 是一种<strong>简单的无连接协议</strong>，在<strong>传输层</strong>（即第 4 层）运行。无连接意味着它不需要建立连接。UDP 甚至没有提供一种机制来知道数据包已投递。</p>
+<p>IP 地址标识主机;我们需要一种机制来确定发送和接收过程。这可以通过使用端口号来实现。端口号使用<strong>两个八位字节</strong>;因此，它的范围介于 1 和 65535 之间;端口 0 被保留。（数字 65535 由表达式 216 − 1 计算得出。）</p>
+<p>一个类似于 UDP 的真实示例是<strong>标准邮件服务</strong>，没有送达确认。换句话说，不能保证已成功接收 UDP 数据包，类似于使用标准邮件发送包裹而不确认送达的情况。对于标准邮件，这意味着比带确认的邮件递送选项更便宜。对于 UDP，这意味着比提供 “确认” 的传输协议<strong>更快</strong>。</p>
+<h3 id="tcp-协议">TCP 协议
+</h3><p>TCP（传输控制协议）是一种面向连接的传输协议。它使用各种机制来确保网络主机上不同进程发送的可靠数据交付。与 UDP 一样，它是一个<strong>第 4 层</strong>协议。由于面向连接，它需要先<strong>建立 TCP 连接</strong>，然后才能发送任何数据。</p>
+<p>在 TCP 中，每个数据<strong>八位字节</strong>都有一个序列号;这使得接收方可以轻松识别丢失或重复的数据包。另一方面，接收方使用指定最后接收的八位字节的确认号来确认数据的接收。</p>
+<p>TCP 连接是使用所谓的三次握手建立的。使用了两个标志： <strong>SYN （同步）</strong> 和 <strong>ACK （确认）</strong>。数据包的发送方式如下：</p>
+<p>SYN 数据包：客户端通过向服务器发送 SYN 数据包来发起连接。此数据包包含<strong>客户端</strong>随机选择的<strong>初始序列号</strong>。</p>
+<p>SYN-ACK 数据包：服务器使用 SYN-ACK 数据包响应 SYN 数据包，该数据包添加<strong>服务器</strong>随机选择的<strong>初始序列号</strong>。</p>
+<p>ACK 数据包： 当客户端发送 ACK 数据包以确认收到 SYN-ACK 数据包时，三次握手完成。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408000451140.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408000451140"
+	
+	
+></p>
+<p>与 UDP 类似，TCP 使用端口号标识启动或等待（侦听）连接的过程。如前所述，有效端口号的范围介于 1 和 65535 之间，因为它使用两个八位字节，并且端口 0 是保留的。</p>
+<h2 id="封装">封装
+</h2><p>在结束之前，解释另一个关键概念至关重要： <strong>封装</strong> 。在这种情况下，封装是指每一层向接收到的数据单元添加<strong>标头</strong>（有时是<strong>尾部</strong>）并将“封装”单元发送到下一层的过程。</p>
+<p>封装是一个基本概念，因为它允许每个层专注于<strong>其预期功能</strong>。在下图中，我们有以下<strong>四个</strong>步骤：</p>
+<ol>
+<li><strong>应用程序数据</strong> ：当用户输入他们想要发送到应用程序中的数据时，这一切都开始了。例如，您编写电子邮件或即时消息并点击发送按钮。应用程序格式化此数据，并根据使用的应用程序协议开始发送数据，使用其下面的层（传输层）。</li>
+<li><strong>传输协议分段或数据报</strong> ：传输层（如 TCP 或 UDP）添加适当的标头信息并创建 TCP <strong>分段</strong> （或 UDP <strong>数据报</strong> ）。此段将发送到其下面的层，即网络层。</li>
+<li><strong>网络数据包</strong> ：网络层（即 Internet 层）将 IP 标头添加到接收到的 TCP 分段或 UDP 数据报中。然后，此 IP <strong>数据包</strong>被发送到其下面的层，即数据链路层。</li>
+<li><strong>数据链路帧</strong> ：以太网或 WiFi 接收 IP 数据包并添加适当的<strong>标头</strong>和<strong>尾部</strong>，从而创建一个<strong>帧</strong> 。</li>
+</ol>
+<p>我们从应用程序数据开始。在传输层，我们添加 TCP 或 UDP 标头以创建 <strong>TCP 分段</strong>或 <strong>UDP 数据报</strong> 。同样，在网络层，我们添加适当的 IP 报头，以获取可以通过 Internet 路由的 <strong>IP 数据包</strong> 。最后，我们添加适当的标头和尾部，以在链路层获得 WiFi 或以太网<strong>帧</strong>。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408000930650.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408000930650"
+	
+	
+></p>
+<p>该过程必须在接收端反转，直到提取应用程序数据。</p>
+<h3 id="数据包的生命周期">数据包的生命周期
+</h3><p>根据我们目前的研究，我们可以解释数据包生命周期的<em>简化版本</em> 。让我们考虑一下你在 TryHackMe 上搜索房间的场景。</p>
+<ol>
+<li>在 TryHackMe 搜索页面上，输入搜索查询并按 Enter。</li>
+<li>使用 HTTPS 的 Web 浏览器准备 HTTP 请求并将其推送到其下面的层，即传输层。</li>
+<li>TCP 层需要通过浏览器和 TryHackMe Web 服务器之间的三次握手建立连接。建立 TCP 连接后，它可以发送包含搜索查询的 HTTP 请求。创建的每个 TCP 分段都会发送到其下面的层，即 Internet 层。</li>
+<li>IP 层添加<strong>源 IP 地址</strong>（即您的计算机）和<strong>目标 IP 地址</strong>（即 TryHackMe Web 服务器的 IP 地址）。要使此数据包到达路由器，您的笔记本电脑会将其传送到其下方的层，即链路层。</li>
+<li>根据协议，链路层会添加适当的链路层报头和尾部，并将数据包发送到路由器。</li>
+<li>路由器删除链路层报头和尾部，检查 IP 目标等字段，并将数据包路由到正确的链路。每个路由器都会重复此过程，直到到达目标服务器的路由器。</li>
+</ol>
+<p>然后，当数据包到达目标网络的路由器时，这些步骤将<strong>相反</strong>。在介绍其他协议时，我们将重新审视此练习并创建更深入的版本。</p>
+<h2 id="远程登陆">远程登陆
+</h2><p>TELNET （Teletype Network） 协议是一种用于远程终端连接的网络协议。简而言之，<code>telnet</code> 是一种 TELNET 客户端，允许您连接到远程系统并与之通信，并发出文本命令。虽然最初它用于<strong>远程管理</strong>，但我们可以使用 <code>telnet</code> 连接到任何<strong>监听 TCP 端口号</strong>的服务器。</p>
+<p>在目标虚拟机上，正在运行不同的服务。我们将试验其中的三个：</p>
+<ul>
+<li>Echo server：此服务器会回显您发送的所有内容。默认情况下，它侦听端口 7。</li>
+<li>aytime server：此服务器默认侦听端口 13 并回复当前日期和时间。</li>
+<li>Web （HTTP） 服务器：默认情况下，此服务器侦听 TCP 端口 80 并提供网页。</li>
+</ul>
+<p>在继续之前，我们应该提到 echo 和 daytime 服务器被视为安全风险，不应运行;但是，我们显式启动它们是为了演示使用 <code>Telnet</code> 与服务器的通信。在下面的终端中，我们连接到位于 echo 服务器的 TCP 端口号 7 的目标 VM。要关闭连接，请按 <code>CTRL</code> + <code>]</code> 键同时。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.118.233 7
+</span></span><span class="line"><span class="cl">telnet 10.10.118.233 7
+</span></span><span class="line"><span class="cl">Trying 10.10.118.233...
+</span></span><span class="line"><span class="cl">Connected to 10.10.118.233.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">Hi
+</span></span><span class="line"><span class="cl">Hi
+</span></span><span class="line"><span class="cl">How are you?
+</span></span><span class="line"><span class="cl">How are you?
+</span></span><span class="line"><span class="cl">Bye
+</span></span><span class="line"><span class="cl">Bye
+</span></span><span class="line"><span class="cl"><span class="se">^]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">telnet<span class="p">&gt;</span> quit
+</span></span><span class="line"><span class="cl">Connection closed.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在下面的终端中，我们使用 <code>telnet</code> 连接到在端口 13 监听的日间服务器。我们注意到，一旦返回当前日期和时间，连接就会关闭。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.118.233 13
+</span></span><span class="line"><span class="cl">Trying 10.10.118.233...
+</span></span><span class="line"><span class="cl">Connected to 10.10.118.233.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">Thu Jun 20 12:36:32 PM UTC 2024
+</span></span><span class="line"><span class="cl">Connection closed by foreign host.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后，让我们使用 <code>telnet</code> 请求一个网页。连接 80 端口后，需要发出命令 <code>GET / HTTP/1.1</code> 并确定任何内容的去向主机，例如 <code>Host： telnet.thm</code>。接下来，您需要按两次 <code>Enter</code> 键，使最后一个输入行为空行。下面的输出显示了交换。（该页面已被编辑。)</p>
+<p><strong>注意</strong> ：发送信息后，您可能必须按 <code>Enter</code>，以免您没有收到回复。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.118.233 80
+</span></span><span class="line"><span class="cl">Trying 10.10.118.233...
+</span></span><span class="line"><span class="cl">Connected to 10.10.118.233.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">GET / HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: telnet.thm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">Content-Type: text/html
+</span></span><span class="line"><span class="cl">[...]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Connection closed by foreign host.
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络基础知识</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络安全协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络核心协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">常见工具及使用技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">子网与子网掩码</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

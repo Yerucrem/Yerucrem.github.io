@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="常见的网络基础知识">
+<title>网络基础知识</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="网络基础知识">
+<meta property='og:description' content="常见的网络基础知识">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-08T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="网络基础知识">
+<meta name="twitter:description" content="常见的网络基础知识">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#dhcp提供我的网络设置">DHCP：提供我的网络设置</a></li>
+    <li><a href="#arp第三层ip地址至第二层mac地址转换">ARP：第三层IP地址至第二层MAC地址转换</a></li>
+    <li><a href="#icmp网络故障排除">ICMP：网络故障排除</a>
+      <ol>
+        <li><a href="#ping">Ping</a></li>
+        <li><a href="#traceroute">Traceroute</a></li>
+      </ol>
+    </li>
+    <li><a href="#routing-路由">Routing 路由</a></li>
+    <li><a href="#nat-网络地址转换">NAT 网络地址转换</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">网络基础知识</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            常见的网络基础知识
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-08</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="dhcp提供我的网络设置">DHCP：提供我的网络设置
+</h2><p>你去了你最喜欢的咖啡店，拿了你最喜欢的热饮，打开了你的笔记本电脑。您的笔记本电脑连接到商店的 WiFi 并自动配置网络，因此您现在可以在新的 TryHackMe 房间工作。您没有输入单个 IP 地址，但您的设备已全部设置完毕。让我们看看这是怎么发生的。</p>
+<p>每当我们想访问网络时，至少需要配置以下内容：</p>
+<ul>
+<li>IP 地址和子网掩码</li>
+<li>路由器（或网关）</li>
+<li>DNS 服务器</li>
+</ul>
+<p>每当我们将设备连接到新网络时，都必须根据新网络设置上述配置。手动配置这些设置是一个不错的选择，尤其是对于服务器。服务器不需要切换网络;您无需携带域控制器并将其连接到咖啡店 WiFi。此外，其他设备需要连接到服务器，并希望在特定的 IP 地址找到它们。</p>
+<p>拥有一种自动化的方式来配置连接的设备有很多好处。首先，它将使我们<strong>免于手动配置网络</strong>;这一点非常重要，尤其是对于移动设备。其次，它使我们<strong>免于地址冲突</strong>，即当两台设备配置相同的 IP 地址时。IP 地址冲突将阻止相关主机使用网络资源;这适用于本地资源和 Internet。解决方案在于使用动态主机配置协议 （DHCP）。DHCP 是<strong>依赖于 UDP</strong> 的<strong>应用程序级</strong>协议;服务器监听 UDP 端口 67，客户端从 UDP 端口 68 发送。默认情况下，您的智能手机和笔记本电脑配置为使用 DHCP。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408004116942.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408004116942"
+	
+	
+></p>
+<p>DHCP 遵循四个步骤：发现、提供、请求和确认 （DORA）：</p>
+<p><strong>DHCP Discover</strong> ：客户端广播 DHCPDISCOVER 消息，查找本地 DHCP 服务器（如果存在）。</p>
+<p><strong>DHCP Offer</strong>：服务器使用 DHCPOFFER 消息进行响应，其中包含可供客户端接受的 IP 地址。</p>
+<p><strong>DHCP Request</strong>：客户端使用 DHCPREQUEST 消息进行响应，以指示它已接受提供的 IP。</p>
+<p><strong>DHCP Acknowledge</strong>：服务器使用 DHCPACK 消息进行响应，以确认提供的 IP 地址现在已分配给此客户端。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408004231758.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408004231758"
+	
+	
+></p>
+<p>以下数据包捕获显示了上述四个步骤。在此示例中，客户端获取地址 <code>192.168.66.133</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ tshark -r DHCP-G5000.pcap -n
+</span></span><span class="line"><span class="cl">    1   0.000000      0.0.0.0 → 255.255.255.255 DHCP 342 DHCP Discover - Transaction ID 0xfb92d53f
+</span></span><span class="line"><span class="cl">    2   0.013904 192.168.66.1 → 192.168.66.133 DHCP 376 DHCP Offer    - Transaction ID 0xfb92d53f
+</span></span><span class="line"><span class="cl">    3   4.115318      0.0.0.0 → 255.255.255.255 DHCP 342 DHCP Request  - Transaction ID 0xfb92d53f
+</span></span><span class="line"><span class="cl">    4   4.228117 192.168.66.1 → 192.168.66.133 DHCP 376 DHCP ACK      - Transaction ID 0xfb92d53f
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 DHCP 数据包交换中，我们可以注意到以下内容：</p>
+<ul>
+<li>客户端在没有任何 IP 网络配置的情况下启动。它只有一个 <strong>MAC</strong> 地址。在第一个和第三个数据包 DHCP Discover 和 DHCP Request 中，搜索 DHCP 服务器的客户端<strong>仍然没有 IP 网络配置</strong>，并且尚未使用 DHCP 服务器提供的 IP 地址。因此，它将数据包从 IP 地址 <code>0.0.0.0</code> 发送到广播 IP 地址 <code>255.255.255.255。</code></li>
+<li>至于链路层，在第一个和第三个数据包中，客户端发送到广播 MAC 地址 <code>ff：ff：ff：ff：ff：ff（</code> 在上面的输出中未显示）。DHCP 服务器在 DHCP 产品/服务中提供可用的 IP 地址以及网络配置。它使用客户端的目标 MAC 地址。（在此示例系统中，它使用了建议的 IP 地址。）</li>
+</ul>
+<p>在 DHCP 进程结束时，我们的设备将收到访问网络甚至 Internet 所需的所有配置。特别是，我们希望 DHCP 服务器为我们提供了以下内容：</p>
+<ul>
+<li>用于访问网络资源的租用 IP 地址</li>
+<li>将数据包路由到本地网络外部的网关</li>
+<li>用于解析域名的 DNS 服务器（稍后会详细介绍）</li>
+</ul>
+<h2 id="arp第三层ip地址至第二层mac地址转换">ARP：第三层IP地址至第二层MAC地址转换
+</h2><p>我们在<a class="link" href="https://tryhackme.com/r/room/networkingconcepts"  target="_blank" rel="noopener"
+    >网络概念</a>室中指出，当两台主机通过网络进行通信时，IP 数据包在通过第 2 层传输时被封装在数据链路帧中。请记住，我们使用的两个常见数据链路层是以太网 （IEEE 802.3） 和 WiFi （IEEE 802.11）。每当一台主机需要与同一以太网或 WiFi 上的另一台主机通信时，它必须在数据链路层帧内发送 IP 数据包。尽管它知道目标主机的 IP 地址，但它需要查找目标的 MAC 地址，以便创建正确的数据链路标头。</p>
+<p>如您所知，MAC 地址是一个 48 位数字，通常以十六进制表示法表示;例如，<code>7C：DF：A1：D3：8C：5C</code> 和 <code>44：DF：65：D8：FE：6C</code> 是我网络上的两个 MAC 地址。</p>
+<p>但是，同一以太网上的设备不需要一直知道彼此的 MAC 地址;他们只需要在通信时知道彼此的 MAC 地址。一切都围绕着 IP 地址。请考虑以下场景：您将设备连接到网络，如果该网络具有 DHCP 服务器，则设备会自动配置为使用特定网关（路由器）和 DNS 服务器。因此，您的设备知道 DNS 服务器的 IP 地址以解析任何域名;此外，当需要通过 Internet 发送数据包时，它知道路由器的 IP 地址。在所有这些场景中，不会显示 MAC 地址。但是，同一以太网上的两台设备在不知道彼此的 MAC 地址的情况下无法通信。</p>
+<p>提醒一下，在下面的屏幕截图中，我们在以太网帧中看到一个 IP 数据包。以太网帧标头包含：</p>
+<ul>
+<li>目标 MAC 地址</li>
+<li>源 MAC 地址</li>
+<li>类型（在本例中为 IPv4）</li>
+</ul>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408005456220.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408005456220"
+	
+	
+></p>
+<p>地址解析协议 （ARP） 可以在以太网上找到另一台设备的 MAC 地址。在下面的示例中，IP 地址为 <code>192.168.66.89</code> 的主机希望与 IP 地址为 <code>192.168.66.1</code> 的另一个系统通信。它发送一个 ARP 请求，要求 IP 地址为 <code>192.168.66.1</code> 的主机进行响应。ARP 请求从请求者的 MAC 地址发送到广播 MAC 地址 <code>ff：ff：ff：ff：ff：ff：ff，</code> 如第一个数据包所示。ARP 回复很快到达，IP 地址为 <code>192.168.66.1</code> 的主机使用其 MAC 地址进行响应。此时，两台主机可以交换数据链路层帧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ tshark -r arp.pcapng -Nn
+</span></span><span class="line"><span class="cl">    1 0.000000000 cc:5e:f8:02:21:a7 → ff:ff:ff:ff:ff:ff ARP 42 Who has 192.168.66.1? Tell 192.168.66.89
+</span></span><span class="line"><span class="cl">    2 0.003566632 44:df:65:d8:fe:6c → cc:5e:f8:02:21:a7 ARP 42 192.168.66.1 is at 44:df:65:d8:fe:6c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果我们使用 <code>tcpdump</code>，数据包将以不同的方式显示。它使用术语 ARP <strong>请求</strong> 和 ARP <strong>回复</strong> 。供您参考，输出显示在下面的终端中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ tcpdump -r arp.pcapng -n -v
+</span></span><span class="line"><span class="cl">17:23:44.506615 ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 192.168.66.1 tell 192.168.66.89, length 28
+</span></span><span class="line"><span class="cl">17:23:44.510182 ARP, Ethernet (len 6), IPv4 (len 4), Reply 192.168.66.1 is-at 44:df:65:d8:fe:6c, length 28
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ARP 请求或 ARP 回复未封装在 UDP 甚至 IP 数据包中;它直接封装在以太网帧中。以下 ARP 回复显示了这一点。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010149002.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408010149002"
+	
+	
+></p>
+<p>ARP 被视为第 2 层，因为它处理 MAC 地址。其他人会争辩说它是第 3 层的一部分，因为它支持 IP 作。必须了解的是，ARP 允许从第 3 层寻址转换为第 2 层寻址。</p>
+<h2 id="icmp网络故障排除">ICMP：网络故障排除
+</h2><p>Internet Control Message Protocol (ICMP)主要用于网络诊断和错误报告。两个常用命令依赖于 ICMP，它们在网络故障排除和网络安全方面非常有用。这些命令是：</p>
+<ul>
+<li><code>ping</code>：此命令使用 ICMP 测试与目标系统的连接并测量往返时间 （RTT）。换句话说，它可以用来了解目标是活着的，并且它的回复可以到达我们的系统。</li>
+<li><code>traceroute</code>：此命令在 Linux 和类 UNIX 系统上称为 <code>traceroute</code>，在 MS Windows 系统上称为 <code>tracert</code>。它使用 ICMP 来发现从主机到目标的路由。</li>
+</ul>
+<h3 id="ping">Ping
+</h3><p><code>ping</code> 命令发送 ICMP Echo 请求（ICMP 类型 <code>8</code>）。下面的屏幕截图显示了 IP 数据包中的 ICMP 消息。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010535410.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408010535410"
+	
+	
+></p>
+<p>接收端的计算机以 ICMP Echo Reply （ICMP Type <code>0</code>） 进行响应。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408010611795.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408010611795"
+	
+	
+></p>
+<p>许多事情可能会阻止我们得到回复。除了目标系统脱机或关闭的可能性之外，路径上的<strong>防火墙</strong>还可能会阻止 <code>ping</code> 工作所需的数据包。在下面的示例中，我们使用 <code>-c 4</code> 告诉 <code>ping</code> 命令在发送 4 个数据包后停止。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ ping 192.168.11.1 -c 4
+</span></span><span class="line"><span class="cl">PING 192.168.11.1 (192.168.11.1) 56(84) bytes of data.
+</span></span><span class="line"><span class="cl">64 bytes from 192.168.11.1: icmp_seq=1 ttl=63 time=11.2 ms
+</span></span><span class="line"><span class="cl">64 bytes from 192.168.11.1: icmp_seq=2 ttl=63 time=3.81 ms
+</span></span><span class="line"><span class="cl">64 bytes from 192.168.11.1: icmp_seq=3 ttl=63 time=3.99 ms
+</span></span><span class="line"><span class="cl">64 bytes from 192.168.11.1: icmp_seq=4 ttl=63 time=23.4 ms
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--- 192.168.11.1 ping statistics ---
+</span></span><span class="line"><span class="cl">4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev = 3.805/10.596/23.366/7.956 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出显示没有数据包丢失;此外，它还计算往返时间 （RTT） 的最小值、平均值、最大值和标准差 （mDev）。</p>
+<h3 id="traceroute">Traceroute
+</h3><p>我们如何使我们的系统和目标系统之间的每个路由器都显露出来呢？</p>
+<p>Internet 协议有一个称为Time-to-Live （TTL） 的字段，该字段指示数据包在被丢弃之前可以传输的最大路由器数。路由器在发送数据包之前将数据包的 TTL 递减 1。当 TTL 达到零时，路由器会丢弃数据包并发送 ICMP 超时消息（ICMP 类型 <code>11</code>）。（在这种情况下，“时间” 是以路由器的数量来衡量的，而不是秒数。</p>
+<p>以下终端输出显示了运行 <code>traceroute</code> 命令探测本机与 <code>example.com</code> 之间路径上路由器的结果。部分路由器未响应（即丢弃数据包且不返回任何ICMP消息）；属于我们ISP的路由器可能会响应，并暴露其私有IP地址。另一些路由器则会返回公有IP地址，从而允许我们通过域名查询推断其地理位置。此外，ICMP超时消息（Time Exceeded）可能被拦截，导致无法到达本机。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ traceroute example.com
+</span></span><span class="line"><span class="cl">traceroute to example.com (93.184.215.14), 30 hops max, 60 byte packets
+</span></span><span class="line"><span class="cl"> 1  _gateway (192.168.66.1)  4.414 ms  4.342 ms  4.320 ms
+</span></span><span class="line"><span class="cl"> 2  192.168.11.1 (192.168.11.1)  5.849 ms  5.830 ms  5.811 ms
+</span></span><span class="line"><span class="cl"> 3  100.104.0.1 (100.104.0.1)  11.130 ms  11.111 ms  11.093 ms
+</span></span><span class="line"><span class="cl"> 4  10.149.1.45 (10.149.1.45)  6.156 ms  6.138 ms  6.120 ms
+</span></span><span class="line"><span class="cl"> 5  * * *
+</span></span><span class="line"><span class="cl"> 6  * * *
+</span></span><span class="line"><span class="cl"> 7  * * *
+</span></span><span class="line"><span class="cl"> 8  172.16.48.1 (172.16.48.1)  5.667 ms  8.165 ms  6.861 ms
+</span></span><span class="line"><span class="cl"> 9  ae81.edge4.Marseille1.Level3.net (212.73.201.45)  50.811 ms  52.857 ms 213.242.116.233 (213.242.116.233)  52.798 ms
+</span></span><span class="line"><span class="cl">10  NTT-level3-Marseille1.Level3.net (4.68.68.150)  93.351 ms  79.897 ms  79.804 ms
+</span></span><span class="line"><span class="cl">11  ae-9.r20.parsfr04.fr.bb.gin.ntt.net (129.250.3.38)  62.935 ms  62.908 ms  64.313 ms
+</span></span><span class="line"><span class="cl">12  ae-14.r21.nwrknj03.us.bb.gin.ntt.net (129.250.4.194)  141.816 ms  141.782 ms  141.757 ms
+</span></span><span class="line"><span class="cl">13  ae-1.a02.nycmny17.us.bb.gin.ntt.net (129.250.3.17)  145.786 ms ae-1.a03.nycmny17.us.bb.gin.ntt.net (129.250.3.128)  141.701 ms  147.586 ms
+</span></span><span class="line"><span class="cl">14  ce-0-3-0.a02.nycmny17.us.ce.gin.ntt.net (128.241.1.14)  148.692 ms ce-3-3-0.a03.nycmny17.us.ce.gin.ntt.net (128.241.1.90)  141.615 ms ce-0-3-0.a02.nycmny17.us.ce.gin.ntt.net (128.241.1.14)  148.168 ms
+</span></span><span class="line"><span class="cl">15  ae-66.core1.nyd.edgecastcdn.net (152.195.69.133)  141.100 ms ae-65.core1.nyd.edgecastcdn.net (152.195.68.133)  140.360 ms ae-66.core1.nyd.edgecastcdn.net (152.195.69.133)  140.638 ms
+</span></span><span class="line"><span class="cl">16  93.184.215.14 (93.184.215.14)  140.574 ms  140.543 ms  140.514 ms
+</span></span><span class="line"><span class="cl">17  93.184.215.14 (93.184.215.14)  140.488 ms  139.397 ms  141.854 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当我们重新运行命令时，遍历的路由可能会发生变化。</p>
+<h2 id="routing-路由">Routing 路由
+</h2><p>考虑下面显示的网络图。它只有三个网络;但是，Internet 如何确定如何将数据包从网络 1 传送到网络 2 或网络 3？虽然这是一个过于简化的图表，但我们需要一些算法来弄清楚如何将网络 1 连接到网络 2 和网络 3，反之亦然。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011337796.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408011337796"
+	
+	
+></p>
+<p>让我们考虑一个更详细的图表。互联网将是数百万台路由器和数十亿台设备。下面的网络是 Internet 的一小部分。移动用户可以访问 Web 服务器;但是，要实现此目的，路径上的每个路由器都需要通过适当的链路发送数据包。显然，连接移动用户和 Web 服务器的路径不止一条，即路由。我们需要一个路由算法，让路由器弄清楚要使用哪个链路。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011415339.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408011415339"
+	
+	
+></p>
+<p>路由算法超出了这个房间的范围;但是，我们将简要介绍一些路由协议，以便您熟悉它们的名称：</p>
+<ul>
+<li>**OSPF （Open Shortest Path First）：**OSPF 是一种路由协议，允许路由器共享有关网络拓扑的信息并计算最有效的数据传输路径。它通过让路由器交换有关其连接的链接和网络状态的更新来实现这一点。这样，每个路由器都有一个完整的网络地图，并且可以确定到达任何目的地的最佳路线。</li>
+<li>**EIGRP（增强型内部网关路由协议）：**EIGRP 是 Cisco 专有的路由协议，它结合了不同路由算法的各个方面。它允许路由器共享有关它们可以访问的网络以及与这些路由相关的成本（如带宽或延迟）的信息。然后，路由器使用此信息来选择最有效的数据传输路径。</li>
+<li>**BGP（边界网关协议）：**BGP 是 Internet 上使用的主要路由协议。它允许不同的网络（如 Internet 服务提供商的网络）交换路由信息并建立数据在这些网络之间传输的路径。BGP 有助于确保数据可以通过 Internet 高效路由，即使在遍历多个网络时也是如此。</li>
+<li>**RIP（路由信息协议）：**RIP 是一种简单的路由协议，通常用于小型网络。运行 RIP 的路由器共享有关它们可以访问的网络以及到达该网络所需的跃点（路由器）数的信息。因此，每个路由器都会根据此信息构建一个路由表，选择跳数最少的路由来到达每个目的地。</li>
+</ul>
+<h2 id="nat-网络地址转换">NAT 网络地址转换
+</h2><p>正如 <a class="link" href="https://tryhackme.com/r/room/networkingconcepts"  target="_blank" rel="noopener"
+    >Networking Concepts</a> 会议室中所讨论的，我们计算出 IPv4 最多可以支持 40 亿台设备。随着连接到 Internet 的设备数量的增加，从计算机和智能手机到安全摄像头和洗衣机，很明显 IPv4 地址空间将很快耗尽。解决耗尽问题的一种解决方案是网络地址转换 （NAT）。</p>
+<p>NAT（网络地址转换）的核心思想是<strong>通过一个公网IP地址为多个私有IP地址提供互联网访问能力</strong>。例如，若某公司有20台计算机需要联网，无需为每台设备分配一个公网IP地址（共20个），只需使用一个公网IP地址即可让所有设备接入互联网。（<em>技术细节补充</em>：严格来说，IP地址数量通常以2的幂次方为单位分配。因此，更准确的表述是——使用NAT时，您只需预留2个公网IP地址，而非原本所需的32个，从而节省了30个公网IP地址。）</p>
+<p>与路由不同，路由是将数据包路由到目标主机的自然方式，支持 NAT 的路由器必须找到一种方法来跟踪正在进行的连接。因此，支持 NAT 的路由器维护一个表，用于在内部和外部网络之间转换网络地址。通常，内部网络将使用私有 IP 地址范围，而外部网络将使用公共 IP 地址。</p>
+<p>在下图中，多个设备通过支持 NAT 的路由器访问 Internet。路由器维护一个表，该表将内部 IP 地址和端口号与其外部 IP 地址和端口号进行映射。例如，笔记本电脑可能会与某些 Web 服务器建立连接。从笔记本电脑的角度来看，连接是从其 IP 地址 <code>192.168.0.129</code> 从 TCP 源端口号 <code>15401</code> 发起的;但是，Web 服务器将看到与 <code>212.3.4.5</code> 和 TCP 端口号 <code>19273</code> 建立的连接相同的连接，如转换表中所示。路由器无缝地执行此地址转换。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408011744920.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408011744920"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络安全协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络核心协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络概念</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">常见工具及使用技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">子网与子网掩码</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

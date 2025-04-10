@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="常见基础的网络核心协议">
+<title>网络核心协议</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="网络核心协议">
+<meta property='og:description' content="常见基础的网络核心协议">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-08T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="网络核心协议">
+<meta name="twitter:description" content="常见基础的网络核心协议">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#dns记住地址">DNS：记住地址</a></li>
+    <li><a href="#whois">WHOIS</a></li>
+    <li><a href="#https访问web">HTTP(S)：访问web</a></li>
+    <li><a href="#ftp传输文件">FTP：传输文件</a></li>
+    <li><a href="#smtp发送电子邮件">SMTP：发送电子邮件</a></li>
+    <li><a href="#pop3接收电子邮件">POP3：接收电子邮件</a></li>
+    <li><a href="#imap同步电子邮件">IMAP：同步电子邮件</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/">网络核心协议</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            常见基础的网络核心协议
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-08</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="dns记住地址">DNS：记住地址
+</h2><p>您记得您最喜欢的网站的 IP 地址吗？除非是本地设备的私有 IP 地址，否则没有人需要担心记住 IP 地址。这部分是由于域名系统 （DNS） 负责将域名正确映射到 IP 地址。</p>
+<p>DNS 在应用层（即 ISO OSI 模型的第 7 层）运行。DNS 流量默认使用 UDP 端口 53， 使用 TCP 端口 53 作为默认回退。DNS 记录有多种类型;但是，在本任务中，我们将重点介绍以下四个方面：</p>
+<p><strong>A record</strong>：A （Address） 记录将主机名映射到一个或多个 <strong>IPv4</strong> 地址。例如，您可以将 <code>example.com</code> 设置为 resolve 为 <code>172.17.2.172</code>。</p>
+<p><strong>AAAA Record</strong>：AAAA 记录类似于 A 记录，但它适用于 <strong>IPv6</strong>。请记住，它是 AAAA（四 A），因为 AA 和 AAA 指的是电池尺寸;此外，AAA 是指 <em>Authentication、Authorization 和 Accounting</em>;两者都不属于 DNS。</p>
+<p><strong>CNAME Record</strong>：CNAME （Canonical Name） 记录将一个域名映射到另一个域名。例如，<code>www.example.com</code> 可以映射到 <code>example.com</code> 甚至 <code>example.org</code>。</p>
+<p><strong>MX Record</strong>：MX （Mail Exchange） 记录指定负责处理域<strong>电子邮件</strong>的邮件服务器。</p>
+<p>换句话说，当您在浏览器中键入 <code>example.com</code> 时，浏览器会尝试通过查询 DNS 服务器来查询 A 记录来解析此域名。但是，当您尝试向 <code>test@example.com</code> 发送电子邮件时，邮件服务器将查询 DNS 服务器以查找 MX 记录。</p>
+<p>如果要从命令行查找域的 IP 地址，可以使用 <code>nslookup</code> 等工具。考虑下面终端中我们查找 <code>example.com</code> 的示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ nslookup www.example.com
+</span></span><span class="line"><span class="cl">Server:         127.0.0.53
+</span></span><span class="line"><span class="cl">Address:        127.0.0.53#53
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Non-authoritative answer:
+</span></span><span class="line"><span class="cl">Name:   www.example.com
+</span></span><span class="line"><span class="cl">Address: 93.184.215.14
+</span></span><span class="line"><span class="cl">Name:   www.example.com
+</span></span><span class="line"><span class="cl">Address: 2606:2800:21f:cb07:6820:80da:af6b:8b2c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的查询导致了四个数据包。在下面的终端中，我们可以看到第一个和第三个数据包分别发送了 A 和 AAAA 记录的 DNS 查询。第二个和第四个数据包显示 DNS 查询响应。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ tshark -r dns-query.pcapng -Nn
+</span></span><span class="line"><span class="cl">    1 0.000000000 192.168.66.89 → 192.168.66.1 DNS 86 Standard query 0x2e0f A www.example.com OPT
+</span></span><span class="line"><span class="cl">    2 0.059049584 192.168.66.1 → 192.168.66.89 DNS 102 Standard query response 0x2e0f A www.example.com A 93.184.215.14 OPT
+</span></span><span class="line"><span class="cl">    3 0.059721705 192.168.66.89 → 192.168.66.1 DNS 86 Standard query 0x96e1 AAAA www.example.com OPT
+</span></span><span class="line"><span class="cl">    4 0.101568276 192.168.66.1 → 192.168.66.89 DNS 114 Standard query response 0x96e1 AAAA www.example.com AAAA 2606:2800:21f:cb07:6820:80da:af6b:8b2c OPT
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="whois">WHOIS
+</h2><p>在上一个任务中，我们介绍了如何将域名解析为 IP 地址。但是，要实现此目的，需要有人有权为域设置 A、AAAA 和 MX 记录以及其他 DNS 记录。注册域名的人被授予此权力。因此，如果您注册 example.com，则可以为 example.com 设置任何有效的 DNS 记录。</p>
+<p>您可以注册任何可用的域名一年或多年。您需要支付年费，并且需要提供作为注册人的<a class="link" href="https://www.icann.org/resources/pages/whois-data-accuracy-2017-06-20-en"  target="_blank" rel="noopener"
+    >准确联系信息 </a>。此信息是通过 WHOIS 记录提供的数据的一部分，并且是公开的。（虽然 WHOIS 是大写的，但它不是首字母缩略词;它的发音<em>是 who</em>。但是，如果您想在不公开透露联系信息的情况下注册域，请不要担心;您可以使用其中一种隐私服务，从 WHOIS 记录中隐藏您的所有信息。</p>
+<p>您可以使用在线服务之一或通过命令行工具 <code>whois</code> 查找任何注册域名的 WHOIS 记录，该工具可在 Linux 系统上使用，等等。正如预期的那样，WHOIS 记录提供了有关注册域名的实体的信息，包括名称、电话号码、电子邮件和地址。在下面显示的屏幕截图中，您可以看到记录的首次创建时间和上次更新时间。此外，您可以找到注册人的姓名、地址、电话和电子邮件。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408013007754.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408013007754"
+	
+	
+></p>
+<p>在下面的终端输出中，我们使用了 <code>whois</code> 命令来查找其 WHOIS 记录受隐私保护保护的域。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ whois [REDACTED].com
+</span></span><span class="line"><span class="cl">[...]
+</span></span><span class="line"><span class="cl">Domain Name: [REDACTED].COM
+</span></span><span class="line"><span class="cl">Registry Domain ID: [REDACTED]
+</span></span><span class="line"><span class="cl">Registrar WHOIS Server: whois.godaddy.com
+</span></span><span class="line"><span class="cl">Registrar URL: https://www.godaddy.com
+</span></span><span class="line"><span class="cl">Updated Date: 2017-07-05T16:02:43Z
+</span></span><span class="line"><span class="cl">Creation Date: 1993-04-02T00:00:00Z
+</span></span><span class="line"><span class="cl">Registrar Registration Expiration Date: 2026-10-20T14:56:17Z
+</span></span><span class="line"><span class="cl">Registrar: GoDaddy.com, LLC
+</span></span><span class="line"><span class="cl">Registrar IANA ID: 146
+</span></span><span class="line"><span class="cl">Registrar Abuse Contact Email: abuse@godaddy.com
+</span></span><span class="line"><span class="cl">Registrar Abuse Contact Phone: +1.4806242505
+</span></span><span class="line"><span class="cl">[...]
+</span></span><span class="line"><span class="cl">Registrant Name: Registration Private
+</span></span><span class="line"><span class="cl">Registrant Organization: Domains By Proxy, LLC
+</span></span><span class="line"><span class="cl">Registrant Street: DomainsByProxy.com
+</span></span><span class="line"><span class="cl">[...]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="https访问web">HTTP(S)：访问web
+</h2><p>当您启动浏览器时，您主要使用 HTTP 和 HTTPS 协议。HTTP 代表超文本传输协议;HTTPS 中的 S 代表安全。此协议依赖于 TCP 并定义 Web 浏览器与 Web 服务器的通信方式。</p>
+<p>您的 Web 浏览器通常向 Web 服务器发出的一些命令或方法是：</p>
+<ul>
+<li><code>GET</code> 从服务器检索数据，例如 HTML 文件或图像。</li>
+<li><code>POST</code> 允许我们向服务器提交新数据，例如提交表单或上传文件。</li>
+<li><code>PUT</code> 用于在服务器上创建新资源以及更新和覆盖现有信息。</li>
+<li><code>DELETE</code>，顾名思义，用于删除服务器上的指定文件或资源。</li>
+</ul>
+<p>HTTP 和 HTTPS 通常分别使用 TCP 端口 80 和 443，其他端口（如 8080 和 8443）不太常用。</p>
+<p>在以下示例中，我们使用 Firefox 浏览器访问 <code>10.10.28.0</code> 上的 Web 服务器。我们的浏览器获取网页并完美地显示它;但是，我们对幕后发生的事情感兴趣。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408013655738.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408013655738"
+	
+	
+></p>
+<p>使用 Wireshark，我们可以更仔细地检查 Firefox 浏览器和 Web 服务器之间的交换。下面来自 Wireshark 的屏幕截图以<strong>红色</strong>显示我们的浏览器发送的文本，以<strong>蓝色</strong>显示 Web 服务器响应。正如你所看到的，客户端和服务器之间交换了很多信息，这些信息没有呈现给用户。示例包括 Web 服务器版本和上次修改页面的时间。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408014341240.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408014341240"
+	
+	
+></p>
+<h2 id="ftp传输文件">FTP：传输文件
+</h2><p>与旨在检索网页的 HTTP 不同，文件传输协议 （FTP） 旨在传输文件。因此，FTP 对于文件传输非常有效，当所有条件都相同时，它可以实现比 HTTP 更高的速度。</p>
+<p>FTP 协议定义的命令示例包括：</p>
+<ul>
+<li><code>USER</code> 用于输入用户名</li>
+<li><code>PASS</code> 输入密码</li>
+<li><code>RETR</code> （retrieve） 用于将文件从 FTP 服务器下载到客户端。</li>
+<li><code>STOR</code>（存储）用于将文件从客户端上传到 FTP 服务器。</li>
+</ul>
+<p>FTP 服务器默认监听 TCP 端口 21;数据传输是通过从客户端到服务器的另一个连接进行的。</p>
+<p>在下面的终端中，我们执行命令 <code>ftp 10.10.28.0</code> 以使用本地 <code>ftp</code> 客户端连接到远程 FTP 服务器。然后我们执行以下步骤：</p>
+<ul>
+<li>我们使用<code>用户名 anonymous</code> 登录</li>
+<li>我们不需要提供任何密码</li>
+<li>发出 <code>ls</code> 返回可供下载的文件列表</li>
+<li><code>键入 ASCII</code> 切换到 ASCII 模式，因为这是一个文本文件</li>
+<li><code>get coffee.txt</code> 允许我们检索所需的文件</li>
+</ul>
+<p>通过 FTP 客户端进行的命令交换显示在下面的终端中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ ftp 10.10.28.0
+</span></span><span class="line"><span class="cl">Connected to 10.10.28.0 (10.10.28.0).
+</span></span><span class="line"><span class="cl">220 (vsFTPd 3.0.5)
+</span></span><span class="line"><span class="cl">Name (10.10.28.0:strategos): anonymous
+</span></span><span class="line"><span class="cl">331 Please specify the password.
+</span></span><span class="line"><span class="cl">Password:
+</span></span><span class="line"><span class="cl">230 Login successful.
+</span></span><span class="line"><span class="cl">Remote system type is UNIX.
+</span></span><span class="line"><span class="cl">Using binary mode to transfer files.
+</span></span><span class="line"><span class="cl">ftp<span class="p">&gt;</span> ls
+</span></span><span class="line"><span class="cl">227 Entering Passive Mode (10,10,41,192,134,10).
+</span></span><span class="line"><span class="cl">150 Here comes the directory listing.
+</span></span><span class="line"><span class="cl">-rw-r--r--    1 0        0            1480 Jun 27 08:03 coffee.txt
+</span></span><span class="line"><span class="cl">-rw-r--r--    1 0        0              14 Jun 27 08:04 flag.txt
+</span></span><span class="line"><span class="cl">-rw-r--r--    1 0        0            1595 Jun 27 08:05 tea.txt
+</span></span><span class="line"><span class="cl">226 Directory send OK.
+</span></span><span class="line"><span class="cl">ftp<span class="p">&gt;</span> type ascii
+</span></span><span class="line"><span class="cl">200 Switching to ASCII mode.
+</span></span><span class="line"><span class="cl">ftp<span class="p">&gt;</span> get coffee.txt
+</span></span><span class="line"><span class="cl">local: coffee.txt remote: coffee.txt
+</span></span><span class="line"><span class="cl">227 Entering Passive Mode (10,10,41,192,57,100).
+</span></span><span class="line"><span class="cl">150 Opening BINARY mode data connection for coffee.txt (1480 bytes).
+</span></span><span class="line"><span class="cl">WARNING! 47 bare linefeeds received in ASCII mode
+</span></span><span class="line"><span class="cl">File may not have transferred correctly.
+</span></span><span class="line"><span class="cl">226 Transfer complete.
+</span></span><span class="line"><span class="cl">1480 bytes received in 8e-05 secs (18500.00 Kbytes/sec)
+</span></span><span class="line"><span class="cl">ftp<span class="p">&gt;</span> quit
+</span></span><span class="line"><span class="cl">221 Goodbye.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们使用 Wireshark 更仔细地检查交换的消息。客户端的消息为<strong>红色</strong> ，而服务器的响应为<strong>蓝色</strong> 。请注意客户端和服务器之间的各种命令有何不同。例如，当您在客户端上键入 <code>ls</code> 时，客户端会将 <code>LIST</code> 发送到服务器。最后要注意的一点是，目录列表和我们下载的文件都是通过单独的连接发送的。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015001388.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408015001388"
+	
+	
+></p>
+<h2 id="smtp发送电子邮件">SMTP：发送电子邮件
+</h2><p>与浏览 Web 和下载文件一样，发送电子邮件需要自己的协议。<strong>Simple Mail Transfer Protocol</strong> （SMTP） 定义邮件客户端如何与邮件服务器通信，以及邮件服务器如何与另一个邮件服务器通信。</p>
+<p>SMTP 协议的类比是当您去当地邮局发送包裹时。您向员工打招呼，告诉他们您想将包裹寄往何处，并在将包裹交给他们之前提供发件人的信息。根据您所在的国家/地区，系统可能会要求您出示身份证。此过程与 SMTP 会话没有太大区别。</p>
+<p>让我们介绍一下您的邮件客户端在将电子邮件传输到 SMTP 服务器时使用的一些命令：</p>
+<ul>
+<li><code>HELO</code> 或 <code>EHLO</code> 启动 SMTP 会话</li>
+<li><code>MAIL FROM</code> 指定发件人的电子邮件地址</li>
+<li><code>RCPT TO</code> 指定收件人的电子邮件地址</li>
+<li><code>DATA</code> 表示客户端将开始发送电子邮件内容</li>
+<li><code>.</code> 单独在一行上发送，以指示电子邮件消息的结尾</li>
+</ul>
+<p>下面的终端显示了通过 <code>telnet</code> 发送的电子邮件示例。 默认情况下，SMTP 服务器侦听 TCP 端口 25。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.28.0 25
+</span></span><span class="line"><span class="cl">Trying 10.10.28.0...
+</span></span><span class="line"><span class="cl">Connected to 10.10.28.0.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">220 example.thm ESMTP Exim 4.95 Ubuntu Thu, 27 Jun 2024 16:18:09 +0000
+</span></span><span class="line"><span class="cl">HELO client.thm
+</span></span><span class="line"><span class="cl">250 example.thm Hello client.thm [10.11.81.126]
+</span></span><span class="line"><span class="cl">MAIL FROM: <span class="p">&lt;</span>user@client.thm&gt;
+</span></span><span class="line"><span class="cl">250 OK
+</span></span><span class="line"><span class="cl">RCPT TO: <span class="p">&lt;</span>strategos@server.thm&gt;
+</span></span><span class="line"><span class="cl">250 Accepted
+</span></span><span class="line"><span class="cl">DATA
+</span></span><span class="line"><span class="cl">354 Enter message, ending with <span class="s2">&#34;.&#34;</span> on a line by itself
+</span></span><span class="line"><span class="cl">From: user@client.thm
+</span></span><span class="line"><span class="cl">To: strategos@server.thm
+</span></span><span class="line"><span class="cl">Subject: Telnet email
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hello. I am using telnet to send you an email!
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">250 OK id=1sMrpq-0001Ah-UT
+</span></span><span class="line"><span class="cl">QUIT
+</span></span><span class="line"><span class="cl">221 example.thm closing connection
+</span></span><span class="line"><span class="cl">Connection closed by foreign host.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显然，使用 <code>telnet</code> 发送电子邮件非常麻烦;但是，它可以帮助您更好地了解电子邮件客户端在后台发出的命令。Wireshark 捕获以颜色显示交换;客户端的消息为红色，而服务器的响应为蓝色。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015332773.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408015332773"
+	
+	
+></p>
+<h2 id="pop3接收电子邮件">POP3：接收电子邮件
+</h2><p>您收到了一封电子邮件，并希望将其下载到本地邮件客户端。邮局协议版本 3 （POP3） 旨在允许客户端与邮件服务器通信并检索电子邮件消息。</p>
+<p>无需深入的技术细节，电子邮件客户端依靠 SMTP 发送其消息，并使用 POP3 检索它们。SMTP 类似于将信封或包裹交给邮局， 而 POP3 类似于检查本地邮箱是否有新的信件或包裹。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015500912.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408015500912"
+	
+	
+></p>
+<p>一些常见的 POP3 命令包括：</p>
+<ul>
+<li><code>USER &lt;username&gt;</code> 标识用户</li>
+<li><code>PASS &lt;password&gt;</code> 提供用户的密码</li>
+<li><code>STAT</code> 请求消息数和总大小</li>
+<li><code>LIST</code> 列出所有邮件及其大小</li>
+<li><code>RETR &lt;message_number&gt;</code> 检索指定的消息</li>
+<li><code>DELE &lt;message_number&gt;</code> 将邮件标记为删除</li>
+<li><code>QUIT</code> 结束 POP3 会话，应用更改，例如删除</li>
+</ul>
+<p>在下面的终端中，我们可以看到一个通过 telnet 的 POP3 会话。由于 POP3 服务器默认监听 TCP 端口 110，因此连接到 TELNET 端口的命令是 <code>telnet 10.10.28.0 110</code>。下面的 exchange 检索在上一个任务中发送的电子邮件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.28.0 110
+</span></span><span class="line"><span class="cl">Trying 10.10.28.0...
+</span></span><span class="line"><span class="cl">Connected to 10.10.28.0.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">+OK [XCLIENT] Dovecot (Ubuntu) ready.
+</span></span><span class="line"><span class="cl">AUTH
+</span></span><span class="line"><span class="cl">+OK
+</span></span><span class="line"><span class="cl">PLAIN
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">USER strategos
+</span></span><span class="line"><span class="cl">+OK
+</span></span><span class="line"><span class="cl">PASS 
+</span></span><span class="line"><span class="cl">+OK Logged in.
+</span></span><span class="line"><span class="cl">STAT
+</span></span><span class="line"><span class="cl">+OK 3 1264
+</span></span><span class="line"><span class="cl">LIST
+</span></span><span class="line"><span class="cl">+OK 3 messages:
+</span></span><span class="line"><span class="cl">1 407
+</span></span><span class="line"><span class="cl">2 412
+</span></span><span class="line"><span class="cl">3 445
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">RETR 3
+</span></span><span class="line"><span class="cl">+OK 445 octets
+</span></span><span class="line"><span class="cl">Return-path: <span class="p">&lt;</span>user@client.thm&gt;
+</span></span><span class="line"><span class="cl">Envelope-to: strategos@server.thm
+</span></span><span class="line"><span class="cl">Delivery-date: Thu, 27 Jun 2024 16:19:35 +0000
+</span></span><span class="line"><span class="cl">Received: from [10.11.81.126] (helo=client.thm)
+</span></span><span class="line"><span class="cl">        by example.thm with smtp (Exim 4.95)
+</span></span><span class="line"><span class="cl">        <span class="p">(</span>envelope-from <span class="p">&lt;</span>user@client.thm&gt;<span class="p">)</span>
+</span></span><span class="line"><span class="cl">        id 1sMrpq-0001Ah-UT
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> strategos@server.thm;
+</span></span><span class="line"><span class="cl">        Thu, 27 Jun 2024 16:19:35 +0000
+</span></span><span class="line"><span class="cl">From: user@client.thm
+</span></span><span class="line"><span class="cl">To: strategos@server.thm
+</span></span><span class="line"><span class="cl">Subject: Telnet email
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hello. I am using telnet to send you an email!
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">QUIT
+</span></span><span class="line"><span class="cl">+OK Logging out.
+</span></span><span class="line"><span class="cl">Connection closed by foreign host.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>捕获网络数据包的人将能够拦截交换的流量。根据之前的 Wireshark 捕获，红色的命令由客户端发送，蓝色的行是服务器的命令。同样明显的是，捕获流量的人可以读取密码。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408015643633.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408015643633"
+	
+	
+></p>
+<h2 id="imap同步电子邮件">IMAP：同步电子邮件
+</h2><p><strong>POP3协议</strong>适用于<strong>单一设备场景</strong>（如您个人电脑上的常用邮件客户端）。然而，若您需要从办公室台式机、笔记本电脑或智能手机等多台设备访问邮箱，POP3的局限性便显现出来——它在客户端下载邮件后<strong>默认删除服务器上的副本</strong>，导致其他设备无法获取已下载的邮件。此时，您需改用支持<strong>多设备同步</strong>的协议，例如<strong>IMAP（互联网邮件访问协议）</strong>。IMAP会将邮件保留在服务器，并同步各设备的操作（如已读/删除标记），确保所有终端保持一致的邮箱状态。</p>
+<p>IMAP 允许同步已读、已移动和已删除的邮件。当您通过多个客户端查看电子邮件时，IMAP 非常方便。 与 POP3 不同，POP3 在从远程服务器下载和删除电子邮件时往往会最大限度地减少服务器存储空间，而 IMAP 往往会使用更多存储空间，因为电子邮件保存在服务器上并在电子邮件客户端之间同步。</p>
+<p>IMAP 协议命令比 POP3 协议命令更复杂。我们在下面列出了几个示例：</p>
+<ul>
+<li><code>LOGIN &lt;username&gt; &lt;password&gt;</code> 验证用户身份</li>
+<li><code>SELECT &lt;mailbox&gt;</code> 选择要使用的邮箱文件夹</li>
+<li><code>FETCH &lt;mail_number&gt; &lt;data_item_name&gt;</code> 示例 <code>fetch 3 body[]</code> 来获取消息编号 3、标头和正文。</li>
+<li><code>MOVE &lt;sequence_set&gt; &lt;mailbox&gt;</code> 将指定的邮件移动到另一个邮箱</li>
+<li><code>COPY &lt;sequence_set&gt; &lt;data_item_name&gt;</code> 将指定的邮件复制到另一个邮箱</li>
+<li><code>LOGOUT</code> 注销</li>
+</ul>
+<p>知道 IMAP 服务器默认监听 TCP 端口 143，我们将使用 <code>telnet</code> 连接到 <code>10.10.28.0</code> 的端口 143 并获取我们在之前任务中发送的消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">user@TryHackMe$ telnet 10.10.41.192 143
+</span></span><span class="line"><span class="cl">Trying 10.10.41.192...
+</span></span><span class="line"><span class="cl">Connected to 10.10.41.192.
+</span></span><span class="line"><span class="cl">Escape character is &#39;<span class="se">^]</span>&#39;.
+</span></span><span class="line"><span class="cl">* OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ STARTTLS AUTH=PLAIN] Dovecot (Ubuntu) ready.
+</span></span><span class="line"><span class="cl">A LOGIN strategos
+</span></span><span class="line"><span class="cl">A OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE SORT SORT=DISPLAY THREAD=REFERENCES THREAD=REFS THREAD=ORDEREDSUBJECT MULTIAPPEND URL-PARTIAL CATENATE UNSELECT CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED I18NLEVEL=1 CONDSTORE QRESYNC ESEARCH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS BINARY MOVE SNIPPET=FUZZY PREVIEW=FUZZY PREVIEW STATUS=SIZE SAVEDATE LITERAL+ NOTIFY SPECIAL-USE] Logged in
+</span></span><span class="line"><span class="cl">B SELECT inbox
+</span></span><span class="line"><span class="cl">* FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+</span></span><span class="line"><span class="cl">* OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft \*)] Flags permitted.
+</span></span><span class="line"><span class="cl">* 4 EXISTS
+</span></span><span class="line"><span class="cl">* 0 RECENT
+</span></span><span class="line"><span class="cl">* OK [UNSEEN 2] First unseen.
+</span></span><span class="line"><span class="cl">* OK [UIDVALIDITY 1719824692] UIDs valid
+</span></span><span class="line"><span class="cl">* OK [UIDNEXT 5] Predicted next UID
+</span></span><span class="line"><span class="cl">B OK [READ-WRITE] Select completed (0.001 + 0.000 secs).
+</span></span><span class="line"><span class="cl">C FETCH 3 body[]
+</span></span><span class="line"><span class="cl">* 3 FETCH (BODY[] {445}
+</span></span><span class="line"><span class="cl">Return-path: <span class="p">&lt;</span>user@client.thm&gt;
+</span></span><span class="line"><span class="cl">Envelope-to: strategos@server.thm
+</span></span><span class="line"><span class="cl">Delivery-date: Thu, 27 Jun 2024 16:19:35 +0000
+</span></span><span class="line"><span class="cl">Received: from [10.11.81.126] (helo=client.thm)
+</span></span><span class="line"><span class="cl">        by example.thm with smtp (Exim 4.95)
+</span></span><span class="line"><span class="cl">        <span class="p">(</span>envelope-from <span class="p">&lt;</span>user@client.thm&gt;<span class="p">)</span>
+</span></span><span class="line"><span class="cl">        id 1sMrpq-0001Ah-UT
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> strategos@server.thm;
+</span></span><span class="line"><span class="cl">        Thu, 27 Jun 2024 16:19:35 +0000
+</span></span><span class="line"><span class="cl">From: user@client.thm
+</span></span><span class="line"><span class="cl">To: strategos@server.thm
+</span></span><span class="line"><span class="cl">Subject: Telnet email
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hello. I am using telnet to send you an email!
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">C OK Fetch completed (0.001 + 0.000 secs<span class="p">)</span>.
+</span></span><span class="line"><span class="cl">D LOGOUT
+</span></span><span class="line"><span class="cl">* BYE Logging out
+</span></span><span class="line"><span class="cl">D OK Logout completed (0.001 + 0.000 secs<span class="p">)</span>.
+</span></span><span class="line"><span class="cl">Connection closed by foreign host.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面的屏幕截图显示了从 Wireshark 中看到的客户端和服务器之间交换的消息。客户端只需要发送四个命令，以红色显示，“长”服务器响应以蓝色显示。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250408020556204.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250408020556204"
+	
+	
+></p>
+<h2 id="总结">总结
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>协议</strong></th>
+          <th><strong>传输协议</strong></th>
+          <th><strong>默认端口号</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>TELNET</td>
+          <td>TCP</td>
+          <td>23</td>
+      </tr>
+      <tr>
+          <td>DNS</td>
+          <td>UDP 或 TCP</td>
+          <td>53</td>
+      </tr>
+      <tr>
+          <td>HTTP</td>
+          <td>TCP</td>
+          <td>80</td>
+      </tr>
+      <tr>
+          <td>HTTPS</td>
+          <td>TCP</td>
+          <td>443</td>
+      </tr>
+      <tr>
+          <td>FTP</td>
+          <td>TCP</td>
+          <td>21</td>
+      </tr>
+      <tr>
+          <td>SMTP</td>
+          <td>TCP</td>
+          <td>25</td>
+      </tr>
+      <tr>
+          <td>POP3</td>
+          <td>TCP</td>
+          <td>110</td>
+      </tr>
+      <tr>
+          <td>IMAP</td>
+          <td>TCP</td>
+          <td>143</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络基础知识</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络安全协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络概念</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">常见工具及使用技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">子网与子网掩码</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
