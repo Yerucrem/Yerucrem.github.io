@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="以及常用指令">
-<title>利用github实现自动部署</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="BURP利用">
+<title>Burpsuite利用宏爆破回显在响应包的验证码网页</title>
 
-<link rel='canonical' href='https://Yerucrem.github.io/p/%E5%88%A9%E7%94%A8github%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/'>
+<link rel='canonical' href='https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="利用github实现自动部署">
-<meta property='og:description' content="以及常用指令">
-<meta property='og:url' content='https://Yerucrem.github.io/p/%E5%88%A9%E7%94%A8github%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Burpsuite利用宏爆破回显在响应包的验证码网页">
+<meta property='og:description' content="BURP利用">
+<meta property='og:url' content='https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/'>
 <meta property='og:site_name' content='夜路归'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/d67014b38a1cd68b40e838a207152f5a77ecfc8a2e40c3d56b538fa48de38080.png' />
-<meta name="twitter:title" content="利用github实现自动部署">
-<meta name="twitter:description" content="以及常用指令"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/d67014b38a1cd68b40e838a207152f5a77ecfc8a2e40c3d56b538fa48de38080.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-15T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png' />
+<meta name="twitter:title" content="Burpsuite利用宏爆破回显在响应包的验证码网页">
+<meta name="twitter:description" content="BURP利用"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -268,10 +268,19 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#参考">参考</a></li>
-    <li><a href="#首次部署">首次部署</a></li>
-    <li><a href="#试运行">试运行</a></li>
-    <li><a href="#更新">更新</a></li>
+    <li><a href="#演示网页">演示网页</a></li>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#思路">思路</a></li>
+    <li><a href="#过程">过程</a>
+      <ol>
+        <li><a href="#添加条目">添加条目</a></li>
+        <li><a href="#找到刚刚放掉的验证码刷新的url">找到刚刚放掉的验证码刷新的URL</a></li>
+        <li><a href="#项目设置">项目设置</a></li>
+        <li><a href="#配置会话处理规则">配置会话处理规则</a></li>
+      </ol>
+    </li>
+    <li><a href="#测试">测试</a></li>
+    <li><a href="#注意">注意</a></li>
   </ol>
 </nav>
         </div>
@@ -286,9 +295,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E5%88%A9%E7%94%A8github%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/">
+            <a href="/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/">
                 
-                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/d67014b38a1cd68b40e838a207152f5a77ecfc8a2e40c3d56b538fa48de38080.png" loading="lazy" alt="Featured image of post 利用github实现自动部署" />
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" loading="lazy" alt="Featured image of post Burpsuite利用宏爆破回显在响应包的验证码网页" />
                 
             </a>
         </div>
@@ -298,8 +307,12 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >
-                博客搭建
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+            <a href="/categories/burp/" >
+                Burp
             </a>
         
     </header>
@@ -307,12 +320,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%88%A9%E7%94%A8github%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/">利用github实现自动部署</a>
+            <a href="/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/">Burpsuite利用宏爆破回显在响应包的验证码网页</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            以及常用指令
+            BURP利用
         </h3>
         
     </div>
@@ -333,7 +346,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-03-18</time>
+                <time class="article-time--published">2025-04-15</time>
             </div>
         
 
@@ -349,60 +362,209 @@
     <section class="article-content">
     
     
-    <h1 id="自动部署">自动部署
-</h1><h2 id="参考">参考
-</h2><p><a class="link" href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-blog/#32-github-action%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2"  target="_blank" rel="noopener"
-    >【Hugo】Hugo + Github 免费部署自己的博客</a></p>
-<p>均在dev文件夹下</p>
-<h2 id="首次部署">首次部署
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">git init
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
-</span></span><span class="line"><span class="cl">git branch -M main
-</span></span><span class="line"><span class="cl">git remote add origin {你的github仓库地址}
-</span></span><span class="line"><span class="cl">git push -u origin main
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="试运行">试运行
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo server -D
-</span></span><span class="line"><span class="cl">ctrl + c [停止运行]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="更新">更新
-</h2><p>在dev目录下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git commit -m &#34;update&#34;
-</span></span><span class="line"><span class="cl">git branch -M main
-</span></span><span class="line"><span class="cl">git push 
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+    <h1 id="burpsuite利用宏爆破回显在响应包的验证码网页">Burpsuite利用宏爆破回显在响应包的验证码网页
+</h1><h2 id="演示网页">演示网页
+</h2><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153222039.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153222039"
+	
+	
+></p>
+<h2 id="简介">简介
+</h2><p>该网页的验证码是非图片形式的，当发送申请验证码请求后会直接显示在响应包中。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152232525.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152232525"
+	
+	
+></p>
+<h2 id="思路">思路
+</h2><p>利用Burpsuite自带的宏(macro)[setting-&gt;session-&gt;macro]和会话处理规则，实现自动化抓取验证码放在payload中实现爆破。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152401054.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152401054"
+	
+	
+></p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152407313.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152407313"
+	
+	
+></p>
+<p>下面是具体流程</p>
+<h2 id="过程">过程
+</h2><p>首先我们需要抓取获取到验证码URL的该过程的响应包。本案例，我刷新验证码即可抓取。</p>
+<p>抓取后可以直接放行（这一步的目的是记录此步骤，以便于在宏的设置中，可以在历史URL找到）</p>
+<h3 id="添加条目">添加条目
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152637276.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152637276"
+	
+	
+></p>
+<h3 id="找到刚刚放掉的验证码刷新的url">找到刚刚放掉的验证码刷新的URL
+</h3><p><img src="C:%5cUsers%5cOTFlo%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250415152708283.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152708283"
+	
+	
+></p>
+<p>选取后确定，回到上级界面</p>
+<h3 id="项目设置">项目设置
+</h3><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152824504.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152824504"
+	
+	
+></p>
+<p>点击添加</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152839160.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152839160"
+	
+	
+></p>
+<p>在响应包中找到需要选取的验证码片段，burpsuite会自动帮忙标注号起始位置和结束位置。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152938226.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415152938226"
+	
+	
+></p>
+<p>注意需要设置参数名称，这里的参数名称需要与要爆破处的参数名称相同。</p>
+<p>这里设置：<code>inputCode</code></p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153039784.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153039784"
+	
+	
+></p>
+<p>三次确认后回到会话页面。</p>
+<h3 id="配置会话处理规则">配置会话处理规则
+</h3><p>添加会话处理规则</p>
+<p><img src="C:%5cUsers%5cOTFlo%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250415153117095.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153117095"
+	
+	
+></p>
+<p>添加规则行为-&gt;选择运行宏</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153340315.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153340315"
+	
+	
+></p>
+<p>在其中配置如下</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153513921.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153513921"
+	
+	
+></p>
+<p>点击确认返回上级界面后选择配置范围</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153540301.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153540301"
+	
+	
+></p>
+<p>如果严格来讲，只负责爆破模块的话，可以只选择intuder</p>
+<p>URL需要选择包含所有URL，或者自己配置自己爆破的URL范围</p>
+<p>确认即可。</p>
+<h2 id="测试">测试
+</h2><p>抓取登录时的数据包</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153809897.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153809897"
+	
+	
+></p>
+<p>可以简单的单机发送，进行重发。此时如果配置正确可以看到inputCode部分已经可以随着每次重发进行更新。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153903860.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153903860"
+	
+	
+></p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153912868.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250415153912868"
+	
+	
+></p>
+<h2 id="注意">注意
+</h2><p>注意命名全局变量时，要命名与进行爆破时的要替换的地方的名称相同。</p>
+
 </section>
 
 
@@ -425,19 +587,71 @@
         <div class="flex article-list--tile">
             
                 
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络基础知识</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络安全协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络核心协议</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络概念</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
 <article class="has-image">
-    <a href="/p/%E4%BD%BF%E7%94%A8-picgo-typora-cos-%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/">
+    <a href="/p/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/">
         
         
             <div class="article-image">
                 
-                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/background04.jpg"/>
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/pattern-8801850.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">使用 PicGo&#43;Typora&#43;COS 搭建图床服务</h2>
+            <h2 class="article-title">子网与子网掩码</h2>
         </div>
     </a>
 </article>

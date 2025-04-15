@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Burp on 夜路归</title>
+        <link>https://Yerucrem.github.io/categories/burp/</link>
+        <description>Recent content in Burp on 夜路归</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Yerucrem</copyright>
+        <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/burp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Burpsuite利用宏爆破回显在响应包的验证码网页</title>
+        <link>https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/</link>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" alt="Featured image of post Burpsuite利用宏爆破回显在响应包的验证码网页" /&gt;&lt;h1 id=&#34;burpsuite利用宏爆破回显在响应包的验证码网页&#34;&gt;Burpsuite利用宏爆破回显在响应包的验证码网页
+&lt;/h1&gt;&lt;h2 id=&#34;演示网页&#34;&gt;演示网页
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153222039.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153222039&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介
+&lt;/h2&gt;&lt;p&gt;该网页的验证码是非图片形式的，当发送申请验证码请求后会直接显示在响应包中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152232525.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152232525&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路
+&lt;/h2&gt;&lt;p&gt;利用Burpsuite自带的宏(macro)[setting-&amp;gt;session-&amp;gt;macro]和会话处理规则，实现自动化抓取验证码放在payload中实现爆破。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152401054.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152401054&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152407313.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152407313&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;下面是具体流程&lt;/p&gt;
+&lt;h2 id=&#34;过程&#34;&gt;过程
+&lt;/h2&gt;&lt;p&gt;首先我们需要抓取获取到验证码URL的该过程的响应包。本案例，我刷新验证码即可抓取。&lt;/p&gt;
+&lt;p&gt;抓取后可以直接放行（这一步的目的是记录此步骤，以便于在宏的设置中，可以在历史URL找到）&lt;/p&gt;
+&lt;h3 id=&#34;添加条目&#34;&gt;添加条目
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152637276.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152637276&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;找到刚刚放掉的验证码刷新的url&#34;&gt;找到刚刚放掉的验证码刷新的URL
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5cOTFlo%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250415152708283.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152708283&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;选取后确定，回到上级界面&lt;/p&gt;
+&lt;h3 id=&#34;项目设置&#34;&gt;项目设置
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152824504.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152824504&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击添加&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152839160.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152839160&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在响应包中找到需要选取的验证码片段，burpsuite会自动帮忙标注号起始位置和结束位置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415152938226.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415152938226&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;注意需要设置参数名称，这里的参数名称需要与要爆破处的参数名称相同。&lt;/p&gt;
+&lt;p&gt;这里设置：&lt;code&gt;inputCode&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153039784.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153039784&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;三次确认后回到会话页面。&lt;/p&gt;
+&lt;h3 id=&#34;配置会话处理规则&#34;&gt;配置会话处理规则
+&lt;/h3&gt;&lt;p&gt;添加会话处理规则&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;C:%5cUsers%5cOTFlo%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250415153117095.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153117095&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;添加规则行为-&amp;gt;选择运行宏&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153340315.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153340315&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在其中配置如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153513921.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153513921&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击确认返回上级界面后选择配置范围&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153540301.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153540301&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果严格来讲，只负责爆破模块的话，可以只选择intuder&lt;/p&gt;
+&lt;p&gt;URL需要选择包含所有URL，或者自己配置自己爆破的URL范围&lt;/p&gt;
+&lt;p&gt;确认即可。&lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试
+&lt;/h2&gt;&lt;p&gt;抓取登录时的数据包&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153809897.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153809897&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以简单的单机发送，进行重发。此时如果配置正确可以看到inputCode部分已经可以随着每次重发进行更新。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153903860.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153903860&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250415153912868.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250415153912868&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;注意&#34;&gt;注意
+&lt;/h2&gt;&lt;p&gt;注意命名全局变量时，要命名与进行爆破时的要替换的地方的名称相同。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
