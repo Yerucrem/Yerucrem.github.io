@@ -13,7 +13,7 @@
         <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/cve-2024-50379/</guid>
-        <description>&lt;h1 id=&#34;tomcat-cve-2024-50379&#34;&gt;Tomcat: CVE-2024-50379
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/backpacker-7628303.jpg" alt="Featured image of post CVE-2024-50379" /&gt;&lt;h1 id=&#34;tomcat-cve-2024-50379&#34;&gt;Tomcat: CVE-2024-50379
 &lt;/h1&gt;&lt;h2 id=&#34;漏洞概述&#34;&gt;漏洞概述
 &lt;/h2&gt;&lt;p&gt;Apache Tomcat 是一个开源 Web 服务器和 Servlet 容器 。 &lt;strong&gt;Servlet&lt;/strong&gt; 是一个 Java 类，它被创建在应用服务器上运行并处理客户端请求。它接收客户端的 HTTP 请求，进行处理，并生成正确的响应。Servlet &lt;strong&gt;容器&lt;/strong&gt;为 Java Servlet 提供运行时环境并管理它们的生命周期。&lt;/p&gt;
 &lt;p&gt;该漏洞影响以下版本的 Apache Tomcat：&lt;/p&gt;
@@ -275,7 +275,7 @@
         <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/cve-2025-29927/</guid>
-        <description>&lt;h1 id=&#34;nextjs-cve-2025-29927&#34;&gt;Next.js: CVE-2025-29927
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/space-7273891.jpg" alt="Featured image of post CVE-2025-29927" /&gt;&lt;h1 id=&#34;nextjs-cve-2025-29927&#34;&gt;Next.js: CVE-2025-29927
 &lt;/h1&gt;&lt;h2 id=&#34;漏洞概述&#34;&gt;漏洞概述
 &lt;/h2&gt;&lt;p&gt;Next.js 是由 Vercel 开发的 Web 开发框架，旨在简化高性能 Web 应用程序的创建。Next.js 构建于 React  之上，并通过添加多项功能（例如静态站点生成 (SSG) 和服务端渲染 (SSR)）扩展了 React 的功能。SSG  在构建时预生成页面，从而可以更快地交付给用户；此外，SSR 在请求时渲染页面，从而减少加载时间。简而言之，Next.js  添加了旨在提升性能和用户体验的功能。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://nvd.nist.gov/vuln/detail/CVE-2025-29927&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
