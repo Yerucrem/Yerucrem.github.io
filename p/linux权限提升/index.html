@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Linux权限提升基础">
+<title>Linux权限提升</title>
+
+<link rel='canonical' href='https://Yerucrem.github.io/p/linux%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Linux权限提升">
+<meta property='og:description' content="Linux权限提升基础">
+<meta property='og:url' content='https://Yerucrem.github.io/p/linux%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/'>
+<meta property='og:site_name' content='夜路归'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-24T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Linux权限提升">
+<meta name="twitter:description" content="Linux权限提升基础">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_90a3cb9b20773d8.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💫</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">夜路归</a></h1>
+            <h2 class="site-description">YERUCREM</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#sudo">Sudo</a>
+      <ol>
+        <li><a href="#利用应用程序功能">利用应用程序功能</a></li>
+        <li><a href="#利用-ld_preload">利用 LD_PRELOAD</a></li>
+      </ol>
+    </li>
+    <li><a href="#suid">SUID</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#cron-job">Cron Job</a></li>
+    <li><a href="#path">PATH</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/" >
+                权限提升
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/linux%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">Linux权限提升</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Linux权限提升基础
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-24</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="sudo">Sudo
+</h2><p>默认情况下，sudo 命令允许您以 root 权限运行程序。在某些情况下，系统管理员可能需要赋予普通用户一定的权限灵活性。例如，初级 SOC 分析师可能需要定期使用 Nmap ，但无法获得完全的 root 访问权限。在这种情况下，系统管理员可以允许该用户仅以 root 权限运行 Nmap ，同时在系统的其余部分保持其常规权限级别。</p>
+<p>任何用户都可以使用 <code>sudo -l</code> 命令检查其当前与 root 权限相关的情况。</p>
+<p><a class="link" href="https://gtfobins.github.io/"  target="_blank" rel="noopener"
+    >https://gtfobins.github.io/</a> 是一个有价值的资源，它提供了有关如何使用您可能拥有 sudo 权限的任何程序的信息。</p>
+<h3 id="利用应用程序功能">利用应用程序功能
+</h3><p>某些应用程序在此上下文中不会存在已知的漏洞。您可能看到的此类应用程序是 Apache2 服务器。</p>
+<p>在这种情况下，我们可以利用应用程序的某个功能，通过“黑客”手段泄露信息。如下所示，Apache2 有一个选项支持加载备用配置文件（ <code>-f</code> ：指定备用的 ServerConfigFile）。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424082740337.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424082740337"
+	
+	
+></p>
+<p>使用此选项加载 <code>/etc/shadow</code> 文件将导致包含 <code>/etc/shadow</code> 文件第一行的错误消息。</p>
+<h3 id="利用-ld_preload">利用 LD_PRELOAD
+</h3><p>在某些系统上，您可能会看到 LD_PRELOAD 环境选项。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424082813682.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424082813682"
+	
+	
+></p>
+<p>LD_PRELOAD 是一个允许任何程序使用共享库的函数。这篇<a class="link" href="https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/"  target="_blank" rel="noopener"
+    >博文</a>将带您了解 LD_PRELOAD 的功能。如果启用了“env_keep”选项，我们可以生成一个共享库，该库将在程序运行之前加载并执行。请注意，如果实际用户 ID 与有效用户 ID 不同，LD_PRELOAD 选项将被忽略。</p>
+<p>该权限提升向量的步骤可概括如下；</p>
+<ol>
+<li>检查 LD_PRELOAD（使用 env_keep 选项）</li>
+<li>编写一个简单的 C 代码，编译为共享对象（.so 扩展名）文件</li>
+<li>使用 sudo 权限和指向我们的 .so 文件的 LD_PRELOAD 选项运行该程序</li>
+</ol>
+<p>C 代码将简单地生成一个 root shell，可以按如下方式编写；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">_init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">unsetenv</span><span class="p">(</span><span class="s">&#34;LD_PRELOAD&#34;</span><span class="p">);</span>    <span class="c1">// 避免后续环境变量冲突
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">setgid</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                 <span class="c1">// 设置组ID为root
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">setuid</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                 <span class="c1">// 设置用户ID为root
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">system</span><span class="p">(</span><span class="s">&#34;/bin/bash&#34;</span><span class="p">);</span>       <span class="c1">// 启动root shell
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以将此代码保存为 shell.c，并使用 gcc 将其编译为共享目标文件，使用以下参数；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424082931655.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424082931655"
+	
+	
+></p>
+<p>现在，我们可以在启动任何用户可以使用 sudo 运行的程序时使用这个共享对象文件。在我们的例子中，Apache2、find，或者几乎所有可以使用 sudo 运行的程序都可以使用。</p>
+<p>我们需要通过指定 LD_PRELOAD 选项来运行程序，如下所示；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo <span class="nv">LD_PRELOAD</span><span class="o">=</span>/home/user/ldpreload/shell.so find
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这将导致产生具有 root 权限的 shell。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424083004280.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424083004280"
+	
+	
+></p>
+<h2 id="suid">SUID
+</h2><p>Linux 的大部分权限控制依赖于控制用户与文件的交互。这通过权限来实现。现在，您知道文件可以具有读、写和执行权限。这些权限会根据用户的权限级别授予用户。SUID（设置用户标识）和 SGID（设置组标识）会改变权限级别。SUID 和 SGID 分别允许文件以文件所有者或组所有者的权限级别执行。</p>
+<p>您会注意到这些文件有一个“s”位设置，显示其特殊权限级别。</p>
+<p><code>find / -type f -perm -04000 -ls 2&gt;/dev/null</code> 将列出设置了 SUID 或 SGID 位的文件。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424091115451.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424091115451"
+	
+	
+></p>
+<p>一个好的做法是将此列表中的可执行文件与 GTFOBins ( <a class="link" href="https://gtfobins.github.io/"  target="_blank" rel="noopener"
+    >https://gtfobins.github.io</a> ) 进行比较。点击 SUID 按钮将过滤掉已知在设置了 SUID 位的情况下可被利用的二进制文件（您也可以使用此链接获取预过滤列表 <a class="link" href="https://gtfobins.github.io/#&#43;suid"  target="_blank" rel="noopener"
+    >https://gtfobins.github.io/#+suid</a> ）。</p>
+<p>上面的列表显示 nano 已设置 SUID 位。不幸的是，GTFObins 并没有给我们提供轻松的攻击机会。在现实生活中的提权场景中，我们需要找到一些中间步骤，以便利用我们掌握的任何微小的发现。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424093808904.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424093808904"
+	
+	
+></p>
+<p>为 nano 文本编辑器设置的 SUID 位允许我们使用文件所有者的权限创建、编辑和读取文件。nano 的所有者是 root，这意味着我们可以以比当前用户更高的权限级别读取和编辑文件。目前，我们有两个基本的提权选项：读取 <code>/etc/shadow</code> 文件或将用户添加到 <code>/etc/passwd</code> 。</p>
+<p>以下是使用这两个向量的简单步骤。</p>
+<p>读取 <code>/etc/shadow</code> 文件</p>
+<p>我们看到 nano 文本编辑器通过运行 <code>find / -type f -perm -04000 -ls 2&gt;/dev/null</code> 命令设置了 SUID 位。</p>
+<p><code>nano /etc/shadow</code> 将打印 <code>/etc/shadow</code> 文件的内容。现在我们可以使用 unshadow 工具创建一个可被 John the Ripper 破解的文件。为此，unshadow 需要 <code>/etc/shadow</code> 和 <code>/etc/passwd</code> 文件。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424094059526.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424094059526"
+	
+	
+></p>
+<p>unshadow工具的用法如下所示；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">unshadow passwd.txt shadow.txt &gt; passwords.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只要有正确的单词表和一点运气， John the Ripper 就能以明文形式返回一个或多个密码。</p>
+<p>另一个选项是添加一个具有 root 权限的新用户。这将帮助我们规避繁琐的密码破解过程。以下是一个简单的方法：</p>
+<p>我们需要获取新用户密码的哈希值。使用 Kali Linux 上的 openssl 工具可以快速完成此操作。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424094212415.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424094212415"
+	
+	
+></p>
+<p>然后我们将此密码与用户名一起添加到 <code>/etc/passwd</code> 文件中。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424094226959.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424094226959"
+	
+	
+></p>
+<p>一旦添加了我们的用户（请注意如何使用 <code>root:/bin/bash</code> 来提供 root shell），我们将需要切换到该用户，并且希望拥有 root 权限。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424094242580.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424094242580"
+	
+	
+></p>
+<h2 id="capabilities">Capabilities
+</h2><p>系统管理员可以使用另一种方法来提升进程或二进制文件的权限级别，即“功能”。功能有助于在更精细的层面上管理权限。例如，如果 SOC 分析师需要使用一个需要启动套接字连接的工具，那么普通用户将无法执行此操作。如果系统管理员不想授予此用户更高的权限，他们可以更改二进制文件的功能。这样，二进制文件就可以完成其任务，而无需更高权限的用户。</p>
+<p>功能手册页提供了有关其用法和选项的详细信息。</p>
+<p>我们可以使用 <code>getcap</code> 工具列出已启用的功能。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424100220766.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424100220766"
+	
+	
+></p>
+<p>当以非特权用户身份运行时， <code>getcap -r /</code> 将生成大量错误，因此将错误消息重定向到 /dev/null 是一种很好的做法。</p>
+<p>请注意，vim 及其副本均未设置 SUID 位。因此，在枚举文件查找 SUID 时，无法发现此权限提升向量。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424100301745.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424100301745"
+	
+	
+></p>
+<p>GTFObins 有一个很好的二进制文件列表，如果我们发现任何设置功能，就可以利用这些二进制文件来提升权限。</p>
+<p>我们注意到 vim 可以与以下命令和有效载荷一起使用：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424100318703.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424100318703"
+	
+	
+></p>
+<p>这将启动一个 root shell，如下所示；</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424100330023.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424100330023"
+	
+	
+></p>
+<h2 id="cron-job">Cron Job
+</h2><p>Cron Job用于在特定时间运行脚本或二进制文件。默认情况下，它们以其所有者的权限运行，而不是当前用户的权限。虽然正确配置的 Cron 作业本身并不会受到攻击，但在某些情况下，它们可能会提供提权途径。</p>
+<p>这个想法很简单；如果有一个以 root 权限运行的计划任务，并且我们可以更改将要运行的脚本，那么我们的脚本将以 root 权限运行。</p>
+<p>Cron job配置存储为 crontab（cron 表），以查看任务下次运行的时间和日期。</p>
+<p>系统中的每个用户都有自己的 crontab 文件，无论是否登录都可以运行特定的任务。正如你所料，我们的目标是找到一个由 root 设置的 cron job，并让它运行我们的脚本（最好是一个 shell）。</p>
+<p>任何用户都可以读取 <code>/etc/crontab</code> 下保存系统范围 cron job的文件</p>
+<p>虽然 CTF 机器可以每分钟或每 5 分钟运行一次 cron job，但在渗透测试中，您更经常会看到每天、每周或每月运行的任务。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101043860.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101043860"
+	
+	
+></p>
+<p>您可以看到， <code>backup.sh</code> 脚本已配置为每分钟运行一次。该文件的内容是一个简单的脚本，用于创建 prices.xls 文件的备份。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101107347.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101107347"
+	
+	
+></p>
+<p>由于我们当前的用户可以访问此脚本，我们可以轻松地修改它以创建反向 shell，希望具有 root 权限。</p>
+<p>该脚本将使用目标系统上可用的工具来启动反向 shell。</p>
+<p>需要注意两点；</p>
+<ol>
+<li>命令语法将根据可用的工具而有所不同。（例如， <code>nc</code> 可能不支持您可能在其他情况下看到的 <code>-e</code> 选项）</li>
+<li>我们应该始终优先启动反向 shell，因为我们不想在实际渗透测试过程中损害系统完整性。</li>
+</ol>
+<p>该文件应如下所示；</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101308566.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101308566"
+	
+	
+></p>
+<p>我们现在将在攻击机器上运行一个监听器来接收传入的连接。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101345973.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101345973"
+	
+	
+></p>
+<p>Crontab 始终值得检查，因为它有时可能导致简单的权限提升向量。以下情况在网络安全成熟度不高的公司中并不少见：</p>
+<ol>
+<li>系统管理员需要定期运行脚本。</li>
+<li>他们创建了一个 cron job来执行此操作</li>
+<li>过了一段时间，脚本变得毫无用处，他们就删除了它</li>
+<li>他们没有清理相关的 cron job</li>
+</ol>
+<p>此变更管理问题导致可能利用 cron job进行攻击。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101714801.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101714801"
+	
+	
+></p>
+<p>上面的例子显示了类似的情况，其中 antivirus.sh 脚本被删除，但 cron job仍然存在。</p>
+<p>如果未定义脚本的完整路径（例如在 backup.sh 脚本中已定义），cron 将引用/etc/crontab 文件中 PATH  变量下列出的路径。在这种情况下，我们应该能够在用户主文件夹下创建一个名为“antivirus.sh”的脚本，并由 cron job运行它。</p>
+<p>目标系统上的文件应该看起来很熟悉：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101747404.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101747404"
+	
+	
+></p>
+<p>传入的反向 shell 连接具有 root 权限：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424101921532.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424101921532"
+	
+	
+></p>
+<p>如果你偶然发现一个现有的脚本或任务被附加到 cron job中，那么花时间去了解该脚本的功能以及在上下文中如何使用任何工具总是值得的。例如，tar、7z、rsync 等工具可以利用它们的通配符功能来利用它们。</p>
+<h2 id="path">PATH
+</h2><p>如果路径中存在用户拥有写入权限的文件夹，则可能会劫持应用程序来运行脚本 。Linux 中的 PATH 是一个环境变量，它指示操作系统在哪里搜索可执行文件。对于任何未内置于 Shell 或未使用绝对路径定义的命令， Linux 都会开始在 PATH 下定义的文件夹中搜索。（PATH 是我们这里讨论的环境变量，path 是文件的位置）。</p>
+<p>通常，PATH 看起来像这样：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424103919129.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424103919129"
+	
+	
+></p>
+<p>为了演示目的我们将使用以下脚本：</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104003002.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>该脚本尝试启动名为“ thm ”的系统二进制文件，但该示例可以轻松地用任何二进制文件复制。</p>
+<p>我们将其编译为可执行文件并设置 SUID 位。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104552086.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104552086"
+	
+	
+></p>
+<p>我们的用户现在可以访问设置了 SUID 位的“路径”脚本。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104620409.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104620409"
+	
+	
+></p>
+<p>一旦执行，“path”将在 PATH 下列出的文件夹中查找名为“ thm ”的可执行文件。</p>
+<p>如果 PATH 下列出了任何可写文件夹，我们可以在该目录下创建一个名为 thm 的二进制文件，并让“path”脚本运行它。由于设置了 SUID 位，该二进制文件将以 root 权限运行。</p>
+<p>可以使用“ <code>find / -writable 2&gt;/dev/null</code> ”命令简单搜索可写文件夹。此命令的输出可以通过简单的剪切和排序序列进行清理。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104656245.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104656245"
+	
+	
+></p>
+<p>一些 CTF 场景可以呈现不同的文件夹，但常规系统会输出类似我们上面看到的内容。</p>
+<p>将其与 PATH 进行比较将帮助我们找到可以使用的文件夹。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104804014.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104804014"
+	
+	
+></p>
+<p>我们在 /usr 下看到许多文件夹，因此可以更轻松地再次运行可写文件夹搜索以覆盖子文件夹。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104814361.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104814361"
+	
+	
+></p>
+<p>另一种方法是使用下面的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / -writable 2&gt;/dev/null <span class="p">|</span> cut -d <span class="s2">&#34;/&#34;</span> -f 2,3 <span class="p">|</span> grep -v proc <span class="p">|</span> sort -u
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们添加了“grep -v proc”来摆脱与正在运行的进程相关的许多结果。</p>
+<p>不幸的是，/usr 下的子文件夹不可写</p>
+<p>更容易写入的文件夹可能是 /tmp。此时，由于 PATH 中没有 /tmp，所以我们需要添加它。如下所示，“ <code>export PATH=/tmp:$PATH</code> ”命令可以完成此操作。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104844315.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104844315"
+	
+	
+></p>
+<p>此时，路径脚本还将在 /tmp 文件夹下查找名为“ thm ”的可执行文件。</p>
+<p>通过将 /bin/bash 复制为 /tmp 文件夹下的“ thm ”，创建此命令相当容易。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104858000.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104858000"
+	
+	
+></p>
+<p>我们已经赋予了 /bin/bash 副本可执行权限，请注意，此时它将以我们的用户权限运行。在此上下文中，权限提升之所以成为可能，是因为路径脚本以 root 权限运行。</p>
+<p><img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/image-20250424104909123.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250424104909123"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 Yerucrem
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
