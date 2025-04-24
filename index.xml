@@ -1840,12 +1840,12 @@
 </description>
         </item>
         <item>
-        <title>IDOR基础</title>
-        <link>https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/</link>
+        <title>IDOR-1</title>
+        <link>https://Yerucrem.github.io/p/idor-1/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/idor%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" alt="Featured image of post IDOR基础" /&gt;&lt;h1 id=&#34;idor基础&#34;&gt;IDOR基础
+        <guid>https://Yerucrem.github.io/p/idor-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/54afbc538832e9159efdc2ac951b4fabecad8304bd717a9aece08e26440c0690.png" alt="Featured image of post IDOR-1" /&gt;&lt;h1 id=&#34;idor基础&#34;&gt;IDOR基础
 &lt;/h1&gt;&lt;h2 id=&#34;什么是idor&#34;&gt;什么是IDOR
 &lt;/h2&gt;&lt;p&gt;IDOR（ Insecure Direct Object Reference） 代表不安全的直接对象引用，是一种访问控制漏洞。&lt;/p&gt;
 &lt;p&gt;当 Web 服务器收到用户提供的输入以检索对象（文件、数据、文档），对输入数据给予了太多信任，并且未在服务器端对其进行验证以确认所请求的对象属于请求它的用户时，就会发生这种类型的漏洞。&lt;/p&gt;
@@ -2549,12 +2549,12 @@
 </description>
         </item>
         <item>
-        <title>文件包含基础</title>
-        <link>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/</link>
+        <title>文件包含-1</title>
+        <link>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB-1/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" alt="Featured image of post 文件包含基础" /&gt;&lt;h1 id=&#34;文件包含基础&#34;&gt;文件包含基础
+        <guid>https://Yerucrem.github.io/p/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/638445f84229dc4814eb81dfe06baeb837e3a5e8920ec39035d8dd6e02c0a10d.png" alt="Featured image of post 文件包含-1" /&gt;&lt;h1 id=&#34;文件包含基础&#34;&gt;文件包含基础
 &lt;/h1&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍
 &lt;/h2&gt;&lt;p&gt;此房间旨在为您提供利用文件包含漏洞的基本知识，包括本地文件包含 （LFI）、远程文件包含 （RFI） 和目录遍历。此外，我们还将讨论发现这些漏洞的风险以及所需的补救措施。我们提供了每个漏洞的一些实际示例以及实践挑战。&lt;/p&gt;
 &lt;p&gt;在某些情况下，编写 Web 应用程序是为了通过参数请求访问给定系统上的文件，包括图像、静态文本等。参数是附加到 URL 的查询参数字符串，可用于检索数据或根据用户输入执行作。 下图分解了 URL 的基本部分。&lt;/p&gt;
@@ -2830,12 +2830,12 @@
 </description>
         </item>
         <item>
-        <title>SQL注入基础</title>
-        <link>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</link>
+        <title>SQL注入-1</title>
+        <link>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5-1/</link>
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post SQL注入基础" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
+        <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post SQL注入-1" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
 &lt;/h1&gt;&lt;p&gt;SQL 语法不区分大小写。&lt;/p&gt;
 &lt;h2 id=&#34;sql基础&#34;&gt;SQL基础
 &lt;/h2&gt;&lt;h3 id=&#34;select&#34;&gt;SELECT

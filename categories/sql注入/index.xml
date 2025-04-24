@@ -8,12 +8,12 @@
         <language>zh-cn</language>
         <copyright>Yerucrem</copyright>
         <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Yerucrem.github.io/categories/sql%E6%B3%A8%E5%85%A5/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>SQL注入基础</title>
-        <link>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</link>
+        <title>SQL注入-1</title>
+        <link>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5-1/</link>
         <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post SQL注入基础" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
+        <guid>https://Yerucrem.github.io/p/sql%E6%B3%A8%E5%85%A5-1/</guid>
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/73aeab67fb4786d5331bab4f3b2452827dba9d186069cdc60db0ecfab89b34c5.png" alt="Featured image of post SQL注入-1" /&gt;&lt;h1 id=&#34;sql注入&#34;&gt;SQL注入
 &lt;/h1&gt;&lt;p&gt;SQL 语法不区分大小写。&lt;/p&gt;
 &lt;h2 id=&#34;sql基础&#34;&gt;SQL基础
 &lt;/h2&gt;&lt;h3 id=&#34;select&#34;&gt;SELECT
