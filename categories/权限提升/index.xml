@@ -13,7 +13,7 @@
         <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Yerucrem.github.io/p/linux%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/</guid>
-        <description>&lt;h2 id=&#34;sudo&#34;&gt;Sudo
+        <description>&lt;img src="https://yerucrembed-1314300122.cos.ap-nanjing.myqcloud.com/img/girl-7628308.jpg" alt="Featured image of post Linux权限提升" /&gt;&lt;h2 id=&#34;sudo&#34;&gt;Sudo
 &lt;/h2&gt;&lt;p&gt;默认情况下，sudo 命令允许您以 root 权限运行程序。在某些情况下，系统管理员可能需要赋予普通用户一定的权限灵活性。例如，初级 SOC 分析师可能需要定期使用 Nmap ，但无法获得完全的 root 访问权限。在这种情况下，系统管理员可以允许该用户仅以 root 权限运行 Nmap ，同时在系统的其余部分保持其常规权限级别。&lt;/p&gt;
 &lt;p&gt;任何用户都可以使用 &lt;code&gt;sudo -l&lt;/code&gt; 命令检查其当前与 root 权限相关的情况。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gtfobins.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
